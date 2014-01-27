@@ -1,0 +1,185 @@
+Started by user [8mha:AAAAlh+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzOEgYu/dLi1CL9vNKcHACFIKlWvwAAAA==[0manonymous
+Building in workspace /home/michael/.jenkins/jobs/DevOps/workspace
+Fetching changes from the remote Git repository
+Fetching upstream changes from /home/michael/talk/central
+Checking out Revision 574494dc0f434cee50ce135da74291eecd01ae9b (origin/master)
+[workspace] $ /home/michael/talk/maven/apache-maven-3.1.1/bin/mvn -f devops/pom.xml clean install
+[8mha:AAAAYx+LCAAAAAAAAP9b85aBtbiIQSWjNKU4P0+vJLE4u1gvPjexLDVPzxdEhicW5WXmpfvll6S2fNly5fzGzauYGBgqihikoFqS8/OK83NS9ZwhNEghAwQwghQWAACwxA+XYgAAAA==[0m[WARNING] 
+[8mha:AAAAYx+LCAAAAAAAAP9b85aBtbiIQSWjNKU4P0+vJLE4u1gvPjexLDVPzxdEhicW5WXmpfvll6S2fNly5fzGzauYGBgqihikoFqS8/OK83NS9ZwhNEghAwQwghQWAACwxA+XYgAAAA==[0m[WARNING] Some problems were encountered while building the effective settings
+[8mha:AAAAYx+LCAAAAAAAAP9b85aBtbiIQSWjNKU4P0+vJLE4u1gvPjexLDVPzxdEhicW5WXmpfvll6S2fNly5fzGzauYGBgqihikoFqS8/OK83NS9ZwhNEghAwQwghQWAACwxA+XYgAAAA==[0m[WARNING] Unrecognised tag: 'server' (position: START_TAG seen ...GS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">\n<server>... @6:9)  @ /home/michael/talk/maven/apache-maven-3.1.1/conf/settings.xml, line 6, column 9
+[8mha:AAAAYx+LCAAAAAAAAP9b85aBtbiIQSWjNKU4P0+vJLE4u1gvPjexLDVPzxdEhicW5WXmpfvll6S2fNly5fzGzauYGBgqihikoFqS8/OK83NS9ZwhNEghAwQwghQWAACwxA+XYgAAAA==[0m[WARNING] 
+[INFO] Scanning for projects...
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building devops 0.0.1
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[8mha:AAAAYB+LCAAAAAAAAP9b85aBtbiIQSmjNKU4P0+vJLE4u1gvPjexLDVPzxdEGvvmZ+X75ZekLlOVfvTjc8FPJgaGiiIGKaiG5Py84vycVD1nCA1SyAABjCCFBQCV27OjYAAAAA==[0m[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ cat ---
+[INFO] Deleting /home/michael/.jenkins/jobs/DevOps/workspace/devops/target
+[INFO] 
+[8mha:AAAAYB+LCAAAAAAAAP9b85aBtbiIQSmjNKU4P0+vJLE4u1gvPjexLDVPzxdEGvvmZ+X75ZekLlOVfvTjc8FPJgaGiiIGKaiG5Py84vycVD1nCA1SyAABjCCFBQCV27OjYAAAAA==[0m[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ cat ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 2 resources
+[INFO] 
+[8mha:AAAAYB+LCAAAAAAAAP9b85aBtbiIQSmjNKU4P0+vJLE4u1gvPjexLDVPzxdEGvvmZ+X75ZekLlOVfvTjc8FPJgaGiiIGKaiG5Py84vycVD1nCA1SyAABjCCFBQCV27OjYAAAAA==[0m[INFO] --- maven-compiler-plugin:2.3.2:compile (default-compile) @ cat ---
+[INFO] Compiling 1 source file to /home/michael/.jenkins/jobs/DevOps/workspace/devops/target/classes
+[INFO] 
+[8mha:AAAAYB+LCAAAAAAAAP9b85aBtbiIQSmjNKU4P0+vJLE4u1gvPjexLDVPzxdEGvvmZ+X75ZekLlOVfvTjc8FPJgaGiiIGKaiG5Py84vycVD1nCA1SyAABjCCFBQCV27OjYAAAAA==[0m[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ cat ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /home/michael/.jenkins/jobs/DevOps/workspace/devops/src/test/resources
+[INFO] 
+[8mha:AAAAYB+LCAAAAAAAAP9b85aBtbiIQSmjNKU4P0+vJLE4u1gvPjexLDVPzxdEGvvmZ+X75ZekLlOVfvTjc8FPJgaGiiIGKaiG5Py84vycVD1nCA1SyAABjCCFBQCV27OjYAAAAA==[0m[INFO] --- maven-compiler-plugin:2.3.2:testCompile (default-testCompile) @ cat ---
+[INFO] Compiling 1 source file to /home/michael/.jenkins/jobs/DevOps/workspace/devops/target/test-classes
+[INFO] 
+[8mha:AAAAYB+LCAAAAAAAAP9b85aBtbiIQSmjNKU4P0+vJLE4u1gvPjexLDVPzxdEGvvmZ+X75ZekLlOVfvTjc8FPJgaGiiIGKaiG5Py84vycVD1nCA1SyAABjCCFBQCV27OjYAAAAA==[0m[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ cat ---
+[INFO] Surefire report directory: /home/michael/.jenkins/jobs/DevOps/workspace/devops/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running com.huettermann.AppTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.034 sec
+
+Results :
+
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO] 
+[8mha:AAAAYB+LCAAAAAAAAP9b85aBtbiIQSmjNKU4P0+vJLE4u1gvPjexLDVPzxdEGvvmZ+X75ZekLlOVfvTjc8FPJgaGiiIGKaiG5Py84vycVD1nCA1SyAABjCCFBQCV27OjYAAAAA==[0m[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ cat ---
+[INFO] Building jar: /home/michael/.jenkins/jobs/DevOps/workspace/devops/target/cat-0.0.1.jar
+[INFO] 
+[8mha:AAAAYB+LCAAAAAAAAP9b85aBtbiIQSmjNKU4P0+vJLE4u1gvPjexLDVPzxdEGvvmZ+X75ZekLlOVfvTjc8FPJgaGiiIGKaiG5Py84vycVD1nCA1SyAABjCCFBQCV27OjYAAAAA==[0m[INFO] --- maven-install-plugin:2.4:install (default-install) @ cat ---
+[INFO] Installing /home/michael/.jenkins/jobs/DevOps/workspace/devops/target/cat-0.0.1.jar to /home/michael/.m2/repository/com/huettermann/cat/0.0.1/cat-0.0.1.jar
+[INFO] Installing /home/michael/.jenkins/jobs/DevOps/workspace/devops/pom.xml to /home/michael/.m2/repository/com/huettermann/cat/0.0.1/cat-0.0.1.pom
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 7.052s
+[INFO] Finished at: Fri Jan 03 18:18:18 CET 2014
+[INFO] Final Memory: 18M/43M
+[INFO] ------------------------------------------------------------------------
+[workspace] $ /bin/sh /tmp/hudson3213786793561087390.sh
+
+* About to connect() to api.bintray.com port 443 (#0)
+*   Trying 108.168.194.93...
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0* Connected to api.bintray.com (108.168.194.93) port 443 (#0)
+* successfully set certificate verify locations:
+*   CAfile: none
+  CApath: /etc/ssl/certs
+* SSLv3, TLS handshake, Client hello (1):
+} [data not shown]
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0* SSLv3, TLS handshake, Server hello (2):
+{ [data not shown]
+* SSLv3, TLS handshake, CERT (11):
+{ [data not shown]
+* SSLv3, TLS handshake, Server finished (14):
+{ [data not shown]
+* SSLv3, TLS handshake, Client key exchange (16):
+} [data not shown]
+* SSLv3, TLS change cipher, Client hello (1):
+} [data not shown]
+* SSLv3, TLS handshake, Finished (20):
+} [data not shown]
+* SSLv3, TLS change cipher, Client hello (1):
+{ [data not shown]
+* SSLv3, TLS handshake, Finished (20):
+{ [data not shown]
+* SSL connection using RC4-SHA
+* Server certificate:
+* 	 subject: serialNumber=Zryi84wk2jGyNPvV/ou0y4MCi5BYxaKP; C=US; ST=California; L=Milpitas; O=JFrog Inc.; CN=*.bintray.com
+* 	 start date: 2013-08-12 09:42:18 GMT
+* 	 expire date: 2015-11-14 05:58:20 GMT
+* 	 subjectAltName: api.bintray.com matched
+* 	 issuer: C=US; O=GeoTrust, Inc.; CN=GeoTrust SSL CA
+* 	 SSL certificate verify ok.
+  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0* Server auth using Basic with user 'michaelhuettermann'
+> DELETE /packages/michaelhuettermann/meow/cat/versions/0.0.1 HTTP/1.1
+> Authorization: Basic bWljaGFlbGh1ZXR0ZXJtYW5uOmFjNWM2ODBjMzlhY2ZmZDA4YzlhYTdiMTZhNjI4MzllNjgxZjJjODY=
+> User-Agent: curl/7.29.0
+> Host: api.bintray.com
+> Accept: */*
+> 
+< HTTP/1.1 200 OK
+< Server: nginx
+< Date: Mon, 20 Jan 2014 19:08:13 GMT
+< Transfer-Encoding: chunked
+< Connection: keep-alive
+< Set-Cookie: JSESSIONID=652EDB01B0F09B8FFF540D16540EE99F; Path=/; HttpOnly
+< Set-Cookie: rememberMe=deleteMe; Path=/; Max-Age=0; Expires=Sun, 19-Jan-2014 19:08:13 GMT; Secure
+< Set-Cookie: rememberMe=hPrHOiCJSqdChc2jxIzOZ/SVGegzWTgpAXZwqIpcYdsWv5HbJMyLzzT8PnF6R/dOqhL+XxFwdGvmefbDRcdfXYUV3mgX1fj5M7AqsyvCmhYX0o1Fb22IfSD9Oe5tC0SDaO3EtrhRMy0C7hNS2BI28K1D3mZfUMpFWEb17VYyXphsB2RIt1WkVgnQ+hIavjDvuyQUjROOe0DQLQ/4xL7wuaBcnCsf49FdtRXezx/6+ZnEbNwzzTPMYVkfVZNWom31yLd6NG3/mqw2Mgr66PMZljtQjrtT6D6eTU6mDv9d9ESj3Haen7As4MPPEoEqjXVUXgAKeRiFCYq/PF6sHwB17MVSk/U93F36fiH6yFjQB+PgtTSLyc0T8p7Qq4mveAMZFZq0nJ+ZslBNbbZoV5moj8YWZQvnQcMPcoi8GpKF2+gs0pYy1yHf2LtQug77EiIHMYTBvD16QQwJR8CtE0xpp10lnplg9J2TG2VycJr4SzrX1dFgnhM4fohvuBvBvMAy; Path=/; Max-Age=31536000; Expires=Tue, 20-Jan-2015 19:08:13 GMT; Secure; HttpOnly
+< X-RateLimit-Limit: 300
+< X-RateLimit-Remaining: 299
+< 
+{ [data not shown]
+  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0
+* Connection #0 to host api.bintray.com left intact
+[workspace] $ /bin/sh /tmp/hudson7840416808063884633.sh
+------------------------------------
+* About to connect() to api.bintray.com port 443 (#0)
+*   Trying 108.168.194.90...
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0* Connected to api.bintray.com (108.168.194.90) port 443 (#0)
+* successfully set certificate verify locations:
+*   CAfile: none
+  CApath: /etc/ssl/certs
+* SSLv3, TLS handshake, Client hello (1):
+} [data not shown]
+* SSLv3, TLS handshake, Server hello (2):
+{ [data not shown]
+* SSLv3, TLS handshake, CERT (11):
+{ [data not shown]
+* SSLv3, TLS handshake, Server finished (14):
+{ [data not shown]
+* SSLv3, TLS handshake, Client key exchange (16):
+} [data not shown]
+* SSLv3, TLS change cipher, Client hello (1):
+} [data not shown]
+* SSLv3, TLS handshake, Finished (20):
+} [data not shown]
+* SSLv3, TLS change cipher, Client hello (1):
+{ [data not shown]
+* SSLv3, TLS handshake, Finished (20):
+{ [data not shown]
+* SSL connection using RC4-SHA
+* Server certificate:
+* 	 subject: serialNumber=Zryi84wk2jGyNPvV/ou0y4MCi5BYxaKP; C=US; ST=California; L=Milpitas; O=JFrog Inc.; CN=*.bintray.com
+* 	 start date: 2013-08-12 09:42:18 GMT
+* 	 expire date: 2015-11-14 05:58:20 GMT
+* 	 subjectAltName: api.bintray.com matched
+* 	 issuer: C=US; O=GeoTrust, Inc.; CN=GeoTrust SSL CA
+* 	 SSL certificate verify ok.
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0* Server auth using Basic with user 'michaelhuettermann'
+> POST /packages/michaelhuettermann/meow/cat/versions HTTP/1.1
+> Authorization: Basic bWljaGFlbGh1ZXR0ZXJtYW5uOmFjNWM2ODBjMzlhY2ZmZDA4YzlhYTdiMTZhNjI4MzllNjgxZjJjODY=
+> User-Agent: curl/7.29.0
+> Host: api.bintray.com
+> Accept: */*
+> Content-Type: application/json
+> Content-Length: 35
+> 
+} [data not shown]
+* upload completely sent off: 35 out of 35 bytes
+< HTTP/1.1 201 Created
+< Server: nginx
+< Date: Mon, 20 Jan 2014 19:08:14 GMT
+< Content-Type: application/json
+< Transfer-Encoding: chunked
+< Connection: keep-alive
+< Set-Cookie: JSESSIONID=9ECD911DA27AB6A367CAC97980AB05BD; Path=/; HttpOnly
+< Set-Cookie: rememberMe=deleteMe; Path=/; Max-Age=0; Expires=Sun, 19-Jan-2014 19:08:14 GMT; Secure
+< Set-Cookie: rememberMe=nNyRC3vtlwunBLHmoxheuBmmcn+AHi2zNo3FA6DOXKPFoqFCBsJmmwpnacpwMj4TZSPIF8EVidPMef4S/5cePOjljUynDGJxrVchdtVVgoenSsJQ+BIdLQFeXm0Y19WjL+fJQk+urOFcI45EnipxYLw7iK2PqMdV60h9qPHWi30MQSGdQfWjMHPm5CwILJfe+dLBE4eyOyRobYUW3FRvUQy7U1/cEPigzkR14mP4BbYUDyUEJ2Y6aCNU5lEzlAgprUxuhUBB3bs3xQqox7sfxx294JlSbpP/zAc6HGB4DmRbHTCplqTH/4+EdGoAUryKzKRlzBmtQL6TnavHcBtS87i2RJCZME5uKrKe9aJPWDxZYP9FNCSOuhZMSqIb1XcCx6EQ+3Lm8j5pdxjiVOabH05kPmiQkouhreNhzZ91fCiEl0qqR/dKBvsaQo8tNiYS+uEkauhxtGEurh+RlEXT2+5Cpz0spcvqYvBSxTPMx8TjVeiQl4HRE9Ntj68TOZzH; Path=/; Max-Age=31536000; Expires=Tue, 20-Jan-2015 19:08:14 GMT; Secure; HttpOnly
+< X-RateLimit-Limit: 300
+< X-RateLimit-Remaining: 299
+< 
+{ [data not shown]
+100   267    0   232  100    35    259     39 --:--:-- --:--:-- --:--:--   281
+* Connection #0 to host api.bintray.com left intact
+{"name":"0.0.1","desc":"desc","package":"cat","repo":"meow","owner":"michaelhuettermann","labels":["delivery"],"attribute_names":[],"created":"2014-01-20T19:08:14.123Z","updated":"2014-01-20T19:08:14.123Z","released":"","ordinal":0}[workspace] $ /bin/sh -xe /tmp/hudson5913637178340626600.sh
++ curl -vvf -T /home/michael/.jenkins/jobs/DevOps/workspace/devops/target/0.0.1.jar -u michaelhuettermann:ac5c680c39acffd08c9aa7b16a62839e681f2c86 -H X-Bintray-Package:cat -H X-Bintray-Version:0.0.1 https://api.bintray.com/content/michaelhuettermann/meow/
+curl: Can't open '/home/michael/.jenkins/jobs/DevOps/workspace/devops/target/0.0.1.jar'!
+curl: try 'curl --help' or 'curl --manual' for more information
+Build step 'Execute shell' marked build as failure
+Finished: FAILURE

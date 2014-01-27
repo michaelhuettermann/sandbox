@@ -1,0 +1,236 @@
+Started by user [8mha:AAAAlh+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzOEgYu/dLi1CL9vNKcHACFIKlWvwAAAA==[0manonymous
+Building in workspace /home/michael/.jenkins/jobs/DevOps/workspace
+Fetching changes from the remote Git repository
+Fetching upstream changes from /home/michael/talk/central
+Checking out Revision 574494dc0f434cee50ce135da74291eecd01ae9b (origin/master)
+[workspace] $ /home/michael/talk/maven/apache-maven-3.1.1/bin/mvn -f devops/pom.xml clean install
+[8mha:AAAAYx+LCAAAAAAAAP9b85aBtbiIQSWjNKU4P0+vJLE4u1gvPjexLDVPzxdEhicW5WXmpfvll6S2fNly5fzGzauYGBgqihikoFqS8/OK83NS9ZwhNEghAwQwghQWAACwxA+XYgAAAA==[0m[WARNING] 
+[8mha:AAAAYx+LCAAAAAAAAP9b85aBtbiIQSWjNKU4P0+vJLE4u1gvPjexLDVPzxdEhicW5WXmpfvll6S2fNly5fzGzauYGBgqihikoFqS8/OK83NS9ZwhNEghAwQwghQWAACwxA+XYgAAAA==[0m[WARNING] Some problems were encountered while building the effective settings
+[8mha:AAAAYx+LCAAAAAAAAP9b85aBtbiIQSWjNKU4P0+vJLE4u1gvPjexLDVPzxdEhicW5WXmpfvll6S2fNly5fzGzauYGBgqihikoFqS8/OK83NS9ZwhNEghAwQwghQWAACwxA+XYgAAAA==[0m[WARNING] Unrecognised tag: 'server' (position: START_TAG seen ...GS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">\n<server>... @6:9)  @ /home/michael/talk/maven/apache-maven-3.1.1/conf/settings.xml, line 6, column 9
+[8mha:AAAAYx+LCAAAAAAAAP9b85aBtbiIQSWjNKU4P0+vJLE4u1gvPjexLDVPzxdEhicW5WXmpfvll6S2fNly5fzGzauYGBgqihikoFqS8/OK83NS9ZwhNEghAwQwghQWAACwxA+XYgAAAA==[0m[WARNING] 
+[INFO] Scanning for projects...
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building devops 0.0.1
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[8mha:AAAAYB+LCAAAAAAAAP9b85aBtbiIQSmjNKU4P0+vJLE4u1gvPjexLDVPzxdEGvvmZ+X75ZekLlOVfvTjc8FPJgaGiiIGKaiG5Py84vycVD1nCA1SyAABjCCFBQCV27OjYAAAAA==[0m[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ cat ---
+[INFO] Deleting /home/michael/.jenkins/jobs/DevOps/workspace/devops/target
+[INFO] 
+[8mha:AAAAYB+LCAAAAAAAAP9b85aBtbiIQSmjNKU4P0+vJLE4u1gvPjexLDVPzxdEGvvmZ+X75ZekLlOVfvTjc8FPJgaGiiIGKaiG5Py84vycVD1nCA1SyAABjCCFBQCV27OjYAAAAA==[0m[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ cat ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 2 resources
+[INFO] 
+[8mha:AAAAYB+LCAAAAAAAAP9b85aBtbiIQSmjNKU4P0+vJLE4u1gvPjexLDVPzxdEGvvmZ+X75ZekLlOVfvTjc8FPJgaGiiIGKaiG5Py84vycVD1nCA1SyAABjCCFBQCV27OjYAAAAA==[0m[INFO] --- maven-compiler-plugin:2.3.2:compile (default-compile) @ cat ---
+[INFO] Compiling 1 source file to /home/michael/.jenkins/jobs/DevOps/workspace/devops/target/classes
+[INFO] 
+[8mha:AAAAYB+LCAAAAAAAAP9b85aBtbiIQSmjNKU4P0+vJLE4u1gvPjexLDVPzxdEGvvmZ+X75ZekLlOVfvTjc8FPJgaGiiIGKaiG5Py84vycVD1nCA1SyAABjCCFBQCV27OjYAAAAA==[0m[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ cat ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /home/michael/.jenkins/jobs/DevOps/workspace/devops/src/test/resources
+[INFO] 
+[8mha:AAAAYB+LCAAAAAAAAP9b85aBtbiIQSmjNKU4P0+vJLE4u1gvPjexLDVPzxdEGvvmZ+X75ZekLlOVfvTjc8FPJgaGiiIGKaiG5Py84vycVD1nCA1SyAABjCCFBQCV27OjYAAAAA==[0m[INFO] --- maven-compiler-plugin:2.3.2:testCompile (default-testCompile) @ cat ---
+[INFO] Compiling 1 source file to /home/michael/.jenkins/jobs/DevOps/workspace/devops/target/test-classes
+[INFO] 
+[8mha:AAAAYB+LCAAAAAAAAP9b85aBtbiIQSmjNKU4P0+vJLE4u1gvPjexLDVPzxdEGvvmZ+X75ZekLlOVfvTjc8FPJgaGiiIGKaiG5Py84vycVD1nCA1SyAABjCCFBQCV27OjYAAAAA==[0m[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ cat ---
+[INFO] Surefire report directory: /home/michael/.jenkins/jobs/DevOps/workspace/devops/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running com.huettermann.AppTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.033 sec
+
+Results :
+
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO] 
+[8mha:AAAAYB+LCAAAAAAAAP9b85aBtbiIQSmjNKU4P0+vJLE4u1gvPjexLDVPzxdEGvvmZ+X75ZekLlOVfvTjc8FPJgaGiiIGKaiG5Py84vycVD1nCA1SyAABjCCFBQCV27OjYAAAAA==[0m[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ cat ---
+[INFO] Building jar: /home/michael/.jenkins/jobs/DevOps/workspace/devops/target/cat-0.0.1.jar
+[INFO] 
+[8mha:AAAAYB+LCAAAAAAAAP9b85aBtbiIQSmjNKU4P0+vJLE4u1gvPjexLDVPzxdEGvvmZ+X75ZekLlOVfvTjc8FPJgaGiiIGKaiG5Py84vycVD1nCA1SyAABjCCFBQCV27OjYAAAAA==[0m[INFO] --- maven-install-plugin:2.4:install (default-install) @ cat ---
+[INFO] Installing /home/michael/.jenkins/jobs/DevOps/workspace/devops/target/cat-0.0.1.jar to /home/michael/.m2/repository/com/huettermann/cat/0.0.1/cat-0.0.1.jar
+[INFO] Installing /home/michael/.jenkins/jobs/DevOps/workspace/devops/pom.xml to /home/michael/.m2/repository/com/huettermann/cat/0.0.1/cat-0.0.1.pom
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 6.473s
+[INFO] Finished at: Fri Jan 03 18:20:18 CET 2014
+[INFO] Final Memory: 18M/43M
+[INFO] ------------------------------------------------------------------------
+[workspace] $ /bin/sh /tmp/hudson6247809031006211166.sh
+
+* About to connect() to api.bintray.com port 443 (#0)
+*   Trying 108.168.194.90...
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0* Connected to api.bintray.com (108.168.194.90) port 443 (#0)
+* successfully set certificate verify locations:
+*   CAfile: none
+  CApath: /etc/ssl/certs
+* SSLv3, TLS handshake, Client hello (1):
+} [data not shown]
+* SSLv3, TLS handshake, Server hello (2):
+{ [data not shown]
+  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0* SSLv3, TLS handshake, CERT (11):
+{ [data not shown]
+* SSLv3, TLS handshake, Server finished (14):
+{ [data not shown]
+* SSLv3, TLS handshake, Client key exchange (16):
+} [data not shown]
+* SSLv3, TLS change cipher, Client hello (1):
+} [data not shown]
+* SSLv3, TLS handshake, Finished (20):
+} [data not shown]
+* SSLv3, TLS change cipher, Client hello (1):
+{ [data not shown]
+* SSLv3, TLS handshake, Finished (20):
+{ [data not shown]
+* SSL connection using RC4-SHA
+* Server certificate:
+* 	 subject: serialNumber=Zryi84wk2jGyNPvV/ou0y4MCi5BYxaKP; C=US; ST=California; L=Milpitas; O=JFrog Inc.; CN=*.bintray.com
+* 	 start date: 2013-08-12 09:42:18 GMT
+* 	 expire date: 2015-11-14 05:58:20 GMT
+* 	 subjectAltName: api.bintray.com matched
+* 	 issuer: C=US; O=GeoTrust, Inc.; CN=GeoTrust SSL CA
+* 	 SSL certificate verify ok.
+* Server auth using Basic with user 'michaelhuettermann'
+> DELETE /packages/michaelhuettermann/meow/cat/versions/0.0.1 HTTP/1.1
+> Authorization: Basic bWljaGFlbGh1ZXR0ZXJtYW5uOmFjNWM2ODBjMzlhY2ZmZDA4YzlhYTdiMTZhNjI4MzllNjgxZjJjODY=
+> User-Agent: curl/7.29.0
+> Host: api.bintray.com
+> Accept: */*
+> 
+< HTTP/1.1 200 OK
+< Server: nginx
+< Date: Mon, 20 Jan 2014 19:10:12 GMT
+< Transfer-Encoding: chunked
+< Connection: keep-alive
+< Set-Cookie: JSESSIONID=C495E3FAE4A5897605409B7E046EB243; Path=/; HttpOnly
+< Set-Cookie: rememberMe=deleteMe; Path=/; Max-Age=0; Expires=Sun, 19-Jan-2014 19:10:12 GMT; Secure
+< Set-Cookie: rememberMe=aqWoJvXxn6YZmEdgcg20wjdAbutJ0HW89jSWxL6hDFvGEecIEQ409Ms7oYd2V+P14qYkLxeITnFEzAjBAux6AwlXiJ0La21avi15mGWoxgCis1o1Ai5iqK9v1/X2Z+91TJcJ9TBJKeB6FE/+dUrvNITJ0nGNK9eqnN0Qrs8tvQXXXFWl+KTdL7M5F0ofH4UmsaUssdveAETas0UHh8ww/wb9YIL4nn4vnMBQjvN0mnoIYzQAa9+I33JXAQ5b5k/QFkjJpxJ1G+uAeZgbwQ7rBc3lerLsjoqgLMIsZyO5sv0Klfyko5sq2a4flgGOtIoU3qAYl/lpdI8pgPfd1TrqnJCM3zOhM0mh4yPQPSulMmnYKpK4mGE9/mSjT5YKu6pkLA+b7cuR159ZSwjipQx1XTCDYWbCeDX6IcqaDHbHFHkdjei5qT6byMRppXqmVs9LyIxPjZLs/9WNSqT89gL2WrsgOpStgD2XArgucXzlJZi8bIn8aWHSdV4CdFxBxgfj; Path=/; Max-Age=31536000; Expires=Tue, 20-Jan-2015 19:10:12 GMT; Secure; HttpOnly
+< X-RateLimit-Limit: 300
+< X-RateLimit-Remaining: 299
+< 
+{ [data not shown]
+  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0
+* Connection #0 to host api.bintray.com left intact
+[workspace] $ /bin/sh /tmp/hudson664702843117054273.sh
+------------------------------------
+* About to connect() to api.bintray.com port 443 (#0)
+*   Trying 108.168.194.93...
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0* Connected to api.bintray.com (108.168.194.93) port 443 (#0)
+* successfully set certificate verify locations:
+*   CAfile: none
+  CApath: /etc/ssl/certs
+* SSLv3, TLS handshake, Client hello (1):
+} [data not shown]
+* SSLv3, TLS handshake, Server hello (2):
+{ [data not shown]
+* SSLv3, TLS handshake, CERT (11):
+{ [data not shown]
+* SSLv3, TLS handshake, Server finished (14):
+{ [data not shown]
+* SSLv3, TLS handshake, Client key exchange (16):
+} [data not shown]
+* SSLv3, TLS change cipher, Client hello (1):
+} [data not shown]
+* SSLv3, TLS handshake, Finished (20):
+} [data not shown]
+* SSLv3, TLS change cipher, Client hello (1):
+{ [data not shown]
+* SSLv3, TLS handshake, Finished (20):
+{ [data not shown]
+* SSL connection using RC4-SHA
+* Server certificate:
+* 	 subject: serialNumber=Zryi84wk2jGyNPvV/ou0y4MCi5BYxaKP; C=US; ST=California; L=Milpitas; O=JFrog Inc.; CN=*.bintray.com
+* 	 start date: 2013-08-12 09:42:18 GMT
+* 	 expire date: 2015-11-14 05:58:20 GMT
+* 	 subjectAltName: api.bintray.com matched
+* 	 issuer: C=US; O=GeoTrust, Inc.; CN=GeoTrust SSL CA
+* 	 SSL certificate verify ok.
+* Server auth using Basic with user 'michaelhuettermann'
+> POST /packages/michaelhuettermann/meow/cat/versions HTTP/1.1
+> Authorization: Basic bWljaGFlbGh1ZXR0ZXJtYW5uOmFjNWM2ODBjMzlhY2ZmZDA4YzlhYTdiMTZhNjI4MzllNjgxZjJjODY=
+> User-Agent: curl/7.29.0
+> Host: api.bintray.com
+> Accept: */*
+> Content-Type: application/json
+> Content-Length: 35
+> 
+} [data not shown]
+* upload completely sent off: 35 out of 35 bytes
+< HTTP/1.1 201 Created
+< Server: nginx
+< Date: Mon, 20 Jan 2014 19:10:13 GMT
+< Content-Type: application/json
+< Transfer-Encoding: chunked
+< Connection: keep-alive
+< Set-Cookie: JSESSIONID=B386610558769BCED95A7D1DF6043B9E; Path=/; HttpOnly
+< Set-Cookie: rememberMe=deleteMe; Path=/; Max-Age=0; Expires=Sun, 19-Jan-2014 19:10:13 GMT; Secure
+< Set-Cookie: rememberMe=e+4W5fKDOgYNBknySPvIQIor4ijkXlGt556hiT2Ow8loR3UAr+a6YklGCnzoxg4A3psnqEdJSKyWWKa+GBXegzEn3JjtoysUJoL3p65oSDHvJwAZdzz+M6+LuvShGtIpLuGvuIMUKu9oXm9S0icVw+qnTYm030OxCMs6PHD4yhMRv1CUtxazzh5Bisjna/9U3BB35BRGfLt6Ngd9xO/kJJx3Qoo3sma8PMtM4dyd4DkBxVKWpZzJDfof31Snfo4leGk2PipICvPeTrDmvTnGijuQ25ft9LLhcF8E6kwx2xP+MWAh+HpIm01pHs3Qs1ypvu18PH5oEj5CDY0THz9rYOdUu/clB9Y2Gf8fz+fs2ViFNpWPU17gmUZkiOg/2nMSMgcob2f9K+uBsy7auijopizC7FgPow+LFx0PsvCIbYtD9TA/uHgtF6URWgwktUTRBV9bAjiPnwDVVc9qib90NkYahp2xZ1IL/rFIZBuVPt2onXbbpGsZSSxwMc6FfnEm; Path=/; Max-Age=31536000; Expires=Tue, 20-Jan-2015 19:10:13 GMT; Secure; HttpOnly
+< X-RateLimit-Limit: 300
+< X-RateLimit-Remaining: 299
+< 
+{ [data not shown]
+100   267    0   232  100    35    245     37 --:--:-- --:--:-- --:--:--   264100   267    0   232  100    35    245     37 --:--:-- --:--:-- --:--:--   264
+* Connection #0 to host api.bintray.com left intact
+{"name":"0.0.1","desc":"desc","package":"cat","repo":"meow","owner":"michaelhuettermann","labels":["delivery"],"attribute_names":[],"created":"2014-01-20T19:10:13.917Z","updated":"2014-01-20T19:10:13.917Z","released":"","ordinal":0}[workspace] $ /bin/sh -xe /tmp/hudson7130347786348163319.sh
++ curl -vvf --data-binary /home/michael/.jenkins/jobs/DevOps/workspace/devops/target/0.0.1.jar -u michaelhuettermann:ac5c680c39acffd08c9aa7b16a62839e681f2c86 -H X-Bintray-Package:cat -H X-Bintray-Version:0.0.1 https://api.bintray.com/content/michaelhuettermann/meow/
+* About to connect() to api.bintray.com port 443 (#0)
+*   Trying 108.168.194.90...
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0* Connected to api.bintray.com (108.168.194.90) port 443 (#0)
+* successfully set certificate verify locations:
+*   CAfile: none
+  CApath: /etc/ssl/certs
+* SSLv3, TLS handshake, Client hello (1):
+} [data not shown]
+* SSLv3, TLS handshake, Server hello (2):
+{ [data not shown]
+* SSLv3, TLS handshake, CERT (11):
+{ [data not shown]
+* SSLv3, TLS handshake, Server finished (14):
+{ [data not shown]
+* SSLv3, TLS handshake, Client key exchange (16):
+} [data not shown]
+* SSLv3, TLS change cipher, Client hello (1):
+} [data not shown]
+* SSLv3, TLS handshake, Finished (20):
+} [data not shown]
+* SSLv3, TLS change cipher, Client hello (1):
+{ [data not shown]
+* SSLv3, TLS handshake, Finished (20):
+{ [data not shown]
+* SSL connection using RC4-SHA
+* Server certificate:
+* 	 subject: serialNumber=Zryi84wk2jGyNPvV/ou0y4MCi5BYxaKP; C=US; ST=California; L=Milpitas; O=JFrog Inc.; CN=*.bintray.com
+* 	 start date: 2013-08-12 09:42:18 GMT
+* 	 expire date: 2015-11-14 05:58:20 GMT
+* 	 subjectAltName: api.bintray.com matched
+* 	 issuer: C=US; O=GeoTrust, Inc.; CN=GeoTrust SSL CA
+* 	 SSL certificate verify ok.
+* Server auth using Basic with user 'michaelhuettermann'
+> POST /content/michaelhuettermann/meow/ HTTP/1.1
+> Authorization: Basic bWljaGFlbGh1ZXR0ZXJtYW5uOmFjNWM2ODBjMzlhY2ZmZDA4YzlhYTdiMTZhNjI4MzllNjgxZjJjODY=
+> User-Agent: curl/7.29.0
+> Host: api.bintray.com
+> Accept: */*
+> X-Bintray-Package:cat
+> X-Bintray-Version:0.0.1
+> Content-Length: 68
+> Content-Type: application/x-www-form-urlencoded
+> 
+} [data not shown]
+* upload completely sent off: 68 out of 68 bytes
+100    68    0     0  100    68      0     77 --:--:-- --:--:-- --:--:--    83* The requested URL returned error: 404 Not Found
+100    68    0     0  100    68      0     75 --:--:-- --:--:-- --:--:--    81
+* Closing connection 0
+* SSLv3, TLS alert, Client hello (1):
+} [data not shown]
+curl: (22) The requested URL returned error: 404 Not Found
+Build step 'Execute shell' marked build as failure
+Finished: FAILURE

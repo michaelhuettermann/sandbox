@@ -1,0 +1,9 @@
+commit 574494dc0f434cee50ce135da74291eecd01ae9b
+tree aa4e782d12585c1b64f4be050708fc1603df68bf
+parent 57d0d59967d64d13fca894710114ca85202c572c
+author Michael Hüttermann <michael@huettermann.net> 1388769464 +0100
+committer Michael Hüttermann <michael@huettermann.net> 1388769464 +0100
+
+    a change
+
+:100644 100644 25cd97f8de479de61b46bdf108d67d0c3ebe4283 87a0519b090bb80b601b2f43a1f4bb9112d98e70 M	devops/pom.xml

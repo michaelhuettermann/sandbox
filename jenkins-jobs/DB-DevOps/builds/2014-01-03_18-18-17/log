@@ -1,0 +1,96 @@
+Started by an SCM change
+Building in workspace /home/michael/.jenkins/jobs/DB-DevOps/workspace
+Fetching changes from the remote Git repository
+Fetching upstream changes from /home/michael/talk/central
+Checking out Revision 574494dc0f434cee50ce135da74291eecd01ae9b (origin/master)
+[workspace] $ /home/michael/talk/maven/apache-maven-3.1.1/bin/mvn -f devops/pom.xml clean install -Pdb flyway:info flyway:migrate
+[8mha:AAAAYx+LCAAAAAAAAP9b85aBtbiIQSWjNKU4P0+vJLE4u1gvPjexLDVPzxdEhicW5WXmpfvll6S2fNly5fzGzauYGBgqihikoFqS8/OK83NS9ZwhNEghAwQwghQWAACwxA+XYgAAAA==[0m[WARNING] 
+[8mha:AAAAYx+LCAAAAAAAAP9b85aBtbiIQSWjNKU4P0+vJLE4u1gvPjexLDVPzxdEhicW5WXmpfvll6S2fNly5fzGzauYGBgqihikoFqS8/OK83NS9ZwhNEghAwQwghQWAACwxA+XYgAAAA==[0m[WARNING] Some problems were encountered while building the effective settings
+[8mha:AAAAYx+LCAAAAAAAAP9b85aBtbiIQSWjNKU4P0+vJLE4u1gvPjexLDVPzxdEhicW5WXmpfvll6S2fNly5fzGzauYGBgqihikoFqS8/OK83NS9ZwhNEghAwQwghQWAACwxA+XYgAAAA==[0m[WARNING] Unrecognised tag: 'server' (position: START_TAG seen ...GS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">\n<server>... @6:9)  @ /home/michael/talk/maven/apache-maven-3.1.1/conf/settings.xml, line 6, column 9
+[8mha:AAAAYx+LCAAAAAAAAP9b85aBtbiIQSWjNKU4P0+vJLE4u1gvPjexLDVPzxdEhicW5WXmpfvll6S2fNly5fzGzauYGBgqihikoFqS8/OK83NS9ZwhNEghAwQwghQWAACwxA+XYgAAAA==[0m[WARNING] 
+[INFO] Scanning for projects...
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building devops 0.0.1
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[8mha:AAAAYB+LCAAAAAAAAP9b85aBtbiIQSmjNKU4P0+vJLE4u1gvPjexLDVPzxdEGvvmZ+X75ZekLlOVfvTjc8FPJgaGiiIGKaiG5Py84vycVD1nCA1SyAABjCCFBQCV27OjYAAAAA==[0m[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ cat ---
+[INFO] Deleting /home/michael/.jenkins/jobs/DB-DevOps/workspace/devops/target
+[INFO] 
+[8mha:AAAAYB+LCAAAAAAAAP9b85aBtbiIQSmjNKU4P0+vJLE4u1gvPjexLDVPzxdEGvvmZ+X75ZekLlOVfvTjc8FPJgaGiiIGKaiG5Py84vycVD1nCA1SyAABjCCFBQCV27OjYAAAAA==[0m[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ cat ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 2 resources
+[INFO] 
+[8mha:AAAAYB+LCAAAAAAAAP9b85aBtbiIQSmjNKU4P0+vJLE4u1gvPjexLDVPzxdEGvvmZ+X75ZekLlOVfvTjc8FPJgaGiiIGKaiG5Py84vycVD1nCA1SyAABjCCFBQCV27OjYAAAAA==[0m[INFO] --- maven-compiler-plugin:2.3.2:compile (default-compile) @ cat ---
+[INFO] Compiling 1 source file to /home/michael/.jenkins/jobs/DB-DevOps/workspace/devops/target/classes
+[INFO] 
+[8mha:AAAAYB+LCAAAAAAAAP9b85aBtbiIQSmjNKU4P0+vJLE4u1gvPjexLDVPzxdEGvvmZ+X75ZekLlOVfvTjc8FPJgaGiiIGKaiG5Py84vycVD1nCA1SyAABjCCFBQCV27OjYAAAAA==[0m[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ cat ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /home/michael/.jenkins/jobs/DB-DevOps/workspace/devops/src/test/resources
+[INFO] 
+[8mha:AAAAYB+LCAAAAAAAAP9b85aBtbiIQSmjNKU4P0+vJLE4u1gvPjexLDVPzxdEGvvmZ+X75ZekLlOVfvTjc8FPJgaGiiIGKaiG5Py84vycVD1nCA1SyAABjCCFBQCV27OjYAAAAA==[0m[INFO] --- maven-compiler-plugin:2.3.2:testCompile (default-testCompile) @ cat ---
+[INFO] Compiling 1 source file to /home/michael/.jenkins/jobs/DB-DevOps/workspace/devops/target/test-classes
+[INFO] 
+[8mha:AAAAYB+LCAAAAAAAAP9b85aBtbiIQSmjNKU4P0+vJLE4u1gvPjexLDVPzxdEGvvmZ+X75ZekLlOVfvTjc8FPJgaGiiIGKaiG5Py84vycVD1nCA1SyAABjCCFBQCV27OjYAAAAA==[0m[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ cat ---
+[INFO] Surefire report directory: /home/michael/.jenkins/jobs/DB-DevOps/workspace/devops/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running com.huettermann.AppTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.025 sec
+
+Results :
+
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO] 
+[8mha:AAAAYB+LCAAAAAAAAP9b85aBtbiIQSmjNKU4P0+vJLE4u1gvPjexLDVPzxdEGvvmZ+X75ZekLlOVfvTjc8FPJgaGiiIGKaiG5Py84vycVD1nCA1SyAABjCCFBQCV27OjYAAAAA==[0m[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ cat ---
+[INFO] Building jar: /home/michael/.jenkins/jobs/DB-DevOps/workspace/devops/target/cat-0.0.1.jar
+[INFO] 
+[8mha:AAAAYB+LCAAAAAAAAP9b85aBtbiIQSmjNKU4P0+vJLE4u1gvPjexLDVPzxdEGvvmZ+X75ZekLlOVfvTjc8FPJgaGiiIGKaiG5Py84vycVD1nCA1SyAABjCCFBQCV27OjYAAAAA==[0m[INFO] --- maven-install-plugin:2.4:install (default-install) @ cat ---
+[INFO] Installing /home/michael/.jenkins/jobs/DB-DevOps/workspace/devops/target/cat-0.0.1.jar to /home/michael/.m2/repository/com/huettermann/cat/0.0.1/cat-0.0.1.jar
+[INFO] Installing /home/michael/.jenkins/jobs/DB-DevOps/workspace/devops/pom.xml to /home/michael/.m2/repository/com/huettermann/cat/0.0.1/cat-0.0.1.pom
+[INFO] 
+[8mha:AAAAYB+LCAAAAAAAAP9b85aBtbiIQSmjNKU4P0+vJLE4u1gvPjexLDVPzxdEGvvmZ+X75ZekLlOVfvTjc8FPJgaGiiIGKaiG5Py84vycVD1nCA1SyAABjCCFBQCV27OjYAAAAA==[0m[INFO] --- flyway-maven-plugin:2.1.1:info (default-cli) @ cat ---
+[INFO] 
++----------------+----------------------------+---------------------+---------+
+| Version        | Description                | Installed on        | State   |
++----------------+----------------------------+---------------------+---------+
+| 1              | Create person table        | 2013-12-02 18:03:33 | Success |
+| 2              | Insert persons             | 2013-12-02 18:03:33 | Success |
++----------------+----------------------------+---------------------+---------+
+[INFO] 
+[8mha:AAAAYB+LCAAAAAAAAP9b85aBtbiIQSmjNKU4P0+vJLE4u1gvPjexLDVPzxdEGvvmZ+X75ZekLlOVfvTjc8FPJgaGiiIGKaiG5Py84vycVD1nCA1SyAABjCCFBQCV27OjYAAAAA==[0m[INFO] --- flyway-maven-plugin:2.1.1:migrate (default-cli) @ cat ---
+[INFO] Current version of schema `mydb`: 2
+[INFO] Schema `mydb` is up to date. No migration necessary.
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 6.092s
+[INFO] Finished at: Fri Jan 03 18:18:27 CET 2014
+[INFO] Final Memory: 21M/50M
+[INFO] ------------------------------------------------------------------------
+[Gradle] - Launching build.
+[devops] $ /home/michael/talk/gradle/gradle-1.8/bin/gradle flywayInfo -b build.gradle
+Creating properties on demand (a.k.a. dynamic properties) has been deprecated and is scheduled to be removed in Gradle 2.0. Please read http://gradle.org/docs/current/dsl/org.gradle.api.plugins.ExtraPropertiesExtension.html for information on the replacement for dynamic properties.
+Deprecated dynamic property: "baseDir" on "com.googlecode.flyway.gradle.FlywayExtension_Decorated@4c2af006", value: "db/migration".
+[8mha:AAAAYB+LCAAAAAAAAP9b85aBtbiIQSWjNKU4P0+vIKc0PTOvWC+9KDElJ1XPHUyFJBZn++WXpC7zV766aHPULSYGhooiBimoluT8vOJ8oFpnCA1SyAABjCCFBQDX67qaYgAAAA==[0m:compileJava UP-TO-DATE
+[8mha:AAAAYB+LCAAAAAAAAP9b85aBtbiIQSWjNKU4P0+vIKc0PTOvWC+9KDElJ1XPHUyFJBZn++WXpC7zV766aHPULSYGhooiBimoluT8vOJ8oFpnCA1SyAABjCCFBQDX67qaYgAAAA==[0m:processResources UP-TO-DATE
+[8mha:AAAAYB+LCAAAAAAAAP9b85aBtbiIQSWjNKU4P0+vIKc0PTOvWC+9KDElJ1XPHUyFJBZn++WXpC7zV766aHPULSYGhooiBimoluT8vOJ8oFpnCA1SyAABjCCFBQDX67qaYgAAAA==[0m:classes UP-TO-DATE
+[8mha:AAAAYB+LCAAAAAAAAP9b85aBtbiIQSWjNKU4P0+vIKc0PTOvWC+9KDElJ1XPHUyFJBZn++WXpC7zV766aHPULSYGhooiBimoluT8vOJ8oFpnCA1SyAABjCCFBQDX67qaYgAAAA==[0m:compileTestJava UP-TO-DATE
+[8mha:AAAAYB+LCAAAAAAAAP9b85aBtbiIQSWjNKU4P0+vIKc0PTOvWC+9KDElJ1XPHUyFJBZn++WXpC7zV766aHPULSYGhooiBimoluT8vOJ8oFpnCA1SyAABjCCFBQDX67qaYgAAAA==[0m:processTestResources UP-TO-DATE
+[8mha:AAAAYB+LCAAAAAAAAP9b85aBtbiIQSWjNKU4P0+vIKc0PTOvWC+9KDElJ1XPHUyFJBZn++WXpC7zV766aHPULSYGhooiBimoluT8vOJ8oFpnCA1SyAABjCCFBQDX67qaYgAAAA==[0m:testClasses UP-TO-DATE
+[8mha:AAAAYB+LCAAAAAAAAP9b85aBtbiIQSWjNKU4P0+vIKc0PTOvWC+9KDElJ1XPHUyFJBZn++WXpC7zV766aHPULSYGhooiBimoluT8vOJ8oFpnCA1SyAABjCCFBQDX67qaYgAAAA==[0m:flywayInfo
++----------------+----------------------------+---------------------+---------+
+| Version        | Description                | Installed on        | State   |
++----------------+----------------------------+---------------------+---------+
+| 1              | Create person table        | 2013-12-02 18:03:33 | Success |
+| 2              | Insert persons             | 2013-12-02 18:03:33 | Success |
++----------------+----------------------------+---------------------+---------+
+
+[8mha:AAAAYx+LCAAAAAAAAP9b85aBtbiIQT2jNKU4P0+vIKc0PTOvWC+9KDElJ1XPHUz5l5Yk5+em+uWXpBabBRd0uewzZWJgqChikILqSs7PK84HKneG0CCFDBDACFJYAAAMk/XNZQAAAA==[0mBUILD SUCCESSFUL
+
+Total time: 11.246 secs
+Build step 'Invoke Gradle script' changed build result to SUCCESS
+Finished: SUCCESS
