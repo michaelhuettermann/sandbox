@@ -1,3 +1,9 @@
+
+
+beispiel app-> maven archetype
+zu git hub
+
+
 Day 1
 Introduction continuous delivery
 Basics of an sophisticated build system (congruent builds)
@@ -5,15 +11,17 @@ Continuous integration build strategies and best practices
 Setting up and using Maven 3
 Describing your project and dependencies, with Maven
 Customizing the build process, with Maven
-Using a component repository (Artifactory)
-Web development with Maven, Cargo and Jetty
 Automated release strategies (SNAPSHOT and RELEASE artifacts), different approaches
 Automated testing: unit tests, component tests, functinal tests, acceptance tests, smoke tests
-Automated code quality audits, with PMD, FindBugs, Checkstyle
 Writing Maven plug-ins
 
 Day 2
 Setting up a Jenkins server
+Using a component repository (Artifactory)
+
+Integrating Jenkins with your component repository Artifactory
+Automated release strategies, with Jenkins, Maven, Artifactory
+
 Continuous integration build strategies with Jenkins
 Jenkins jobs, notification strategies and recipes
 Automated reporting on project status and statistics
@@ -28,21 +36,7 @@ Setting up a Sonar server
 Automated code quality audits, with Sonar
 Integrating Jenkins with your issue management system, e.g. JIRA
 Task-based development (with Mylyn, JIRA, Jenkins, and others)
-Integrating Jenkins with your component repository Artifactory
-Automated release strategies, with Jenkins, Maven, Artifactory
 Infrastructure as code: Puppet
+Database migrations, with Flyway
 
 
-
-Plain Jenkins
-
--- JobConfigHistory Plugin
--- parametrized trigger plugin
--- groovy postbuild plugin
--- Artifactory
--- Sonar
--- build pipeline
--- greem ball
--- git client git server
--- chuck
-https://wiki.jenkins-ci.org/display/JENKINS/Build+Flow+Plugin

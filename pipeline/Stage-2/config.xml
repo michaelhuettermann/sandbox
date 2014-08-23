@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <project-properties class="java.util.concurrent.ConcurrentHashMap">
+    <entry>
+      <string>builders</string>
+      <describable-list-property>
+        <originalValue class="hudson.util.DescribableList">
+          <hudson.tasks.Shell>
+            <command>git checkout $GIT_COMMIT</command>
+          </hudson.tasks.Shell>
+          <hudson.tasks.Shell>
+            <command>echo hello world</command>
+          </hudson.tasks.Shell>
+          <hudson.plugins.parameterizedtrigger.TriggerBuilder>
+            <configs>
+              <hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
+                <configs class="java.util.Collections$EmptyList"/>
+                <projects>Stage-3</projects>
+                <condition>ALWAYS</condition>
+                <triggerWithNoParameters>false</triggerWithNoParameters>
+                <buildAllNodesWithLabel>false</buildAllNodesWithLabel>
+              </hudson.plugins.parameterizedtrigger.BlockableBuildTriggerConfig>
+            </configs>
+          </hudson.plugins.parameterizedtrigger.TriggerBuilder>
+        </originalValue>
+        <propertyOverridden>false</propertyOverridden>
+      </describable-list-property>
+    </entry>
+    <entry>
+      <string>scm</string>
+      <scm-property>
+        <originalValue class="hudson.plugins.git.GitSCM">
+          <configVersion>1</configVersion>
+          <remoteRepositories>
+            <RemoteConfig>
+              <name>origin</name>
+              <uris>
+                <org.eclipse.jgit.transport.URIish>
+                  <path>/home/michael/talk/central</path>
+                  <rawPath>/home/michael/talk/central</rawPath>
+                  <port>-1</port>
+                </org.eclipse.jgit.transport.URIish>
+              </uris>
+              <pushURIs/>
+              <fetch>
+                <org.eclipse.jgit.transport.RefSpec>
+                  <force>true</force>
+                  <wildcard>true</wildcard>
+                  <srcName>refs/heads/*</srcName>
+                  <dstName>refs/remotes/origin/*</dstName>
+                </org.eclipse.jgit.transport.RefSpec>
+              </fetch>
+              <push/>
+              <uploadpack>git-upload-pack</uploadpack>
+              <receivepack>git-receive-pack</receivepack>
+              <tagopt>AUTO_FOLLOW</tagopt>
+              <mirror>false</mirror>
+              <timeout>0</timeout>
+              <relativeTargetDir></relativeTargetDir>
+            </RemoteConfig>
+          </remoteRepositories>
+          <branches>
+            <hudson.plugins.git.BranchSpec>
+              <name>master</name>
+            </hudson.plugins.git.BranchSpec>
+          </branches>
+          <mergeOptions/>
+          <recursiveSubmodules>false</recursiveSubmodules>
+          <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+          <authorOrCommitter>false</authorOrCommitter>
+          <clean>false</clean>
+          <wipeOutWorkspace>false</wipeOutWorkspace>
+          <pruneBranches>false</pruneBranches>
+          <remotePoll>false</remotePoll>
+          <buildChooser class="hudson.plugins.git.util.DefaultBuildChooser"/>
+          <gitTool>Default</gitTool>
+          <submoduleCfg class="list"/>
+          <includedRegions></includedRegions>
+          <excludedRegions></excludedRegions>
+          <excludedUsers></excludedUsers>
+          <excludedCommits/>
+          <gitConfigName></gitConfigName>
+          <gitConfigEmail></gitConfigEmail>
+          <skipTag>false</skipTag>
+        </originalValue>
+        <propertyOverridden>false</propertyOverridden>
+      </scm-property>
+    </entry>
+    <entry>
+      <string>logRotator</string>
+      <log-rotator-property>
+        <originalValue class="hudson.tasks.LogRotator">
+          <daysToKeep>5</daysToKeep>
+          <numToKeep>5</numToKeep>
+          <artifactDaysToKeep>-1</artifactDaysToKeep>
+          <artifactNumToKeep>-1</artifactNumToKeep>
+        </originalValue>
+        <propertyOverridden>false</propertyOverridden>
+      </log-rotator-property>
+    </entry>
+  </project-properties>
+  <keepDependencies>false</keepDependencies>
+  <creationTime>1390327965367</creationTime>
+  <properties/>
+  <cascadingChildrenNames class="java.util.concurrent.CopyOnWriteArraySet"/>
+  <cascading-job-properties class="java.util.concurrent.CopyOnWriteArraySet"/>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>false</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <concurrentBuild>false</concurrentBuild>
+  <cleanWorkspaceRequired>false</cleanWorkspaceRequired>
+  <builders/>
+</project>
