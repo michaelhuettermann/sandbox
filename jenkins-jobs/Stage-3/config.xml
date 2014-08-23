@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <project-properties class="java.util.concurrent.ConcurrentHashMap">
+    <entry>
+      <string>builders</string>
+      <describable-list-property>
+        <originalValue class="hudson.util.DescribableList">
+          <hudson.tasks.Shell>
+            <command>rm *.jar 
+cp /home/michael/.hudson/transfer/*.jar .</command>
+          </hudson.tasks.Shell>
+        </originalValue>
+        <propertyOverridden>false</propertyOverridden>
+      </describable-list-property>
+    </entry>
+    <entry>
+      <string>org-jfrog-hudson-plugins-artifactory-generic-ArtifactoryGenericConfigurator</string>
+      <external-property>
+        <originalValue class="org.jfrog.hudson.plugins.artifactory.generic.ArtifactoryGenericConfigurator">
+          <details>
+            <artifactoryUrl>https://huttermann.artifactoryonline.com/huttermann</artifactoryUrl>
+            <artifactoryName>1967478948@1390330077693</artifactoryName>
+            <repositoryKey>libs-snapshots-local</repositoryKey>
+            <snapshotsRepositoryKey>libs-snapshots-local</snapshotsRepositoryKey>
+          </details>
+          <deployPattern>**/*.jar=&gt;com/huettermann/cat/0.0.1-SNAPSHOT</deployPattern>
+          <resolvePattern></resolvePattern>
+          <matrixParams></matrixParams>
+          <deployBuildInfo>true</deployBuildInfo>
+          <includeEnvVars>false</includeEnvVars>
+          <envVarsPatterns>
+            <includePatterns></includePatterns>
+            <excludePatterns>*password*,*secret*</excludePatterns>
+          </envVarsPatterns>
+          <discardOldBuilds>false</discardOldBuilds>
+          <discardBuildArtifacts>true</discardBuildArtifacts>
+        </originalValue>
+        <propertyOverridden>false</propertyOverridden>
+        <modified>true</modified>
+      </external-property>
+    </entry>
+    <entry>
+      <string>scm</string>
+      <scm-property>
+        <originalValue class="hudson.scm.NullSCM"/>
+        <propertyOverridden>false</propertyOverridden>
+      </scm-property>
+    </entry>
+    <entry>
+      <string>logRotator</string>
+      <log-rotator-property>
+        <originalValue class="hudson.tasks.LogRotator">
+          <daysToKeep>5</daysToKeep>
+          <numToKeep>5</numToKeep>
+          <artifactDaysToKeep>-1</artifactDaysToKeep>
+          <artifactNumToKeep>-1</artifactNumToKeep>
+        </originalValue>
+        <propertyOverridden>false</propertyOverridden>
+      </log-rotator-property>
+    </entry>
+  </project-properties>
+  <keepDependencies>false</keepDependencies>
+  <creationTime>1390328457781</creationTime>
+  <properties/>
+  <cascadingChildrenNames class="java.util.concurrent.CopyOnWriteArraySet"/>
+  <cascading-job-properties class="java.util.concurrent.CopyOnWriteArraySet"/>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>false</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <concurrentBuild>false</concurrentBuild>
+  <cleanWorkspaceRequired>false</cleanWorkspaceRequired>
+  <builders/>
+</project>

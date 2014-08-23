@@ -1,0 +1,213 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <project-properties class="java.util.concurrent.ConcurrentHashMap">
+    <entry>
+      <string>builders</string>
+      <describable-list-property>
+        <originalValue class="hudson.util.DescribableList">
+          <hudson.tasks.Shell>
+            <command>git checkout $rev</command>
+          </hudson.tasks.Shell>
+          <maven-builder>
+            <config>
+              <installationId>(Bundled)</installationId>
+              <goals>com.huettermann:versionfetcher:1.0.0-SNAPSHOT:release versions:set -DgenerateBackupPoms=false </goals>
+              <privateRepository>false</privateRepository>
+              <privateTmpdir>false</privateTmpdir>
+              <pomFile>devops/pom.xml</pomFile>
+              <properties>
+                <entries/>
+              </properties>
+              <errors>false</errors>
+              <verbosity>NORMAL</verbosity>
+              <offline>false</offline>
+              <snapshotUpdateMode>NORMAL</snapshotUpdateMode>
+              <recursive>true</recursive>
+              <checksumMode>NORMAL</checksumMode>
+              <failMode>NORMAL</failMode>
+              <makeMode>NONE</makeMode>
+              <settingsId>NONE</settingsId>
+              <globalSettingsId>NONE</globalSettingsId>
+              <toolChainsId>NONE</toolChainsId>
+            </config>
+          </maven-builder>
+          <maven-builder>
+            <config>
+              <installationId>(Bundled)</installationId>
+              <goals>clean install</goals>
+              <privateRepository>false</privateRepository>
+              <privateTmpdir>false</privateTmpdir>
+              <pomFile>devops/pom.xml</pomFile>
+              <properties>
+                <entries/>
+              </properties>
+              <errors>false</errors>
+              <verbosity>NORMAL</verbosity>
+              <offline>false</offline>
+              <snapshotUpdateMode>NORMAL</snapshotUpdateMode>
+              <recursive>true</recursive>
+              <checksumMode>NORMAL</checksumMode>
+              <failMode>NORMAL</failMode>
+              <makeMode>NONE</makeMode>
+              <settingsId>NONE</settingsId>
+              <globalSettingsId>NONE</globalSettingsId>
+              <toolChainsId>NONE</toolChainsId>
+            </config>
+          </maven-builder>
+          <hudson.tasks.Shell>
+            <command>#!/bin/sh
+version1=$(sed -n &apos;s/.*version&gt;/\0/p&apos; devops/pom.xml | head -1)
+version2=$(echo $version1 | sed &apos;s/&lt;version&gt;//g&apos;)
+version=$(echo $version2 | sed &apos;s/&lt;\/version&gt;//g&apos;)
+hash=$GIT_COMMIT
+var=$(echo $hash | cut -b 1-6)
+revisioncount=`git log --oneline | wc -l`
+release=$version-$var.r$revisioncount.b$BUILD_NUMBER
+echo $release
+
+cp devops/target/cat-$version.jar devops/target/cat-$release.jar
+
+#delete version
+curl -u michaelhuettermann:${bintray_key} -X DELETE https://api.bintray.com/packages/michaelhuettermann/meow/cat/versions/$release
+
+#create version
+curl -u michaelhuettermann:${bintray_key} -H &quot;Content-Type: application/json&quot; -X POST https://api.bintray.com/packages/michaelhuettermann/meow/cat/versions --data &quot;{ \&quot;name\&quot;: \&quot;$release\&quot;, \&quot;desc\&quot;: \&quot;desc\&quot; }&quot;
+
+#upload binary
+curl -T &quot;$WORKSPACE/devops/target/cat-$release.jar&quot; -u michaelhuettermann:${bintray_key} -H &quot;X-Bintray-Package:cat&quot; -H &quot;X-Bintray-Version:$release&quot; https://api.bintray.com/content/michaelhuettermann/meow/
+
+#publish
+curl -u michaelhuettermann:${bintray_key} -H &quot;Content-Type: application/json&quot; -X POST https://api.bintray.com/content/michaelhuettermann/meow/cat/$release/publish --data &quot;{ \&quot;discard\&quot;: \&quot;false\&quot; }&quot;</command>
+          </hudson.tasks.Shell>
+          <hudson.tasks.Shell>
+            <command>#!/bin/sh
+#curl -vvf -u michaelhuettermann:${bintray_key} -X DELETE https://api.bintray.com/packages/michaelhuettermann/meow/cat/versions/0.0.1</command>
+          </hudson.tasks.Shell>
+          <hudson.tasks.Shell>
+            <command>#!/bin/sh
+#curl -vvf -u michaelhuettermann:${bintray_key} -H &quot;Content-Type: application/json&quot; -X POST https://api.bintray.com/packages/michaelhuettermann/meow/cat/versions --data &quot;{ \&quot;name\&quot;: \&quot;0.0.1\&quot;, \&quot;desc\&quot;: \&quot;desc\&quot; }&quot;</command>
+          </hudson.tasks.Shell>
+          <hudson.tasks.Shell>
+            <command>#!/bin/sh
+#curl -vvf -T &quot;$WORKSPACE/devops/target/cat-0.0.1.jar&quot; -u michaelhuettermann:${bintray_key} -H &quot;X-Bintray-Package:cat&quot; -H &quot;X-Bintray-Version:0.0.1&quot; https://api.bintray.com/content/michaelhuettermann/meow/</command>
+          </hudson.tasks.Shell>
+          <hudson.tasks.Shell>
+            <command>#!/bin/sh
+#curl -vvf -u michaelhuettermann:${bintray_key} -H &quot;Content-Type: application/json&quot; -X POST https://api.bintray.com/content/michaelhuettermann/meow/cat/0.0.1/publish --data &quot;{ \&quot;discard\&quot;: \&quot;false\&quot; }&quot;</command>
+          </hudson.tasks.Shell>
+        </originalValue>
+        <propertyOverridden>false</propertyOverridden>
+      </describable-list-property>
+    </entry>
+    <entry>
+      <string>cleanWorkspaceRequired</string>
+      <boolean-property>
+        <originalValue class="boolean">true</originalValue>
+        <propertyOverridden>false</propertyOverridden>
+      </boolean-property>
+    </entry>
+    <entry>
+      <string>scm</string>
+      <scm-property>
+        <originalValue class="hudson.plugins.git.GitSCM">
+          <configVersion>1</configVersion>
+          <remoteRepositories>
+            <RemoteConfig>
+              <name>origin</name>
+              <uris>
+                <org.eclipse.jgit.transport.URIish>
+                  <path>/home/michael/talk/central</path>
+                  <rawPath>/home/michael/talk/central</rawPath>
+                  <port>-1</port>
+                </org.eclipse.jgit.transport.URIish>
+              </uris>
+              <pushURIs/>
+              <fetch>
+                <org.eclipse.jgit.transport.RefSpec>
+                  <force>true</force>
+                  <wildcard>true</wildcard>
+                  <srcName>refs/heads/*</srcName>
+                  <dstName>refs/remotes/origin/*</dstName>
+                </org.eclipse.jgit.transport.RefSpec>
+              </fetch>
+              <push/>
+              <uploadpack>git-upload-pack</uploadpack>
+              <receivepack>git-receive-pack</receivepack>
+              <tagopt>AUTO_FOLLOW</tagopt>
+              <mirror>false</mirror>
+              <timeout>0</timeout>
+              <relativeTargetDir></relativeTargetDir>
+            </RemoteConfig>
+          </remoteRepositories>
+          <branches>
+            <hudson.plugins.git.BranchSpec>
+              <name>master</name>
+            </hudson.plugins.git.BranchSpec>
+          </branches>
+          <mergeOptions/>
+          <recursiveSubmodules>false</recursiveSubmodules>
+          <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+          <authorOrCommitter>false</authorOrCommitter>
+          <clean>false</clean>
+          <wipeOutWorkspace>false</wipeOutWorkspace>
+          <pruneBranches>false</pruneBranches>
+          <remotePoll>false</remotePoll>
+          <buildChooser class="hudson.plugins.git.util.DefaultBuildChooser"/>
+          <gitTool>Default</gitTool>
+          <submoduleCfg class="list"/>
+          <includedRegions></includedRegions>
+          <excludedRegions></excludedRegions>
+          <excludedUsers></excludedUsers>
+          <excludedCommits/>
+          <gitConfigName></gitConfigName>
+          <gitConfigEmail></gitConfigEmail>
+          <skipTag>false</skipTag>
+        </originalValue>
+        <propertyOverridden>false</propertyOverridden>
+      </scm-property>
+    </entry>
+    <entry>
+      <string>parametersDefinitionProperties</string>
+      <copy-write-list-property>
+        <originalValue class="hudson.util.CopyOnWriteList">
+          <hudson.model.ParametersDefinitionProperty>
+            <parameterDefinitions>
+              <hudson.model.StringParameterDefinition>
+                <name>rev</name>
+                <description>the Git commit</description>
+                <defaultValue>HEAD</defaultValue>
+              </hudson.model.StringParameterDefinition>
+            </parameterDefinitions>
+          </hudson.model.ParametersDefinitionProperty>
+        </originalValue>
+        <propertyOverridden>false</propertyOverridden>
+      </copy-write-list-property>
+    </entry>
+    <entry>
+      <string>logRotator</string>
+      <log-rotator-property>
+        <originalValue class="hudson.tasks.LogRotator">
+          <daysToKeep>5</daysToKeep>
+          <numToKeep>5</numToKeep>
+          <artifactDaysToKeep>-1</artifactDaysToKeep>
+          <artifactNumToKeep>-1</artifactNumToKeep>
+        </originalValue>
+        <propertyOverridden>false</propertyOverridden>
+      </log-rotator-property>
+    </entry>
+  </project-properties>
+  <keepDependencies>false</keepDependencies>
+  <creationTime>1390331355546</creationTime>
+  <properties/>
+  <cascadingChildrenNames class="java.util.concurrent.CopyOnWriteArraySet"/>
+  <cascading-job-properties class="java.util.concurrent.CopyOnWriteArraySet"/>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>false</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <concurrentBuild>false</concurrentBuild>
+  <cleanWorkspaceRequired>false</cleanWorkspaceRequired>
+</project>

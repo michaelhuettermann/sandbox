@@ -1,0 +1,6 @@
+create database mydb;
+
+create user 'fly' identified by 'way';
+
+GRANT ALL PRIVILEGES ON *.* TO 'monty'@'localhost' IDENTIFIED BY 'some_pass' WITH GRANT OPTION;
+GRANT [type of permission] ON [database name].[table name] TO ‘[username]’@'localhost’;
