@@ -1,31 +1,47 @@
 
 
-beispiel app-> maven archetype
 zu git hub
+enforcer
+pmd, findbugs, checkstyle
 
 
 Day 1
-Introduction continuous delivery
+Introduction: what is continuous delivery? what is quality?
 Basics of an sophisticated build system (congruent builds)
 Continuous integration build strategies and best practices
 Setting up and using Maven 3
+Prototype archetype 
 Describing your project and dependencies, with Maven
+Parent, child
 Customizing the build process, with Maven
 Automated release strategies (SNAPSHOT and RELEASE artifacts), different approaches
 Automated testing: unit tests, component tests, functinal tests, acceptance tests, smoke tests
 Writing Maven plug-ins
+Calling Maven Plug-ins
+Checkin to GitHub
 
 Day 2
 Setting up a Jenkins server
+Setting up a continuous build
 Using a component repository (Artifactory)
-
 Integrating Jenkins with your component repository Artifactory
 Automated release strategies, with Jenkins, Maven, Artifactory
-
 Continuous integration build strategies with Jenkins
 Jenkins jobs, notification strategies and recipes
 Automated reporting on project status and statistics
 Build piplelines, staged builds
+pipeline:
+-- continuous build
+-- staged build
+--- stage 1
+---- compile, unit testing
+---- store version
+---- store git info
+---- trigger second step
+--- stage 2
+---- do sth.
+--- stage 3
+---- publish to Bintray
 Automated release strategies (SNAPSHOT and RELEASE artifacts) - Redux
 Automated deployment, continuous delivery
 Distributed builds; build slaves
