@@ -22,10 +22,9 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="VersionFetcher" />
+        <module name="versionfetcher" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="1.8" />
   </component>
 </project>
 
