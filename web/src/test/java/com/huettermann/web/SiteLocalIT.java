@@ -16,7 +16,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.*;
 
-public class WebSiteIT {
+public class SiteLocalIT {
 
     private WebDriver driver;
 
@@ -26,24 +26,7 @@ public class WebSiteIT {
     }
 
     @Test
-    public void testMe1() {
-        driver.get("http://www.google.de");
-        WebElement element = driver.findElement(By.name("q"));
-        element.sendKeys("hallo");
-        element.submit();
-
-        (new WebDriverWait(driver, 10)).until(new ExpectedCondition<Boolean>() {
-            public Boolean apply(WebDriver d) {
-                return d.getTitle().toLowerCase().startsWith("hallo");
-            }
-        });
-
-        Assert.assertEquals("hallo", driver.getTitle().substring(0, 5));
-
-    }
-
-    @Test
-    public void testMe2() {
+    public void testLocal() {
         driver.get("http://localhost:8080/web");
         WebElement element = driver.findElement(By.xpath("//h2[1]"));
         Assert.assertEquals("Hello World!", element.getText());
