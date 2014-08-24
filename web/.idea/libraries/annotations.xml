@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="annotations">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/target/cargo/installs/jetty-distribution-7.6.15.v20140411/jetty-distribution-7.6.15.v20140411/lib/annotations/org.objectweb.asm-3.1.0.v200803061910.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/cargo/installs/jetty-distribution-7.6.15.v20140411/jetty-distribution-7.6.15.v20140411/lib/annotations/javax.annotation-1.1.0.v201108011116.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="spdy">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/target/cargo/installs/jetty-distribution-7.6.15.v20140411/jetty-distribution-7.6.15.v20140411/lib/spdy/spdy-core-7.6.15.v20140411.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/cargo/installs/jetty-distribution-7.6.15.v20140411/jetty-distribution-7.6.15.v20140411/lib/spdy/spdy-jetty-http-7.6.15.v20140411.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/cargo/installs/jetty-distribution-7.6.15.v20140411/jetty-distribution-7.6.15.v20140411/lib/spdy/spdy-jetty-7.6.15.v20140411.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,30 @@
+<component name="libraryTable">
+  <library name="lib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/target/cargo/installs/jetty-distribution-7.6.15.v20140411/jetty-distribution-7.6.15.v20140411/lib/jetty-xml-7.6.15.v20140411.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/cargo/installs/jetty-distribution-7.6.15.v20140411/jetty-distribution-7.6.15.v20140411/lib/jetty-jmx-7.6.15.v20140411.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/cargo/installs/jetty-distribution-7.6.15.v20140411/jetty-distribution-7.6.15.v20140411/lib/jetty-io-7.6.15.v20140411.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/cargo/installs/jetty-distribution-7.6.15.v20140411/jetty-distribution-7.6.15.v20140411/lib/jetty-servlet-7.6.15.v20140411.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/cargo/installs/jetty-distribution-7.6.15.v20140411/jetty-distribution-7.6.15.v20140411/lib/jetty-security-7.6.15.v20140411.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/cargo/installs/jetty-distribution-7.6.15.v20140411/jetty-distribution-7.6.15.v20140411/lib/jetty-websocket-7.6.15.v20140411.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/cargo/installs/jetty-distribution-7.6.15.v20140411/jetty-distribution-7.6.15.v20140411/lib/jetty-annotations-7.6.15.v20140411.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/cargo/installs/jetty-distribution-7.6.15.v20140411/jetty-distribution-7.6.15.v20140411/lib/jetty-plus-7.6.15.v20140411.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/cargo/installs/jetty-distribution-7.6.15.v20140411/jetty-distribution-7.6.15.v20140411/lib/jetty-webapp-7.6.15.v20140411.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/cargo/installs/jetty-distribution-7.6.15.v20140411/jetty-distribution-7.6.15.v20140411/lib/jetty-server-7.6.15.v20140411.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/cargo/installs/jetty-distribution-7.6.15.v20140411/jetty-distribution-7.6.15.v20140411/lib/jetty-deploy-7.6.15.v20140411.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/cargo/installs/jetty-distribution-7.6.15.v20140411/jetty-distribution-7.6.15.v20140411/lib/jetty-http-7.6.15.v20140411.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/cargo/installs/jetty-distribution-7.6.15.v20140411/jetty-distribution-7.6.15.v20140411/lib/jetty-policy-7.6.15.v20140411.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/cargo/installs/jetty-distribution-7.6.15.v20140411/jetty-distribution-7.6.15.v20140411/lib/jetty-client-7.6.15.v20140411.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/cargo/installs/jetty-distribution-7.6.15.v20140411/jetty-distribution-7.6.15.v20140411/lib/servlet-api-2.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/cargo/installs/jetty-distribution-7.6.15.v20140411/jetty-distribution-7.6.15.v20140411/lib/jetty-overlay-deployer-7.6.15.v20140411.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/cargo/installs/jetty-distribution-7.6.15.v20140411/jetty-distribution-7.6.15.v20140411/lib/jetty-ajp-7.6.15.v20140411.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/cargo/installs/jetty-distribution-7.6.15.v20140411/jetty-distribution-7.6.15.v20140411/lib/jetty-jndi-7.6.15.v20140411.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/cargo/installs/jetty-distribution-7.6.15.v20140411/jetty-distribution-7.6.15.v20140411/lib/jetty-rewrite-7.6.15.v20140411.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/cargo/installs/jetty-distribution-7.6.15.v20140411/jetty-distribution-7.6.15.v20140411/lib/jetty-servlets-7.6.15.v20140411.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/cargo/installs/jetty-distribution-7.6.15.v20140411/jetty-distribution-7.6.15.v20140411/lib/jetty-continuation-7.6.15.v20140411.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/cargo/installs/jetty-distribution-7.6.15.v20140411/jetty-distribution-7.6.15.v20140411/lib/jetty-util-7.6.15.v20140411.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

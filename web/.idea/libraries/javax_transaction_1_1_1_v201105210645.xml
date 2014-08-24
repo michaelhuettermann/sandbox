@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="javax.transaction-1.1.1.v201105210645">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/target/cargo/installs/jetty-distribution-7.6.15.v20140411/jetty-distribution-7.6.15.v20140411/lib/jta/javax.transaction-1.1.1.v201105210645.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

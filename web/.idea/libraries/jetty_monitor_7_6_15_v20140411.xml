@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="jetty-monitor-7.6.15.v20140411">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/target/cargo/installs/jetty-distribution-7.6.15.v20140411/jetty-distribution-7.6.15.v20140411/lib/monitor/jetty-monitor-7.6.15.v20140411.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

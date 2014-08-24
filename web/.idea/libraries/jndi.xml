@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="jndi">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/target/cargo/installs/jetty-distribution-7.6.15.v20140411/jetty-distribution-7.6.15.v20140411/lib/jndi/javax.mail.glassfish-1.4.1.v201005082020.jar!/" />
+      <root url="jar://$PROJECT_DIR$/target/cargo/installs/jetty-distribution-7.6.15.v20140411/jetty-distribution-7.6.15.v20140411/lib/jndi/javax.activation-1.1.0.v201105071233.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
