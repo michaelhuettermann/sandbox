@@ -1,10 +1,5 @@
 
 
-zu git hub
-enforcer
-pmd, findbugs, checkstyle
-
-
 Day 1
 Introduction: what is continuous delivery? what is quality?
 Basics of an sophisticated build system (congruent builds)
@@ -12,10 +7,10 @@ Continuous integration build strategies and best practices
 Setting up and using Maven 3
 Prototype archetype 
 Describing your project and dependencies, with Maven
-Parent, child
 Customizing the build process, with Maven
-Automated release strategies (SNAPSHOT and RELEASE artifacts), different approaches
+Cargo, Jetty, Testing
 Automated testing: unit tests, component tests, functinal tests, acceptance tests, smoke tests
+Automated release strategies (SNAPSHOT and RELEASE artifacts), different approaches
 Writing Maven plug-ins
 Calling Maven Plug-ins
 Checkin to GitHub
