@@ -8,8 +8,8 @@ Setting up and using Maven 3
 Prototype archetype 
 Describing your project and dependencies, with Maven
 Customizing the build process, with Maven
-Cargo, Jetty, Testing
 Automated testing: unit tests, component tests, functinal tests, acceptance tests, smoke tests
+Cargo, Jetty, Testing
 Automated release strategies (SNAPSHOT and RELEASE artifacts), different approaches
 Writing Maven plug-ins
 Calling Maven Plug-ins
