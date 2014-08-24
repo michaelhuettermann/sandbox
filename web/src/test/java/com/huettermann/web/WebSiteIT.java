@@ -1,0 +1,57 @@
+package com.huettermann.web;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import static org.junit.Assert.*;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.*;
+
+public class WebSiteIT {
+
+    private WebDriver driver;
+
+    @Before
+    public void setUp() {
+        driver = new HtmlUnitDriver();
+    }
+
+    @Test
+    public void testMe1() {
+        driver.get("http://www.google.de");
+        WebElement element = driver.findElement(By.name("q"));
+        element.sendKeys("hallo");
+        element.submit();
+
+        (new WebDriverWait(driver, 10)).until(new ExpectedCondition<Boolean>() {
+            public Boolean apply(WebDriver d) {
+                return d.getTitle().toLowerCase().startsWith("hallo");
+            }
+        });
+
+        Assert.assertEquals("hallo", driver.getTitle().substring(0, 5));
+
+    }
+
+    @Test
+    public void testMe2() {
+        driver.get("http://localhost:8080/web");
+        WebElement element = driver.findElement(By.xpath("//h2[1]"));
+        Assert.assertEquals("Hello World!", element.getText());
+    }
+
+    @After
+    public void tearDown() {
+        driver.quit();
+    }
+    
+} 
