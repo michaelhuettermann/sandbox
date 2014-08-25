@@ -11,33 +11,40 @@ Automated release strategies (SNAPSHOT and RELEASE artifacts), different approac
 Enforcer (Describing your project and dependencies, with Maven)
 Automated testing: unit tests, component tests, functinal tests, acceptance tests, smoke tests
 Cargo, Jetty, Testing > 442
-Writing Maven plug-ins > 434
-Calling Maven Plug-ins 
 Checkin to GitHub
 
 Day 2
 Setting up a Jenkins server
-Setting up a continuous build
-Using a component repository (Artifactory)
-Integrating Jenkins with your component repository Artifactory
-Automated release strategies, with Jenkins, Maven, Artifactory
-Continuous integration build strategies with Jenkins
-Jenkins jobs, notification strategies and recipes
-Automated reporting on project status and statistics
-Build piplelines, staged builds
+Delivery piplelines, staged builds
 pipeline:
--- continuous build
--- staged build
+-- Continuous build
+---- checkout project from GitHub
+---- what to check? -> compile 
+Setting up a component repository (Artifactory)
+-- create user for deploy
+-- consolidate repos
+Integrate Jenkins and Artifatory
+-- deploy SNAPSHOT to Artifactory
+-- RC
 --- stage 1
----- compile, unit testing
----- store version
----- store git info
+---- enforcer: no dep snapshots
+---- compile, unit testing, smoke test cargo
+---- store version.properties
+---- store git info 
+---- copy artifact locally
 ---- trigger second step
 --- stage 2
----- do sth.
+---- do sth. with WAR
 --- stage 3
----- publish to Bintray
-Automated release strategies (SNAPSHOT and RELEASE artifacts) - Redux
+---- publish to Artifactory
+-- GA
+--- checkout Git Hash
+--- RC->GA
+Writing Maven plug-ins > 434
+Calling Maven Plug-ins 
+--- publish to Artifactory or Bintray
+
+Automated release strategies (SNAPSHOT and RELEASE artifacts) - Redux (Artifatory features)
 Automated deployment, continuous delivery
 Distributed builds; build slaves
 Scaling Jenkins to large, complex systems

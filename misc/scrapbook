@@ -51,10 +51,13 @@ cp devops/target/*.jar /home/michael/talk/transfer
 
 [Listing 4]
 #!/bin/sh
-version1=$(sed -n 's/.*version>/\0/p' devops/pom.xml | head -1)
-version2=$(echo $version1 | sed 's///g')
+#!/bin/sh
+version1=$(sed -n 's/.*version>/\0/p' pom.xml | head -1)
+version2=$(echo $version1 | sed 's/<version>//g')
 version=$(echo $version2 | sed 's/<\/version>//g')
-echo "version=$version" > /home/michael/talk/transfer/version.properties
+rm version.properties
+echo $version
+echo "version=$version" >> version.properties
 
 [Listing 5]
 def matcher = manager.getLogMatcher(".*Checking out Revision (.*)\$")
@@ -150,6 +153,15 @@ ssh-copy-id user@hostname.example.com
 cat ~/.ssh/id_rsa.pub | ssh <user>@<hostname> 'cat >> .ssh/authorized_keys && echo "Key copied"'
 update-alternatives --install /usr/bin/java java /opt/jdk/jdk1.8.0_55/bin/java 100
 
+
+
+$ git tag -a v1.4 -m 'my version 1.4'
+$ git tag
+v0.1
+v1.3
+v1.4
+
+git log origin..master
 
 
 
