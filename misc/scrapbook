@@ -177,6 +177,7 @@ Plain Jenkins
 -- greem ball
 -- git client git server
 -- chuck
+-- build flow plugin
 https://wiki.jenkins-ci.org/display/JENKINS/Build+Flow+Plugin
 
 Artifactory: 8081
