@@ -108,9 +108,6 @@
                                         <requireReleaseDeps>
                                             <message>No Snapshots Allowed!</message>
                                         </requireReleaseDeps>
-                                        <requireReleaseVersion>
-                                            <message>No Snapshots Allowed!</message>
-                                        </requireReleaseVersion>
                                     </rules>
                                 </configuration>
                             </execution>
