@@ -15,6 +15,11 @@ Checkin to GitHub
 
 Day 2
 Setting up a Jenkins server
+-- JobConfigHistory Plugin
+-- parametrized trigger plugin
+-- green ball
+-- git client git server
+
 Delivery piplelines, staged builds
 pipeline:
 -- Continuous build
@@ -30,13 +35,15 @@ Integrate Jenkins and Artifatory
 ---- enforcer: no dep snapshots
 ---- compile, unit testing, smoke test cargo
 ---- store version.properties
----- store git info 
+---- store git info (groovy postbuild plugin)
 ---- copy artifact locally
 ---- trigger second step
 --- stage 2
 ---- do sth. with WAR
 --- stage 3
 ---- publish to Artifactory
+---- build pipeline plugin
+---- build flow plugin
 -- GA
 --- checkout Git Hash
 --- RC->GA
