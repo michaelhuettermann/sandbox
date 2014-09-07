@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cp /shareme/*.war /var/lib/tomcat7/webapps/all.war  
+
 /etc/init.d/tomcat7 start
 
 # The container will run as long as the script is running, that's why
