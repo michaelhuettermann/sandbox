@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <logRotator class="hudson.tasks.LogRotator">
+    <daysToKeep>5</daysToKeep>
+    <numToKeep>5</numToKeep>
+    <artifactDaysToKeep>-1</artifactDaysToKeep>
+    <artifactNumToKeep>-1</artifactNumToKeep>
+  </logRotator>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>version</name>
+          <description></description>
+          <defaultValue>1.0.0</defaultValue>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+  </properties>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>#!/bin/sh
+curl -O http://localhost:8081/artifactory/simple/libs-release-local/com/huettermann/all/$version/all-$version.war
+
+cp all-$version.war all-$version-GA.war
+
+curl -u michaelhuettermann:${bintray_key} -X DELETE https://api.bintray.com/packages/michaelhuettermann/meow/cat/versions/$version-GA
+
+curl -u michaelhuettermann:${bintray_key} -H &quot;Content-Type: application/json&quot; -X POST https://api.bintray.com/packages/michaelhuettermann/meow/cat/versions --data &quot;{ \&quot;name\&quot;: \&quot;$version-GA\&quot;, \&quot;desc\&quot;: \&quot;desc\&quot; }&quot;
+
+curl -T &quot;$WORKSPACE/all-$version-GA.war&quot; -u michaelhuettermann:${bintray_key} -H &quot;X-Bintray-Package:cat&quot; -H &quot;X-Bintray-Version:$version-GA&quot; https://api.bintray.com/content/michaelhuettermann/meow/
+
+curl -u michaelhuettermann:${bintray_key} -H &quot;Content-Type: application/json&quot; -X POST https://api.bintray.com/content/michaelhuettermann/meow/cat/$version-GA/publish --data &quot;{ \&quot;discard\&quot;: \&quot;false\&quot; }&quot;
+</command>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers/>
+  <buildWrappers/>
+</project>
