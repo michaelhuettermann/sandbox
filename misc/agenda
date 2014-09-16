@@ -25,14 +25,8 @@ pipeline:
 -- Continuous build
 ---- checkout project from GitHub
 ---- what to check? -> compile 
-Setting up a component repository (Artifactory)
--- create user for deploy
--- consolidate repos
-Integrate Jenkins and Artifatory
--- deploy SNAPSHOT to Artifactory
--- RC
+-- Build all 15 min
 --- stage 1
----- enforcer: no dep snapshots
 ---- compile, unit testing, smoke test cargo
 ---- store version.properties
 ---- store git info (groovy postbuild plugin)
@@ -41,24 +35,35 @@ Integrate Jenkins and Artifatory
 --- stage 2
 ---- do sth. with WAR
 --- stage 3
----- publish to Artifactory
----- build pipeline plugin
----- build flow plugin
--- GA
---- checkout Git Hash
---- RC->GA
-Writing Maven plug-ins > 434
-Calling Maven Plug-ins 
---- publish to Artifactory or Bintray
+-- build pipeline plugin
+(---- build flow plugin)
+Setting up a component repository (Artifactory)
+-- create user for deploy
+-- consolidate repos
+Integrate Jenkins and Artifatory
+-- deploy SNAPSHOT to Artifactory
 
+Day 3
+Distribution management in POM
+Artifactory import/export
+settings.xml
 Automated release strategies (SNAPSHOT and RELEASE artifacts) - Redux (Artifatory features)
 Automated deployment, continuous delivery
 Distributed builds; build slaves
 Scaling Jenkins to large, complex systems
-
-Day 3
+Writing Maven plug-ins > 434
+Calling Maven Plug-ins 
+RC
+--- build again
+--- enforcer
+--- publish to Artifactory  
+----- checkout Git hash
+----- version setzen versions:set
+GA
+--- publish to Bintray
+--- take version from Artifactory, publish to Bintray
 Setting up a Sonar server
-Automated code quality audits, with Sonar
+Integrate into QA build chain
 Integrating Jenkins with your issue management system, e.g. JIRA
 Task-based development (with Mylyn, JIRA, Jenkins, and others)
 Infrastructure as code: Puppet
