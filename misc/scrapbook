@@ -51,7 +51,6 @@ cp devops/target/*.jar /home/michael/talk/transfer
 
 [Listing 4]
 #!/bin/sh
-#!/bin/sh
 version1=$(sed -n 's/.*version>/\0/p' pom.xml | head -1)
 version2=$(echo $version1 | sed 's/<version>//g')
 version=$(echo $version2 | sed 's/<\/version>//g')
@@ -188,9 +187,77 @@ Artifactory: admin|password
 
 
 
-was ist Qualität?
-
-
-
-
 https://help.github.com/articles/set-up-git
+
+
+
+http://dl.bintray.com/michaelhuettermann/meow/all-1.0.0-GA.war
+http://localhost:8888/all-1.0.0-GA/
+-------------------
+
+docker logs $(docker -q -a -l)
+
+
+JOB=$(sudo docker run -d tomcat7 /bin/sh -c "while true; do echo Hello world; sleep 10; done")
+docker run $JOB
+
+docker run -p 8080:8080 -d tomcat7
+
+
+docker stop $(docker ps -a -q)
+docker rm $(docker ps -a -q)
+
+docker run -i -t tomcat7 /bin/bash
+
+# Commit your container to a new named image
+$ sudo docker commit <container_id> <some_name>
+
+
+dpkg -L tomcat7
+
+
+Alternatively, run tomcat in the foreground with
+tomcat/bin/catalina.sh run
+and that should have the same affect, so your cmd would look like this:
+CMD ["<path/to/tomcat>/bin/catalina.sh", "run"]
+
+docker run -v /tmp:/root myImage
+in order to mount /tmp from the host machine as /root within the image.
+Source: http://docs.docker.io/en/latest/use/working_with_volumes/
+
+
+ 2326  docker ps
+ 2327  docker stop 10d5dee1616c 
+ 2328  docker images 
+ 2330  docker run -d -p 8888:8080 -v /home/michaelhuettermann/tmp/:/shareme tomcat7
+ 2331  docker ps
+ 2332  docker inspect $(docker ps -a -q) | grep -i Pid
+ 2333  sudo nsenter --target 602 --mount --uts --ipc --net --pid
+
+ docker inspect $(docker ps -a -q) | grep -i Pid | head -1 | tr -cd '[:digit:]'
+ sudo nsenter --target $PID --mount --uts --ipc --net --pid
+
+ pid=$(docker inspect $(docker ps -a -q) | grep -i Pid | head -1 | tr -cd '[:digit:]')
+ sudo nsenter --target $(docker inspect $(docker ps -a -q) | grep -i Pid | head -1 | tr -cd '[:digit:]') --mount --uts --ipc --net --pid
+ 
+ 2048  wget http://localhost:8888/all/
+ 2049  ls -la
+ 2050  vi index.html 
+ 2051  cp index.html index.html2
+ 2055  diff index.html index.html2 
+ 2060  diff=$(diff index.html index.html2)
+ 2062  echo $diff
+ 2068  expr length "$diff" 
+ 
+ diff=$(diff index.html index.html2)
+ length=$(expr length "$diff")
+  
+ if [ $length -eq 0 ]
+  then echo "ok"
+  else echo "fail"
+ fi
+
+
+
+
+sudo nsenter --target $(docker inspect $(docker ps -a -q) | grep -i Pid | head -1 | tr -cd '[:digit:]') --mount --uts --ipc --net --pid
