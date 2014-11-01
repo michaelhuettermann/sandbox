@@ -1,5 +1,7 @@
 #!/bin/bash
 
+chmod 755 /shareme/*.war
+
 cp /shareme/*.war /var/lib/tomcat7/webapps/all.war  
 
 /etc/init.d/tomcat7 start
