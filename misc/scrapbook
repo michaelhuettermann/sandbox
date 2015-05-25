@@ -189,6 +189,10 @@ http://dl.bintray.com/michaelhuettermann/meow/all-1.0.0-GA.war
 http://localhost:8888/all-1.0.0-GA/
 -------------------
 
+apt-cache search docker
+sudo apt-get install lxc-docker
+
+
 docker logs $(docker -q -a -l)
 
 
@@ -202,6 +206,8 @@ docker stop $(docker ps -a -q)
 docker rm $(docker ps -a -q)
 
 docker run -i -t tomcat7 /bin/bash
+docker run -it debian:stable bash
+
 
 # Commit your container to a new named image
 $ sudo docker commit <container_id> <some_name>
