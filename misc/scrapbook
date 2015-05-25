@@ -179,12 +179,6 @@ Plain Jenkins
 -- build flow plugin
 https://wiki.jenkins-ci.org/display/JENKINS/Build+Flow+Plugin
 
-Artifactory: 8081
-Sonar: 9000
-Jenkins: 8080
-
-Artifactory: admin|password
-
 
 
 https://help.github.com/articles/set-up-git
@@ -261,3 +255,14 @@ Source: http://docs.docker.io/en/latest/use/working_with_volumes/
 
 
 sudo nsenter --target $(docker inspect $(docker ps -a -q) | grep -i Pid | head -1 | tr -cd '[:digit:]') --mount --uts --ipc --net --pid
+
+docker exec -it 4513f99f7bdb bash
+
+----------
+Artifactory: 8081
+Sonar: 9000  admin|admin
+Jenkins: 8080
+
+Artifactory: admin|password  (My)
+
+
