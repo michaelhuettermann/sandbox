@@ -30,5 +30,4 @@ public class Main {
         
     }
 
-}
-Main.java
+} 
