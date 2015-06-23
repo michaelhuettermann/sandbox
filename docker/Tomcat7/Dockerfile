@@ -17,3 +17,5 @@ EXPOSE 8080
 
 CMD ["/root/run.sh"]
  
+
+ 
