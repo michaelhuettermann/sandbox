@@ -1,0 +1,8 @@
+tomcat7aptget:
+  image: tomcat7aptget
+  ports:
+  - "8087:8080"
+tomcat7puppet:
+  image: tomcat7puppet
+  ports:
+  - "8088:8080"
