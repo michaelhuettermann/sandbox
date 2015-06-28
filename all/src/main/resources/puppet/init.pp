@@ -4,10 +4,10 @@ file {'/home/michaelhuettermann/work/tmp/puppet/puppet.txt':
     mode   => 700,
 }
 
-file { "/home/michaelhuettermann/work/tmp/puppet":
+file { "/home/michaelhuettermann/work/transfer":
     ensure => "directory",
     owner  => "michaelhuettermann",
     group  => "michaelhuettermann",
     mode   => 750,
-    before  => File['/home/michaelhuettermann/work/tmp/puppet/puppet.txt'],
+    before  => File['/home/michaelhuettermann/work/transfer/puppet.txt'],
 }
