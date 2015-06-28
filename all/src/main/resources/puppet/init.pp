@@ -1,4 +1,4 @@
-file {'/home/michaelhuettermann/work/tmp/puppet/puppet.txt':
+file {'/home/michaelhuettermann/work/transfer/puppet.txt':
     ensure  => present,
     content => "Hello World!",
     mode   => 700,
