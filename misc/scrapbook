@@ -41,6 +41,11 @@ sudo apt-get install git
 dpkg -s git 
 1.9.1
 
+github
+https://help.github.com/articles/set-up-git/
+ssh: https://help.github.com/articles/generating-ssh-keys/
+https pw cache: https://help.github.com/articles/caching-your-github-password-in-git/
+
 ====
 Install MySql
 mysql  Ver 14.14 Distrib 5.5.38, for debian-linux-gnu (x86_64) using readline 6.3
@@ -48,7 +53,7 @@ sudo apt-get install mysql-server
 
 ====
 Install Puppet
-...
+apt-get -y install puppet librarian-puppet 
 3.7.1
 
 ====
@@ -67,6 +72,13 @@ chmod +x /usr/local/bin/docker-compose
 
 ====
 Vagrant
+http://www.vagrantup.com/downloads
+sudo dpkg -i DEB_PACKAGE
+
+Boxes: https://atlas.hashicorp.com/boxes/search
+=>  ubuntu/trusty64 
+
+"vagrant box add ubuntu/trusty64"
 
 ====
 Centreon/Nagios

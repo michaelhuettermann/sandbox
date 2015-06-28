@@ -76,3 +76,16 @@ docker exec -it 4513f99f7bdb bash
 ========== docker-compose
 $ docker-compose up -d
 $ docker-compose run [container] env
+
+
+========== install docker via Puppet, in image
+Docker as provisioner:
+
+Option 1:
+https://docs.docker.com/articles/puppet/
+The module provides a puppet class for installing Docker and two defined types for managing images and containers.
+
+Option 2:
+http://docs.vagrantup.com/v2/provisioning/docker.html
+As with all provisioners, the Docker provisioner can be used along with all the other provisioners Vagrant has in order to setup your working environment the best way possible. For example, perhaps you use Puppet to install services like databases or web servers but use Docker to house your application runtime. 
+=> You can use the Puppet provisioner along with the Docker provisioner.
