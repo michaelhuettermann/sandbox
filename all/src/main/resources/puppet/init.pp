@@ -9,5 +9,5 @@ file { "/home/michaelhuettermann/work/transfer":
     owner  => "michaelhuettermann",
     group  => "michaelhuettermann",
     mode   => 750,
-    before  => File['/home/michaelhuettermann/work/transfer/puppet.txt'],
+    before  => File['/home/michaelhuettermann/work/transfer/puppet.txt'], 
 }
