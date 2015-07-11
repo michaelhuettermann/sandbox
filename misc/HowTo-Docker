@@ -5,9 +5,20 @@ docker logs $(docker -q -a -l)
 JOB=$(sudo docker run -d tomcat7 /bin/sh -c "while true; do echo Hello world; sleep 10; done")
 docker run $JOB
 
-docker run -p 8080:8080 -d tomcat7
+docker build -t infa .
+docker run -p 8080:8080 -d infa
 
-
+tomcat7aptget:
+  image: tomcat7aptget
+  ports:
+  - "8087:8080"
+tomcat7puppet:
+  image: tomcat7puppet
+  ports:
+  - "8088:8080
+  
+  
+  
 docker stop $(docker ps -a -q)
 docker rm $(docker ps -a -q)
 docker rmi $(docker images | grep "^<none>" | awk "{print $3}") 
@@ -15,7 +26,6 @@ docker rmi $(docker images | grep "^<none>" | awk "{print $3}")
 
 docker run -i -t tomcat7 /bin/bash
 docker run -it debian:stable bash
-
 docker run -i -t ubuntu /bin/bash
 
 
