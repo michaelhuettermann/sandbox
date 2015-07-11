@@ -1,0 +1,17 @@
+Vagrant.configure(2) do |config|
+  config.vm.box = "ubuntu/trusty64"
+  config.vm.box_check_update = false
+
+  config.vm.provision :shell, path: "bootstrap.sh"
+  config.vm.provision "puppet" do |puppet|
+    puppet.manifests_path = "manifests"
+    puppet.manifest_file = "default.pp"
+  end
+  config.vm.provision "shell", inline: <<-SHELL
+     curl -o /var/lib/tomcat7/webapps/all.war http://dl.bintray.com/michaelhuettermann/meow/all-1.0.0-GA.war
+  SHELL
+ 
+  config.vm.network :forwarded_port, host: 8090, guest: 8080
+end
+
+
