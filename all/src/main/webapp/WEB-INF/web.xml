@@ -1,7 +1,17 @@
 <!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
+          "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+          "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
   <display-name>Web Application</display-name>
+  <servlet>
+    <servlet-name>message</servlet-name>
+    <servlet-class>
+      com.huettermann.all.Message
+    </servlet-class>
+  </servlet>l
+  <servlet-mapping>
+    <servlet-name>message</servlet-name>
+    <url-pattern>/message</url-pattern>
+  </servlet-mapping>
 </web-app>
