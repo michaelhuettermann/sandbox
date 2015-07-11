@@ -12,7 +12,7 @@
     </properties>
     <build>
       <plugins>
-          <plugin>
+         <plugin>
              <artifactId>maven-war-plugin</artifactId>
              <version>2.4</version>
              <configuration>
@@ -24,7 +24,7 @@
                     </manifest>
                  </archive>
              </configuration>
-          </plugin>
+	     </plugin>
           <plugin>
 	     <groupId>org.codehaus.mojo</groupId>
              <artifactId>versions-maven-plugin</artifactId>
@@ -42,6 +42,18 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.7</version>
+        </dependency>
+	 <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.4</version>
+            <scope>provided</scope>
+        </dependency>
+	 <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>jsp-api</artifactId>
+            <version>2.0</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
     <profiles>
