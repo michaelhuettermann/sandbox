@@ -1,7 +1,7 @@
 Vagrant.configure("2") do |config|
   config.vm.define "v1" do |a|
     a.vm.provider "docker" do |d|
-      d.image = "tomcat7aptget"
+      d.image = "michaelhuettermann/tomcat7aptget"
       d.has_ssh = false
       d.ports = ["8087:8080"]
       d.name = "tomcat"
@@ -9,7 +9,7 @@ Vagrant.configure("2") do |config|
   end  
   config.vm.define "v2" do |a|
     a.vm.provider "docker" do |d|
-      d.image = "tomcat7puppet"
+      d.image = "michaelhuettermann/tomcat7puppet"
       d.has_ssh = false
       d.ports = ["8088:8080"]
       d.name = "puppet"
