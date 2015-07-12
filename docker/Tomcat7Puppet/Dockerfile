@@ -1,4 +1,4 @@
-FROM infra
+FROM michaelhuettermann/infra
 MAINTAINER Michael Huettermann
 
 RUN apt-get -y install puppet librarian-puppet 
