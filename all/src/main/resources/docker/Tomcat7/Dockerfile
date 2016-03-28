@@ -1,4 +1,4 @@
-FROM infra
+FROM michaelhuettermann/infra
 MAINTAINER Michael Huettermann
 
 # Install curl
