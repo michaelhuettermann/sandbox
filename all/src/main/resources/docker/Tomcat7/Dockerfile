@@ -1,6 +1,8 @@
 FROM michaelhuettermann/infra
 MAINTAINER Michael Huettermann
 
+RUN apt-get -y update
+
 # Install curl
 #RUN apt-get -y install curl
 
