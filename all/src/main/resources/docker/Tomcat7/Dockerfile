@@ -2,7 +2,7 @@ FROM michaelhuettermann/infra
 MAINTAINER Michael Huettermann
 
 # Install curl
-RUN apt-get -y install curl
+#RUN apt-get -y install curl
 
 # Install tomcat
 RUN apt-get -y install tomcat7
