@@ -1,0 +1,21 @@
+sudo docker run -p 5601:5601 -p 9200:9200 -p 5044:5044 -it --name elk sebp/elk
+sudo docker start elk
+
+    5601 (Kibana web interface).
+    9200 (Elasticsearch JSON interface).
+    5044 (Logstash Beats interface, receives logs from Beats such as Filebeat – see the Forwarding logs with Filebeat section).
+
+    sudo docker exec -it <container-name> /bin/bash
+
+    # /opt/logstash/bin/logstash -e 'input { stdin { } } output { elasticsearch { hosts => ["localhost"] } }'
+    
+    e.g. http://localhost:9200/_search?pretty 
+    
+    e.g. http://localhost:5601 for a local native instance of Docker).
+    
+    Make sure that the drop-down "Time-field name" field is pre-populated with the value @timestamp, then click on "Create", and you're good to go.
+        
+    http://elk-docker.readthedocs.io/   
+    
+    sysctl -w vm.max_map_count=262144
+    https://www.elastic.co/guide/en/elasticsearch/reference/5.0/vm-max-map-count.html#vm-max-map-count

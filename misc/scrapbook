@@ -1,7 +1,8 @@
 *********** Install
 ====
-Install Docker  1.7
+Install Docker  1.7, 1.9.1, 1.12.3
 sudo apt-get install lxc-docker
+https://docs.docker.com/engine/installation/linux/ubuntulinux/
 ====
 Install Maven  Maven 3.2.5! (3.3.3)
 https://maven.apache.org/download.cgi
@@ -34,6 +35,12 @@ Install Jenkins  1.617
 jenkins-ci.org
 Download 
 java -jar jenkins.war --httpPort=8080
+
+Jenkins pipeline:
+https://wilsonmar.github.io/jenkins2-pipeline/
+https://github.com/jenkinsci/pipeline-examples/tree/master/pipeline-examples/gitcommit
+https://github.com/JFrogDev/project-examples/tree/master/jenkins-pipeline-examples
+https://wiki.jenkins-ci.org/display/JENKINS/Artifactory+-+Working+With+the+Pipeline+Jenkins+Plugin
 
 ====
 Install Git
@@ -140,18 +147,6 @@ http://172.17.0.2/kibana/#/dashboard/file/consul.json
 
 michaelhuettermann@saturn:/var/log$ tail -f syslog | netcat 172.17.0.6 5514
 
-
-====
-ELK
-/work/ws-git/sandbox/docker/ELK$ docker build -t michaelhuettermann/elk 
-docker run -d -p 8888:8080 -v /home/michaelhuettermann/work/logs:/var/log/tomcat7  michaelhuettermann/tomcat7aptget
-docker run -d -p 9200:9200 -p 5601:5601 -v /home/michaelhuettermann/work/logs:/logs michaelhuettermann/elk
-
-CONTAINER ID        IMAGE                              COMMAND             CREATED             STATUS              PORTS                                            NAMES
-38f474180b75        michaelhuettermann/elk             "/root/run.sh"      12 seconds ago      Up 12 seconds       0.0.0.0:5601->5601/tcp, 0.0.0.0:9200->9200/tcp   backstabbing_fermat   
-67b9bb3de6c5        michaelhuettermann/tomcat7aptget   "/root/run.sh"      About an hour ago   Up About an hour    0.0.0.0:8888->8080/tcp                           elegant_elion     
-
-http://localhost:5601/
 
 
 
@@ -456,3 +451,23 @@ huttermann.artifactoryonline.com
 Artifactory: admin|password  (My..)
 Mysql: mysql -u root -p
 
+
+******************************************************
+
+http://localhost:8888/all/message?param=hi
+
+
+ELK
+/work/ws-git/sandbox/docker/ELK$ docker build -t michaelhuettermann/elk 
+docker run -d -p 8888:8080 -v /home/michaelhuettermann/work/logs:/var/log/tomcat7  michaelhuettermann/tomcat7aptget
+docker run -d -p 9200:9200 -p 5601:5601 -v /home/michaelhuettermann/work/logs:/logs michaelhuettermann/elk
+
+CONTAINER ID        IMAGE                              COMMAND             CREATED             STATUS              PORTS                                            NAMES
+38f474180b75        michaelhuettermann/elk             "/root/run.sh"      12 seconds ago      Up 12 seconds       0.0.0.0:5601->5601/tcp, 0.0.0.0:9200->9200/tcp   backstabbing_fermat   
+67b9bb3de6c5        michaelhuettermann/tomcat7aptget   "/root/run.sh"      About an hour ago   Up About an hour    0.0.0.0:8888->8080/tcp                           elegant_elion     
+
+http://localhost:5601/
+
+Y-Axis
+X-Axis Date histo / timestamp 
+Split chart, filter message:severe
