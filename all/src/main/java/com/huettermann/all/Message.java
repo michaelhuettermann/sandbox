@@ -24,4 +24,5 @@ public class Message extends HttpServlet {
         out.println( "Hello: " + param);
         out.flush();
         out.close();
+        }
 } 
