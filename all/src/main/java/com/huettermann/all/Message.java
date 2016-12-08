@@ -20,13 +20,8 @@ public class Message extends HttpServlet {
             context.log("Here the paramater: " + param);
         }
           
-        try {  
-            PrintWriter out = response.getWriter();
-            out.println( "Hello: " + param);
-            out.flush();
-            out.close();
-        } catch (Throwable t) {
-          context.log("problem here");
-        }
-    }
+        PrintWriter out = response.getWriter();
+        out.println( "Hello: " + param);
+        out.flush();
+        out.close();
 } 
