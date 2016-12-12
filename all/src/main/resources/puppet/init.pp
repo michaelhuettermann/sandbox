@@ -3,7 +3,7 @@ file {'/home/michaelhuettermann/work/transfer/puppet.txt':
     content => "Hello World!",
     mode   => 700,
 }
-
+s
 file { "/home/michaelhuettermann/work/transfer":
     ensure => "directory",
     owner  => "michaelhuettermann",
