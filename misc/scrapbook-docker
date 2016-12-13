@@ -1,3 +1,4 @@
+docker exec -it 4513f99f7bdb bash 
 
 docker logs $(docker -q -a -l)
 
