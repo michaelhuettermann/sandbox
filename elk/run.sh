@@ -1,3 +1,5 @@
+export JFROG="-v /home/michaelhuettermann/work/tools/jfrogcli/data/:/root/data"
+
 # To get all the /dev/* devices needed for sshd and alike:
 export DEV_MOUNTS="-v /dev/null:/dev/null -v /dev/urandom:/dev/urandom -v /dev/random:/dev/random"
 export DEV_MOUNTS="${DEV_MOUNTS} -v /dev/full:/dev/full -v /dev/zero:/dev/zero"
@@ -22,5 +24,8 @@ export HTPASSWD=secretpw
 export DEV_MOUNTS="-v /dev/null:/dev/null -v /dev/urandom:/dev/urandom -v /dev/random:/dev/random"
 export DEV_MOUNTS="${DEV_MOUNTS} -v /dev/full:/dev/full -v /dev/zero:/dev/zero"
 
-docker run -d -h elk --name elk --privileged ${DEV_MOUNTS} qnib/elk:latest
+#sysctl -w vm.max_map_count=262144
+    
+#docker run -d -h elk --name elk --privileged ${DEV_MOUNTS} qnib/elk:latest
+docker run -p 5601:5601 -p 9200:9200 -p 5044:5044 $JFROG -it --name elk sebp/elk 
     
