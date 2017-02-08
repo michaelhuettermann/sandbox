@@ -1,0 +1,31 @@
+pw = userInput (
+    type : "STRING",
+    description : "Please provide a pw"
+  )
+
+localRepository('gitlfs-local') {
+  description ''
+  notes ''
+  includesPattern '**/*'
+  excludesPattern ''
+  repoLayoutRef 'simple-default'
+  propertySets ([])
+  archiveBrowsingEnabled false
+  blackedOut false
+
+  packageType 'gitlfs'
+
+
+
+  multipushReplication(['http://ec2-52-59-243-101.eu-central-1.compute.amazonaws.com:8082/artifactory/gitlfs-local', 'http://172.19.0.1:8082/artifactory/gitlfs-local', 'http://ec2-52-59-243-101.eu-central-1.compute.amazonaws.com:8081/artifactory/gitlfs-local', 'http://ec2-52-59-243-101.eu-central-1.compute.amazonaws.com/artifactory/gitlfs-local', 'http://172.19.0.1:8071/artifactory/gitlfs-local']) {
+    cronExp '0 15 0 ? * *'
+    socketTimeoutMillis 15000
+    username 'admin'
+    password 'pw'
+    proxy
+    enableEventReplication true
+    enabled true
+    syncDeletes true
+    syncProperties true
+  }
+}
