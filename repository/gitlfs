@@ -1,0 +1,13 @@
+virtualRepository('gitlfs') {
+  description ''
+  notes ''
+  includesPattern '**/*'
+  excludesPattern ''
+  repoLayoutRef 'simple-default'
+  repositories (['gitlfs-local'])
+  defaultDeploymentRepo 'gitlfs-local'
+  artifactoryRequestsCanRetrieveRemoteArtifacts false
+
+  packageType 'gitlfs'
+
+}
