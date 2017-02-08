@@ -1,3 +1,7 @@
+pw = userInput (
+    type : "STRING",
+    description : "Please provide a pw"
+  )
 remoteRepository('gitlfs-remote') {
   description ''
   notes ''
@@ -9,7 +13,7 @@ remoteRepository('gitlfs-remote') {
   blackedOut false
   url 'https://github.com/michaelhuettermann/sandbox'
   username 'michaelhuettermann'
-  password //Dont forget to put password here
+  password 'pw'
   proxy ''
   hardFail false
   offline false
