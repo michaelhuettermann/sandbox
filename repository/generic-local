@@ -1,0 +1,17 @@
+localRepository('generic-local') {
+  description ''
+  notes ''
+  includesPattern '**/*'
+  excludesPattern ''
+  repoLayoutRef 'simple-default'
+  propertySets ([])
+  archiveBrowsingEnabled false
+  blackedOut false
+
+  packageType 'generic'
+
+
+  xrayIndex true
+  blockXrayUnscannedArtifacts false
+  xrayMinimumBlockedSeverity ''
+}
