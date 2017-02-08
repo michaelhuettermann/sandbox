@@ -1,0 +1,38 @@
+remoteRepository('gitlfs-remote') {
+  description ''
+  notes ''
+  includesPattern '**/*'
+  excludesPattern ''
+  repoLayoutRef 'simple-default'
+  propertySets (['artifactory'])
+  archiveBrowsingEnabled false
+  blackedOut false
+  url 'https://github.com/michaelhuettermann/sandbox'
+  username 'michaelhuettermann'
+  password //Dont forget to put password here
+  proxy ''
+  hardFail false
+  offline false
+  storeArtifactsLocally true
+  socketTimeoutMillis 15000
+  enableCookieManagement false
+  allowAnyHostAuth false
+  localAddress ''
+  retrievalCachePeriodSecs 600
+  missedRetrievalCachePeriodSecs 1800
+  failedRetrievalCachePeriodSecs 0
+  unusedArtifactsCleanupEnabled false
+  unusedArtifactsCleanupPeriodHours 0
+  shareConfiguration false
+  synchronizeProperties false
+  assumedOfflinePeriodSecs 300
+
+  packageType 'gitlfs'
+
+
+
+  reportStatistics false
+  syncProperties false
+  listRemoteFolderItems false
+  sourceAbsenceDetection false
+}
