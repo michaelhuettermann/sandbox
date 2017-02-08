@@ -1,6 +1,6 @@
 pw = userInput (
     type : "STRING",
-    description : "Please provide a pw"
+    description : "Please provide a pw for accessing the other Artifactory server"
   )
 
 localRepository('gitlfs-local') {
