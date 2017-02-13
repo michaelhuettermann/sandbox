@@ -14,4 +14,7 @@ localRepository('generic-local') {
   xrayIndex true
   blockXrayUnscannedArtifacts false
   xrayMinimumBlockedSeverity ''
+  
+  multipushReplication() {
+  }
 }
