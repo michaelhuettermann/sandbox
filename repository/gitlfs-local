@@ -14,4 +14,7 @@ localRepository('gitlfs-local') {
   xrayIndex true
   blockXrayUnscannedArtifacts false
   xrayMinimumBlockedSeverity ''
+  
+    multipushReplication() {
+  }
 }
