@@ -68,7 +68,7 @@
 			<configuration>
 			    <configuration>
 			       <properties>
-			           <cargo.servlet.port>6789</cargo.servlet.port>
+			           <cargo.servlet.port>8001</cargo.servlet.port>
 			       </properties>
 			    </configuration>
 			</configuration>
