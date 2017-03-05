@@ -1,0 +1,45 @@
+pw = userInput (
+    type : "STRING",
+    description : "Please provide a pw for the Git user"
+  )
+
+security {
+  users {
+    conflictResolutionPolicy 'OVERRIDE'
+    user('git') {
+      email 'git@gitme.de'
+      password 'pw'
+      admin false
+      profileUpdatable false
+      internalPasswordDisabled false
+      groups (['git', 'readers'])
+    }
+  }
+}
+security {
+  groups {
+    conflictResolutionPolicy 'OVERRIDE'
+    group('git') {
+      description ''
+      autoJoin false
+    }
+ }
+}
+security {
+  permissions {
+    conflictResolutionPolicy 'OVERRIDE'
+    permission('git') {
+      includesPattern '**'
+      excludesPattern ''
+      anyLocal false
+      anyRemote false
+      anyDistribution false
+      repositories (['gitlfs-local'])
+      users {
+      }
+      groups {
+        'git' (['read', 'delete', 'deploy', 'annotate'])
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+localRepository('gitlfs-local') {
+  description ''
+  notes ''
+  includesPattern '**/*'
+  excludesPattern ''
+  repoLayoutRef 'simple-default'
+  propertySets ([])
+  archiveBrowsingEnabled false
+  blackedOut false
+
+  packageType 'gitlfs'
+
+
+  xrayIndex true
+  blockXrayUnscannedArtifacts false
+  xrayMinimumBlockedSeverity ''
+  
+    multipushReplication() {
+  }
+}
