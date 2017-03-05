@@ -27,7 +27,7 @@ public class SiteLocalIT {
 
     @Test
     public void testLocal() {
-        driver.get("http://localhost:8088/all");
+        driver.get("http://localhost:5678/all");
         WebElement element = driver.findElement(By.xpath("//h2[1]"));
         Assert.assertEquals("Hello World!", element.getText());
     }
