@@ -17,7 +17,7 @@ localRepository('generic-local') {
 
 
 
-  multipushReplication(['http://ec2-52-59-243-101.eu-central-1.compute.amazonaws.com:8082/artifactory/generic-local', 'http://172.19.0.1:8082/artifactory/generic-local', 'http://ec2-52-59-243-101.eu-central-1.compute.amazonaws.com:8081/artifactory/generic-local', 'http://ec2-52-59-243-101.eu-central-1.compute.amazonaws.com/artifactory/generic-local', 'http://172.19.0.1:8071/artifactory/generic-local']) {
+  multipushReplication(['http://ec2-52-59-243-101.eu-central-1.compute.amazonaws.com:8082/artifactory/generic-local', 'http://172.20.0.1:8072/artifactory/generic-local', 'http://ec2-52-59-243-101.eu-central-1.compute.amazonaws.com:8081/artifactory/generic-local', 'http://ec2-52-59-243-101.eu-central-1.compute.amazonaws.com/artifactory/generic-local', 'http://172.20.0.1:8071/artifactory/generic-local']) {
     cronExp '0 15 0 ? * *'
     socketTimeoutMillis 15000
     username 'admin'
