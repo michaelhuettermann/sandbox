@@ -1,13 +1,13 @@
-file {'/home/michaelhuettermann/work/transfer/puppet.txt':
+file {'/Users/michaelh/work/data/share/transfer/puppet.txt':
     ensure  => present,
     content => "Hello World!",
-    mode   => 700,
+    mode   => "700",
 }
 
-file { "/home/michaelhuettermann/work/transfer":
+file { "/Users/michaelh/work/data/share/transfer":
     ensure => "directory",
-    owner  => "michaelhuettermann",
-    group  => "michaelhuettermann",
-    mode   => 750,
-    before  => File['/home/michaelhuettermann/work/transfer/puppet.txt'], 
+    owner  => "michaelh",
+    group  => "staff",
+    mode   => "770",
+    before  => File['/Users/michaelh/work/data/share/transfer/puppet.txt'], 
 }
