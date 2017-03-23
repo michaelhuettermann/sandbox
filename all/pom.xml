@@ -175,12 +175,25 @@
                 </dependency>
             </dependencies>
         </profile>
+        <profile>
+            <id>n</id>
+            <distributionManagement>
+            <snapshotRepository>
+                 <id>ns</id>
+                 <url>http://localhost:8081/repository/maven-snapshots/</url>
+              </snapshotRepository>
+              <repository>
+                 <id>nr</id>
+                 <url>http://localhost:8081/repository/maven-releases/</url>
+              </repository>
+          </distributionManagement>
+        </profile>
     </profiles>
 
     <distributionManagement>
         <repository>
             <id>myrepo</id>
-            <url>file:/home/michaelhuettermann/tmp/repository/</url>
+            <url>file:/Users/michaelh/tmp/repository/</url>
         </repository>
     </distributionManagement>
 
