@@ -13,7 +13,7 @@ public class Message extends HttpServlet {
         String param = request.getParameter("param");
         ServletContext context = getServletContext( );
 
-        if (param == null || "".equals(param)) {
+        if (param == null || param.equals("")) {
 	    context.log("No message received:",
             new IllegalStateException("Missing parameter"));
         } else {
