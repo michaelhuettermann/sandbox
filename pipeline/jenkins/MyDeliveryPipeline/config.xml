@@ -1,0 +1,204 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<flow-definition plugin="workflow-job@2.10">
+  <actions/>
+  <description>A pipeline.</description>
+  <displayName>Pipeline for delivering dev versions.</displayName>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <jenkins.model.BuildDiscarderProperty>
+      <strategy class="hudson.tasks.LogRotator">
+        <daysToKeep>10</daysToKeep>
+        <numToKeep>20</numToKeep>
+        <artifactDaysToKeep>-1</artifactDaysToKeep>
+        <artifactNumToKeep>-1</artifactNumToKeep>
+      </strategy>
+    </jenkins.model.BuildDiscarderProperty>
+    <org.jenkinsci.plugins.workflow.job.properties.DisableConcurrentBuildsJobProperty/>
+    <org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
+      <triggers/>
+    </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
+  </properties>
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.29">
+    <script>node {
+
+    def server 
+    def rtMaven 
+    def buildInfo 
+    
+    stage (&apos;Setup&apos;) {
+       sh &quot;rm -rf /Users/michaelh/work/data/share/transfer&quot;
+       def SERVER_ID = &apos;-844406945@1408787223604&apos;
+       server = Artifactory.server SERVER_ID
+
+       rtMaven = Artifactory.newMavenBuild()
+       rtMaven.tool = &apos;M3.3.1&apos;
+       rtMaven.resolver server: server, releaseRepo: &apos;repo1&apos;, snapshotRepo: &apos;repo1&apos;
+       rtMaven.deployer server: server, releaseRepo: &apos;libs-local&apos;, snapshotRepo: &apos;libs-snapshots-local&apos;
+    }
+
+    stage (&apos;Checkout&apos;) {
+       git url: &apos;git@github.com:michaelhuettermann/sandbox.git&apos;
+       def gitCommit = sh(returnStdout: true, script: &apos;git rev-parse HEAD&apos;).trim()
+       echo &quot;Hash ${gitCommit}&quot;
+       def workspace = pwd()
+       echo &quot;workspace=${workspace}&quot;
+    }
+
+    stage (&apos;Check preconditions&apos;) {
+       parallel &quot;Sanity check 1&quot;: {
+          echo &quot;1&quot;
+       }, &quot;Sanity check 2&quot;: {
+          echo &quot;2i&quot;
+       }, &quot;Sanity check 3&quot;: {
+          echo &quot;3&quot;
+       }, &quot;Sanity check 4&quot;: {
+          echo &quot;4a&quot;
+          echo &quot;4b&quot;
+          echo &quot;4c&quot;
+       }
+    }
+    
+    stage (&apos;Unit test&apos;) {
+       sh &quot;mvn clean test -f all/pom.xml&quot;
+    }
+    
+    stage (&apos;Integration test&apos;) {
+       rtMaven.deployer.deployArtifacts = false
+       rtMaven.run pom: &apos;all/pom.xml&apos;, goals: &apos;clean integration-test -Pweb&apos;
+    }
+
+    stage (&apos;Build env, with Puppet&apos;) {
+       sh &quot;puppet apply all/src/main/resources/puppet/init.pp&quot;
+    }
+
+    stage (&apos;Copy WAR&apos;) {
+       sh &quot;cp all/target/*.war /Users/michaelh/work/data/share/transfer/&quot;
+    }
+
+    stage (&apos;Fetch version&apos;) {
+       def v = version()
+       if (v) {
+          echo &quot;Version=${v}&quot;
+       }
+    }
+
+    stage (&apos;Database migration&apos;) {
+       sh &quot;mvn clean install -Pdb flyway:clean flyway:init flyway:info flyway:migrate flyway:info -f all/pom.xml&quot;
+    }
+    
+    stage(&apos;SonarQube analysis&apos;) {
+       withSonarQubeEnv(&apos;Sonar&apos;) {
+         sh &apos;mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.3.0.603:sonar -f all/pom.xml -Dsonar.projectKey=com.huettermann:all:master -Dsonar.login=$SONAR_UN -Dsonar.password=$SONAR_PW -Dsonar.language=java -Dsonar.sources=. -Dsonar.tests=. -Dsonar.test.inclusions=**/*Test*/** -Dsonar.exclusions=**/*Test*/**&apos;
+       }
+    }
+   
+    stage(&quot;SonarQube Quality Gate&quot;){
+       timeout(time: 1, unit: &apos;HOURS&apos;) {  
+          def qg = waitForQualityGate()  
+          if (qg.status != &apos;OK&apos;) {
+             error &quot;Pipeline aborted due to quality gate failure: ${qg.status}&quot;
+          }
+       }
+    }
+
+    stage (&apos;Build Docker image and run container&apos;) {
+sh &apos;&apos;&apos;#!/bin/sh
+    cp /Users/michaelh/work/data/share/transfer/*.war .
+rm -f index.html
+cd all/src/main/resources/docker/Tomcat7
+echo &quot;All images&quot;
+docker images | grep tomcat7
+echo &quot;---------------------------------------&quot;
+echo &quot;All active containers&quot;
+docker ps
+echo &quot;---------------------------------------&quot;
+echo &quot;Stopping and removing containers&quot;
+docker stop $(docker ps -a | grep 8002 | cut -d &quot; &quot; -f1)
+docker rm $(docker ps -a | grep Exit | cut -d &quot; &quot; -f1)
+echo &quot;---------------------------------------&quot;
+echo &quot;Building new Tomcat 7 container&quot;
+docker build -t tomcat7 .
+echo &quot;---------------------------------------&quot;
+echo &quot;Running Tomcat container&quot;
+docker run -d -p 8002:8080 -v $WORKSPACE:/shareme tomcat7
+echo &quot;---------------------------------------&quot;
+echo &quot;All images&quot;
+docker images | grep tomcat7
+echo &quot;---------------------------------------&quot;
+echo &quot;All active containers&quot;
+docker ps
+sleep 10
+echo &quot;---------------------------------------&quot;&apos;&apos;&apos;
+    }
+    
+    stage (&apos;Check Web app in Container&apos;) {
+sh &apos;&apos;&apos;#!/bin/sh
+pwd
+echo &quot;--------------------------------&quot;
+echo &quot;Check start page available&quot;
+curl -v -o index.html http://localhost:8002/all/
+echo &quot;--------------------------------&quot;
+echo &quot;Downloaded page: &quot; 
+cat index.html
+echo &quot;--------------------------------&quot;
+echo &quot;Template page: &quot;
+cat all/src/main/resources/docker/template/index.html
+echo &quot;--------------------------------&quot;
+diff=$(diff index.html all/src/main/resources/docker/template/index.html)
+length=$(echo ${#diff})
+  
+if [ $length -eq 0 ]
+  then echo &quot;Result: ok&quot;
+  else exit 1
+fi
+
+echo &quot;---------------------------------------&quot;&apos;&apos;&apos;
+    }
+    
+    stage (&apos;Label&apos;) {
+      def matcher = manager.getLogMatcher(&quot;.*Hash (.*)\$&quot;) 
+      if(matcher?.matches()) {    
+         manager.addShortText(matcher.group(1).substring(0,8))
+      }
+      println &quot;Labeled!&quot;
+    }
+    
+    stage (&apos;Distribute binaries&apos;) {
+       parallel &quot;Deploy deployment unit to Artifactory&quot;: {
+          echo &quot;Deploy Deployment Unit to Artifactory.&quot;
+          def uploadSpec = &quot;&quot;&quot;
+    {
+    &quot;files&quot;: [
+        {
+            &quot;pattern&quot;: &quot;all/target/all-(*).war&quot;,
+            &quot;target&quot;: &quot;libs-snapshots-local/com/huettermann/web/{1}/&quot;
+        }
+      ]
+    }
+    &quot;&quot;&quot;
+    buildInfo = Artifactory.newBuildInfo()
+    buildInfo.env.capture = true
+    buildInfo=server.upload(uploadSpec)
+    server.publishBuildInfo(buildInfo)
+     }, &quot;Push Docker image to Artifactory Docker registry&quot;: {
+        echo &quot;Push Docker image to Artifactory Docker Registry.&quot;
+        sh &apos;&apos;&apos;#!/bin/sh
+docker login huttermann-docker-local.jfrog.io -u=&quot;$DOCKER_UN&quot; -p=&quot;$DOCKER_PW&quot;
+docker tag michaelhuettermann/tomcat7 huttermann-docker-local.jfrog.io/michaelhuettermann/tomcat7
+docker push huttermann-docker-local.jfrog.io/michaelhuettermann/tomcat7
+docker logout huttermann-docker-local.jfrog.io
+echo &quot;---------------------------------------&quot;&apos;&apos;&apos;
+    }
+}
+
+}
+
+    def version() {
+      def matcher = readFile(&apos;pom.xml&apos;) =~ &apos;&lt;version&gt;(.+)&lt;/version&gt;&apos;
+      matcher ? matcher[0][1] : null
+    }
+</script>
+    <sandbox>true</sandbox>
+  </definition>
+  <triggers/>
+</flow-definition>
