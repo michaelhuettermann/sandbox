@@ -23,7 +23,7 @@
              <artifactId>maven-war-plugin</artifactId>
              <version>2.4</version>
              <configuration>
-                 <packagingExcludes>WEB-INF/lib/*.jar</packagingExcludes>
+                 <!--<packagingExcludes>WEB-INF/lib/*.jar</packagingExcludes>-->
                  <archive>
                     <manifest>
                        <addClasspath>true</addClasspath>
@@ -32,6 +32,28 @@
                  </archive>
              </configuration>
 	     </plugin>
+<!--<plugin>
+    <artifactId>maven-resources-plugin</artifactId>
+    <version>3.0.1</version>
+    <executions>
+         <execution>
+            <id>copy-resources</id>
+            <phase>validate</phase>
+            <goals>
+               <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+               <outputDirectory>${basedir}/target</outputDirectory>
+               <resources>          
+                    <resource>
+                        <directory>src/main/resources/lic</directory>
+                        <filtering>true</filtering>
+                    </resource>
+               </resources>              
+            </configuration>            
+        </execution>
+     </executions>
+</plugin>-->
           <plugin>
 	     <groupId>org.codehaus.mojo</groupId>
              <artifactId>versions-maven-plugin</artifactId>
