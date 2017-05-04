@@ -34,7 +34,7 @@
                    <phase>compile</phase>
                    <configuration>
                       <target>
-                         <copy file="src/main/resources/lic/LICENSE.txt" tofile="target/${project.artifactId}-${project.version}/LICENSE.txt"/>
+                         <copy file="src/main/resources/lic/LICENSE.txt" tofile="target/${project.artifactId}-${project.version}/LICENSE.TXT"/>
                       </target>
                    </configuration>
                    <goals>
