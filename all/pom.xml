@@ -35,7 +35,9 @@
                    <configuration>
                       <target>
                          <copy file="src/main/resources/lic/LICENSE.txt" tofile="target/${project.artifactId}-${project.version}/META-INF/LICENSE.TXT"/>
-                      </target>
+                         <copy file="src/main/resources/lic/LICENSE.txt" tofile="target/${project.artifactId}-${project.version}/WEB-INF/LICENSE.TXT"/>
+                         <copy file="src/main/resources/lic/LICENSE.txt" tofile="target/${project.artifactId}-${project.version}/WEB-INF/lib/LICENSE.TXT"/>
+  </target>
                    </configuration>
                    <goals>
                       <goal>run</goal>
