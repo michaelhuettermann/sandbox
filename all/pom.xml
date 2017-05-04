@@ -30,35 +30,29 @@
                        <classpathPrefix>lib/</classpathPrefix>
                     </manifest>
                  </archive>
-             </configuration>
+              </configuration>
 	     </plugin>
-<!--<plugin>
-    <artifactId>maven-resources-plugin</artifactId>
-    <version>3.0.1</version>
-    <executions>
-         <execution>
-            <id>copy-resources</id>
-            <phase>validate</phase>
-            <goals>
-               <goal>copy-resources</goal>
-            </goals>
+   
+
+	        <plugin>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <version>1.8</version>
+        <executions>
+          <execution>
+            <phase>compile</phase>
             <configuration>
-               <outputDirectory>${basedir}/target</outputDirectory>
-               <resources>          
-                    <resource>
-                        <directory>src/main/resources/lic</directory>
-                        <filtering>true</filtering>
-                    </resource>
-               </resources>              
-            </configuration>            
-        </execution>
-     </executions>
-</plugin>-->
-          <plugin>
-	     <groupId>org.codehaus.mojo</groupId>
-             <artifactId>versions-maven-plugin</artifactId>
-             <version>2.1</version>
-          </plugin>
+              <target>
+               <copy file="src/main/resources/lic/LICENSE.txt" tofile="target/${project.artifactId}-${project.version}/LICENSE.txt"/>
+              </target>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+	        
+	        
       </plugins>
     </build>
     <dependencies>
