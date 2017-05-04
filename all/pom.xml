@@ -40,7 +40,7 @@
              <artifactId>maven-war-plugin</artifactId>
              <version>2.4</version>
              <configuration>
-                 <packagingExcludes>${war.excludes}</packagingExcludes>
+             <!--    <packagingExcludes>${war.excludes}</packagingExcludes> -->
                  <archive>
                     <manifest>
                        <addClasspath>true</addClasspath>
