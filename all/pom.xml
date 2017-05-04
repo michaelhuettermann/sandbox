@@ -188,7 +188,7 @@
         <profile>
              <id>libs</id>
              <properties> 
-                 <war.excludes></war.excludes>
+                 <war.excludes>WEB-INF/lib/*.jars</war.excludes>
              </properties>
         </profile>
 	    <profile>
