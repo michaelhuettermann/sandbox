@@ -100,6 +100,17 @@ node {
     buildInfo=server.upload(uploadSpec)
     server.publishBuildInfo(buildInfo)
    }
+          
+    stage ('Inspect WAR') {
+    def scanConfig = [
+    'buildName'      : buildInfo.name,
+    'buildNumber'    : buildInfo.number,
+    'failBuild'      : false
+    ]
+    def scanResult = server.xrayScan scanConfig
+    echo scanResult as String
+    }
+    
     
         stage ('Build Docker image and run container') {
 sh '''#!/bin/sh
@@ -156,16 +167,6 @@ echo "---------------------------------------"'''
     }
     
     
-    stage ('Inspect WAR') {
-    def scanConfig = [
-    'buildName'      : buildInfo.name,
-    'buildNumber'    : buildInfo.number,
-    'failBuild'      : false
-    ]
-    def scanResult = server.xrayScan scanConfig
-    echo scanResult as String
-    }
-     
     stage ('Distribute Docker image') {
        echo "Push Docker image to Artifactory Docker Registry."
 sh '''#!/bin/sh
