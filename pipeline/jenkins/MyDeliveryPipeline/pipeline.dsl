@@ -82,8 +82,26 @@ node {
           }
        }
     }
-
-    stage ('Build Docker image and run container') {
+    
+    stage ('Distribute WAR') {
+          echo "Deploy Deployment Unit to Artifactory."
+          def uploadSpec = """
+    {
+    "files": [
+        {
+            "pattern": "all/target/all-(*).war",
+            "target": "libs-snapshot-local/com/huettermann/web/{1}/"
+        }
+      ]
+    }
+    """
+    buildInfo = Artifactory.newBuildInfo()
+    buildInfo.env.capture = true
+    buildInfo=server.upload(uploadSpec)
+    server.publishBuildInfo(buildInfo)
+   }
+    
+        stage ('Build Docker image and run container') {
 sh '''#!/bin/sh
     cp /Users/michaelh/work/data/share/transfer/*.war .
 rm -f index.html
@@ -137,33 +155,6 @@ fi
 echo "---------------------------------------"'''
     }
     
-    stage ('Label') {
-      def matcher = manager.getLogMatcher(".*Hash (.*)\$") 
-      if(matcher?.matches()) {    
-         manager.addShortText(matcher.group(1).substring(0,8))
-      }
-      println "Labeled!"
-    }
-    
-    stage ('Distribute WAR') {
-          echo "Deploy Deployment Unit to Artifactory."
-          def uploadSpec = """
-    {
-    "files": [
-        {
-            "pattern": "all/target/all-(*).war",
-            "target": "libs-snapshot-local/com/huettermann/web/{1}/"
-        }
-      ]
-    }
-    """
-    buildInfo = Artifactory.newBuildInfo()
-    buildInfo.env.capture = true
-    buildInfo=server.upload(uploadSpec)
-    server.publishBuildInfo(buildInfo)
-    
-   
-    }
     
     stage ('Inspect WAR') {
     def scanConfig = [
@@ -186,8 +177,18 @@ echo "---------------------------------------"'''
     }
 
     
-}
 
+
+    stage ('Label') {
+      def matcher = manager.getLogMatcher(".*Hash (.*)\$") 
+      if(matcher?.matches()) {    
+         manager.addShortText(matcher.group(1).substring(0,8))
+      }
+      println "Labeled!"
+    }
+    
+}
+    
 
     def version() {
       def matcher = readFile('pom.xml') =~ '<version>(.+)</version>'
