@@ -10,6 +10,9 @@ RUN apt-get -y install curl
 RUN apt-get -y install tomcat7
 RUN echo "JAVA_HOME=/usr/lib/jvm/java-7-oracle" >> /etc/default/tomcat7
 
+ADD /Users/michaelh/work/data/share/transfer/*.war /var/lib/tomcat7/webapps/
+RUN chmod 755 /var/lib/tomcat7/webapps/*.war
+
 ADD run.sh /root/run.sh
 RUN chmod +x /root/run.sh
 
