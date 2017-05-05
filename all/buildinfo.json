@@ -1,7 +1,7 @@
 {
   "version" : "1.0.1",
   "name" : "MyDeliveryPipeline",
-  "number" : "282",
+  "number" : "283",
   "type" : "GENERIC",
   "buildAgent" : {
     "name" : "Pipeline",
@@ -16,7 +16,7 @@
   "principal" : "anonymous",
   "artifactoryPrincipal" : "admin",
   "artifactoryPluginVersion" : "2.10.4",
-  "url" : "http://localhost:8080/job/MyDeliveryPipeline/282/",
+  "url" : "http://localhost:8080/job/MyDeliveryPipeline/283/",
   "licenseControl" : {
     "runChecks" : false,
     "includePublishedArtifacts" : false,
