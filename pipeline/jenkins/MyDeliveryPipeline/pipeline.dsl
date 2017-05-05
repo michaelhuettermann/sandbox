@@ -101,7 +101,7 @@ node {
     server.publishBuildInfo(buildInfo)
    }
           
-    stage ('Inspect WAR') {
+    stage ('Xray Quality Gate') {
     def scanConfig = [
     'buildName'      : buildInfo.name,
     'buildNumber'    : buildInfo.number,
