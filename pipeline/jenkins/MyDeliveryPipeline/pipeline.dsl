@@ -128,10 +128,10 @@ docker stop $(docker ps -a | grep 8002 | cut -d " " -f1)
 docker rm $(docker ps -a | grep Exit | cut -d " " -f1)
 echo "---------------------------------------"
 echo "Building new Tomcat 7 container"
-docker build -t tomcat7 .
+docker build -t michaelhuettermann/tomcat7 .
 echo "---------------------------------------"
 echo "Running Tomcat container"
-docker run -d -p 8002:8080 -v $WORKSPACE:/shareme tomcat7
+docker run -d -p 8002:8080 -v $WORKSPACE:/shareme michaelhuettermann/tomcat7
 echo "---------------------------------------"
 echo "All images"
 docker images | grep tomcat7
