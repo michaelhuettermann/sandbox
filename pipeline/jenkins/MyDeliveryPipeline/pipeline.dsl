@@ -142,7 +142,7 @@ sleep 10
 echo "---------------------------------------"'''
     }
     
-    stage ('Check Web app in Container') {
+    stage ('Sanity check Webapp') {
 sh '''#!/bin/sh
 pwd
 echo "--------------------------------"
