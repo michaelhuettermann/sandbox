@@ -203,7 +203,7 @@ echo "---------------------------------------"'''
     }
 
 
-    def buildinfo = '
+    def buildinfo = """
   
     {
     "version": "1.0.1",
@@ -269,4 +269,4 @@ echo "---------------------------------------"'''
             "autoDiscardStaleComponentRequests": false
         }
     }
-}'
+}"""
