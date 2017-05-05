@@ -160,17 +160,9 @@ echo "---------------------------------------"'''
     buildInfo = Artifactory.newBuildInfo()
     buildInfo.env.capture = true
     buildInfo=server.upload(uploadSpec)
-    //server.publishBuildInfo(buildInfo)
+    server.publishBuildInfo(buildInfo)
     
-
-    
-    sh '''#!/bin/sh
-
-echo buildinfo >> all/buildinfo2.json    
-curl -X PUT -u$ARTIFACTORY_UN:$ARTIFACTORY_PW -H "Content-type: application/json" -T all/buildinfo.json "https://xray-demo.jfrog.io/artifactory/api/build"
-echo "---------------------------------------"'''  
-
-    
+   
     }
     
     stage ('Inspect WAR') {
@@ -203,70 +195,4 @@ echo "---------------------------------------"'''
     }
 
 
-    def buildinfo = """
-  
-    {
-    "version": "1.0.1",
-    "name": "Pipeline_conf_xray",
-    "number": "6",
-    "type": "GENERIC",
-    "buildAgent": {
-        "name": "Pipeline",
-        "version": "Pipeline"
-    },
-    "agent": {
-        "name": "hudson",
-        "version": "2.32.3"
-    },
-    "started": "2017-03-21T13:15:57.692+0200",
-    "durationMillis": 7810,
-    "principal": "anonymous",
-    "artifactoryPrincipal": "admin",
-    "artifactoryPluginVersion": "2.9.2",
-    "url": "http://localhost:8080/job/Pipeline_conf_xray/6/",
-    "licenseControl": {
-        "runChecks": false,
-        "includePublishedArtifacts": false,
-        "autoDiscover": false,
-        "scopesList": "",
-        "licenseViolationsRecipientsList": ""
-    },
-    "buildRetention": {
-        "count": -1,
-        "deleteBuildArtifacts": false,
-        "buildNumbersNotToBeDiscarded": []
-    },
-    "modules": [{
-        "id": "Pipeline_conf_xray",
-        "artifacts": [{
-            "type": "zip",
-            "sha1": "b04f3ee8f5e43fa3b162981b50bb72fe1acabb33",
-            "md5": "76cdb2bad9582d23c1f6f4d868218d6c",
-            "name": "ArtifactoryPipelineNoProps.zip"
-        }, {
-            "type": "zip",
-            "sha1": "b04f3ee8f5e43fa3b162981b50bb72fe1acabb33",
-            "md5": "76cdb2bad9582d23c1f6f4d868218d6c",
-            "name": "ArtifactoryPipeline.zip"
-        }, {
-            "type": "jar",
-            "sha1": "657304d2403c13c16a12e2187554694605275f6f",
-            "md5": "186398b199d5442b43b0ec702f95c0db",
-            "name": "xwork-2.0.6.jar"
-        }],
-        "dependencies": [{
-            "sha1": "b04f3ee8f5e43fa3b162981b50bb72fe1acabb33",
-            "md5": "76cdb2bad9582d23c1f6f4d868218d6c",
-            "id": "ArtifactoryPipeline.zip"
-        }]
-    }],
-    "buildDependencies": [],
-    "governance": {
-        "blackDuckProperties": {
-            "runChecks": false,
-            "includePublishedArtifacts": false,
-            "autoCreateMissingComponentRequests": false,
-            "autoDiscardStaleComponentRequests": false
-        }
-    }
-}"""
+
