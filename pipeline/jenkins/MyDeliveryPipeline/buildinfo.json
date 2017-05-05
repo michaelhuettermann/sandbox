@@ -1,0 +1,46 @@
+{
+  "version" : "1.0.1",
+  "name" : "MyDeliveryPipeline",
+  "number" : "282",
+  "type" : "GENERIC",
+  "buildAgent" : {
+    "name" : "Pipeline",
+    "version" : "Pipeline"
+  },
+  "agent" : {
+    "name" : "hudson",
+    "version" : "2.58"
+  },
+  "started" : "2017-05-05T12:19:14.327+0200",
+  "durationMillis" : 126236,
+  "principal" : "anonymous",
+  "artifactoryPrincipal" : "admin",
+  "artifactoryPluginVersion" : "2.10.4",
+  "url" : "http://localhost:8080/job/MyDeliveryPipeline/282/",
+  "licenseControl" : {
+    "runChecks" : false,
+    "includePublishedArtifacts" : false,
+    "autoDiscover" : false,
+    "scopesList" : "",
+    "licenseViolationsRecipientsList" : ""
+  },
+  "modules" : [ {
+    "id" : "MyDeliveryPipeline",
+    "artifacts" : [ {
+      "type" : "war",
+      "sha1" : "0b765d8cba0fbe21578b767bbda48e13501f47eb",
+      "md5" : "66ed8aad3a5354a272b762d232a4fa47",
+      "name" : "all-1.0.0-SNAPSHOT.war"
+    } ],
+    "dependencies" : [ ]
+  } ],
+  "buildDependencies" : [ ],
+  "governance" : {
+    "blackDuckProperties" : {
+      "runChecks" : false,
+      "includePublishedArtifacts" : false,
+      "autoCreateMissingComponentRequests" : false,
+      "autoDiscardStaleComponentRequests" : false
+    }
+  }
+}
