@@ -162,11 +162,12 @@ echo "---------------------------------------"'''
     buildInfo=server.upload(uploadSpec)
     //server.publishBuildInfo(buildInfo)
     
-    sh "============================="
-    sh "============================="
-    sh "============================="
-    sh "curl -X PUT -u${ARTIFACTORY_UN}:${ARTIFACTORY_PW} -H "Content-type: application/json" -T all/buildinfo.json "https://xray-demo.jfrog.io/artifactory/api/build"
+
     
+    sh '''#!/bin/sh
+curl -X PUT -u$ARTIFACTORY_UN:$ARTIFACTORY_PW -H "Content-type: application/json" -T all/buildinfo.json "https://xray-demo.jfrog.io/artifactory/api/build"
+echo "---------------------------------------"'''  
+
     
     }
     
