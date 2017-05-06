@@ -174,13 +174,13 @@ echo "---------------------------------------"'''
 
 sh '''#!/bin/sh
 
-if [ "$SERVER_ID" = "IL" ]
-then
+//if [ "$SERVER_ID" = "IL" ]
+//then
 docker login xray-demo-docker-local.jfrog.io -u="$DOCKER_UN_ADMIN" -p="$DOCKER_PW_ADMIN"
 docker tag michaelhuettermann/tomcat7 xray-demo-docker-local.jfrog.io/michaelhuettermann/tomcat7
 docker push xray-demo-docker-local.jfrog.io/michaelhuettermann/tomcat7
 docker logout xray-demo-docker-local.jfrog.io
-fi
+//fi
 echo "---------------------------------------"'''
 
 
