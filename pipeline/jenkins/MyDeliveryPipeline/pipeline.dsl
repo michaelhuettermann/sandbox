@@ -182,7 +182,7 @@ docker push xray-demo-docker-local.jfrog.io/michaelhuettermann/tomcat7
 docker logout xray-demo-docker-local.jfrog.io
 fi
 echo "---------------------------------------"'''
-}
+
 
 
     }
