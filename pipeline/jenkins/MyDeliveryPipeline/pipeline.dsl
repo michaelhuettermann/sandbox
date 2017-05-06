@@ -2,13 +2,14 @@ node {
 
     def server 
     def rtMaven 
-    def buildInfo 
-    
+    def buildInfo
+    def SERVER_ID 
+
     stage ('Setup') {
        sh "rm -rf /Users/michaelh/work/data/share/transfer"
-       //def SERVER_ID = 'saas'
-       def SERVER_ID = 'il'
-       //def SERVER_ID = '-844406945@1408787223604'
+       //SERVER_ID = 'saas'
+       //SERVER_ID = 'yoda'
+       SERVER_ID = 'il'
        server = Artifactory.server SERVER_ID
 
        rtMaven = Artifactory.newMavenBuild()
@@ -170,12 +171,19 @@ echo "---------------------------------------"'''
     
     stage ('Distribute Docker image') {
        echo "Push Docker image to Artifactory Docker Registry."
+       if (SERVER_ID = 'IL') {
 sh '''#!/bin/sh
 docker login xray-demo-docker-local.jfrog.io -u="$DOCKER_UN_ADMIN" -p="$DOCKER_PW_ADMIN"
 docker tag michaelhuettermann/tomcat7 xray-demo-docker-local.jfrog.io/michaelhuettermann/tomcat7
 docker push xray-demo-docker-local.jfrog.io/michaelhuettermann/tomcat7
 docker logout xray-demo-docker-local.jfrog.io
 echo "---------------------------------------"'''
+}
+if (SERVER_ID = 'yoda') {
+
+}
+
+
     }
 
     
