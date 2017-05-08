@@ -1,0 +1,473 @@
+*********** Install
+====
+Install Docker  1.7, 1.9.1, 1.12.3
+sudo apt-get install lxc-docker
+https://docs.docker.com/engine/installation/linux/ubuntulinux/
+====
+Install Maven  Maven 3.2.5! (3.3.3)
+https://maven.apache.org/download.cgi
+
+michaelhuettermann@saturn:~/work/tools/maven$ ls -la /usr/bin/mvn 
+lrwxrwxrwx 1 root root 21 Sep 18  2014 /usr/bin/mvn -> /etc/alternatives/mvn
+michaelhuettermann@saturn:~/work/tools/maven$ ls -la /etc/alternatives/mvn
+lrwxrwxrwx 1 root root 68 Sep 18  2014 /etc/alternatives/mvn -> /home/michaelhuettermann/work/tools/maven/apache-maven-3.2.3/bin/mvn
+
+sudo update-alternatives --install "/usr/bin/mvn" "mvn" "/home/michaelhuettermann/work/tools/maven/apache-maven-3.3.3/bin/mvn" 1
+sudo update-alternatives --list mvn
+sudo update-alternatives --config mvn
+
+
+mvn archetype:generate -Dfilter=org.apache:mojo
+maven-archetype-mojo #606
+2: remote -> org.apache.maven.archetypes:maven-archetype-mojo (An archetype which contains a sample a sample Maven plugin.)
+
+
+====
+Install Artifactory  3.9.0
+http://www.jfrog.com/open-source/
+https://www.jfrog.com/confluence/display/RTF/MySQL
+Unzip 
+Modify JVM params: $ARTIFACTORY_HOME/bin/artifactory.default
+Default: Username: admin, Password: password.
+
+====
+Install Jenkins  1.617
+jenkins-ci.org
+Download 
+java -jar jenkins.war --httpPort=8080
+
+Jenkins pipeline:
+https://wilsonmar.github.io/jenkins2-pipeline/
+https://github.com/jenkinsci/pipeline-examples/tree/master/pipeline-examples/gitcommit
+https://github.com/JFrogDev/project-examples/tree/master/jenkins-pipeline-examples
+https://wiki.jenkins-ci.org/display/JENKINS/Artifactory+-+Working+With+the+Pipeline+Jenkins+Plugin
+
+====
+Install Git
+sudo apt-get install git  
+dpkg -s git 
+1.9.1
+
+github
+https://help.github.com/articles/set-up-git/
+ssh: https://help.github.com/articles/generating-ssh-keys/
+https pw cache: https://help.github.com/articles/caching-your-github-password-in-git/
+
+====
+Install MySql
+mysql  Ver 14.14 Distrib 5.5.38, for debian-linux-gnu (x86_64) using readline 6.3
+sudo apt-get install mysql-server
+
+====
+Install Puppet
+apt-get -y install puppet librarian-puppet 
+3.7.1
+
+====
+Docker
+https://www.docker.com/
+sudo apt-get install lxc-docker
+1.7
+
+===
+
+Docker Compose
+curl -L https://github.com/docker/compose/releases/download/1.3.1/docker-compose-Linux-x86_64 > /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+
+====
+
+Selenium
+http://docs.seleniumhq.org/download/maven.jsp
+https://maven.apache.org/surefire/maven-failsafe-plugin/
+
+
+====
+Vagrant
+http://www.vagrantup.com/downloads
+sudo dpkg -i DEB_PACKAGE
+
+Boxes: https://atlas.hashicorp.com/boxes/search
+=>  ubuntu/trusty64 
+
+"vagrant box add ubuntu/trusty64"
+
+====
+Centreon/Nagios
+https://download.centreon.com/
+Centreon UI centreon-2.6.1
+https://github.com/padelt/docker-centreon
+docker search docker
+docker pull padelt/centreon
+
+====
+ELK
+https://registry.hub.docker.com/u/qnib/elk/
+https://github.com/ChristianKniep/docker-elk
+http://qnib.org/2015/05/26/elk-kibana4/
+https://github.com/wsargent/docker-cheat-sheet
+
+# To get all the /dev/* devices needed for sshd and alike:
+export DEV_MOUNTS="-v /dev/null:/dev/null -v /dev/urandom:/dev/urandom -v /dev/random:/dev/random"
+export DEV_MOUNTS="${DEV_MOUNTS} -v /dev/full:/dev/full -v /dev/zero:/dev/zero"
+### OPTIONAL -> if you got an etcd/helixdns instance running
+export DNS_STUFF="--dns=172.17.0.3"
+### OPTIONAL -> link carbon container to provide metrics target
+export LINK="--link carbon:carbon"
+### OPTIONAL -> if you want to store Elasticsearchs data outside 
+export ES_PERSIST="-v ${HOME}/elasticsearch:/var/lib/elasticsearch"
+### OPTIONAL -> To use a mapped in configuration directory
+# if not used, the default will be used within the container
+export LS_CONF="-v ${HOME}/logstash.d/:/etc/logstash/conf.d/"
+### OPTIONAL -> map apache2 config into container
+export AP_LOG="-v ${HOME}/var/log/apache2/:/var/log/apache2"
+### OPTIONAL -> set the external port to something else then 80
+export HTTP_PORT="-e HTTPPORT=8080 -p 8080:80"
+### OPTIONAL -> To secure kibana and elasticsearch user/passwd could be set
+# if a user is set and no passwd, the user will be set as password
+export HTUSER=kibana
+export HTPASSWD=secretpw
+
+export DEV_MOUNTS="-v /dev/null:/dev/null -v /dev/urandom:/dev/urandom -v /dev/random:/dev/random"
+export DEV_MOUNTS="${DEV_MOUNTS} -v /dev/full:/dev/full -v /dev/zero:/dev/zero"
+
+detached:
+docker run -d-h elk --name elk --privileged ${DEV_MOUNTS} qnib/elk:latest
+    
+interactively:
+docker run -t -i --rm -h elk --name elk --privileged ${DEV_MOUNTS} qnib/elk:latest bash
+
+docker inspect: 
+"IPAddress": "172.17.0.2",
+docker inspect ID | grep IPAddress | cut -d '"' -f 4
+
+=>
+http://172.17.0.2:8500/ui/#/qnib/services
+http://172.17.0.2/kibana/#/dashboard/file/consul.json
+
+michaelhuettermann@saturn:/var/log$ tail -f syslog | netcat 172.17.0.6 5514
+
+
+
+
+====
+Install SonarQube
+http://downloads.sonarsource.com/sonarqube/sonarqube-5.1.1.zip
+/home/michaelhuettermann/work/tools/sonarqube/sonarqube-4.4/bin/linux-x86-64/sonar.sh
+=> conf file for mySql
+https://github.com/SonarSource/sonar-examples/blob/master/scripts/database/mysql/create_database.sql
+
+
+====
+Install Java   jdk-8u45-linux-x64
+sudo update-alternatives --install "/usr/bin/java" "java" "/home/michaelhuettermann/work/tools/java/jdk1.8.0_45/bin" 1
+
+http://www.oracle.com/technetwork/java/javase/downloads/index.html
+tar zxvf jdk-8uversion-linux-x64.tar.gz
+
+===
+OpenShift
+=> default: The OpenShift console is at: https://172.28.128.4:8443/console
+==> default: 
+==> default: Now we need to wait for the 'fabric8' pod to startup.
+==> default: This will take a few minutes as it downloads some docker images.
+==> default: 
+==> default: Please be patient!
+==> default: --------------------------------------------------------------
+==> default: 
+==> default: Now might be a good time to setup your host machine to work with OpenShift
+==> default: 
+==> default: * Download a recent release of the binaries and add them to your PATH:
+==> default: 
+==> default:    https://github.com/openshift/origin/releases/
+==> default: 
+==> default: * Set the following environment variables (example is in Unix style, use 'set' for Windows):
+==> default: 
+==> default:    export KUBERNETES_DOMAIN=vagrant.f8
+==> default:    export DOCKER_HOST=tcp://vagrant.f8:2375
+==> default: 
+==> default: Now login to OpenShift via this command:
+==> default: 
+==> default:    oc login https://172.28.128.4:8443
+==> default: 
+==> default: Then enter admin/admin for user/password.
+==> default: 
+==> default: Over time your token may expire and you will need to reauthenticate via:
+==> default: 
+==> default:    oc login
+==> default: 
+==> default: Now to see the status of the system:
+==> default: 
+==> default:    oc get pods
+==> default: 
+==> default: or you can watch from the command line via one of these commands:
+==> default: 
+==> default:    watch oc get pods
+==> default:    oc get pods --watch
+==> default: 
+==> default: --------------------------------------------------------------
+==> default: Now waiting for the fabric8 pod to download and start Running....
+
+
+
+
+
+[Listing 1]
+package com.huettermann;
+
+import java.lang.System;
+
+/**
+ * Hello world! with Lambdas, Java SE 8
+ */
+public class App
+{
+    public static void main(String[] args) {
+        Runnable r = () -> System.out.println("Hello World!");
+        Thread t = new Thread(r);
+        t.start();
+
+    }
+}
+
+[Listing 2]
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.huettermann</groupId>
+    <artifactId>cat</artifactId>
+    <version>${myVersion}</version>
+    <name>devops</name>
+    <url>http://huettermann.net/devops/</url>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+
+[Listing 3]
+#!/bin/sh
+rm -rf /home/michael/talk/transfer
+mkdir /home/michael/talk/transfer
+cp devops/target/*.jar /home/michael/talk/transfer
+
+[Listing 4]
+#!/bin/sh
+version1=$(sed -n 's/.*version>/\0/p' pom.xml | head -1)
+version2=$(echo $version1 | sed 's/<version>//g')
+version=$(echo $version2 | sed 's/<\/version>//g')
+rm version.properties
+echo $version
+echo "version=$version" >> version.properties
+
+[Listing 5]
+def matcher = manager.getLogMatcher(".*Checking out Revision (.*)\$")
+if(matcher?.matches()) {
+    manager.addShortText(matcher.group(1).substring(0,8))
+}
+
+[Listing 6]
+#!/bin/sh
+rm *.jar
+cp /home/michael/talk/transfer/*.jar .
+
+[Listing 7]
+**/*.jar=>com/huettermann/cat/${version}
+
+[Listing 8]
+package VersionFetcher;
+
+import org.apache.maven.plugin.AbstractMojo;
+import org.apache.maven.plugin.MojoExecutionException;
+import org.apache.maven.project.MavenProject;
+
+
+/**
+ * @goal release
+ * @phase process-sources
+ */
+public class VersionFetcher extends AbstractMojo {
+
+    /**
+     * @parameter expression = "${project}"
+     * @readonly
+     */
+    private MavenProject project;
+
+    public void execute() throws MojoExecutionException {
+    String version = project.getVersion();
+    String release = version;
+    if (version.indexOf("-SNAPSHOT") > -1) {
+        release = version.substring(0, version.indexOf("-SNAPSHOT"));
+        getLog().info("SNAPSHOT found: " + release);
+    }
+    project.getProperties().setProperty("newVersion", release);
+  }
+}
+
+[Listing 9]
+com.huettermann:versionfetcher:1.0.0:release versions:set
+-DgenerateBackupPoms=false
+
+[Listing 10]
+#!/bin/sh
+version1=$(sed -n 's/.*version>/\0/p' devops/pom.xml | head -1)
+version2=$(echo $version1 | sed 's///g')
+version=$(echo $version2 | sed 's/<\/version>//g')
+hash=$GIT_COMMIT
+var=$(echo $hash | cut -b 1-6)
+revisioncount=`git log --oneline | wc -l`
+release=$version-$var.r$revisioncount.b$BUILD_NUMBER
+echo $release
+
+[Listing 11]
+cp devops/target/cat-$version.jar devops/target/cat-$release.jar
+
+[Listing 12]
+curl -u michaelhuettermann:${bintray_key} -X DELETE
+https://api.bintray.com/packages/michaelhuettermann/meow/cat/versions/$release
+
+[Listing 13]
+curl -u michaelhuettermann:${bintray_key} -H "Content-Type: application/json" -X
+POST https://api.bintray.com/packages/michaelhuettermann/meow/cat/versions
+--data "{ \"name\": \"$release\", \"desc\": \"desc\" }"
+
+[Listing 14]
+curl -T "$WORKSPACE/devops/target/cat-$release.jar" -u
+michaelhuettermann:${bintray_key} -H "X-Bintray-Package:cat" -H
+"X-Bintray-Version:$release"
+https://api.bintray.com/content/michaelhuettermann/meow/
+
+[Listing 15]
+curl -u michaelhuettermann:${bintray_key} -H "Content-Type: application/json" -X
+POST
+https://api.bintray.com/content/michaelhuettermann/meow/cat/$release/publish
+--data "{ \"discard\": \"false\" }"
+
+
+
+=====
+setup maven project
+WAR: maven-archetype-webapp   #614   #618
+define compiler
+add junit
+https://maven.apache.org/surefire/maven-failsafe-plugin/
+
+
+
+
+
+ssh-copy-id user@hostname.example.com
+cat ~/.ssh/id_rsa.pub | ssh <user>@<hostname> 'cat >> .ssh/authorized_keys && echo "Key copied"'
+update-alternatives --install /usr/bin/java java /opt/jdk/jdk1.8.0_55/bin/java 100
+
+
+
+$ git tag -a v1.4 -m 'my version 1.4'
+$ git tag
+v0.1
+v1.3
+v1.4
+
+git log origin..master
+
+
+
+
+Plain Jenkins
+
+-- JobConfigHistory Plugin
+-- parametrized trigger plugin
+-- groovy postbuild plugin
+-- Artifactory
+-- Sonar
+-- build pipeline
+-- greem ball
+-- git client git server
+-- chuck
+-- build flow plugin
+https://wiki.jenkins-ci.org/display/JENKINS/Build+Flow+Plugin
+
+
+
+https://help.github.com/articles/set-up-git
+
+
+
+http://dl.bintray.com/michaelhuettermann/meow/all-1.0.0-GA.war
+http://localhost:8888/all-1.0.0-GA/
+-------------------
+
+
+
+===
+def matcher = manager.getLogMatcher(".*Checking out Revision (.*)\$")
+if(matcher?.matches()) {    
+   manager.addShortText(matcher.group(1).substring(0,8))
+}
+===
+
+bash completion, am beispiel von docker compose
+
+Place the completion script in /etc/bash_completion.d/ (/usr/local/etc/bash_completion.d/ on a Mac), using e.g.
+
+ curl -L https://raw.githubusercontent.com/docker/compose/$(docker-compose --version | awk 'NR==1{print $NF}')/contrib/completion/bash/docker-compose > /etc/bash_completion.d/docker-compose
+
+===
+    
+
+docker run -i -t -p 8100:80 --name centreon \
+  -v /docker-store/centreon/nagios-etc:/usr/local/nagios/etc \
+  -v /docker-store/centreon/nagios-var:/usr/local/nagios/var \
+  -v /docker-store/centreon/centreon-var:/var/lib/centreon \
+  -v /docker-store/centreon/centreon-etc:/etc/centreon \
+  -v /etc/localtime:/etc/localtime:ro \
+  --privileged=true \
+  centreon /bin/bash
+  
+  
+  
+===
+    
+
+*********** Pw
+====
+Artifactory: 8081
+Sonar: 9000  admin|admin   http://localhost:9000/
+Jenkins: 8080  
+
+huttermann.artifactoryonline.com
+Artifactory: admin|password  (My..)
+Mysql: mysql -u root -p
+
+
+******************************************************
+
+http://localhost:8888/all/message?param=hi
+
+
+ELK
+/work/ws-git/sandbox/docker/ELK$ docker build -t michaelhuettermann/elk 
+docker run -d -p 8888:8080 -v /home/michaelhuettermann/work/logs:/var/log/tomcat7  michaelhuettermann/tomcat7aptget
+docker run -d -p 9200:9200 -p 5601:5601 -v /home/michaelhuettermann/work/logs:/logs michaelhuettermann/elk
+
+CONTAINER ID        IMAGE                              COMMAND             CREATED             STATUS              PORTS                                            NAMES
+38f474180b75        michaelhuettermann/elk             "/root/run.sh"      12 seconds ago      Up 12 seconds       0.0.0.0:5601->5601/tcp, 0.0.0.0:9200->9200/tcp   backstabbing_fermat   
+67b9bb3de6c5        michaelhuettermann/tomcat7aptget   "/root/run.sh"      About an hour ago   Up About an hour    0.0.0.0:8888->8080/tcp                           elegant_elion     
+
+http://localhost:5601/
+
+Y-Axis
+X-Axis Date histo / timestamp 
+Split chart, filter message:severe

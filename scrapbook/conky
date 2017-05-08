@@ -1,0 +1,7 @@
+ 
+gnome-system-monitor &
+
+htop
+
+conky -a left_top &
+https://wiki.ubuntuusers.de/conky

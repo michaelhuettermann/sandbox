@@ -1,0 +1,27 @@
+
+"Visualizing Bintray operations, with the Firehose Event API and the ELK stack, on Docker"
+This interactive talk integrates a best-of-breed tool chain including – Bintray, for managing your binaries – ELK, for gathering and visualizing metrics – Jenkins 2, for defining and running Continuous Delivery pipelines – Docker, for running and managing apps in an isolated fashion. The demo goes through the nuts and bolts and focuses on a developers’ perspective.
+
+
+https://github.com/deviantony/docker-elk
+
+
+***** MAC *****
+
+(Step 0: ENV MAX_MAP_COUNT 262144)
+Step 1: jfrog bt st huettermann >> /Users/michaelh/work/data/share/bintray/bt.log
+
+http://localhost:9200/_search?pretty 
+
+Docker-compose up
+
+
+    
+    pie
+    metrics: slice size -> Count
+    buckets: split slices 
+       aggregation: filters
+	  filter 1: message.type=upload
+	  filter 2: message.type=delete
+	  
+    

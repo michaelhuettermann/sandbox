@@ -1,0 +1,40 @@
+Seminarinhalt:
+
+Block 0: Intro
+
+    Vorteile und Prinzipien von Continuous Delivery und DevOps
+    Begleitende und führende Metriken, allen voran die Cycle Time
+    Delivery-Pipelines für komponentenbasierte Anwendungen 
+
+Lab 1: Kontinuierlich zum Erfolg
+
+    Continuous Builds, "Release Candidates""-Builds, "General Availability"-Builds, mit Maven
+    Continuous Integration, mit Jenkins
+    Continuous Deployment, mit Jetty und Tomcat
+    Continuous Inspection, mit SonarQube, JUnit und Selenium 2
+    Datenbank-Migrationen, mit Flyway
+    Configuration- und Release Management, mit Maven, Git und Artifactory
+    Konzeption und Aufbau von Delivery Pipelines 
+
+Lab 2: Virtualisierung
+
+    Einführung in die Virtualisierung
+    Docker: Überblick über Docker und dessen Kompontenten und Befehle
+    Docker: Erstellung von Containern mit Dockerfiles
+    Docker: Versionierung und Verwaltung von Containern
+    Vagrant: Bootstrapping, mit dem Vagrantfile
+    Vagrant: Docker als Provider
+    Vagrant: System Provisioning mit Puppet
+    Vagrant: System Provisioning mit Docker
+    Fortgeschrittene Themen wie Linking, Port-Forwarding und gemeinsamer Zugriff auf Daten (shared resources)
+    Integration mit anderen Werkzeugen 
+
+Lab 3: Logging/Monitoring, und Visualisierung
+
+    Grundlagen von Monitoring mit Centreon/Nagios
+    Log Monitoring/Management mit Centreon/Nagios
+    Einführung in den ELK-Stack:
+        Elasticsearch: Speichern der Daten, Suche und Analyse in Real-Time
+        Logstash: Auswertung/Filtern der Daten
+        Kibana: Web-Schnittstelle, Visualisierung der Daten
+    Fazit  

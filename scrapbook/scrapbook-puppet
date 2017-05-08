@@ -1,0 +1,8 @@
+574  puppet module generate michael-hello
+  575  ls -la
+  576  puppet module build hello
+  577  jfrog rt u hello/pkg/michael-hello-0.1.0.tar.gz puppet-local
+  578  sudo puppet module install --module_repository=http://localhost:8071/artifactory/api/puppet/puppet michael-hello
+  579  sudo puppet module uninstall --module_repository=http://localhost:8071/artifactory/api/puppet/puppet michael-hello
+  580  sudo puppet module install --module_repository=http://localhost:8071/artifactory/api/puppet/puppet michael-hello
+
