@@ -44,14 +44,14 @@ node {
     stage ('Unit test') {
        sh "mvn clean test -f all/pom.xml"
     }
+
+    stage ('Build env, with Puppet') {
+       sh "puppet apply all/src/main/resources/puppet/init.pp"
+    }
     
     stage ('Integration test') {
        rtMaven.deployer.deployArtifacts = false
        rtMaven.run pom: 'all/pom.xml', goals: 'clean integration-test -Pweb'
-    }
-
-    stage ('Build env, with Puppet') {
-       sh "puppet apply all/src/main/resources/puppet/init.pp"
     }
 
     stage ('Copy WAR') {
