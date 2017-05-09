@@ -105,14 +105,16 @@ node {
     server.publishBuildInfo(buildInfo)
    }
           
-    stage ('Xray Quality Gate') {
-    def scanConfig = [
-    'buildName'      : buildInfo.name,
-    'buildNumber'    : buildInfo.number,
-    'failBuild'      : false
-    ]
-    def scanResult = server.xrayScan scanConfig
-    echo scanResult as String
+    stage ('Xray Quality Gate') { 
+    if(flag != "saas") {
+       def scanConfig = [
+       'buildName'      : buildInfo.name,
+       'buildNumber'    : buildInfo.number,
+       'failBuild'      : false
+       ]
+       def scanResult = server.xrayScan scanConfig
+       echo scanResult as String
+    }
     }
     
     
