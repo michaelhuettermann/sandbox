@@ -189,6 +189,13 @@ docker tag michaelhuettermann/tomcat7 xray-demo-docker-local.jfrog.io/michaelhue
 docker push xray-demo-docker-local.jfrog.io/michaelhuettermann/tomcat7
 docker logout xray-demo-docker-local.jfrog.io
 echo "---------------------------------------"'''
+} else if (flag == "saas") {
+sh '''#!/bin/sh
+docker login huttermann-docker-local.jfrog.io -u="$DOCKER_UN" -p="$DOCKER_PW"
+docker tag michaelhuettermann/tomcat7 huttermann-docker-local.jfrog.io/michaelhuettermann/tomcat7
+docker push huttermann-docker-local.jfrog.io/michaelhuettermann/tomcat7
+docker logout huttermann-docker-local.jfrog.io
+echo "---------------------------------------"'''
 }
     }
 
