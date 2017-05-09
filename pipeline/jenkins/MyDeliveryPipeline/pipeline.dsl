@@ -168,27 +168,24 @@ fi
 echo "---------------------------------------"'''
     }
     
-    
     stage ('Distribute Docker image') {
        echo "Push Docker image to Artifactory Docker Registry."
-
+if(SERVER_ID == "yoda") {
 sh '''#!/bin/sh
-
-//if [ "$SERVER_ID" = "IL" ]
-//then
+docker login http://yodafrog.sas.jfrog.internal:5001 -u="$DOCKER_UN_ADMIN" -p="$DOCKER_PW_ADMIN"
+docker tag michaelhuettermann/tomcat7 yodafrog.sas.jfrog.internal:5001/michaelhuettermann/tomcat7
+docker push yodafrog.sas.jfrog.internal:5001/michaelhuettermann/tomcat7
+docker logout http://yodafrog.sas.jfrog.internal:5001
+echo "---------------------------------------"'''
+} else if (SERVER_ID == "il") {
+sh '''#!/bin/sh
 docker login xray-demo-docker-local.jfrog.io -u="$DOCKER_UN_ADMIN" -p="$DOCKER_PW_ADMIN"
 docker tag michaelhuettermann/tomcat7 xray-demo-docker-local.jfrog.io/michaelhuettermann/tomcat7
 docker push xray-demo-docker-local.jfrog.io/michaelhuettermann/tomcat7
 docker logout xray-demo-docker-local.jfrog.io
-//fi
 echo "---------------------------------------"'''
-
-
-
+}
     }
-
-    
-
 
     stage ('Label') {
       def matcher = manager.getLogMatcher(".*Hash (.*)\$") 
@@ -199,7 +196,6 @@ echo "---------------------------------------"'''
     }
     
 }
-    
 
     def version() {
       def matcher = readFile('pom.xml') =~ '<version>(.+)</version>'
