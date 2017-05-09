@@ -58,7 +58,6 @@ node {
     }
 
     stage ('Copy WAR') {
-       sh "rm /Users/michaelh/work/data/share/transfer/*.war"
        sh "cp all/target/*.war /Users/michaelh/work/data/share/transfer/"
     }
 
