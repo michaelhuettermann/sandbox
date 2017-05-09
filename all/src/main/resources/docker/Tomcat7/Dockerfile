@@ -14,6 +14,7 @@ RUN pwd
 
 ADD https://xray-demo.jfrog.io/artifactory/list/libs-snapshot-local/com/huettermann/web/1.0.0-SNAPSHOT/all-1.0.0-SNAPSHOT.war /var/lib/tomcat7/webapps/all.war
 #COPY /Users/michaelh/work/data/share/transfer/all-1.0.0-SNAPSHOT.war /var/lib/tomcat7/webapps/all.war
+COPY all-1.0.0-SNAPSHOT.war /var/lib/tomcat7/webapps/all.war
 
 RUN chmod 755 /var/lib/tomcat7/webapps/*.war
 
