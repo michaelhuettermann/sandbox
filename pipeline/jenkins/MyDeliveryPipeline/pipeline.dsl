@@ -10,6 +10,8 @@ node {
        //SERVER_ID = 'saas'
        //SERVER_ID = 'yoda'
        SERVER_ID = 'il'
+       
+       println SERVER_ID
        server = Artifactory.server SERVER_ID
 
        rtMaven = Artifactory.newMavenBuild()
