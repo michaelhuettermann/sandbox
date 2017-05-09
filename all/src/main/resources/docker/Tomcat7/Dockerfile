@@ -1,6 +1,6 @@
 FROM michaelhuettermann/infra
-ARG uri
 MAINTAINER Michael Huettermann
+ARG uri
 
 RUN apt-get -y update
 
@@ -11,7 +11,7 @@ RUN apt-get -y install curl
 RUN apt-get -y install tomcat7
 RUN echo "JAVA_HOME=/usr/lib/jvm/java-7-oracle" >> /etc/default/tomcat7
 
-ADD $uri/libs-snapshot-local/com/huettermann/web/1.0.0-SNAPSHOT/all-1.0.0-SNAPSHOT.war /var/lib/tomcat7/webapps/all.war
+ADD ${uri}/libs-snapshot-local/com/huettermann/web/1.0.0-SNAPSHOT/all-1.0.0-SNAPSHOT.war /var/lib/tomcat7/webapps/all.war
 # ADD https://huttermann.jfrog.io/huttermann/list/libs-snapshot-local/com/huettermann/web/1.0.0-SNAPSHOT/all-1.0.0-SNAPSHOT.war /var/lib/tomcat7/webapps/all.war
 
 RUN chmod 755 /var/lib/tomcat7/webapps/*.war
