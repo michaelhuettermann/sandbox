@@ -9,10 +9,9 @@ node {
        sh "rm -rf /Users/michaelh/work/data/share/transfer"
        //SERVER_ID = 'saas'
        //SERVER_ID = 'yoda'
-       SERVER_ID = 'il'
+       //SERVER_ID = 'il'
        
-       println SERVER_ID
-       println flag
+       println "Infrastructure switch: " flag
        
        server = Artifactory.server flag
 
