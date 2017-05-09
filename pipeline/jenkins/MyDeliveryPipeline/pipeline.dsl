@@ -119,8 +119,6 @@ node {
     
     
         stage ('Build Docker image and run container') {
-
-if(flag == "yoda") {
 sh '''#!/bin/sh
 rm -f index.html
 cd all/src/main/resources/docker/Tomcat7
@@ -138,7 +136,7 @@ echo "Building new Tomcat 7 container"
 docker build -t michaelhuettermann/tomcat7 .
 echo "---------------------------------------"
 echo "Running Tomcat container"
-docker build --build-arg uri=http://yodafrog.sas.jfrog.internal:8081/artifactory -t michaelhuettermann/tomcat7 .
+docker build -t michaelhuettermann/tomcat7 .
 echo "---------------------------------------"
 echo "All images"
 docker images | grep tomcat7
@@ -147,7 +145,6 @@ echo "All active containers"
 docker ps
 sleep 10
 echo "---------------------------------------"'''
-}
 
     }
     
