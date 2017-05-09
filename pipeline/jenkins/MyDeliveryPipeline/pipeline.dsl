@@ -121,7 +121,7 @@ node {
         stage ('Build Docker image and run container') {
 sh '''#!/bin/sh
     mkdir $WORKSPACE/all/target/tmp
-    cp /Users/michaelh/work/data/share/transfer/*.war $WORKSPACE/all/target/tmp
+    cp /Users/michaelh/work/data/share/transfer/*.war $WORKSPACE/all/target/tmp/all.war
      
 rm -f index.html
 cd all/src/main/resources/docker/Tomcat7
