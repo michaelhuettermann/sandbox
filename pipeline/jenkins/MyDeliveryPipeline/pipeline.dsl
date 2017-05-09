@@ -14,7 +14,7 @@ node {
        println SERVER_ID
        println flag
        
-       server = Artifactory.server SERVER_ID
+       server = Artifactory.server flag
 
        rtMaven = Artifactory.newMavenBuild()
        rtMaven.tool = 'M3.3.1'
@@ -174,14 +174,14 @@ echo "---------------------------------------"'''
     
     stage ('Distribute Docker image') {
        echo "Push Docker image to Artifactory Docker Registry."
-if(SERVER_ID == "yoda") {
+if(flag == "yoda") {
 sh '''#!/bin/sh
 docker login http://yodafrog.sas.jfrog.internal:5001 -u="$DOCKER_UN_ADMIN" -p="$DOCKER_PW_ADMIN"
 docker tag michaelhuettermann/tomcat7 yodafrog.sas.jfrog.internal:5001/michaelhuettermann/tomcat7
 docker push yodafrog.sas.jfrog.internal:5001/michaelhuettermann/tomcat7
 docker logout http://yodafrog.sas.jfrog.internal:5001
 echo "---------------------------------------"'''
-} else if (SERVER_ID == "il") {
+} else if (flag == "il") {
 sh '''#!/bin/sh
 docker login xray-demo-docker-local.jfrog.io -u="$DOCKER_UN_ADMIN" -p="$DOCKER_PW_ADMIN"
 docker tag michaelhuettermann/tomcat7 xray-demo-docker-local.jfrog.io/michaelhuettermann/tomcat7
