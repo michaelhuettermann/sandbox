@@ -11,7 +11,7 @@ node {
        //SERVER_ID = 'yoda'
        //SERVER_ID = 'il'
        
-       println "Infrastructure switch: " flag
+       println flag
        
        server = Artifactory.server flag
 
