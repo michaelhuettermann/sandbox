@@ -134,7 +134,24 @@ docker stop $(docker ps -a | grep 8002 | cut -d " " -f1)
 docker rm $(docker ps -a | grep Exit | cut -d " " -f1)
 echo "---------------------------------------"
 echo "Building new Tomcat 7 container"
-docker build -t michaelhuettermann/tomcat7 .
+//docker build -t michaelhuettermann/tomcat7 .
+echo "---------------------------------------"'''
+
+if(flag == "yoda") {
+sh '''#!/bin/sh
+docker build --build-arg uri=http://yodafrog.sas.jfrog.internal:8081/artifactory -t michaelhuettermann/tomcat7 .
+echo "---------------------------------------"'''
+} else if (flag == "il") {
+sh '''#!/bin/sh
+docker build --build-arg uri=https://xray-demo.jfrog.io/artifactory -t michaelhuettermann/tomcat7 .
+echo "---------------------------------------"'''
+} else if (flag == "saas") {
+sh '''#!/bin/sh
+docker build --build-arg uri=https://huttermann.jfrog.io/huttermann -t michaelhuettermann/tomcat7 .
+echo "---------------------------------------"'''
+}
+
+sh '''#!/bin/sh
 echo "---------------------------------------"
 echo "Running Tomcat container"
 docker run -d -p 8002:8080 michaelhuettermann/tomcat7
