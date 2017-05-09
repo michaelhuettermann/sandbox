@@ -121,6 +121,8 @@ node {
         stage ('Build Docker image and run container') {
 sh '''#!/bin/sh
     cp /Users/michaelh/work/data/share/transfer/*.war .
+    cp /Users/michaelh/work/data/share/transfer/*.war all/src/main/resources/docker/Tomcat7/all.war
+     
 rm -f index.html
 cd all/src/main/resources/docker/Tomcat7
 echo "All images"
