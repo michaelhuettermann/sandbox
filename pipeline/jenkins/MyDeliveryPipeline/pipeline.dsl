@@ -12,6 +12,8 @@ node {
        SERVER_ID = 'il'
        
        println SERVER_ID
+       println flag
+       
        server = Artifactory.server SERVER_ID
 
        rtMaven = Artifactory.newMavenBuild()
