@@ -136,7 +136,7 @@ echo "Building new Tomcat 7 container"
 docker build -t michaelhuettermann/tomcat7 .
 echo "---------------------------------------"
 echo "Running Tomcat container"
-docker build -t michaelhuettermann/tomcat7 .
+docker build -t michaelhuettermann/tomcat7 -f Dockerfile .
 echo "---------------------------------------"
 echo "All images"
 docker images | grep tomcat7
