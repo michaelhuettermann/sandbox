@@ -120,7 +120,8 @@ node {
     
         stage ('Build Docker image and run container') {
 sh '''#!/bin/sh
-    cp /Users/michaelh/work/data/share/transfer/*.war .
+    mkdir $WORKSPACE/all/target/tmp
+    cp /Users/michaelh/work/data/share/transfer/*.war $WORKSPACE/all/target/tmp
      
 rm -f index.html
 cd all/src/main/resources/docker/Tomcat7
@@ -139,7 +140,7 @@ docker build -t michaelhuettermann/tomcat7 .
 echo "---------------------------------------"
 echo "Running Tomcat container"
 //docker run -d -p 8002:8080 michaelhuettermann/tomcat7
-docker run -d -p 8002:8080 -v $WORKSPACE:/shareme michaelhuettermann/tomcat7
+docker run -d -p 8002:8080 -v $WORKSPACE/all/target/tmp:/shareme michaelhuettermann/tomcat7
 echo "---------------------------------------"
 echo "All images"
 docker images | grep tomcat7
