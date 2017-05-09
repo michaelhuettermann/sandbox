@@ -12,7 +12,7 @@ RUN echo "JAVA_HOME=/usr/lib/jvm/java-7-oracle" >> /etc/default/tomcat7
 
 RUN pwd
 
-ADD https://xray-demo.jfrog.io/artifactory/list/libs-snapshot-local/com/huettermann/web/1.0.0-SNAPSHOT/all-1.0.0-SNAPSHOT.war /var/lib/tomcat7/webapps/all.war
+#ADD https://xray-demo.jfrog.io/artifactory/list/libs-snapshot-local/com/huettermann/web/1.0.0-SNAPSHOT/all-1.0.0-SNAPSHOT.war /var/lib/tomcat7/webapps/all.war
 #COPY /Users/michaelh/work/data/share/transfer/all-1.0.0-SNAPSHOT.war /var/lib/tomcat7/webapps/all.war
 COPY all-1.0.0-SNAPSHOT.war /var/lib/tomcat7/webapps/all.war
 
