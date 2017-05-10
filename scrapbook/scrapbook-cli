@@ -1,0 +1,3 @@
+ jfrog rt u --url=http://localhost:8071/artifactory --apikey=AKCp2VpZG6WRNLDXhdxaFTkW2niYfzHewoAdvSLkm3AhcZc6nS6AsB2WXNVRb2f8dqjPBy9BY hello.txt generic-local
+
+ jfrog rt del --url=http://localhost:8071/artifactory  --apikey=AKCp2VpZG6WRNLDXhdxaFTkW2niYfzHewoAdvSLkm3AhcZc6nS6AsB2WXNVRb2f8dqjPBy9BY generic-local/hello.txt

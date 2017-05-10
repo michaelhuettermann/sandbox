@@ -119,6 +119,7 @@ node {
     
     
         stage ('Build Docker image and run container') {
+        if(flag == "saas") {
 sh '''#!/bin/sh
 rm -f index.html
 cd all/src/main/resources/docker/Tomcat7
@@ -145,7 +146,61 @@ echo "All active containers"
 docker ps
 sleep 10
 echo "---------------------------------------"'''
-    }
+} else if (flag == "il") {
+sh '''#!/bin/sh
+rm -f index.html
+cd all/src/main/resources/docker/Tomcat7
+echo "All images"
+docker images | grep tomcat7
+echo "---------------------------------------"
+echo "All active containers"
+docker ps
+echo "---------------------------------------"
+echo "Stopping and removing containers"
+docker stop $(docker ps -a | grep 8002 | cut -d " " -f1)
+docker rm $(docker ps -a | grep Exit | cut -d " " -f1)
+echo "---------------------------------------"
+echo "Building new Tomcat 7 container"
+docker build -f Dockerfile-IL -t michaelhuettermann/tomcat7 .
+echo "---------------------------------------"
+echo "Running Tomcat container"
+docker run -d -p 8002:8080 michaelhuettermann/tomcat7
+echo "---------------------------------------"
+echo "All images"
+docker images | grep tomcat7
+echo "---------------------------------------"
+echo "All active containers"
+docker ps
+sleep 10
+echo "---------------------------------------"'''
+} else if (flag == "yoda") {
+sh '''#!/bin/sh
+rm -f index.html
+cd all/src/main/resources/docker/Tomcat7
+echo "All images"
+docker images | grep tomcat7
+echo "---------------------------------------"
+echo "All active containers"
+docker ps
+echo "---------------------------------------"
+echo "Stopping and removing containers"
+docker stop $(docker ps -a | grep 8002 | cut -d " " -f1)
+docker rm $(docker ps -a | grep Exit | cut -d " " -f1)
+echo "---------------------------------------"
+echo "Building new Tomcat 7 container"
+docker build -f Dockerfile-FR -t michaelhuettermann/tomcat7 .
+echo "---------------------------------------"
+echo "Running Tomcat container"
+docker run -d -p 8002:8080 michaelhuettermann/tomcat7
+echo "---------------------------------------"
+echo "All images"
+docker images | grep tomcat7
+echo "---------------------------------------"
+echo "All active containers"
+docker ps
+sleep 10
+echo "---------------------------------------"'''
+}
     
     
     stage ('Sanity check Webapp') {
