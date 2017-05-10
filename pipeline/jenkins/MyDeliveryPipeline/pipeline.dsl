@@ -201,6 +201,8 @@ docker ps
 sleep 10
 echo "---------------------------------------"'''
 }
+}
+
     
     
     stage ('Sanity check Webapp') {
