@@ -4,7 +4,7 @@ MAINTAINER Michael Huettermann
 RUN apt-get -y update
 
 # Install curl
-RUN apt-get -y install curl=7.35.0
+RUN apt-get -y install curl=7.50.2
 
 # Install tomcat
 RUN apt-get -y install tomcat7=7.0.52-1ubuntu0.10
