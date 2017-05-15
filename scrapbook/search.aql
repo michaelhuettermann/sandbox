@@ -1,0 +1,9 @@
+items.find(
+{
+	"name": {
+		"$match":"all*.war"
+		},
+	"@qa":{"$eq":"false"},
+	"created_by": "deploy"
+}).include("name","repo","path","size").sort({"$asc":["size"]})
+

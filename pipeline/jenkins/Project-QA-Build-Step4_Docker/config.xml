@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description>Check with Docker, and Tomcat 7</description>
+  <logRotator class="hudson.tasks.LogRotator">
+    <daysToKeep>5</daysToKeep>
+    <numToKeep>5</numToKeep>
+    <artifactDaysToKeep>-1</artifactDaysToKeep>
+    <artifactNumToKeep>-1</artifactNumToKeep>
+  </logRotator>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@2.2.5">
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <url>${git_loc}</url>
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name>*/master</name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <submoduleCfg class="list"/>
+    <extensions>
+      <hudson.plugins.git.extensions.impl.SparseCheckoutPaths>
+        <sparseCheckoutPaths>
+          <hudson.plugins.git.extensions.impl.SparseCheckoutPath>
+            <path>all</path>
+          </hudson.plugins.git.extensions.impl.SparseCheckoutPath>
+        </sparseCheckoutPaths>
+      </hudson.plugins.git.extensions.impl.SparseCheckoutPaths>
+    </extensions>
+  </scm>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>#!/bin/sh
+git checkout $hash</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>#!/bin/sh
+cp /home/michaelhuettermann/work/transfer/*.war .
+rm -f index.html
+</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>#!/bin/sh
+cd all/src/main/resources/docker/Tomcat7
+
+echo &quot;All images&quot;
+docker images
+echo &quot;---------------------------------------&quot;
+echo &quot;All active containers&quot;
+docker ps
+echo &quot;---------------------------------------&quot;
+echo &quot;Stopping and removing containers&quot;
+docker stop $(docker ps -a -q)
+docker rm $(docker ps -a -q)
+echo &quot;---------------------------------------&quot;
+echo &quot;Building new Tomcat 7 container&quot;
+docker build -t tomcat7 .
+echo &quot;---------------------------------------&quot;
+echo &quot;Running Tomcat container&quot;
+docker run -d -p 8888:8080 -v $WORKSPACE:/shareme tomcat7
+echo &quot;---------------------------------------&quot;
+echo &quot;All images&quot;
+docker images
+echo &quot;---------------------------------------&quot;
+echo &quot;All active containers&quot;
+docker ps
+sleep 10
+echo &quot;---------------------------------------&quot;</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>#!/bin/sh
+echo &quot;Check start page available&quot;
+curl -o index.html http://localhost:8888/all/
+diff=$(diff index.html all/src/main/resources/docker/template/index.html)
+length=$(expr length &quot;$diff&quot;)
+  
+if [ $length -eq 0 ]
+  then echo &quot;ok&quot;
+  else exit 1
+fi
+</command>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers>
+    <hudson.plugins.parameterizedtrigger.BuildTrigger plugin="parameterized-trigger@2.25">
+      <configs>
+        <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
+          <configs>
+            <hudson.plugins.parameterizedtrigger.CurrentBuildParameters/>
+          </configs>
+          <projects>Project-QA-Build-Step5_Artifactory</projects>
+          <condition>SUCCESS</condition>
+          <triggerWithNoParameters>false</triggerWithNoParameters>
+        </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
+      </configs>
+    </hudson.plugins.parameterizedtrigger.BuildTrigger>
+  </publishers>
+  <buildWrappers/>
+</project>

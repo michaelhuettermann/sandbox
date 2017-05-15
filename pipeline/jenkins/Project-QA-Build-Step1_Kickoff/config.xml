@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description>Compile&#xd;
+Unit tests&#xd;
+Create binary (WAR)&#xd;
+Smoke integration tests (Selenium, Cargo, Jetty)&#xd;
+Check Puppet manifests&#xd;
+Housekeeping (remove working files, store version number)&#xd;
+Visualizing Git commit hash&#xd;
+</description>
+  <logRotator class="hudson.tasks.LogRotator">
+    <daysToKeep>5</daysToKeep>
+    <numToKeep>5</numToKeep>
+    <artifactDaysToKeep>-1</artifactDaysToKeep>
+    <artifactNumToKeep>-1</artifactNumToKeep>
+  </logRotator>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@2.2.5">
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <name>origin</name>
+        <url>${git_loc}</url>
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name>*/master</name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <submoduleCfg class="list"/>
+    <extensions>
+      <hudson.plugins.git.extensions.impl.SparseCheckoutPaths>
+        <sparseCheckoutPaths>
+          <hudson.plugins.git.extensions.impl.SparseCheckoutPath>
+            <path>all</path>
+          </hudson.plugins.git.extensions.impl.SparseCheckoutPath>
+        </sparseCheckoutPaths>
+      </hudson.plugins.git.extensions.impl.SparseCheckoutPaths>
+    </extensions>
+  </scm>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>#!/bin/sh
+rm /home/michaelhuettermann/work/tmp/puppet.txt</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Maven>
+      <targets>clean test  </targets>
+      <mavenName>M3</mavenName>
+      <pom>all/pom.xml</pom>
+      <usePrivateRepository>false</usePrivateRepository>
+      <settings class="jenkins.mvn.FilePathSettingsProvider">
+        <path></path>
+      </settings>
+      <globalSettings class="jenkins.mvn.DefaultGlobalSettingsProvider"/>
+    </hudson.tasks.Maven>
+    <hudson.tasks.Maven>
+      <targets>clean integration-test -Pweb </targets>
+      <mavenName>M3</mavenName>
+      <pom>all/pom.xml</pom>
+      <usePrivateRepository>false</usePrivateRepository>
+      <settings class="jenkins.mvn.FilePathSettingsProvider">
+        <path></path>
+      </settings>
+      <globalSettings class="jenkins.mvn.DefaultGlobalSettingsProvider"/>
+    </hudson.tasks.Maven>
+    <hudson.tasks.Shell>
+      <command>#!/bin/sh
+rm -rf /home/michaelhuettermann/work/transfer
+mkdir /home/michaelhuettermann/work/transfer
+cp all/target/*.war /home/michaelhuettermann/work/transfer
+</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>#!/bin/sh
+version1=$(sed -n &apos;s/.*version&gt;/\0/p&apos; all/pom.xml | head -1)
+version2=$(echo $version1 | sed &apos;s/&lt;version&gt;//g&apos;)
+version=$(echo $version2 | sed &apos;s/&lt;\/version&gt;//g&apos;)
+echo $version
+echo &quot;version=$version&quot; &gt;&gt; /home/michaelhuettermann/work/transfer/version.properties
+</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>#!/bin/sh
+puppet parser validate all/src/main/resources/puppet/init.pp
+puppet apply all/src/main/resources/puppet/init.pp</command>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers>
+    <org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder plugin="groovy-postbuild@1.10">
+      <groovyScript>def matcher = manager.getLogMatcher(&quot;.*Checking out Revision (.*)\$&quot;)
+if(matcher?.matches()) {    
+   manager.addShortText(matcher.group(1).substring(0,8))
+}</groovyScript>
+      <behavior>0</behavior>
+      <runForMatrixParent>false</runForMatrixParent>
+    </org.jvnet.hudson.plugins.groovypostbuild.GroovyPostbuildRecorder>
+    <hudson.plugins.parameterizedtrigger.BuildTrigger plugin="parameterized-trigger@2.25">
+      <configs>
+        <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
+          <configs>
+            <hudson.plugins.parameterizedtrigger.FileBuildParameters>
+              <propertiesFile>/home/michaelhuettermann/work/transfer/version.properties</propertiesFile>
+              <failTriggerOnMissing>false</failTriggerOnMissing>
+              <useMatrixChild>false</useMatrixChild>
+              <onlyExactRuns>false</onlyExactRuns>
+            </hudson.plugins.parameterizedtrigger.FileBuildParameters>
+            <hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+              <properties>hash=$GIT_COMMIT</properties>
+            </hudson.plugins.parameterizedtrigger.PredefinedBuildParameters>
+          </configs>
+          <projects>Project-QA-Build-Step2_DatabaseMigration</projects>
+          <condition>SUCCESS</condition>
+          <triggerWithNoParameters>false</triggerWithNoParameters>
+        </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
+      </configs>
+    </hudson.plugins.parameterizedtrigger.BuildTrigger>
+  </publishers>
+  <buildWrappers/>
+</project>
