@@ -3,7 +3,7 @@ MAINTAINER Michael Huettermann
 # Update Ubuntu
 RUN apt-get update && apt-get -y upgrade
 # Add oracle java 7 repository
-RUN apt-get -y install software-properties-common
+RUN apt-get -y install software-properties-common=0.92.36
 RUN add-apt-repository ppa:webupd8team/java
 RUN apt-get -y update
 # Accept the Oracle Java license
