@@ -1,3 +1,8 @@
  jfrog rt u --url=http://localhost:8071/artifactory --apikey=AKCp2VpZG6WRNLDXhdxaFTkW2niYfzHewoAdvSLkm3AhcZc6nS6AsB2WXNVRb2f8dqjPBy9BY hello.txt generic-local
 
  jfrog rt del --url=http://localhost:8071/artifactory  --apikey=AKCp2VpZG6WRNLDXhdxaFTkW2niYfzHewoAdvSLkm3AhcZc6nS6AsB2WXNVRb2f8dqjPBy9BY generic-local/hello.txt
+
+
+
+#AQL Queries:
+curl  -H "X-JFrog-Art-Api:AKCp2VpZLHSbg4EkiugiXN5K7J8CxnQJzfm4f6LkxPuXH5ypXYVo867NeowBafx1M7XB48B6k" -X POST https://huttermann.jfrog.io/huttermann/api/search/aql -T test.aql
