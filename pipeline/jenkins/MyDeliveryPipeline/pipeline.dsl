@@ -94,7 +94,7 @@ node {
     "files": [
         {
             "pattern": "all/target/all-(*).war",
-            "target": "libs-snapshot-local/com/huettermann/web/{1}/"
+            "target": "libs-snapshot-local/com/huettermann/web/{1}/",
             "props":  "key1=value1;key2=value21,value22;key3=value3"
     }
     """
