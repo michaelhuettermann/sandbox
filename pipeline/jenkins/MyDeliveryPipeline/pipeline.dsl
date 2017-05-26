@@ -95,7 +95,7 @@ node {
         {
             "pattern": "all/target/all-(*).war",
             "target": "libs-snapshot-local/com/huettermann/web/{1}/"
-            "props": "where=JFrog swampUP;owner=huettermann"
+            "props": "where=swampUP;owner=huettermann"
         }
       ]
     }
