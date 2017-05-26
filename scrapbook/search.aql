@@ -1,9 +1,40 @@
 items.find(
 {
+	"@status":{"$eq":"in-qa"}
+})
+
+
+
+ items.find(
+{
+	"@status":{"$eq":"in-qa"}
+})
+
+
+items.find(
+{
 	"name": {
 		"$match":"all*.war"
 		},
-	"@qa":{"$eq":"false"},
-	"created_by": "deploy"
-}).include("name","repo","path","size").sort({"$asc":["size"]})
+	"@status":{"$eq":"in-qa"}
+})
 
+
+items.find(
+{
+	"name": {
+		"$match":"all*.war"
+		},
+	"@status":{"$eq":"in-qa"},
+	"created_by": "deploy"
+})
+
+
+items.find(
+{
+	"name": {
+		"$match":"all*.war"
+		},
+	"@status":{"$eq":"in-qa"},
+	"created_by": "deploy"
+}).include("name","repo","path").sort({"$asc":["name"]})
