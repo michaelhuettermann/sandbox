@@ -118,7 +118,7 @@ node {
     
     stage ('Check Property/Plugin') {
 sh '''#!/bin/sh
-echo hello >> hello.txt
+echo hello > hello.txt
 cat hello.txt
 curl -u admin:AKCp2WXX7SDvcsmny528sSDnaB3zACkNQoscD8D1WmxhMV9gk6Wp8mVWC8bh38kJQbXagUT8Z -X PUT "http://localhost:8071/artifactory/simple/generic-local/hello.txt;qa=false" -T hello.txt
 rm hello.txt
