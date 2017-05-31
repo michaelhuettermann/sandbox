@@ -123,20 +123,10 @@ cat hello.txt
 curl -u admin:AKCp2WXX7SDvcsmny528sSDnaB3zACkNQoscD8D1WmxhMV9gk6Wp8mVWC8bh38kJQbXagUT8Z -X PUT "http://localhost:8071/artifactory/simple/generic-local/hello.txt;qa=false" -T hello.txt
 rm hello.txt
 jfrog rt dl --url=http://localhost:8071/artifactory --apikey=AKCp2WXX7SDvcsmny528sSDnaB3zACkNQoscD8D1WmxhMV9gk6Wp8mVWC8bh38kJQbXagUT8Z generic-local/hello.txt
+echo "---------------------------------------"
 cat hello.txt
-
-echo 
-'''
-download {
-    altResponse { request, responseRepoPath ->
-        def artifactStatus = repositories.getProperties(responseRepoPath).getFirst('qa')
-        if (artifactStatus && artifactStatus != 'true') {
-            status = 403
-            message = 'This artifact wasn\'t approved yet by QA.'
-        }
-    }
-}
-'''
+echo "---------------------------------------"
+cat /Users/michaelh/work/tools/artifactory/1/artifactory-pro-5.3.0/etc/plugins/preventDownload.groovy
 echo "---------------------------------------"'''
     }
 
@@ -155,8 +145,7 @@ echo "---------------------------------------"
 echo "Stopping and removing containers"
 docker stop $(docker ps -a | grep 8002 | cut -d " " -f1)
 docker rm $(docker ps -a | grep Exit | cut -d " " -f1)
-echo "---------------------------------------"
-echo "Building new Tomcat 7 container"
+cecho "Building new Tomcat 7 container"
 docker build -f Dockerfile -t michaelhuettermann/tomcat7 .
 echo "---------------------------------------"
 echo "Running Tomcat container"
