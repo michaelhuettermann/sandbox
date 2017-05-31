@@ -52,6 +52,10 @@ node {
        sh "puppet apply all/src/main/resources/puppet/init.pp"
     }
     
+    stage ('Build env, with Chef') {
+       sh "knife artifactory download poise-python 1.6.0"
+    }
+    
     stage ('Integration test') {
        rtMaven.deployer.deployArtifacts = false
        rtMaven.run pom: 'all/pom.xml', goals: 'clean integration-test -Pweb'
