@@ -125,9 +125,6 @@ rm hello.txt
 jfrog rt dl --url=http://localhost:8071/artifactory --apikey=AKCp2WXX7SDvcsmny528sSDnaB3zACkNQoscD8D1WmxhMV9gk6Wp8mVWC8bh38kJQbXagUT8Z generic-local/hello.txt
 cat hello.txt
 
-
-venus:plugins michaelh$ vi preventDownload.groovy
-
 echo 
 '''
 download {
