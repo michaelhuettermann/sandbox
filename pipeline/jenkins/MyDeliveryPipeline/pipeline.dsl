@@ -48,9 +48,9 @@ node {
        sh "mvn clean test -f all/pom.xml"
     }
 
-    stage ('Build env, with Puppet') {
-       sh "puppet apply all/src/main/resources/puppet/init.pp"
-    }
+    //stage ('Build env, with Puppet') {
+    //   sh "puppet apply all/src/main/resources/puppet/init.pp"
+    //}
     
     stage ('Build env, with Chef') {
        sh "knife artifactory download poise-python 1.6.0"
