@@ -7,18 +7,13 @@ node {
 
     stage ('Setup') {
        sh "rm -rf /Users/michaelh/work/data/share/transfer"
-       //SERVER_ID = 'saas'
-       //SERVER_ID = 'yoda'
-       //SERVER_ID = 'il'
        
        println flag
-       
        server = Artifactory.server flag
 
        rtMaven = Artifactory.newMavenBuild()
        rtMaven.tool = 'M3.3.1'
        rtMaven.resolver server: server, releaseRepo: 'repo1', snapshotRepo: 'repo1'
-       //rtMaven.deployer server: server, releaseRepo: 'libs-local', snapshotRepo: 'libs-snapshots-local'
        rtMaven.deployer server: server, releaseRepo: 'libs-release-local', snapshotRepo: 'libs-snapshot-local'
  }
 
@@ -121,6 +116,33 @@ node {
     }
     }
     
+    stage ('Check Property/Plugin') {
+sh '''#!/bin/sh
+echo hello >> hello.txt
+cat hello.txt
+curl -u admin:AKCp2WXX7SDvcsmny528sSDnaB3zACkNQoscD8D1WmxhMV9gk6Wp8mVWC8bh38kJQbXagUT8Z -X PUT "http://localhost:8071/artifactory/simple/generic-local/hello.txt;qa=false" -T hello.txt
+rm hello.txt
+jfrog rt dl --url=http://localhost:8071/artifactory --apikey=AKCp2WXX7SDvcsmny528sSDnaB3zACkNQoscD8D1WmxhMV9gk6Wp8mVWC8bh38kJQbXagUT8Z generic-local/hello.txt
+cat hello.txt
+
+
+venus:plugins michaelh$ vi preventDownload.groovy
+
+echo 
+'''
+download {
+    altResponse { request, responseRepoPath ->
+        def artifactStatus = repositories.getProperties(responseRepoPath).getFirst('qa')
+        if (artifactStatus && artifactStatus != 'true') {
+            status = 403
+            message = 'This artifact wasn\'t approved yet by QA.'
+        }
+    }
+}
+'''
+echo "---------------------------------------"'''
+    }
+
     
         stage ('Build Docker image and run container') {
         if(flag == "saas") {
