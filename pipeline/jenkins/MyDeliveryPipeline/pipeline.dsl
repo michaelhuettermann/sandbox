@@ -118,6 +118,7 @@ node {
     
     stage ('Check Property/Plugin') {
 sh '''#!/bin/sh
+echo "Now the usage of Groovy plugin ..."
 echo hello > hello.txt
 cat hello.txt
 curl -u admin:AKCp2WXX7SDvcsmny528sSDnaB3zACkNQoscD8D1WmxhMV9gk6Wp8mVWC8bh38kJQbXagUT8Z -X PUT "http://localhost:8071/artifactory/simple/generic-local/hello.txt;qa=false" -T hello.txt
@@ -126,7 +127,7 @@ jfrog rt dl --url=http://localhost:8071/artifactory --apikey=AKCp2WXX7SDvcsmny52
 echo "---------------------------------------"
 cat hello.txt
 echo "---------------------------------------"
-cat /Users/michaelh/work/tools/artifactory/1/artifactory-pro-5.3.0/etc/plugins/preventDownload.groovy
+cat all/src/main/resources/artifactory/preventDownload.groovy
 echo "---------------------------------------"'''
     }
 
