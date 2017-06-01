@@ -268,12 +268,16 @@ echo "---------------------------------------"'''
 }
     }
 
-    stage ('Label') {
+    stage ('Certify') {
       def matcher = manager.getLogMatcher(".*Hash (.*)\$") 
       if(matcher?.matches()) {    
          manager.addShortText(matcher.group(1).substring(0,8))
       }
       println "Labeled!"
+      
+      sh '''#!/bin/sh
+      jfrog rt dl --url=http://localhost:8071/artifactory --apikey=AKCp2WXX7SDvcsmny528sSDnaB3zACkNQoscD8D1WmxhMV9gk6Wp8mVWC8bh38kJQbXagUT8Z generic-local/hello.txt
+      echo "---------------------------------------"'''
     }
     
 }
