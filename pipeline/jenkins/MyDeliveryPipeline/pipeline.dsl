@@ -48,7 +48,7 @@ node {
     }
     
     stage ('Build env, with Chef') {
-       if(prem == "true") {
+       if(addPrem == "true") {
           sh "knife artifactory download poise-python 1.6.0"
        }
     }
@@ -279,7 +279,7 @@ echo "---------------------------------------"'''
     }
     
     stage ('Tidy up') {
-      if(prem == "true") {
+      if(addPrem == "true") {
         sh '''#!/bin/sh
         jfrog rt del --url=http://localhost:8071/artifactory --quiet=true --apikey=AKCp2WXX7SDvcsmny528sSDnaB3zACkNQoscD8D1WmxhMV9gk6Wp8mVWC8bh38kJQbXagUT8Z generic-local/hello.txt
         echo "---------------------------------------"'''
