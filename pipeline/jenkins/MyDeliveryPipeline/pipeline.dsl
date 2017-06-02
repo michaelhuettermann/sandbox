@@ -9,6 +9,8 @@ node {
        sh "rm -rf /Users/michaelh/work/data/share/transfer"
        
        println env
+       println addpremises
+       
        server = Artifactory.server env
 
        rtMaven = Artifactory.newMavenBuild()
@@ -48,7 +50,7 @@ node {
     }
     
     stage ('Build env, with Chef') {
-       if(addPrem == "true") {
+       if(addpremises == "true") {
           sh "knife artifactory download poise-python 1.6.0"
        }
     }
@@ -279,7 +281,7 @@ echo "---------------------------------------"'''
     }
     
     stage ('Tidy up') {
-      if(addPrem == "true") {
+      if(addpremises == "true") {
         sh '''#!/bin/sh
         jfrog rt del --url=http://localhost:8071/artifactory --quiet=true --apikey=AKCp2WXX7SDvcsmny528sSDnaB3zACkNQoscD8D1WmxhMV9gk6Wp8mVWC8bh38kJQbXagUT8Z generic-local/hello.txt
         echo "---------------------------------------"'''
