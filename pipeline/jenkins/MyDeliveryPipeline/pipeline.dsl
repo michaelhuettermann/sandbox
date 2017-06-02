@@ -9,6 +9,7 @@ node {
        sh "rm -rf /Users/michaelh/work/data/share/transfer"
        
        println flag
+       println addprem
        
        server = Artifactory.server flag
 
@@ -49,7 +50,11 @@ node {
     }
     
     stage ('Build env, with Chef') {
+        if(addprem == "true") {
+          sh '''#!/bin/sh
           sh "knife artifactory download poise-python 1.6.0"
+          echo "---------------------------------------"'''
+          }
     }
     
     stage ('Integration test') {
@@ -118,6 +123,7 @@ node {
     }
     
     stage ('Check Property/Plugin') {
+           if(addprem == "true") {
 sh '''#!/bin/sh
 echo "Now the usage of Groovy plugin ..."
 echo hello > hello.txt
@@ -130,6 +136,7 @@ cat hello.txt
 echo "---------------------------------------"
 cat all/src/main/resources/artifactory/preventDownload.groovy
 echo "---------------------------------------"'''
+}
     }
 
     
@@ -278,10 +285,12 @@ echo "---------------------------------------"'''
     }
     
     stage ('Tidy up') {
-        sh '''#!/bin/sh
-        jfrog rt del --url=http://localhost:8071/artifactory --quiet=true --apikey=AKCp2WXX7SDvcsmny528sSDnaB3zACkNQoscD8D1WmxhMV9gk6Wp8mVWC8bh38kJQbXagUT8Z generic-local/hello.txt
-        echo "---------------------------------------"'''
-            }
+        if(addprem == "true") {
+           sh '''#!/bin/sh
+           jfrog rt del --url=http://localhost:8071/artifactory --quiet=true --apikey=AKCp2WXX7SDvcsmny528sSDnaB3zACkNQoscD8D1WmxhMV9gk6Wp8mVWC8bh38kJQbXagUT8Z generic-local/hello.txt
+           echo "---------------------------------------"'''
+         }
+    }
     
 }
 
