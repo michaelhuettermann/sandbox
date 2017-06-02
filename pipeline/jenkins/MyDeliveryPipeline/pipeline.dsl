@@ -8,9 +8,9 @@ node {
     stage ('Setup') {
        sh "rm -rf /Users/michaelh/work/data/share/transfer"
        
-       println env
+       println flag
        
-       server = Artifactory.server env
+       server = Artifactory.server flag
 
        rtMaven = Artifactory.newMavenBuild()
        rtMaven.tool = 'M3.3.1'
@@ -106,7 +106,7 @@ node {
    }
           
     stage ('Xray Quality Gate') { 
-    if(env != "saas") {
+    if(flag != "saas") {
        def scanConfig = [
        'buildName'      : buildInfo.name,
        'buildNumber'    : buildInfo.number,
@@ -134,7 +134,7 @@ echo "---------------------------------------"'''
 
     
         stage ('Build Docker image and run container') {
-        if(env == "saas") {
+        if(flag == "saas") {
 sh '''#!/bin/sh
 rm -f index.html
 cd all/src/main/resources/docker/Tomcat7
@@ -160,7 +160,7 @@ echo "All active containers"
 docker ps
 sleep 10
 echo "---------------------------------------"'''
-} else if (env == "il") {
+} else if (flag == "il") {
 sh '''#!/bin/sh
 rm -f index.html
 cd all/src/main/resources/docker/Tomcat7
@@ -187,7 +187,7 @@ echo "All active containers"
 docker ps
 sleep 10
 echo "---------------------------------------"'''
-} else if (env == "yoda") {
+} else if (flag == "yoda") {
 sh '''#!/bin/sh
 rm -f index.html
 cd all/src/main/resources/docker/Tomcat7
@@ -245,21 +245,21 @@ echo "---------------------------------------"'''
     
     stage ('Distribute Docker image') {
        echo "Push Docker image to Artifactory Docker Registry."
-if(env == "yoda") {
+if(flag == "yoda") {
 sh '''#!/bin/sh
 docker login http://yodafrog.sas.jfrog.internal:5001 -u="$DOCKER_UN_ADMIN" -p="$DOCKER_PW_ADMIN"
 docker tag michaelhuettermann/tomcat7 yodafrog.sas.jfrog.internal:5001/michaelhuettermann/tomcat7
 docker push yodafrog.sas.jfrog.internal:5001/michaelhuettermann/tomcat7
 docker logout http://yodafrog.sas.jfrog.internal:5001
 echo "---------------------------------------"'''
-} else if (env == "il") {
+} else if (flag == "il") {
 sh '''#!/bin/sh
 docker login xray-demo-docker-local.jfrog.io -u="$DOCKER_UN_ADMIN" -p="$DOCKER_PW_ADMIN"
 docker tag michaelhuettermann/tomcat7 xray-demo-docker-local.jfrog.io/michaelhuettermann/tomcat7
 docker push xray-demo-docker-local.jfrog.io/michaelhuettermann/tomcat7
 docker logout xray-demo-docker-local.jfrog.io
 echo "---------------------------------------"'''
-} else if (env == "saas") {
+} else if (flag == "saas") {
 sh '''#!/bin/sh
 docker login huttermann-docker-local.jfrog.io -u="$DOCKER_UN" -p="$DOCKER_PW"
 docker tag michaelhuettermann/tomcat7 huttermann-docker-local.jfrog.io/michaelhuettermann/tomcat7
