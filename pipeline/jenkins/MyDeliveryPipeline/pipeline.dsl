@@ -103,9 +103,9 @@ node {
                } ]         
            }
            """
-       //buildInfo = Artifactory.newBuildInfo()
-       //buildInfo.env.capture = true
-       server.upload(uploadSpec)
+       buildInfo = Artifactory.newBuildInfo()
+       buildInfo.env.capture = true
+       buildInfo=server.upload(uploadSpec)
     }
 
     stage ('Check Property/Plugin') {
@@ -245,20 +245,10 @@ node {
           buildInfo.append(dockerInfo)
           server.publishBuildInfo(buildInfo)
        } else if (flag == "saas") {
-           //def downloadSpec = """{
-           // "files": [
-           // {
-           //     "pattern": "libs-release-local/com/huettermann/web/1.0.0/all-1.0.0.war",
-           //     "target": "tmp/all-1.0.0.war",
-           //     "flat":"true"
-           // }
-           //]
-           //}"""
-           //buildInfo = server.download(downloadSpec)
-           def artDocker= Artifactory.docker("$DOCKER_UN", "$DOCKER_PW")
-           def dockerInfo = artDocker.push('huttermann-docker-local.jfrog.io/michaelhuettermann/tomcat7:latest', 'docker-local')
-           //buildInfo.append(dockerInfo)
-           server.publishBuildInfo(dockerInfo)
+          def artDocker= Artifactory.docker("$DOCKER_UN", "$DOCKER_PW")
+          def dockerInfo = artDocker.push('huttermann-docker-local.jfrog.io/michaelhuettermann/tomcat7:latest', 'docker-local')
+          buildInfo.append(dockerInfo)
+          server.publishBuildInfo(buildInfo)
        }
     }
                     
