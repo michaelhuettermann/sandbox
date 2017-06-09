@@ -100,14 +100,14 @@ node {
         {
             "pattern": "all/target/all-(*).war",
             "target": "libs-snapshot-local/com/huettermann/web/{1}/",
-            "props":  "where=swampUP;owner=huettermann" 
+            "props":  "where=koeln;owner=huettermann" 
         } ]         
     }
     """
     buildInfo = Artifactory.newBuildInfo()
     buildInfo.env.capture = true
     buildInfo=server.upload(uploadSpec)
-    server.publishBuildInfo(buildInfo)
+    //server.publishBuildInfo(buildInfo)
    }
           
     stage ('Xray Quality Gate') { 
@@ -267,12 +267,16 @@ docker push xray-demo-docker-local.jfrog.io/michaelhuettermann/tomcat7
 docker logout xray-demo-docker-local.jfrog.io
 echo "---------------------------------------"'''
 } else if (flag == "saas") {
-sh '''#!/bin/sh
-docker login huttermann-docker-local.jfrog.io -u="$DOCKER_UN" -p="$DOCKER_PW"
-docker tag michaelhuettermann/tomcat7 huttermann-docker-local.jfrog.io/michaelhuettermann/tomcat7
-docker push huttermann-docker-local.jfrog.io/michaelhuettermann/tomcat7
-docker logout huttermann-docker-local.jfrog.io
-echo "---------------------------------------"'''
+    def artDocker= Artifactory.docker("$DOCKER_UN", "$DOCKER_PW")
+    def dockerInfo = artDocker.push('huttermann-docker-local.jfrog.io/michaelhuettermann/tomcat7:latest', 'docker-local')
+    buildInfo.append(dockerInfo)
+    server.publishBuildInfo(buildInfo)
+//sh '''#!/bin/sh
+//docker login huttermann-docker-local.jfrog.io -u="$DOCKER_UN" -p="$DOCKER_PW"
+//docker tag michaelhuettermann/tomcat7 huttermann-docker-local.jfrog.io/michaelhuettermann/tomcat7
+//docker push huttermann-docker-local.jfrog.io/michaelhuettermann/tomcat7
+//docker logout huttermann-docker-local.jfrog.io
+//echo "---------------------------------------"'''
 }
     }
 
