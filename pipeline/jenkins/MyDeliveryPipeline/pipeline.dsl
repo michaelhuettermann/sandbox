@@ -108,19 +108,7 @@ node {
     buildInfo.env.capture = true
     buildInfo=server.upload(uploadSpec)
    }
-                
-    stage ('Xray Quality Gate') { 
-    if(flag != "saas") {
-    server.publishBuildInfo(buildInfo)
-       def scanConfig = [
-       'buildName'      : buildInfo.name,
-       'buildNumber'    : buildInfo.number,
-       'failBuild'      : false
-       ]
-       def scanResult = server.xrayScan scanConfig
-       echo scanResult as String
-    }
-    }
+
     
     stage ('Check Property/Plugin') {
            if(addprem == "true") {
@@ -256,16 +244,10 @@ if(flag == "yoda") {
     def artDocker= Artifactory.docker("$DOCKER_UN_ADMIN", "$DOCKER_PW_ADMIN")
     def dockerInfo = artDocker.push('yodafrog.sas.jfrog.internal:5001/michaelhuettermann/tomcat7:latest', 'docker-dev-local')
     
-
-buildInfo2 = Artifactory.newBuildInfo()
 //sh "curl -u $DOCKER_UN_ADMIN:$DOCKER_PW_ADMIN -X DELETE http://yodafrog.sas.jfrog.internal:8081/artifactory/api/build/${buildInfo.name}?buildNumbers=${buildInfo.number}"
 
-
-
-     buildInfo2.append(buildInfo)
-     buildInfo2.append(dockerInfo)
-     
-     server.publishBuildInfo(buildInfo2)
+     buildInfo.append(dockerInfo)
+     server.publishBuildInfo(buildInfo)
      
      
      
@@ -294,6 +276,19 @@ echo "---------------------------------------"'''
 //docker logout huttermann-docker-local.jfrog.io
 //echo "---------------------------------------"'''
 }
+    }
+    
+                    
+    stage ('Xray Quality Gate') { 
+    if(flag != "saas") {
+       def scanConfig = [
+       'buildName'      : buildInfo.name,
+       'buildNumber'    : buildInfo.number,
+       'failBuild'      : false
+       ]
+       def scanResult = server.xrayScan scanConfig
+       echo scanResult as String
+    }
     }
     
     stage ('Certify') {
