@@ -253,12 +253,16 @@ echo "---------------------------------------"'''
     stage ('Distribute Docker image') {
        echo "Push Docker image to Artifactory Docker Registry."
 if(flag == "yoda") {
-sh '''#!/bin/sh
-docker login http://yodafrog.sas.jfrog.internal:5001 -u="$DOCKER_UN_ADMIN" -p="$DOCKER_PW_ADMIN"
-docker tag michaelhuettermann/tomcat7 yodafrog.sas.jfrog.internal:5001/michaelhuettermann/tomcat7
-docker push yodafrog.sas.jfrog.internal:5001/michaelhuettermann/tomcat7
-docker logout http://yodafrog.sas.jfrog.internal:5001
-echo "---------------------------------------"'''
+    def artDocker= Artifactory.docker("$DOCKER_UN_ADMIN", "$DOCKER_PW_ADMIN")
+    def dockerInfo = artDocker.push('yodafrog.sas.jfrog.internal:5001/michaelhuettermann/tomcat7:latest', 'docker-dev-local')
+    buildInfo.append(dockerInfo)
+    server.publishBuildInfo(buildInfo)
+//sh '''#!/bin/sh
+//docker login http://yodafrog.sas.jfrog.internal:5001 -u="$DOCKER_UN_ADMIN" -p="$DOCKER_PW_ADMIN"
+//docker tag michaelhuettermann/tomcat7 yodafrog.sas.jfrog.internal:5001/michaelhuettermann/tomcat7
+//docker push yodafrog.sas.jfrog.internal:5001/michaelhuettermann/tomcat7
+//docker logout http://yodafrog.sas.jfrog.internal:5001
+//echo "---------------------------------------"'''
 } else if (flag == "il") {
 sh '''#!/bin/sh
 docker login xray-demo-docker-local.jfrog.io -u="$DOCKER_UN_ADMIN" -p="$DOCKER_PW_ADMIN"
