@@ -112,6 +112,9 @@ node {
           
     stage ('Xray Quality Gate') { 
     if(flag != "saas") {
+       
+       server.publishBuildInfo(buildInfo)
+        
        def scanConfig = [
        'buildName'      : buildInfo.name,
        'buildNumber'    : buildInfo.number,
