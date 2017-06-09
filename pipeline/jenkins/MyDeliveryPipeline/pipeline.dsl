@@ -257,7 +257,7 @@ node {
            }"""
        
        
-           def buildInfo = server.download(downloadSpec)
+           buildInfo = server.download(downloadSpec)
        
        
           def artDocker= Artifactory.docker("$DOCKER_UN", "$DOCKER_PW")
