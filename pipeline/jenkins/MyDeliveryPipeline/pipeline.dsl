@@ -272,7 +272,7 @@ sh "curl -u $DOCKER_UN_ADMIN:$DOCKER_PW_ADMIN -X DELETE http://yodafrog.sas.jfro
 
 
 
-     buildInfo2.append(buildInfo)
+     //buildInfo2.append(buildInfo)
      buildInfo2.append(dockerInfo)
      server.publishBuildInfo(buildInfo2)
      
