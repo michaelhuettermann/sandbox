@@ -257,8 +257,6 @@ if(flag == "yoda") {
     def artDocker= Artifactory.docker("$DOCKER_UN_ADMIN", "$DOCKER_PW_ADMIN")
     def dockerInfo = artDocker.push('yodafrog.sas.jfrog.internal:5001/michaelhuettermann/tomcat7:latest', 'docker-dev-local')
     
-    //buildInfo.append(dockerInfo)
-    //server.publishBuildInfo(buildInfo)
 
      buildInfo2 = Artifactory.newBuildInfo()
 
@@ -267,12 +265,12 @@ if(flag == "yoda") {
 
     
      
-sh "curl -u $DOCKER_UN_ADMIN:$DOCKER_PW_ADMIN -X DELETE http://yodafrog.sas.jfrog.internal:8081/artifactory/api/build/MyDeliveryPipeline?buildNumbers=${buildInfo.number}"
+sh "curl -u $DOCKER_UN_ADMIN:$DOCKER_PW_ADMIN -X DELETE http://yodafrog.sas.jfrog.internal:8081/artifactory/api/build/${buildInfo.name}?buildNumbers=${buildInfo.number}"
  
 
 
 
-     //buildInfo2.append(buildInfo)
+     buildInfo2.append(buildInfo)
      buildInfo2.append(dockerInfo)
      server.publishBuildInfo(buildInfo2)
      
