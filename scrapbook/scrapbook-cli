@@ -5,9 +5,11 @@
 
 
 #AQL Queries:
-curl  -H "X-JFrog-Art-Api:AKCp2VpZLHSbg4EkiugiXN5K7J8CxnQJzfm4f6LkxPuXH5ypXYVo867NeowBafx1M7XB48B6k" -X POST https://huttermann.jfrog.io/huttermann/api/search/aql -T test.aql
+curl  -H "X-JFrog-Art-Api:..." -X POST https://huttermann.jfrog.io/huttermann/api/search/aql -T test.aql
 
 
-curl  -H "X-JFrog-Art-Api:AKCp2VoumevK5p2JNaJGhEdkhe8uNzdL5KpjmB93QuVjeSjj6dYrTbZ8VJeZurqfCMm99aCnV" --url==http://yodafrog.sas.jfrog.internal:8081/artifactory -X DELETE /api/build/MyDeliveryPipeline?buildNumbers=403  
+curl  -H "X-JFrog-Art-Api:..." --url==http://yodafrog.sas.jfrog.internal:8081/artifactory -X DELETE /api/build/MyDeliveryPipeline?buildNumbers=403  
 
-jfrog rt bc --url=http://yodafrog.sas.jfrog.internal:8081/artifactory --user=admin --password=password MyDeliveryPipeline 403
+
+curl  -u a:b -X POST https://huttermann.jfrog.io/huttermann/api/search/aql -T test.aql
+
