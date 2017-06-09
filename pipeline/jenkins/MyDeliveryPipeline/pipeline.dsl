@@ -142,7 +142,7 @@ node {
            echo "Stopping and removing containers"
            docker stop $(docker ps -a | grep 8002 | cut -d " " -f1)
            docker rm $(docker ps -a | grep Exit | cut -d " " -f1)
-           cecho "Building new Tomcat 7 container"
+           echo "Building new Tomcat 7 container"
            docker build -f Dockerfile -t michaelhuettermann/tomcat7 .
            echo "---------------------------------------"
            echo "Running Tomcat container"
