@@ -246,7 +246,7 @@ node {
           server.publishBuildInfo(buildInfo)
        } else if (flag == "saas") {
           def artDocker= Artifactory.docker("$DOCKER_UN", "$DOCKER_PW")
-          def dockerInfo = artDocker.push('huttermann-docker-local.jfrog.io/michaelhuettermann/tomcat7:latest', 'docker-local')
+          def dockerInfo = artDocker.push('huttermann-docker-local.jfrog.io/michaelhuettermann/tomcat7:1.0.0', 'docker-local')
           buildInfo.append(dockerInfo)
           server.publishBuildInfo(buildInfo)
        }
