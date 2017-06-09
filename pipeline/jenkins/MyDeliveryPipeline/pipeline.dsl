@@ -41,6 +41,10 @@ node {
        }
     }
     
+    stage ('Produce RC') {
+       sh "mvn com.huettermann:versionfetcher:1.0.0:release versions:set -DgenerateBackupPoms=false -f all/pom.xml"
+    }
+ 
     stage ('Unit test') {
        sh "mvn clean test -f all/pom.xml"
     }
@@ -51,9 +55,7 @@ node {
     
     stage ('Build env, with Chef') {
        if(addprem == "true") {
-          sh '''#!/bin/sh
           sh "knife artifactory download poise-python 1.6.0"
-          echo "---------------------------------------"'''
        }
     }
     
@@ -99,7 +101,7 @@ node {
            "files": [
                {
                    "pattern": "all/target/all-(*).war",
-                   "target": "libs-snapshot-local/com/huettermann/web/{1}/",
+                   "target": "libs-release-local/com/huettermann/web/{1}/",
                    "props":  "where=koeln;owner=huettermann" 
                } ]         
            }
