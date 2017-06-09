@@ -260,7 +260,10 @@ if(flag == "yoda") {
     //buildInfo.append(dockerInfo)
     //server.publishBuildInfo(buildInfo)
     
-    
+sh '''#!/bin/sh
+curl -u $DOCKER_UN_ADMIN:$DOCKER_PW_ADMIN -X DELETE http://yodafrog.sas.jfrog.internal:8081/artifactory/api/build/MyDeliveryPipeline?buildNumbers=$buildInfo.number
+echo '''
+
      buildInfo2 = Artifactory.newBuildInfo()
      buildInfo2.append(buildInfo)
      buildInfo2.append(dockerInfo)
