@@ -107,7 +107,6 @@ node {
     buildInfo = Artifactory.newBuildInfo()
     buildInfo.env.capture = true
     buildInfo=server.upload(uploadSpec)
-    //server.publishBuildInfo(buildInfo)
    }
                 
     stage ('Xray Quality Gate') { 
@@ -258,21 +257,17 @@ if(flag == "yoda") {
     def dockerInfo = artDocker.push('yodafrog.sas.jfrog.internal:5001/michaelhuettermann/tomcat7:latest', 'docker-dev-local')
     
 
-     buildInfo2 = Artifactory.newBuildInfo()
+//buildInfo2 = Artifactory.newBuildInfo()
+//sh "curl -u $DOCKER_UN_ADMIN:$DOCKER_PW_ADMIN -X DELETE http://yodafrog.sas.jfrog.internal:8081/artifactory/api/build/${buildInfo.name}?buildNumbers=${buildInfo.number}"
 
-     println "1 " + buildInfo.name     
-     println "2 " + buildInfo.number
 
-    
+
+     //buildInfo2.append(buildInfo)
+     //buildInfo2.append(dockerInfo)
      
-sh "curl -u $DOCKER_UN_ADMIN:$DOCKER_PW_ADMIN -X DELETE http://yodafrog.sas.jfrog.internal:8081/artifactory/api/build/${buildInfo.name}?buildNumbers=${buildInfo.number}"
- 
-
-
-
-     buildInfo2.append(buildInfo)
-     buildInfo2.append(dockerInfo)
-     server.publishBuildInfo(buildInfo2)
+     buildInfo.append(dockerInfo)
+     
+     server.publishBuildInfo(buildInfo)
      
      
      
