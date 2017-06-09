@@ -259,12 +259,23 @@ if(flag == "yoda") {
     
     //buildInfo.append(dockerInfo)
     //server.publishBuildInfo(buildInfo)
-    
-sh '''#!/bin/sh
-curl -u $DOCKER_UN_ADMIN:$DOCKER_PW_ADMIN -X DELETE http://yodafrog.sas.jfrog.internal:8081/artifactory/api/build/MyDeliveryPipeline?buildNumbers=$buildInfo.number
-echo '''
 
      buildInfo2 = Artifactory.newBuildInfo()
+     
+     def nr = buildInfo2.number
+     println "1 " buildInfo2.number
+     println "2 " ${buildInfo2.number}
+     println "3 " nr
+     
+     
+def proc = "curl -u $DOCKER_UN_ADMIN:$DOCKER_PW_ADMIN " 
+           + "-X DELETE http://yodafrog.sas.jfrog.internal:8081/artifactory/api/build/MyDeliveryPipeline?buildNumbers=${buildInfo2.number}"
+           .execute()
+Thread.start { System.err << proc.err } 
+proc.waitFor()
+
+
+
      buildInfo2.append(buildInfo)
      buildInfo2.append(dockerInfo)
      server.publishBuildInfo(buildInfo2)
