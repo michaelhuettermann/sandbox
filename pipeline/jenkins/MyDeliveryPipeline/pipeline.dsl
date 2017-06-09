@@ -270,8 +270,9 @@ if(flag == "yoda") {
 def proc = "curl -u $DOCKER_UN_ADMIN:$DOCKER_PW_ADMIN " 
            + "-X DELETE http://yodafrog.sas.jfrog.internal:8081/artifactory/api/build/MyDeliveryPipeline?buildNumbers=${buildInfo.number}"
            .execute()
-Thread.start { System.err << proc.err } 
 proc.waitFor()
+proc process.err.text
+proc process.text
 
 
 
