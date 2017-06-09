@@ -109,21 +109,6 @@ node {
     buildInfo=server.upload(uploadSpec)
     //server.publishBuildInfo(buildInfo)
    }
-          
-    stage ('Xray Quality Gate') { 
-    if(flag != "saas") {
-       
-       server.publishBuildInfo(buildInfo)
-        
-       def scanConfig = [
-       'buildName'      : buildInfo.name,
-       'buildNumber'    : buildInfo.number,
-       'failBuild'      : false
-       ]
-       def scanResult = server.xrayScan scanConfig
-       echo scanResult as String
-    }
-    }
     
     stage ('Check Property/Plugin') {
            if(addprem == "true") {
@@ -287,6 +272,19 @@ echo "---------------------------------------"'''
 }
     }
 
+          
+    stage ('Xray Quality Gate') { 
+    if(flag != "saas") {
+       def scanConfig = [
+       'buildName'      : buildInfo.name,
+       'buildNumber'    : buildInfo.number,
+       'failBuild'      : false
+       ]
+       def scanResult = server.xrayScan scanConfig
+       echo scanResult as String
+    }
+    }
+    
     stage ('Certify') {
       def matcher = manager.getLogMatcher(".*Hash (.*)\$") 
       if(matcher?.matches()) {    
