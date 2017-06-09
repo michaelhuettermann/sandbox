@@ -10,7 +10,7 @@ RUN apt-get -y install curl
 RUN apt-get -y install tomcat7
 RUN echo "JAVA_HOME=/usr/lib/jvm/java-7-oracle" >> /etc/default/tomcat7
 
-ADD http://yodafrog.sas.jfrog.internal:8081/artifactory/libs-snapshot-local/com/huettermann/web/1.0.0-SNAPSHOT/all-1.0.0-SNAPSHOT.war /var/lib/tomcat7/webapps/all.war
+ADD http://yodafrog.sas.jfrog.internal:8081/artifactory/libs-release-local/com/huettermann/web/1.0.0/all-1.0.0.war /var/lib/tomcat7/webapps/all.war
 
 RUN chmod 755 /var/lib/tomcat7/webapps/*.war
 
