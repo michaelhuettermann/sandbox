@@ -140,7 +140,7 @@ node {
            docker stop $(docker ps -a | grep 8002 | cut -d " " -f1)
            docker rm $(docker ps -a | grep Exit | cut -d " " -f1)
            echo "Building new Tomcat 7 container"
-           docker build -f Dockerfile -t michaelhuettermann/tomcat7 .
+           docker build -f Dockerfile -t michaelhuettermann/tomcat7:latest -t michaelhuettermann/tomcat7:1.0.0 .
            echo "---------------------------------------"
            echo "Running Tomcat container"
            docker run -d -p 8002:8080 michaelhuettermann/tomcat7
