@@ -7,7 +7,7 @@ node {
        sh 'cp all-$version.war all-$version-GA.war'   
    }
 
-   stage('Promote WAR') {
+   stage('Promote WAR to Bintray') {
        sh '''#!/bin/sh
        curl -u michaelhuettermann:${bintray_key} -X DELETE https://api.bintray.com/packages/huettermann/meow/cat/versions/$version
        curl -u michaelhuettermann:${bintray_key} -H "Content-Type: application/json" -X POST https://api.bintray.com/packages/huettermann/meow/cat/$version --data """{ "name": "$version", "desc": "desc" }"""
@@ -21,7 +21,7 @@ node {
        sh 'docker tag huttermann-docker-local.jfrog.io/michaelhuettermann/tomcat7:$version huettermann-docker-registry.bintray.io/michaelhuettermann/tomcat7:$version'
    }
    
-   stage('Promote Docker Image') {
+   stage('Promote Docker Image to Bintray') {
        sh 'docker push huettermann-docker-registry.bintray.io/michaelhuettermann/tomcat7:$version --disable-content-trust'
    }
 }
