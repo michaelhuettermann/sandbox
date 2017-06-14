@@ -129,7 +129,7 @@ node {
        sh 'rm -f index.html'
        sh 'cd all/src/main/resources/docker/Tomcat7'
        sh 'echo $ARTI3'
-       sh 'sed -i "s|_ARTI_|$ARTI3|g" Dockerfile'
+       sh 'sed -i  "\'s|_ARTI_|$ARTI3|g"\' Dockerfile'
        if(flag == "saas") {
            sh '''#!/bin/sh
            echo "All images"
