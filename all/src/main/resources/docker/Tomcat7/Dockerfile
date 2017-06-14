@@ -1,6 +1,6 @@
 FROM michaelhuettermann/infra
-MAINTAINER Michael Huettermann
 ARG ARTI
+MAINTAINER Michael Huettermann
 
 RUN apt-get -y update
 
