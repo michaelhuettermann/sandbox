@@ -140,7 +140,7 @@ node {
            docker stop $(docker ps -a | grep 8002 | cut -d " " -f1)
            docker rm $(docker ps -a | grep Exit | cut -d " " -f1)
            echo "Building new Tomcat 7 container"
-           docker build -f Dockerfile -t huttermann-docker-local.jfrog.io/michaelhuettermann/tomcat7:1.0.0 .
+           docker build -f Dockerfile --build-arg ARTI=$ARTI3 -t huttermann-docker-local.jfrog.io/michaelhuettermann/tomcat7:1.0.0 .
            echo "---------------------------------------"
            echo "Running Tomcat container"
            docker run -d -p 8002:8080 michaelhuettermann/tomcat7
@@ -235,17 +235,17 @@ node {
        echo "Push Docker image to Artifactory Docker Registry."
        if(flag == "yoda") {
           def artDocker= Artifactory.docker("$DOCKER_UN_ADMIN", "$DOCKER_PW_ADMIN")
-          def dockerInfo = artDocker.push("$ARTI1-REGISTRY/michaelhuettermann/tomcat7:latest", "docker-dev-local")
+          def dockerInfo = artDocker.push("$ARTI1REGISTRY/michaelhuettermann/tomcat7:latest", "docker-dev-local")
           buildInfo.append(dockerInfo)
           server.publishBuildInfo(buildInfo)
        } else if (flag == "il") {
           def artDocker= Artifactory.docker("$DOCKER_UN_ADMIN", "$DOCKER_PW_ADMIN")
-          def dockerInfo = artDocker.push("$ARTI2-REGISTRY/michaelhuettermann/tomcat7:latest", "docker-dev-local")
+          def dockerInfo = artDocker.push("$ARTI2REGISTRY/michaelhuettermann/tomcat7:latest", "docker-dev-local")
           buildInfo.append(dockerInfo)
           server.publishBuildInfo(buildInfo)
        } else if (flag == "saas") {
           def artDocker= Artifactory.docker("$DOCKER_UN", "$DOCKER_PW")
-          def dockerInfo = artDocker.push("$ARTI3-REGISTRY/michaelhuettermann/tomcat7:1.0.0", "docker-local")
+          def dockerInfo = artDocker.push("$ARTI3REGISTRY/michaelhuettermann/tomcat7:1.0.0", "docker-local")
           buildInfo.append(dockerInfo)
           server.publishBuildInfo(buildInfo)
        }
