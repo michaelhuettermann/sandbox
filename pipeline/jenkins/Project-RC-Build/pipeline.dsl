@@ -29,5 +29,23 @@ sh '''curl -H "X-JFrog-Art-Api:$artifactory_key" -X POST https://huttermann.jfro
 '''
             }
         }
+        post {
+            always {
+                echo 'Finished!'
+                deleteDir()  
+            }
+            success {
+                echo 'Succeeeded.'
+            }
+            unstable {
+                echo 'Unstable.'
+            }
+            failure {
+                echo 'Failed.'
+            }
+            changed {
+                echo 'Things in life change.'
+            }
+        }
     }
 }
