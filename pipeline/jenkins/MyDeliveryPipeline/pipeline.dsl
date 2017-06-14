@@ -126,13 +126,12 @@ node {
     }
 
     stage ('Build Docker image and run container') {
+       sh 'rm -f index.html'
+       sh 'cd all/src/main/resources/docker/Tomcat7'
+       sh 'echo $ARTI3'
+       sh 'sed -i "s|_ARTI_|$ARTI3|g" Dockerfile'
        if(flag == "saas") {
            sh '''#!/bin/sh
-           rm -f index.html
-           cd all/src/main/resources/docker/Tomcat7
-           ls -la
-           echo $ARTI3
-           sed -i "s|_ARTI_|$ARTI3|g" Dockerfile
            echo "All images"
            docker images | grep tomcat7
            echo "---------------------------------------"
