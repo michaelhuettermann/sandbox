@@ -235,18 +235,17 @@ node {
        echo "Push Docker image to Artifactory Docker Registry."
        if(flag == "yoda") {
           def artDocker= Artifactory.docker("$DOCKER_UN_ADMIN", "$DOCKER_PW_ADMIN")
-          def dockerInfo = artDocker.push('yodafrog.sas.jfrog.internal:5001/michaelhuettermann/tomcat7:latest', 'docker-dev-local')
-          //sh "curl -u $DOCKER_UN_ADMIN:$DOCKER_PW_ADMIN -X DELETE http://yodafrog.sas.jfrog.internal:8081/artifactory/api/build/${buildInfo.name}?buildNumbers=${buildInfo.number}"
+          def dockerInfo = artDocker.push("$ARTI1/michaelhuettermann/tomcat7:latest", "docker-dev-local")
           buildInfo.append(dockerInfo)
           server.publishBuildInfo(buildInfo)
        } else if (flag == "il") {
           def artDocker= Artifactory.docker("$DOCKER_UN_ADMIN", "$DOCKER_PW_ADMIN")
-          def dockerInfo = artDocker.push('xray-demo-docker-local.jfrog.io/michaelhuettermann/tomcat7:latest', 'docker-dev-local')
+          def dockerInfo = artDocker.push("$ARTI2/michaelhuettermann/tomcat7:latest", "docker-dev-local")
           buildInfo.append(dockerInfo)
           server.publishBuildInfo(buildInfo)
        } else if (flag == "saas") {
           def artDocker= Artifactory.docker("$DOCKER_UN", "$DOCKER_PW")
-          def dockerInfo = artDocker.push('huttermann-docker-local.jfrog.io/michaelhuettermann/tomcat7:1.0.0', 'docker-local')
+          def dockerInfo = artDocker.push("$ARTI3/michaelhuettermann/tomcat7:1.0.0", "docker-local")
           buildInfo.append(dockerInfo)
           server.publishBuildInfo(buildInfo)
        }
