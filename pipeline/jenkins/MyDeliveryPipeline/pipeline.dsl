@@ -131,7 +131,7 @@ node {
        rm -f index.html
        cd all/src/main/resources/docker/Tomcat7
        echo $ARTI3
-       sed -i "s|_ARTI_|$ARTI3|g" Dockerfile
+        sed -i \"s|_ARTI_|$ARTI3|g\" Dockerfile
            echo "All images"
            docker images | grep tomcat7
            echo "---------------------------------------"
