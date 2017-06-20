@@ -145,7 +145,7 @@ node {
            ARTIREGISTRY=$ARTI1REGISTRY
        fi
        
-       ver=$(mvn -f all/pom.xml org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version|grep -Ev '(^\[|Download\w+:)')
+       ver=$(mvn -f all/pom.xml org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version|grep -Ev \'(^\\[|Download\\w+:)\')
        
        rm -f index.html
        cd all/src/main/resources/docker/Tomcat7
