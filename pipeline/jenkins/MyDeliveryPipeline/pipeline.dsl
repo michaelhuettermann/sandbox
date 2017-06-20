@@ -131,8 +131,12 @@ node {
 	       ARTI=$ARTI3
            ARTIREGISTRY=$ARTI3REGISTRY
        fi
-       echo $ARTI
-       echo $ARTIREGISTRY
+       if [ "$flag" == "ra2" ]; then
+           ;
+       fi
+       if [ "$flag" == "ra1" ]; then
+	       ;
+       fi
        rm -f index.html
        cd all/src/main/resources/docker/Tomcat7
        echo "All images"
@@ -183,12 +187,12 @@ node {
     
     stage ('Distribute Docker image') {
        echo "Push Docker image to Artifactory Docker Registry."
-       if(flag == "yoda") {
+       if(flag == "ra1") {
           def artDocker= Artifactory.docker("$DOCKER_UN_ADMIN", "$DOCKER_PW_ADMIN")
           def dockerInfo = artDocker.push("$ARTI1REGISTRY/michaelhuettermann/tomcat7:latest", "docker-dev-local")
           buildInfo.append(dockerInfo)
           server.publishBuildInfo(buildInfo)
-       } else if (flag == "il") {
+       } else if (flag == "ra2") {
           def artDocker= Artifactory.docker("$DOCKER_UN_ADMIN", "$DOCKER_PW_ADMIN")
           def dockerInfo = artDocker.push("$ARTI2REGISTRY/michaelhuettermann/tomcat7:latest", "docker-dev-local")
           buildInfo.append(dockerInfo)
