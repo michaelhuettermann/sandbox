@@ -1,5 +1,5 @@
 FROM michaelhuettermann/infra
-MAINTAINER Michael Huettermann
+LABEL maintainer "michael@huettermann.net"
 ARG ARTI
 
 RUN apt-get -y update
