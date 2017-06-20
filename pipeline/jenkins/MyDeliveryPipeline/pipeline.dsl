@@ -206,7 +206,7 @@ node {
           buildInfo.append(dockerInfo)
           server.publishBuildInfo(buildInfo)
        } else if (flag == "saas") {
-          String version = new File("/Users/michaelh/.jenkins/jobs/MyDeliveryPipeline/workspace/version.properties").text.trim()
+          String version = new File("${workspace}/version.properties").text.trim()
           println "Workspace ${workspace}"
           def where = pwd()
           println "Current folder ${where}"
