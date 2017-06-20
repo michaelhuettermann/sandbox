@@ -132,10 +132,12 @@ node {
            ARTIREGISTRY=$ARTI3REGISTRY
        fi
        if [ "$flag" == "ra2" ]; then
-           ;
+           ARTI=$ARTI2
+           ARTIREGISTRY=$ARTI2REGISTRY
        fi
        if [ "$flag" == "ra1" ]; then
-	       ;
+	       ARTI=$ARTI1
+           ARTIREGISTRY=$ARTI1REGISTRY
        fi
        rm -f index.html
        cd all/src/main/resources/docker/Tomcat7
