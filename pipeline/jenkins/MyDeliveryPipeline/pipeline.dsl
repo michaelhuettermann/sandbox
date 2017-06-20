@@ -137,7 +137,7 @@ node {
            docker ps
            echo "---------------------------------------"
            echo "Stopping and removing containers"
-           docker stop $(docker ps -a | grep 8002 | cut -d " " -f1) > /dev/null 2>&1 || true
+           #docker stop $(docker ps -a | grep 8002 | cut -d " " -f1) 
            docker rm $(docker ps -a | grep Exit | cut -d " " -f1)
            echo "Building new Tomcat 7 container"
            docker build -f Dockerfile --build-arg ARTI=huttermann.jfrog.io/huttermann -t huttermann-docker-local.jfrog.io/michaelhuettermann/tomcat7:1.0.0 .
