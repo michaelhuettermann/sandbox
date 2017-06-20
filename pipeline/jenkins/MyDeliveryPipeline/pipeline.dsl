@@ -144,7 +144,7 @@ node {
            docker build -f Dockerfile --build-arg ARTI=huttermann.jfrog.io/huttermann -t huttermann-docker-local.jfrog.io/michaelhuettermann/tomcat7:1.0.0 .
            echo "---------------------------------------"
            echo "Running Tomcat container"
-           docker run -d -p 8002:8080 michaelhuettermann/tomcat7
+           docker run -d -p 8002:8080 huttermann-docker-local.jfrog.io/michaelhuettermann/tomcat7:1.0.0
            echo "---------------------------------------"
            echo "All images"
            docker images | grep tomcat7
