@@ -126,6 +126,7 @@ node {
     }
 
     stage ('Build Docker image and run container') {
+       sh 'docker rmi -f $(docker images | grep "<none>" | awk "{print \$3}")'
        if(flag == "saas") {
            sh '''
            rm -f index.html
