@@ -22,6 +22,6 @@ node {
    }
    
    stage('Promote Docker Image to Bintray') {
-       sh 'docker push BINTRAYREGISTRY/michaelhuettermann/tomcat7:$version --disable-content-trust'
+       sh 'docker push $BINTRAYREGISTRY/michaelhuettermann/tomcat7:$version --disable-content-trust'
    }
 }
