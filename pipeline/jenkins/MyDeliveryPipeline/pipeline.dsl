@@ -206,9 +206,9 @@ node {
           buildInfo.append(dockerInfo)
           server.publishBuildInfo(buildInfo)
        } else if (flag == "saas") {
-          String version = new File("${workspace}/version.properties").text
+          String version = new File('/Users/michaelh/.jenkins/jobs/MyDeliveryPipeline/workspace/version.properties').text
           def artDocker= Artifactory.docker("$DOCKER_UN", "$DOCKER_PW")
-          def dockerInfo = artDocker.push("$ARTI3REGISTRY/michaelhuettermann/tomcat7:${version}", "docker-local")
+          def dockerInfo = artDocker.push("$ARTI3REGISTRY/michaelhuettermann/tomcat7:$version", "docker-local")
           buildInfo.append(dockerInfo)
           server.publishBuildInfo(buildInfo)
        }
