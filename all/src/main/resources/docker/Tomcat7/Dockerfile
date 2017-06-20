@@ -11,7 +11,6 @@ RUN apt-get -y install curl=7.35.0-1ubuntu2.10
 RUN apt-get -y install tomcat7=7.0.52-1ubuntu0.10
 RUN echo "JAVA_HOME=/usr/lib/jvm/java-7-oracle" >> /etc/default/tomcat7
 
-#ADD https://huttermann.jfrog.io/huttermann/list/libs-release-local/com/huettermann/web/1.0.0/all-1.0.0.war /var/lib/tomcat7/webapps/all.war
 ADD https://${ARTI}/list/libs-release-local/com/huettermann/web/1.0.0/all-1.0.0.war /var/lib/tomcat7/webapps/all.war
 
 RUN chmod 755 /var/lib/tomcat7/webapps/*.war
