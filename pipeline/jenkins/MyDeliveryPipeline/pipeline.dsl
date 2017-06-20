@@ -207,9 +207,6 @@ node {
           server.publishBuildInfo(buildInfo)
        } else if (flag == "saas") {
           String version = new File("${workspace}/version.properties").text.trim()
-          println "Workspace ${workspace}"
-          def where = pwd()
-          println "Current folder ${where}"
           println "Processing version: ${version}"
           def artDocker= Artifactory.docker("$DOCKER_UN", "$DOCKER_PW")
           def dockerInfo = artDocker.push("$ARTI3REGISTRY/michaelhuettermann/tomcat7:${version}", "docker-local")
