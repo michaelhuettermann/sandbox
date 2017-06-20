@@ -4,11 +4,6 @@ node {
     def rtMaven 
     def buildInfo
     def SERVER_ID 
-    
-    def version() {
-      def matcher = readFile('pom.xml') =~ '<version>(.+)</version>'
-      matcher ? matcher[0][1] : null
-    }
 
     stage ('Setup') {
        sh "rm -rf /Users/michaelh/work/data/share/transfer"
@@ -242,3 +237,9 @@ node {
        }
     }
 }
+
+    def version() {
+      def matcher = readFile('pom.xml') =~ '<version>(.+)</version>'
+      matcher ? matcher[0][1] : null
+    }
+    
