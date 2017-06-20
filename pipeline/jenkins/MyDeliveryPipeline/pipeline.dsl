@@ -209,7 +209,7 @@ node {
           String version = new File('/Users/michaelh/.jenkins/jobs/MyDeliveryPipeline/workspace/version.properties').text.trim()
           println version
           def artDocker= Artifactory.docker("$DOCKER_UN", "$DOCKER_PW")
-          def dockerInfo = artDocker.push("$ARTI3REGISTRY/michaelhuettermann/tomcat7:1.0.0", "docker-local")
+          def dockerInfo = artDocker.push("$ARTI3REGISTRY/michaelhuettermann/tomcat7:${version}", "docker-local")
           buildInfo.append(dockerInfo)
           server.publishBuildInfo(buildInfo)
        }
