@@ -126,18 +126,11 @@ node {
     }
 
     stage ('Build Docker image and run container') {
-       if(flag == "saas") {
        sh '''
-           ARTI=$ARTI3
+       if [ "$flag" == "saas" ]; then
+	       ARTI=$ARTI3
            ARTIREGISTRY=$ARTI3REGISTRY
-       ''' 
-       } else if (flag == "il") {
-          
-       } else if (flag == "yoda") {
-
-       }
-       
-       sh '''
+       fi
        echo $ARTI
        echo $ARTIREGISTRY
        rm -f index.html
