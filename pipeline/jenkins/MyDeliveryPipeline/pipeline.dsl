@@ -144,6 +144,9 @@ node {
 	       ARTI=$ARTI1
            ARTIREGISTRY=$ARTI1REGISTRY
        fi
+       
+       ver=$(mvn -f all/pom.xml org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version|grep -Ev '(^\[|Download\w+:)')
+       
        rm -f index.html
        cd all/src/main/resources/docker/Tomcat7
        echo "All images"
@@ -158,10 +161,10 @@ node {
        echo "Removing untagged Docker images"
        docker rmi -f $(docker images | grep "<none>" | awk "{print \\$3}") || true
        echo "Building new Tomcat 7 container"
-       docker build -f Dockerfile --build-arg ARTI=$ARTI -t $ARTIREGISTRY/michaelhuettermann/tomcat7:1.0.0 .
+       docker build -f Dockerfile --build-arg ARTI=$ARTI -t $ARTIREGISTRY/michaelhuettermann/tomcat7:$ver .
        echo "---------------------------------------"
        echo "Running Tomcat container"
-       docker run -d -p 8002:8080 $ARTIREGISTRY/michaelhuettermann/tomcat7:1.0.0
+       docker run -d -p 8002:8080 $ARTIREGISTRY/michaelhuettermann/tomcat7:$ver
        echo "---------------------------------------"
        echo "All images"
        docker images | grep tomcat7
