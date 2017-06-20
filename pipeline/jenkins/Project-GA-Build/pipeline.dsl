@@ -18,7 +18,7 @@ node {
    
    stage('Certify Docker Image') {
        sh 'docker login -u michaelhuettermann -p ${bintray_key} huettermann-docker-registry.bintray.io'
-       sh 'docker tag $ARTI3/michaelhuettermann/tomcat7 $BINTRAYREGISTRY/michaelhuettermann/tomcat7:$version'
+       sh 'docker tag $ARTI3REGISTRY/michaelhuettermann/tomcat7 $BINTRAYREGISTRY/michaelhuettermann/tomcat7:$version'
    }
    
    stage('Promote Docker Image to Bintray') {
