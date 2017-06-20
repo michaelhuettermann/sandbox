@@ -141,10 +141,10 @@ node {
            docker rm $(docker ps -a | grep Exit | cut -d " " -f1) || true
            docker rmi -f $(docker images | grep "<none>" | awk "{print \\$3}") || true
            echo "Building new Tomcat 7 container"
-           docker build -f Dockerfile --build-arg ARTI=huttermann.jfrog.io/huttermann -t huttermann-docker-local.jfrog.io/michaelhuettermann/tomcat7:1.0.0 .
+           docker build -f Dockerfile --build-arg ARTI=$ARTI3 -t $ARTI3REGISTRY/michaelhuettermann/tomcat7:1.0.0 .
            echo "---------------------------------------"
            echo "Running Tomcat container"
-           docker run -d -p 8002:8080 huttermann-docker-local.jfrog.io/michaelhuettermann/tomcat7:1.0.0
+           docker run -d -p 8002:8080 $ARTI3REGISTRY/michaelhuettermann/tomcat7:1.0.0
            echo "---------------------------------------"
            echo "All images"
            docker images | grep tomcat7
