@@ -4,7 +4,8 @@ node {
     def rtMaven 
     def buildInfo
     def SERVER_ID 
-
+    def workspace
+    
     stage ('Setup') {
        sh "rm -rf /Users/michaelh/work/data/share/transfer"
        println flag
@@ -20,7 +21,7 @@ node {
        git url: 'git@github.com:michaelhuettermann/sandbox.git'
        def gitCommit = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
        echo "Hash ${gitCommit}"
-       def workspace = pwd()
+       workspace = pwd()
        echo "workspace=${workspace}"
     }
 
@@ -205,7 +206,7 @@ node {
           buildInfo.append(dockerInfo)
           server.publishBuildInfo(buildInfo)
        } else if (flag == "saas") {
-          String version = new File('version.properties').text
+          String version = new File('$workspace/version.properties').text
           def artDocker= Artifactory.docker("$DOCKER_UN", "$DOCKER_PW")
           def dockerInfo = artDocker.push("$ARTI3REGISTRY/michaelhuettermann/tomcat7:${version}", "docker-local")
           buildInfo.append(dockerInfo)
