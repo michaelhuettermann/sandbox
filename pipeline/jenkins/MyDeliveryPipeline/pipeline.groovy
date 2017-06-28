@@ -3,7 +3,6 @@ node {
     def server 
     def rtMaven 
     def buildInfo
-    def SERVER_ID 
     def workspace
     
     stage ('Setup') {
