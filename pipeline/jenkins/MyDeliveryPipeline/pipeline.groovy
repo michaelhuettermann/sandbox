@@ -39,6 +39,7 @@ node {
     }
 
     stage('Produce RC') {
+        library 'Util'
         releaseVersion 'all/pom.xml'
     }
 
