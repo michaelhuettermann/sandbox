@@ -38,4 +38,23 @@ pipeline {
             }
         }
     }
+
+    post {
+        always {
+            echo 'Finished!'
+            deleteDir()
+        }
+        success {
+            echo 'Succeeeded.'
+        }
+        unstable {
+            echo 'Unstable.'
+        }
+        failure {
+            echo 'Failed.'
+        }
+        changed {
+            echo 'Things in life change.'
+        }
+    }
 }
