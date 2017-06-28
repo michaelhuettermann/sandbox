@@ -40,7 +40,9 @@ node {
 
     stage('Produce RC') {
         //sh "mvn com.huettermann:versionfetcher:1.0.0:release versions:set -DgenerateBackupPoms=false -f all/pom.xml"
-        releaseVersion 'pom.xml'
+        //releaseVersion 'pom.xml'
+        def clazz = new com.huettermann.Util()
+        clazz.setVersion("all/pom.xml")
     }
 
     stage('Unit test') {
