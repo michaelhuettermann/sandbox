@@ -5,8 +5,6 @@ node {
     def buildInfo
     def workspace
 
-    @Library('Util') _
-
     stage('Setup') {
         sh "rm -rf /Users/michaelh/work/data/share/transfer"
         println flag
@@ -41,6 +39,7 @@ node {
     }
 
     stage('Produce RC') {
+        @Library('Util') _
         releaseVersion 'all/pom.xml'
     }
 
