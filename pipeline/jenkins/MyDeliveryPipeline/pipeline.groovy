@@ -5,6 +5,8 @@ node {
     def buildInfo
     def workspace
 
+    @Library('Util') _
+
     stage('Setup') {
         sh "rm -rf /Users/michaelh/work/data/share/transfer"
         println flag
