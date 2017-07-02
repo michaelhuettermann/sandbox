@@ -25,7 +25,9 @@ pipeline {
         }
         stage('Promote Docker Image') {
             steps {
-                sh '''curl -H "X-JFrog-Art-Api:$artifactory_key" -X POST https://$ARTI3/api/docker/docker-local/v2/promote -H "Content-Type:application/json" -d \'{"targetRepo" : "docker-prod-local", "dockerRepository" : "michaelhuettermann/tomcat7", "tag": "\'$version\'", "copy": true }\'
+                sh '''curl -H "X-JFrog-Art-Api:$artifactory_key" -X POST https://$ARTI3/api/docker/docker-local/v2/promote ''' +
+                   '''-H "Content-Type:application/json" ''' +
+                   '''-d \'{"targetRepo" : "docker-prod-local", "dockerRepository" : "michaelhuettermann/tomcat7", "tag": "\'$version\'", "copy": true }\'
 '''
             }
         }
