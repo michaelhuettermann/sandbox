@@ -159,10 +159,10 @@ node {
        echo "Removing untagged Docker images"
        docker rmi -f $(docker images | grep "<none>" | awk "{print \\$3}") || true
        echo "Building new Tomcat 7 container"
-       docker build -f Dockerfile --build-arg ARTI=$ARTI -t $ARTIREGISTRY/michaelhuettermann/tomcat7:$ver .
+       docker build -f Dockerfile --build-arg ARTI=$ARTI -t $ARTIREGISTRY/michaelhuettermann/alpine-tomcat7:$ver .
        echo "---------------------------------------"
        echo "Running Tomcat container"
-       docker run -d -p 8002:8080 $ARTIREGISTRY/michaelhuettermann/tomcat7:$ver
+       docker run -d -p 8002:8080 $ARTIREGISTRY/michaelhuettermann/alpine-tomcat7:$ver
        echo "---------------------------------------"
        echo "All images"
        docker images | grep tomcat7
@@ -198,19 +198,19 @@ node {
         echo "Push Docker image to Artifactory Docker Registry."
         if (flag == "ra1") {
             def artDocker = Artifactory.docker("$DOCKER_UN_ADMIN", "$DOCKER_PW_ADMIN")
-            def dockerInfo = artDocker.push("$ARTI1REGISTRY/michaelhuettermann/tomcat7:latest", "docker-dev-local")
+            def dockerInfo = artDocker.push("$ARTI1REGISTRY/michaelhuettermann/alpine-tomcat7:latest", "docker-dev-local")
             buildInfo.append(dockerInfo)
             server.publishBuildInfo(buildInfo)
         } else if (flag == "ra2") {
             def artDocker = Artifactory.docker("$DOCKER_UN_ADMIN", "$DOCKER_PW_ADMIN")
-            def dockerInfo = artDocker.push("$ARTI2REGISTRY/michaelhuettermann/tomcat7:latest", "docker-dev-local")
+            def dockerInfo = artDocker.push("$ARTI2REGISTRY/michaelhuettermann/alpine-tomcat7:latest", "docker-dev-local")
             buildInfo.append(dockerInfo)
             server.publishBuildInfo(buildInfo)
         } else if (flag == "saas") {
             String version = new File("${workspace}/version.properties").text.trim()
             println "Processing version: ${version}"
             def artDocker = Artifactory.docker("$DOCKER_UN", "$DOCKER_PW")
-            def dockerInfo = artDocker.push("$ARTI3REGISTRY/michaelhuettermann/tomcat7:${version}", "docker-local")
+            def dockerInfo = artDocker.push("$ARTI3REGISTRY/michaelhuettermann/alpine-tomcat7:${version}", "docker-local")
             buildInfo.append(dockerInfo)
             server.publishBuildInfo(buildInfo)
         }

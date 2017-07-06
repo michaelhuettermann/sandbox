@@ -28,13 +28,13 @@ pipeline {
         stage('Certify Docker Image') {
             steps {
                 sh 'docker login -u michaelhuettermann -p ${bintray_key} huettermann-docker-registry.bintray.io'
-                sh 'docker tag $ARTI3REGISTRY/michaelhuettermann/tomcat7:$version $BINTRAYREGISTRY/michaelhuettermann/tomcat7:$version'
+                sh 'docker tag $ARTI3REGISTRY/michaelhuettermann/alpine-tomcat7:$version $BINTRAYREGISTRY/michaelhuettermann/alpine-tomcat7:$version'
             }
         }
 
         stage('Promote Docker Image to Bintray') {
             steps {
-                sh 'docker push $BINTRAYREGISTRY/michaelhuettermann/tomcat7:$version --disable-content-trust'
+                sh 'docker push $BINTRAYREGISTRY/michaelhuettermann/alpine-tomcat7:$version --disable-content-trust'
             }
         }
     }
