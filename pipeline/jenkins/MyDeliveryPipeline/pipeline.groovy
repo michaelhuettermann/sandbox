@@ -146,7 +146,7 @@ node {
        echo $ver > version.properties
        
        rm -f index.html
-       cd all/src/main/resources/docker/Tomcat7
+       cd all/src/main/resources/docker/alpine
        echo "All images"
        docker images | grep tomcat7
        echo "---------------------------------------"
