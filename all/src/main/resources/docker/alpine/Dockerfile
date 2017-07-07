@@ -1,5 +1,7 @@
 FROM openjdk:8-jre-alpine
 LABEL maintainer "michael@huettermann.net"
+
+# Domain of your Artifactory. Any other URI downlink work, just change the ADD command, see below.
 ARG ARTI
 
 # Expose web port
@@ -9,11 +11,11 @@ EXPOSE 8080
 ENV TOMCAT_VERSION_MAJOR 8
 ENV TOMCAT_VERSION_FULL  8.5.16
 
-# Download and install
+# Download, install, housekeeping
 RUN apk add --update curl &&\
   apk add bash &&\
   mkdir /opt &&\
-  curl -LO http://mirrors.standaloneinstaller.com/apache/tomcat/tomcat-${TOMCAT_VERSION_MAJOR}/v${TOMCAT_VERSION_FULL}/bin/apache-tomcat-${TOMCAT_VERSION_FULL}.tar.gz &&\
+  curl -LO http://mirror.netcologne.de/apache.org/tomcat/tomcat-${TOMCAT_VERSION_MAJOR}/v${TOMCAT_VERSION_FULL}/bin/apache-tomcat-${TOMCAT_VERSION_FULL}.tar.gz &&\
   gunzip -c apache-tomcat-${TOMCAT_VERSION_FULL}.tar.gz | tar -xf - -C /opt &&\
   rm -f apache-tomcat-${TOMCAT_VERSION_FULL}.tar.gz &&\
   ln -s /opt/apache-tomcat-${TOMCAT_VERSION_FULL} /opt/tomcat &&\
@@ -21,11 +23,12 @@ RUN apk add --update curl &&\
   apk del curl &&\
   rm -rf /var/cache/apk/*
 
+# Download and deploy the Java EE WAR
 ADD https://${ARTI}/list/libs-release-local/com/huettermann/web/1.0.0/all-1.0.0.war /opt/tomcat/webapps/all.war
 RUN chmod 755 /opt/tomcat/webapps/*.war
 
 # Set environment
 ENV CATALINA_HOME /opt/tomcat
 
-# Launch Tomcat on startup
+# Start Tomcat on startup
 CMD ${CATALINA_HOME}/bin/catalina.sh run
