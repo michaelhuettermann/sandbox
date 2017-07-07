@@ -1,7 +1,7 @@
 FROM openjdk:8-jre-alpine
 LABEL maintainer "michael@huettermann.net"
 
-# Domain of your Artifactory. Any other URI downlink work, just change the ADD command, see below.
+# Domain of your Artifactory. Any other storage and URI download link works, just change the ADD command, see below.
 ARG ARTI
 
 # Expose web port
