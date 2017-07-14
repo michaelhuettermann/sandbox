@@ -60,7 +60,7 @@ node {
 
     stage('Integration test') {
         rtMaven.deployer.deployArtifacts = false
-        rtMaven.run pom: 'all/pom.xml', goals: 'clean integration-test -Pweb'
+        rtMaven.run pom: 'all/pom.xml', goals: 'clean integration-test -Pnolibs,web'
     }
 
     stage('Reserve WAR') {
@@ -75,12 +75,12 @@ node {
     }
 
     stage('Database migration') {
-        sh "mvn clean install -Pnolibs,db flyway:clean flyway:init flyway:info flyway:migrate flyway:info -f all/pom.xml"
+        sh "mvn clean install -Pdb flyway:clean flyway:init flyway:info flyway:migrate flyway:info -f all/pom.xml"
     }
 
     stage('SonarQube analysis') {
         withSonarQubeEnv('Sonar') {
-            sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.3.0.603:sonar -f all/pom.xml -Pnolibs -Dsonar.projectKey=com.huettermann:all:master -Dsonar.login=$SONAR_UN -Dsonar.password=$SONAR_PW -Dsonar.language=java -Dsonar.sources=. -Dsonar.tests=. -Dsonar.test.inclusions=**/*Test*/** -Dsonar.exclusions=**/*Test*/**'
+            sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.3.0.603:sonar -f all/pom.xml -Dsonar.projectKey=com.huettermann:all:master -Dsonar.login=$SONAR_UN -Dsonar.password=$SONAR_PW -Dsonar.language=java -Dsonar.sources=. -Dsonar.tests=. -Dsonar.test.inclusions=**/*Test*/** -Dsonar.exclusions=**/*Test*/**'
         }
     }
 
