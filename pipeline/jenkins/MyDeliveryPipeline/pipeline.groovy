@@ -148,7 +148,7 @@ node {
        rm -f index.html
        cd all/src/main/resources/docker/alpine
        echo "All images"
-       docker images | grep tomcat7
+       docker images | grep tomcat7 || true
        echo "---------------------------------------"
        echo "All active containers"
        docker ps
