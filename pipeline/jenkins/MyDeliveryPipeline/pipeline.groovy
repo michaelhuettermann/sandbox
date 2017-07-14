@@ -63,7 +63,7 @@ node {
         rtMaven.run pom: 'all/pom.xml', goals: 'clean integration-test -Pweb'
     }
 
-    stage('Copy WAR') {
+    stage('Reserve WAR') {
         sh "cp all/target/*.war /Users/michaelh/work/data/share/transfer/"
     }
 
@@ -91,6 +91,11 @@ node {
                 error "Pipeline aborted due to quality gate failure: ${qg.status}"
             }
         }
+    }
+
+    stage('Restore WAR') {
+        sh "rm all/target/*.war"
+        sh "cp /Users/michaelh/work/data/share/transfer/*.war all/target/"
     }
 
     stage('Distribute WAR') {
