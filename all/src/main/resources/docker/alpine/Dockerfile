@@ -3,6 +3,7 @@ LABEL maintainer "michael@huettermann.net"
 
 # Domain of your Artifactory. Any other storage and URI download link works, just change the ADD command, see below.
 ARG ARTI
+ARG VER
 
 # Expose web port
 EXPOSE 8080
@@ -24,7 +25,7 @@ RUN apk add --update curl &&\
   rm -rf /var/cache/apk/*
 
 # Download and deploy the Java EE WAR
-ADD https://${ARTI}/list/libs-release-local/com/huettermann/web/1.0.0/all-1.0.0.war /opt/tomcat/webapps/all.war
+ADD https://${ARTI}/list/libs-release-local/com/huettermann/web/${VER}/all-${VER}.war /opt/tomcat/webapps/all.war
 RUN chmod 755 /opt/tomcat/webapps/*.war
 
 # Set environment
