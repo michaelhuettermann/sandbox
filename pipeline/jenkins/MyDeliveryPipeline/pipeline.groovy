@@ -164,7 +164,7 @@ node {
        echo "Removing untagged Docker images"
        docker rmi -f $(docker images | grep "<none>" | awk "{print \\$3}") || true
        echo "Building new Tomcat 7 container"
-       docker build -f Dockerfile --build-arg ARTI=$ARTI VER=$ver -t $ARTIREGISTRY/michaelhuettermann/alpine-tomcat7:$ver . 
+       docker build -f Dockerfile --build-arg ARTI=$ARTI --build-arg VER=$ver -t $ARTIREGISTRY/michaelhuettermann/alpine-tomcat7:$ver . 
        echo "---------------------------------------"
        echo "Running Tomcat container"
        docker run -d -p 8002:8080 $ARTIREGISTRY/michaelhuettermann/alpine-tomcat7:$ver
