@@ -75,12 +75,12 @@ node {
     }
 
     stage('Database migration') {
-        sh "mvn clean install -Pdb flyway:clean flyway:init flyway:info flyway:migrate flyway:info -f all/pom.xml"
+        sh "mvn clean install -Pnolibs,db flyway:clean flyway:init flyway:info flyway:migrate flyway:info -f all/pom.xml"
     }
 
     stage('SonarQube analysis') {
         withSonarQubeEnv('Sonar') {
-            sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.3.0.603:sonar -f all/pom.xml -Dsonar.projectKey=com.huettermann:all:master -Dsonar.login=$SONAR_UN -Dsonar.password=$SONAR_PW -Dsonar.language=java -Dsonar.sources=. -Dsonar.tests=. -Dsonar.test.inclusions=**/*Test*/** -Dsonar.exclusions=**/*Test*/**'
+            sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.3.0.603:sonar -f all/pom.xml -Pnolibs -Dsonar.projectKey=com.huettermann:all:master -Dsonar.login=$SONAR_UN -Dsonar.password=$SONAR_PW -Dsonar.language=java -Dsonar.sources=. -Dsonar.tests=. -Dsonar.test.inclusions=**/*Test*/** -Dsonar.exclusions=**/*Test*/**'
         }
     }
 
@@ -159,7 +159,7 @@ node {
        echo "Removing untagged Docker images"
        docker rmi -f $(docker images | grep "<none>" | awk "{print \\$3}") || true
        echo "Building new Tomcat 7 container"
-       docker build -f Dockerfile --build-arg ARTI=$ARTI -t $ARTIREGISTRY/michaelhuettermann/alpine-tomcat7:$ver .
+       docker build -f Dockerfile --build-arg ARTI=$ARTI -t $ARTIREGISTRY/michaelhuettermann/alpine-tomcat7:$ver . 
        echo "---------------------------------------"
        echo "Running Tomcat container"
        docker run -d -p 8002:8080 $ARTIREGISTRY/michaelhuettermann/alpine-tomcat7:$ver
