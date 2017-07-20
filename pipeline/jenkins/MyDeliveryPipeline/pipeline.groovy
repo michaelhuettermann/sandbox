@@ -45,7 +45,13 @@ node {
     }
 
     stage('Unit test') {
-        sh "mvn clean test -f all/pom.xml"
+        try {
+            sh "mvn clean test -f all/pom.xml"
+        } catch(err) {
+            throw err
+        } finally {
+            step([$class: 'JUnitResultArchiver', testResults: 'all/target/surefire-reports/TEST-*.xml'])
+        }
     }
 
     stage('Build env, with Puppet') {
