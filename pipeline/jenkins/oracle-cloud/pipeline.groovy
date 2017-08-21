@@ -11,9 +11,9 @@ curl -sk  -X "DELETE" -H "Authorization: Bearer ${BEARER}"  "https://${CLOUDIP}/
 sleep 5
 curl -sk  -X "POST"   -H "Authorization: Bearer ${BEARER}"  "https://${CLOUDIP}/api/v2/images/huettermann-docker-registry.bintray.io/michaelhuettermann/alpine-tomcat7:1.0.0/hosts/2970cd1b-5571-6fda-3f21-1c6b19cd9ab1/pull"
 sleep 20
-curl -ski -X "POST"   -H "Authorization: Bearer ${BEARER}"  "https://${CLOUDIP}/api/v2/services/" --data "@https://github.com/michaelhuettermann/sandbox/blob/master/pipeline/jenkins/oracle-cloud/new-service.json"
+curl -ski -X "POST"   -H "Authorization: Bearer ${BEARER}"  "https://${CLOUDIP}/api/v2/services/" --data "https://github.com/michaelhuettermann/sandbox/blob/master/pipeline/jenkins/oracle-cloud/new-service.json"
 sleep 5
-curl -ski -X "POST"   -H "Authorization: Bearer ${BEARER}"  "https://${CLOUDIP}/api/v2/deployments/" --data "@https://github.com/michaelhuettermann/sandbox/blob/master/pipeline/jenkins/oracle-cloud/create-deployment.json"
+curl -ski -X "POST"   -H "Authorization: Bearer ${BEARER}"  "https://${CLOUDIP}/api/v2/deployments/" --data "https://github.com/michaelhuettermann/sandbox/blob/master/pipeline/jenkins/oracle-cloud/create-deployment.json"
 sleep 5
 '''
     }
