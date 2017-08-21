@@ -1,0 +1,3 @@
+{
+"content":"version: 2\nservices:\n  meow:\n    image: \"huettermann-docker-registry.bintray.io/michaelhuettermann/alpine-tomcat7:1.0.0\"\n    ports:\n      - \"8002:8080/tcp\"\n "
+}
