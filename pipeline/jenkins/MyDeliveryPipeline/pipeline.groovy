@@ -252,6 +252,12 @@ node {
             sh "jfrog rt del --url=http://localhost:8071/artifactory --quiet=true --apikey=AKCp2WXX7SDvcsmny528sSDnaB3zACkNQoscD8D1WmxhMV9gk6Wp8mVWC8bh38kJQbXagUT8Z generic-local/hello.txt"
         }
     }
+
+    stage ('Starting RC build') {
+        String version = new File("${workspace}/version.properties").text.trim()
+        build job: 'Project-RC-Build', parameters: [[$class: 'StringParameterValue', name: 'version', value: ${version}]]
+    }
+
 }
 
 def version() {
