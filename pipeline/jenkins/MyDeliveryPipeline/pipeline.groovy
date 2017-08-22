@@ -253,11 +253,6 @@ node {
         }
     }
 
-    stage ('Starting RC build') {
-        String version = new File("${workspace}/version.properties").text.trim()
-        build job: 'Project-RC-Build', parameters: [[$class: 'StringParameterValue', name: 'version', value: ${version}]]
-    }
-
 }
 
 def version() {
