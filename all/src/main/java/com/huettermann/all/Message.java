@@ -6,13 +6,13 @@ import javax.servlet.http.*;
 
 public class Message extends HttpServlet {
     
-    private String userName;  //As this field is shared by all users, it's obvious that this piece of information should be managed differently
+    //private String userName;  //As this field is shared by all users, it's obvious that this piece of information should be managed differently
 
     public void doGet(HttpServletRequest request,
                       HttpServletResponse response)
         throws ServletException, IOException {
 
-        
+
         String param = request.getParameter("param");
         ServletContext context = getServletContext( );
 
