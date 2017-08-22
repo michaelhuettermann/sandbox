@@ -188,7 +188,7 @@ node {
       pwd
       echo "--------------------------------"
       echo "Check start page available"
-      curl -v -o index.html http://localhost:8002/all/
+      curl -v -o index.html http://localhost:8002/all/message?param=world
       echo "--------------------------------"
       echo "Downloaded page: " 
       cat index.html
