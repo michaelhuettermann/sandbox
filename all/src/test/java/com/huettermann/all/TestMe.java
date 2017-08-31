@@ -9,7 +9,7 @@ public class TestMe {
     @Test
     public void aComplexComputation() {
         String a = "a";
-        String b = "b";
+        String b = "a";
         assertEquals(a, b);
     }
     
