@@ -3,6 +3,6 @@
     <title>Welcome in the Cloud!</title>
 </head>
 <body>
-<h2>Hello JenkinsWorld!!!</h2>
+<h2>Hello World!</h2>
 </body>
 </html>
