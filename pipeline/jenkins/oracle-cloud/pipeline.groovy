@@ -1,8 +1,20 @@
 node {
     stage('Deploy Cloud') {
 sh '''
-curl -sk  -X "POST"   -H "Authorization: Bearer ${BEARER}"  "https://${CLOUDIP}/api/v2/deployments/meow-deploy/stop"
-sleep 60
+export PYTHONIOENCODING=utf8
+echo -ne "Stopping deployment "
+for (( ; ; ))
+do
+    result=$(curl -sk -X 'GET' -H "Authorization: Bearer ${BEARER}" https://${CLOUDIP}/api/v2/deployments/meow-deploy  | python -c "import sys, json; print(json.load(sys.stdin)['deployment']['current_state'])")
+    if [ "$result" == "0" ]; then
+       echo "Deployment stopped!"
+       break
+    else
+       echo -ne "."
+       sleep 2
+       continue
+    fi
+done
 curl -sk  -X "DELETE" -H "Authorization: Bearer ${BEARER}"  "https://${CLOUDIP}/api/v2/deployments/meow-deploy"
 sleep 5
 curl -sk -X  "DELETE" -H "Authorization: Bearer ${BEARER}"  "https://${CLOUDIP}/api/v2/services/meow"
