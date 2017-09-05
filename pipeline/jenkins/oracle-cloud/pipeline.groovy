@@ -1,3 +1,34 @@
+/*
+Copyright [2017] [Michael Hüttermann]
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+Hints: This pipeline goes through the stages to stop an existing container, delete
+the deployment and service, create new ones, replace the Docker image (for
+demo purposes), and creates new service and deployment. The pipeline facilitates
+the REST API for Oracle Container Cloud Service. The pipeline is for demo-purposes,
+although it goes through typical steps, it is not production-ready. The pipeline
+is parameterized, i.e. the version to be deployed can be injected. There are
+other parameters as well, such as the bearer string and the URI where to find the
+Docker image. As you can see, those demo aspects can be easily replaced by variants,
+e.g. storing the Docker image directly and solely in Oracle Cloud, or using other
+Cloud services. Some REST API calls use a bit more comprehensive JSON objects, which
+are located in the same directory level and are just referenced. This demo pipeline
+also shows how it could be extended with more full-fledged routines, e.g. using
+Python to dynamically check the current state of processing, although usually, the
+events are just queued and processed sequentially. The sleeps are mainly for having
+a nicer experience while watching the pipeline with Jenkins Blue Ocean.
+   */
 node {
     stage('Deployment Stop') {
 sh '''
