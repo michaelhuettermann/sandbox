@@ -62,6 +62,13 @@ for (( ; ; ))
 do
     result=$(curl -s http://144.21.67.94:8002/all/ | grep Hello)
     echo $result
+    if [ -z != "$result" ] 
+    then
+       echo ok
+    else
+       sleep 2
+       continue
+    fi 
     if [ "<h2>Hello World!</h2>" == "$result" ]; then
        echo "Available!"
        break
