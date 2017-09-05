@@ -40,7 +40,7 @@ sleep 5
     stage('Image Pull') {
         sh '''
 curl -sk  -X "POST"   -H "Authorization: Bearer ${BEARER}"  "https://${CLOUDIP}/api/v2/images/huettermann-docker-registry.bintray.io/michaelhuettermann/alpine-tomcat7:1.0.0/hosts/2970cd1b-5571-6fda-3f21-1c6b19cd9ab1/pull"
-sleep 5
+sleep 20
 '''
     }
     stage('Service Create') {
