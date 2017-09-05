@@ -42,15 +42,29 @@ curl -sk  -X "POST"   -H "Authorization: Bearer ${BEARER}"  "https://${CLOUDIP}/
     stage('Service Create') {
         sh '''
 curl -ski -X "POST"   -H "Authorization: Bearer ${BEARER}"  "https://${CLOUDIP}/api/v2/services/" --data "@/Users/michaelh/work/data/share/intellilj/sandbox/pipeline/jenkins/oracle-cloud/new-service.json"
-sleep 5
-curl -ski -X "POST"   -H "Authorization: Bearer ${BEARER}"  "https://${CLOUDIP}/api/v2/deployments/" --data "@/Users/michaelh/work/data/share/intellilj/sandbox/pipeline/jenkins/oracle-cloud/create-deployment.json"
-sleep 5
 '''
     }
     stage('Deployment Create') {
         sh '''
 curl -ski -X "POST"   -H "Authorization: Bearer ${BEARER}"  "https://${CLOUDIP}/api/v2/deployments/" --data "@/Users/michaelh/work/data/share/intellilj/sandbox/pipeline/jenkins/oracle-cloud/create-deployment.json"
-sleep 5
 '''
     }
+    stage('Check Availability') {
+        sh '''
+#!/bin/bash 
+for (( ; ; ))
+do
+    result=$("curl -s http://144.21.67.94:8002/all/ | grep Hello")
+    if [ "$result" eq "<h2>Hello World!</h2>" ]; then
+       echo "Available!"
+       break
+    else
+       echo -ne "."
+       sleep 2
+       continue
+    fi
+done
+'''
+    }
+
 }
