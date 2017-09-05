@@ -55,30 +55,5 @@ curl -ski -X "POST"   -H "Authorization: Bearer ${BEARER}"  "https://${CLOUDIP}/
 sleep 5
 '''
     }
-    stage('Check Availability') {
-        sh '''
-#!/bin/bash 
-for (( ; ; ))
-do
-    result=$(curl -s http://144.21.67.94:8002/all/ | grep Hello)
-    echo $result
-    if [ ! -z "$result" ] 
-    then
-       echo ok
-    else
-       sleep 2
-       continue
-    fi 
-    if [ "<h2>Hello World!</h2>" == "$result" ]; then
-       echo "Available!"
-       break
-    else
-       echo -ne "."
-       sleep 2
-       continue
-    fi
-done
-'''
-    }
 
 }
