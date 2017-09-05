@@ -54,7 +54,7 @@ curl -ski -X "POST"   -H "Authorization: Bearer ${BEARER}"  "https://${CLOUDIP}/
 #!/bin/bash 
 for (( ; ; ))
 do
-    result=$("curl -s http://144.21.67.94:8002/all/ | grep Hello")
+    result=$(curl -s ${CLOUDPUBLICURI} | grep Hello)
     if [ "$result" eq "<h2>Hello World!</h2>" ]; then
        echo "Available!"
        break
