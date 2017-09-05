@@ -60,7 +60,8 @@ sleep 5
 #!/bin/bash 
 for (( ; ; ))
 do
-    result=$(curl -s ${CLOUDPUBLICURI} | grep Hello)
+    result=$(curl -s http://144.21.67.94:8002/all/ | grep Hello)
+    echo $result
     if [ "$result" == "<h2>Hello World!</h2>" ]; then
        echo "Available!"
        break
