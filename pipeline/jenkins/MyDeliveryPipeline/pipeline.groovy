@@ -70,7 +70,8 @@ node {
     }
 
     stage('Reserve WAR') {
-        sh "cp all/target/*.war /Users/michaelh/work/data/share/transfer/"
+        //sh "cp all/target/*.war /Users/michaelh/work/data/share/transfer/"
+        stash includes: 'all/target/*.war', name: 'war'
     }
 
     stage('Fetch version') {
@@ -101,7 +102,8 @@ node {
 
     stage('Restore WAR') {
         sh "rm all/target/*.war"
-        sh "cp /Users/michaelh/work/data/share/transfer/*.war all/target/"
+        //sh "cp /Users/michaelh/work/data/share/transfer/*.war all/target/"
+        unstash 'war'
     }
 
     stage('Distribute WAR') {
