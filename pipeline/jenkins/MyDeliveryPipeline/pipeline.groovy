@@ -26,9 +26,13 @@ node {
         echo "workspace=${workspace}"
     }
 
-    stage('Setup version+env') {
+    stage('Setup') {
         parallel "Release version": {
             releaseVersion 'all/pom.xml'
+            def v = version()
+            if (v) {
+                echo "Version=${v}"
+            }
         }, "Prepare env, with Puppet": {
             sh "puppet apply all/src/main/resources/puppet/init.pp"
         }, "Prepare env, with Chef": {
@@ -53,18 +57,11 @@ node {
         rtMaven.run pom: 'all/pom.xml', goals: 'clean integration-test -Pnolibs,web'
     }
 
-    stage('Handle version') {
-        parallel "Reserve binary": {
-            stash includes: 'all/target/*.war', name: 'war'
-        }, "Fetch version number": {
-            def v = version()
-            if (v) {
-                echo "Version=${v}"
-            }
-        }
+    stage('Reserve binary') {
+        stash includes: 'all/target/*.war', name: 'war'
     }
 
-    stage('Process DB+Code inspect') {
+    stage('Process DB, and inspect') {
         parallel "Database migration": {
             sh "mvn clean install -Pdb flyway:clean flyway:init flyway:info flyway:migrate flyway:info -f all/pom.xml"
         }, "Code inspect": {
