@@ -27,9 +27,10 @@ public class SiteLocalIT {
 
     @Test
     public void testLocal() {
-        driver.get("http://localhost:8001/all");
+        driver.get("http://localhost:8002/all");
         WebElement element = driver.findElement(By.xpath("//h2[1]"));
-        Assert.assertEquals("Hello World!", element.getText());
+        //Assert.assertEquals("Hello World!", element.getText());
+        assertTrue(driver.getTitle().contains("Welcome in the Cloud!"));
     }
 
     @After
