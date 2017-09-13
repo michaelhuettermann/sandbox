@@ -147,19 +147,6 @@ node {
        ver=$(mvn -f all/pom.xml org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version|grep -Ev \'(^\\[|Download\\w+:)\')
        echo $ver > version.properties
        
-       //rm -f index.html
-       //cd all/src/main/resources/docker/alpine
-       //echo "All images"
-       /docker images | grep tomcat7 || true
-       //echo "---------------------------------------"
-       //echo "All active containers"
-       //docker ps
-       //echo "---------------------------------------"
-       //echo "Stopping and removing containers"
-       //docker stop $(docker ps -a | grep 8002 | cut -d " " -f1) || true
-       //docker rm $(docker ps -a | grep Exit | cut -d " " -f1) || true
-       //echo "Removing untagged Docker images"
-       //docker rmi -f $(docker images | grep "<none>" | awk "{print \\$3}") || true
        echo "Building new Tomcat 7 container"
        docker build -f Dockerfile --build-arg ARTI=$ARTI --build-arg VER=$ver -t $ARTIREGISTRY/michaelhuettermann/alpine-tomcat7:$ver . 
        echo "---------------------------------------"
