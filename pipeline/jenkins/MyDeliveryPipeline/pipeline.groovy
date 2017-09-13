@@ -42,7 +42,7 @@ node {
                 sh "knife artifactory download poise-python 1.6.0"
             }
         }, "Reset Docker": {
-            sh '''
+            sh '''#!/bin/sh
             cd all/src/main/resources/docker/alpine
             echo "All images"
             docker images | grep tomcat7 || true
@@ -54,7 +54,7 @@ node {
             docker rm $(docker ps -a | grep Exit | cut -d " " -f1) || true
             echo "Removing untagged Docker images"
             docker rmi -f $(docker images | grep "<none>" | awk "{print \$3}") || true
-            '''
+            echo "---------------------------------------"'''
        }
     }
 
