@@ -26,22 +26,16 @@ node {
         echo "workspace=${workspace}"
     }
 
-    stage('Check preconditions') {
-        parallel "Sanity check 1": {
-            echo "1"
-        }, "Sanity check 2": {
-            echo "2i"
-        }, "Sanity check 3": {
-            echo "3"
-        }, "Sanity check 4": {
-            echo "4a"
-            echo "4b"
-            echo "4c"
+    stage('Initial work (Release, Provision)') {
+        parallel "Release version": {
+            releaseVersion 'all/pom.xml'
+        }, "Prepare env, with Puppet": {
+            sh "puppet apply all/src/main/resources/puppet/init.pp"
+        }, "Prepare env, with Chef": {
+            if (addprem == "true") {
+                sh "knife artifactory download poise-python 1.6.0"
+            }
         }
-    }
-
-    stage('Produce RC') {
-        releaseVersion 'all/pom.xml'
     }
 
     stage('Unit test') {
@@ -54,30 +48,19 @@ node {
         }
     }
 
-    stage('Build env, with Puppet') {
-        sh "puppet apply all/src/main/resources/puppet/init.pp"
-    }
-
-    stage('Build env, with Chef') {
-        if (addprem == "true") {
-            sh "knife artifactory download poise-python 1.6.0"
-        }
-    }
-
     stage('Integration test') {
         rtMaven.deployer.deployArtifacts = false
         rtMaven.run pom: 'all/pom.xml', goals: 'clean integration-test -Pnolibs,web'
     }
 
-    stage('Reserve WAR') {
-        //sh "cp all/target/*.war /Users/michaelh/work/data/share/transfer/"
-        stash includes: 'all/target/*.war', name: 'war'
-    }
-
-    stage('Fetch version') {
-        def v = version()
-        if (v) {
-            echo "Version=${v}"
+    stage('Handle version') {
+        parallel "Reserve version": {
+            stash includes: 'all/target/*.war', name: 'war'
+        }, "Fetch version": {
+            def v = version()
+            if (v) {
+                echo "Version=${v}"
+            }
         }
     }
 
