@@ -33,7 +33,7 @@ node {
             releaseVersion 'all/pom.xml'
             v = version()
             if (v) {
-                echo "Version=${v}"
+                echo "Version found=${v}"
             }
         }, "Prepare env, with Puppet": {
             sh "puppet apply all/src/main/resources/puppet/init.pp"
