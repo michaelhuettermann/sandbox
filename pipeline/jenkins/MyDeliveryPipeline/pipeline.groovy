@@ -64,31 +64,25 @@ node {
         }
     }
 
-    stage('Database migration') {
-        sh "mvn clean install -Pdb flyway:clean flyway:init flyway:info flyway:migrate flyway:info -f all/pom.xml"
-    }
-
-    stage('SonarQube analysis') {
-        withSonarQubeEnv('Sonar') {
-            sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.3.0.603:sonar -f all/pom.xml -Dsonar.projectKey=com.huettermann:all:master -Dsonar.login=$SONAR_UN -Dsonar.password=$SONAR_PW -Dsonar.language=java -Dsonar.sources=. -Dsonar.tests=. -Dsonar.test.inclusions=**/*Test*/** -Dsonar.exclusions=**/*Test*/**'
-        }
-    }
-
-    stage("SonarQube Quality Gate") {
-        timeout(time: 5, unit: 'MINUTES') {
-            def qg = waitForQualityGate()
-            if (qg.status != 'OK') {
-                error "Pipeline aborted due to quality gate failure: ${qg.status}"
+    stage('Process DB+Code inspect') {
+        parallel "Database migration": {
+            sh "mvn clean install -Pdb flyway:clean flyway:init flyway:info flyway:migrate flyway:info -f all/pom.xml"
+        }, "Code inspect": {
+            withSonarQubeEnv('Sonar') {
+                sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.3.0.603:sonar -f all/pom.xml -Dsonar.projectKey=com.huettermann:all:master -Dsonar.login=$SONAR_UN -Dsonar.password=$SONAR_PW -Dsonar.language=java -Dsonar.sources=. -Dsonar.tests=. -Dsonar.test.inclusions=**/*Test*/** -Dsonar.exclusions=**/*Test*/**'
+            }
+            timeout(time: 5, unit: 'MINUTES') {
+                def qg = waitForQualityGate()
+                if (qg.status != 'OK') {
+                    error "Pipeline aborted due to quality gate failure: ${qg.status}"
+                }
             }
         }
     }
 
-    stage('Restore WAR') {
-        sh "rm all/target/*.war"
-s        unstash 'war'
-    }
-
     stage('Distribute WAR') {
+        //sh "rm all/target/*.war"
+        unstash 'war'
         echo "Deploy Deployment Unit to Artifactory."
         def uploadSpec = """
        {
