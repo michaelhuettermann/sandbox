@@ -7,7 +7,7 @@ node {
 
     @Library('Util') _
 
-    stage('Setup') {
+    stage('Initialize') {
         sh "rm -rf /Users/michaelh/work/data/share/transfer"
         println flag
         println addprem
@@ -26,7 +26,7 @@ node {
         echo "workspace=${workspace}"
     }
 
-    stage('Initial work (Release, Provision)') {
+    stage('Setup version+env') {
         parallel "Release version": {
             releaseVersion 'all/pom.xml'
         }, "Prepare env, with Puppet": {
@@ -54,9 +54,9 @@ node {
     }
 
     stage('Handle version') {
-        parallel "Reserve version": {
+        parallel "Reserve binary": {
             stash includes: 'all/target/*.war', name: 'war'
-        }, "Fetch version": {
+        }, "Fetch version number": {
             def v = version()
             if (v) {
                 echo "Version=${v}"
@@ -85,8 +85,7 @@ node {
 
     stage('Restore WAR') {
         sh "rm all/target/*.war"
-        //sh "cp /Users/michaelh/work/data/share/transfer/*.war all/target/"
-        unstash 'war'
+s        unstash 'war'
     }
 
     stage('Distribute WAR') {
