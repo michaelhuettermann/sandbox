@@ -76,7 +76,7 @@ sleep 5
     }
     stage('Service Create') {
         sh '''
-curl -ski -X "POST"   -H "Authorization: Bearer ${BEARER}"  "https://${CLOUDIP}/api/v2/services/" --data "@/Users/michaelh/work/data/share/intellilj/sandbox/pipeline/jenkins/oracle-cloud/new-service.json"
+curl -ski -X "POST"   -H "Authorization: Bearer ${BEARER}"  "https://${CLOUDIP}/api/v2/services/" -d @./new-service.json"
 sleep 5
 '''
     }
