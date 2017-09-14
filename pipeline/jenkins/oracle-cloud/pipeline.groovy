@@ -81,6 +81,9 @@ sleep 5
 '''
     }
     stage('Deployment Create') {
+        timeout(time:5, unit:'MINUTES') {
+            input message:"Really sure to bring up version ${version}?"
+        }
         sh '''
 curl -ski -X "POST"   -H "Authorization: Bearer ${BEARER}"  "https://${CLOUDIP}/api/v2/deployments/" --data "@/Users/michaelh/work/data/share/intellilj/sandbox/pipeline/jenkins/oracle-cloud/create-deployment.json"
 sleep 5
