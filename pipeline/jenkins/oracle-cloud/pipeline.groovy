@@ -79,17 +79,21 @@ sleep 5
 '''
     }
     stage('Service Create') {
+        workspace = pwd()
+        echo "workspace=${workspace}"
         sh '''
-curl -ski -X "POST"   -H "Authorization: Bearer ${BEARER}"  "https://${CLOUDIP}/api/v2/services/" --data "@./new-service.json"
+curl -ski -X "POST"   -H "Authorization: Bearer ${BEARER}"  "https://${CLOUDIP}/api/v2/services/" --data "@${workspace}/new-service.json"
 sleep 5
 '''
     }
     stage('Deployment Create') {
+        workspace = pwd()
+        echo "workspace=${workspace}"
         timeout(time:5, unit:'MINUTES') {
             input message:"Really sure to bring up version ${version}?"
         }
         sh '''
-curl -ski -X "POST"   -H "Authorization: Bearer ${BEARER}"  "https://${CLOUDIP}/api/v2/deployments/" --data "@./create-deployment.json"
+curl -ski -X "POST"   -H "Authorization: Bearer ${BEARER}"  "https://${CLOUDIP}/api/v2/deployments/" --data "@${workspace}/create-deployment.json"
 sleep 5
 '''
     }
