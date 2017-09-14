@@ -89,7 +89,7 @@ sleep 5
         echo "workspace = ${WORKSPACE}"
         sh '''
 #!/bin/bash 
-curl -ski -X "POST"   -H "Authorization: Bearer ${BEARER}"  "https://${CLOUDIP}/api/v2/services/" --data "@${WORKSPACE}/new-service.json"
+curl -ski -X "POST"   -H "Authorization: Bearer ${BEARER}"  "https://${CLOUDIP}/api/v2/services/" --data "@/Users/michaelh/.jenkins/jobs/Project-Cloud-Deploy/workspace/new-service.json"
 sleep 5
 '''
     }
