@@ -30,6 +30,13 @@ events are just queued and processed sequentially. The sleeps are mainly for hav
 a nicer experience while watching the pipeline with Jenkins Blue Ocean.
    */
 node {
+    def WORKSPACE
+
+    stage('Prepare') {
+        WORKSPACE = pwd()
+        echo "where am I = ${WORKSPACE}"
+    }
+
     stage('Deployment Stop') {
 sh '''
 #!/bin/bash 
@@ -79,21 +86,21 @@ sleep 5
 '''
     }
     stage('Service Create') {
-        workspace = pwd()
-        echo "workspace=${workspace}"
+        echo "workspace = ${WORKSPACE}"
         sh '''
-curl -ski -X "POST"   -H "Authorization: Bearer ${BEARER}"  "https://${CLOUDIP}/api/v2/services/" --data "@${workspace}/new-service.json"
+#!/bin/bash 
+curl -ski -X "POST"   -H "Authorization: Bearer ${BEARER}"  "https://${CLOUDIP}/api/v2/services/" --data "@${WORKSPACE}/new-service.json"
 sleep 5
 '''
     }
     stage('Deployment Create') {
-        workspace = pwd()
-        echo "workspace=${workspace}"
+        echo "workspace = ${WORKSPACE}"
         timeout(time:5, unit:'MINUTES') {
             input message:"Really sure to bring up version ${version}?"
         }
         sh '''
-curl -ski -X "POST"   -H "Authorization: Bearer ${BEARER}"  "https://${CLOUDIP}/api/v2/deployments/" --data "@${workspace}/create-deployment.json"
+#!/bin/bash 
+curl -ski -X "POST"   -H "Authorization: Bearer ${BEARER}"  "https://${CLOUDIP}/api/v2/deployments/" --data "@${WORKSPACE}/create-deployment.json"
 sleep 5
 '''
     }
