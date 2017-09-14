@@ -76,7 +76,7 @@ sleep 5
     }
     stage('Service Create') {
         sh '''
-curl -ski -X "POST"   -H "Authorization: Bearer ${BEARER}"  "https://${CLOUDIP}/api/v2/services/" -d @./new-service.json"
+curl -ski -X "POST"   -H "Authorization: Bearer ${BEARER}"  "https://${CLOUDIP}/api/v2/services/" -d @./new-service.json
 sleep 5
 '''
     }
