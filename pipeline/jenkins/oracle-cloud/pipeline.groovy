@@ -39,14 +39,9 @@ curl -sk  -X "POST"   -H "Authorization: Bearer ${BEARER}"  "https://${CLOUDIP}/
 for (( ; ; ))
 do
     result=$(curl -sk -X 'GET' -H "Authorization: Bearer ${BEARER}" https://${CLOUDIP}/api/v2/deployments/meow-deploy  | python -c "import sys, json; print(json.load(sys.stdin)['deployment']['current_state'])") || true
-    echo "-->" $result
-    if [ ! -z "$result" ]; then
-        echo "Where is the deployment?"
-        break
-    fi
     if [ ! -z "true" ]; then
-        echo "Where is the deployment?"
-        break
+       echo "Where is the deployment?"
+       break
     fi
     if [ "$result" == "0" ]; then
        echo "Deployment stopped!"
@@ -94,7 +89,7 @@ sleep 5
             input message:"Really sure to bring up version ${version}?"
         }
         sh '''
-curl -ski -X "POST"   -H "Authorization: Bearer ${BEARER}"  "https://${CLOUDIP}/api/v2/deployments/" --data "@/Users/michaelh/work/data/share/intellilj/sandbox/pipeline/jenkins/oracle-cloud/create-deployment.json"
+curl -ski -X "POST"   -H "Authorization: Bearer ${BEARER}"  "https://${CLOUDIP}/api/v2/deployments/" -d @./create-deployment.json"
 sleep 5
 '''
     }
