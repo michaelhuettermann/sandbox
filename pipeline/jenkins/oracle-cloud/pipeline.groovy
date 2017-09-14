@@ -39,7 +39,12 @@ curl -sk  -X "POST"   -H "Authorization: Bearer ${BEARER}"  "https://${CLOUDIP}/
 for (( ; ; ))
 do
     result=$(curl -sk -X 'GET' -H "Authorization: Bearer ${BEARER}" https://${CLOUDIP}/api/v2/deployments/meow-deploy  | python -c "import sys, json; print(json.load(sys.stdin)['deployment']['current_state'])") || true
+    echo "-->" $result
     if [ ! -z "$result" ]; then
+        echo "Where is the deployment?"
+        break
+    fi
+    if [ ! -z "true" ]; then
         echo "Where is the deployment?"
         break
     fi
