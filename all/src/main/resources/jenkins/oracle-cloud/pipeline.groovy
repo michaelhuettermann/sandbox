@@ -48,11 +48,18 @@ node {
     stage('Deployment Stop') {
 
 
+        def param1 = "${BEARER}"
+        def param2 = "https://${CLOUDIP}/api/v2/deployments/meow-deploy"
+
+        println (param1 + " ## " + param2)
+
+
 
         p = restCall {
-            bearer = "${env.BEARER}"
-            url = "https://${env.CLOUDIP}/api/v2/deployments/meow-deploy"
+             bearer = param1
+             url = param2
         }
+
 
         println (p)
 
