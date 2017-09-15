@@ -52,9 +52,7 @@ curl -sk  -X "POST"   -H "Authorization: Bearer ${BEARER}"  "https://${CLOUDIP}/
 for (( ; ; ))
 do
     result=$(curl -sk -X 'GET' -H "Authorization: Bearer ${BEARER}" https://${CLOUDIP}/api/v2/deployments/meow-deploy) 
-    echo $result
     deploying=$(echo $result | grep deployment)
-    echo "deploying ... $deploying"
     if [[ -z "$deploying" ]]; then
        echo "Deployment empty!"
        break;
