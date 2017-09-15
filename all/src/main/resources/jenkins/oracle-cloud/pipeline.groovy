@@ -57,7 +57,7 @@ result=$(curl -sk -X 'GET' -H "Authorization: Bearer ${BEARER}" https://${CLOUDI
 
 echo "-1"
 
-deploying=$(echo $result | grep "not found")
+deploying=$(echo $result | grep "availability")
 
 echo "0"
 
@@ -65,7 +65,7 @@ echo $deploying
 
 echo "........."
 
-if [ ! -z "$deploying" ]; then
+if [ -z "$deploying" ]; then
     echo "1"
     echo "Deployment empty!"
 else 
