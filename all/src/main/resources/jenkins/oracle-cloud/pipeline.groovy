@@ -32,6 +32,8 @@ a nicer experience while watching the pipeline with Jenkins Blue Ocean.
 node {
     def WORKSPACE
 
+    @Library('Util') _
+
     stage('Prepare') {
         WORKSPACE = pwd()
         echo "where am I ... ${WORKSPACE}"
@@ -46,13 +48,19 @@ node {
     stage('Deployment Stop') {
 
 
-        def proc = "curl -sk -X POST -H 'Authorization: Bearer ${BEARER}' 'https://${CLOUDIP}/api/v2/deployments/meow-deploy/stop'".execute()
-        Thread.start { System.err << proc.err }
-        proc.waitFor()
 
-        println ( proc.outputStream )
+        p = restCall {
+            bearer = '$BEARER'
+            url = 'https://${CLOUDIP}/api/v2/deployments/meow-deploy'
+        }
+
+        println (p)
 
 
+
+        echo "***********"
+        echo "***********"
+        echo "***********"
 
 
 sh '''
@@ -60,6 +68,7 @@ sh '''
 export PYTHONIOENCODING=utf8
 echo -ne "Stopping deployment "
 curl -sk  -X "POST"   -H "Authorization: Bearer ${BEARER}"  "https://${CLOUDIP}/api/v2/deployments/meow-deploy/stop"
+
 result=$(curl -sk -X 'GET' -H "Authorization: Bearer ${BEARER}" https://${CLOUDIP}/api/v2/deployments/meow-deploy) 
 deploying=$(echo $result | grep "not found")
 if [ ! -z "$deploying" ]; then
