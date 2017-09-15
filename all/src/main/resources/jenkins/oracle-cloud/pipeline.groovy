@@ -51,12 +51,16 @@ echo -ne "Stopping deployment "
 curl -sk  -X "POST"   -H "Authorization: Bearer ${BEARER}"  "https://${CLOUDIP}/api/v2/deployments/meow-deploy/stop"
 for (( ; ; ))
 do
-    result=$(curl -sk -X 'GET' -H "Authorization: Bearer ${BEARER}" https://${CLOUDIP}/api/v2/deployments/meow-deploy  | python -c "import sys, json; print(json.load(sys.stdin)['deployment']['current_state'])") || true
-    if [ ! -z "true" ]; then
-       echo "Where is the deployment?"
-       break
-    fi
-    if [ "$result" == "0" ]; then
+    result=$(curl -sk -X 'GET' -H "Authorization: Bearer ${BEARER}" https://${CLOUDIP}/api/v2/deployments/meow-deploy) 
+    echo $result
+    deploying=$(echo $result | grep deployment)
+    echo "deploying ... $deploying"
+    if [[ -z "$deploying" ]]; then
+       echo "Deployment empty!"
+       break;
+    fi 
+    state=$(echo $result | python -c "import sys, json; print(json.load(sys.stdin)['deployment']['current_state'])")
+    if [ "$state" == "0" ]; then
        echo "Deployment stopped!"
        break
     else
