@@ -35,6 +35,8 @@ node {
     stage('Prepare') {
         WORKSPACE = pwd()
         echo "where am I = ${WORKSPACE}"
+        sh "curl -O https://raw.githubusercontent.com/michaelhuettermann/sandbox/master/all/src/main/resources/jenkins/oracle-cloud/new-service.json"
+        sh "curl -O https://raw.githubusercontent.com/michaelhuettermann/sandbox/master/all/src/main/resources/jenkins/oracle-cloud/create-deployment.json"
     }
 
     stage('Deployment Stop') {
@@ -96,7 +98,7 @@ sleep 5
     stage('Deployment Create') {
         echo "workspace = ${WORKSPACE}"
         timeout(time:5, unit:'MINUTES') {
-            input message:"Really sure to bring up version ${version}?"
+            input message:"Really sure to go the very last mile, with version ${version}?"
         }
         sh '''
 #!/bin/bash 
