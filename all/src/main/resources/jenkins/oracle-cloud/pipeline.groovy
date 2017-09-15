@@ -50,8 +50,8 @@ node {
 
 
         p = restCall {
-            bearer = '$BEARER'
-            url = 'https://${CLOUDIP}/api/v2/deployments/meow-deploy'
+            bearer = "$BEARER"
+            url = "https://${CLOUDIP}/api/v2/deployments/meow-deploy"
         }
 
         println (p)
