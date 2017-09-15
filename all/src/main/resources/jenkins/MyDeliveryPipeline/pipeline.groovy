@@ -9,7 +9,6 @@ node {
     @Library('Util') _
 
     stage('Initialize') {
-        sh "rm -rf /Users/michaelh/work/data/share/transfer"
         sh "rm -f index.html || true"
         println flag
         println addprem
