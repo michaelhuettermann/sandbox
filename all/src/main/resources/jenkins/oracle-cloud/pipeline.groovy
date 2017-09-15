@@ -49,24 +49,25 @@ sh '''
 export PYTHONIOENCODING=utf8
 echo -ne "Stopping deployment "
 curl -sk  -X "POST"   -H "Authorization: Bearer ${BEARER}"  "https://${CLOUDIP}/api/v2/deployments/meow-deploy/stop"
-for (( ; ; ))
-do
-    result=$(curl -sk -X 'GET' -H "Authorization: Bearer ${BEARER}" https://${CLOUDIP}/api/v2/deployments/meow-deploy) 
-    deploying=$(echo $result | grep deployment)
-    if [[ -z "$deploying" ]]; then
-       echo "Deployment empty!"
-       break;
-    fi 
-    state=$(echo $result | python -c "import sys, json; print(json.load(sys.stdin)['deployment']['current_state'])")
-    if [ "$state" == "0" ]; then
-       echo "Deployment stopped!"
-       break
-    else
-       echo -ne "."
-       sleep 2
-       continue
-    fi
-done
+result=$(curl -sk -X 'GET' -H "Authorization: Bearer ${BEARER}" https://${CLOUDIP}/api/v2/deployments/meow-deploy) 
+deploying=$(echo $result | grep deployment)
+if [[ -z "$deploying" ]]; then
+    echo "Deployment empty!"
+    break
+else 
+    for (( ; ; ))
+    do
+       result=$(curl -sk -X 'GET' -H "Authorization: Bearer ${BEARER}" https://${CLOUDIP}/api/v2/deployments/meow-deploy  | python -c "import sys, json; print(json.load(sys.stdin)['deployment']['current_state'])")
+       if [ "$result" == "0" ]; then
+          echo "Deployment stopped!"
+          break
+       else
+          echo -ne "."
+          sleep 2
+          continue
+       fi
+    done
+fi
 '''
     }
     stage('Deployment Delete') {
