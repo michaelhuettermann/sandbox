@@ -1,0 +1,13 @@
+{
+     "deployment_id":"meow-deploy",
+     "deployment_name":"meow1",
+     "desired_state":1,
+     "placement":{"pool_id":"default"},
+     "quantities":{"meow":1},"stack":
+        {
+          "content":"version: 2\nservices:\n  meow:\n    image: \"huettermann-docker-registry.bintray.io/michaelhuettermann/alpine-tomcat7:1.0.0\"\n    environment:\n      - \"occs:availability=per-pool\"\n      - \"occs:scheduler=random\"\n      - \"occs:description=This is official.\"\n    ports:\n      - \"8002:8080/tcp\"\n ",
+          "service_id":"meow",
+          "service_name":"meow1",
+          "subtype":"service"
+       }
+}
