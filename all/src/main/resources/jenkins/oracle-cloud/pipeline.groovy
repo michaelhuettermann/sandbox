@@ -44,6 +44,17 @@ node {
     }
 
     stage('Deployment Stop') {
+
+
+        def proc = "curl -sk -X POST -H 'Authorization: Bearer ${BEARER}' 'https://${CLOUDIP}/api/v2/deployments/meow-deploy/stop'".execute()
+        Thread.start { System.err << proc.err }
+        proc.waitFor()
+
+        println ( proc.outputStream )
+
+
+
+
 sh '''
 #!/bin/bash 
 export PYTHONIOENCODING=utf8
