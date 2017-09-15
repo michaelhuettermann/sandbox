@@ -204,7 +204,7 @@ node {
         }
     }
 
-    stage('Xray Quality Gate') {
+    stage('Binary inspect') {
         if (flag != "saas") {
             def scanConfig = [
                     'buildName'  : buildInfo.name,
