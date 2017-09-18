@@ -59,7 +59,7 @@ else
     echo "Deployment found ..."
     for (( ; ; ))
     do
-       result=$(curl -sk -X 'GET' -H "Authorization: Bearer ${BEARER}" https://${CLOUDIP}/api/v2/deployments/meow-deploy  |  \
+       result=$(curl -sk -X 'GET' -H "Authorization: Bearer ${BEARER}" https://${CLOUDIP}/api/v2/deployments/meow-deploy |  
           python -c "import sys, json; print(json.load(sys.stdin)['deployment']['current_state'])")
        if [ "$result" == "0" ]; then
           echo "Deployment stopped!"
@@ -110,9 +110,11 @@ sleep 5
         timeout(time:5, unit:'MINUTES') {
             input message:"Really sure to go the very last mile, with version ${version}?"
         }
-        sh '''
+sh '''
 #!/bin/bash 
-curl -ski -X "POST"   -H "Authorization: Bearer ${BEARER}"  "https://${CLOUDIP}/api/v2/deployments/" --data "@${WORKSPACE}/create-deployment.json"
+curl -ski -X "POST" -H "Authorization: Bearer ${BEARER}" 
+           "https://${CLOUDIP}/api/v2/deployments/" 
+    --data "@${WORKSPACE}/create-deployment.json"
 sleep 5
 '''
     }
