@@ -54,7 +54,7 @@ echo -ne "Stopping deployment "
 curl -sk  -X "POST"   -H "Authorization: Bearer ${BEARER}"  "https://${CLOUDIP}/api/v2/deployments/meow-deploy/stop"
 result=$(curl -sk -X 'GET' -H "Authorization: Bearer ${BEARER}" https://${CLOUDIP}/api/v2/deployments/meow-deploy) 
 echo 0
-deploying=$(echo $result | grep "availability") || true
+deploying=$((echo $result | grep "availability") || true)
 echo 1
 echo "*$deploying*"
 echo 2
