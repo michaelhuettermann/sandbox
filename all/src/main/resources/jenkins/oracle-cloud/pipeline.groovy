@@ -53,8 +53,9 @@ export PYTHONIOENCODING=utf8
 echo -ne "Stopping deployment "
 curl -sk  -X "POST"   -H "Authorization: Bearer ${BEARER}"  "https://${CLOUDIP}/api/v2/deployments/meow-deploy/stop"
 result=$(curl -sk -X 'GET' -H "Authorization: Bearer ${BEARER}" https://${CLOUDIP}/api/v2/deployments/meow-deploy) 
+echo "..."
 deploying=$(echo $result | grep "availability")
-if [[ -z "$deploying" ]] || [[ "$deploying" == "" ]]; then
+if [[ "$deploying" == "" ]]; then
     echo "No deployment found ... !"
 else 
     echo "Deployment found ..."
