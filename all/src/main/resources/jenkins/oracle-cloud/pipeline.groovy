@@ -17,7 +17,7 @@ node {
     stage('Deployment Stop') {
 
 sh '''
-#!/bin/bash 
+#!/bin/bash +x
 export PYTHONIOENCODING=utf8
 echo -ne "Stopping deployment "
 curl -sk  -X "POST"   -H "Authorization: Bearer ${BEARER}"  "https://${CLOUDIP}/api/v2/deployments/meow-deploy/stop"
