@@ -7,7 +7,7 @@ node {
         WORKSPACE = pwd()
         echo "where am I ... ${WORKSPACE}"
         echo "which version to process ... ${version}"
-        sh "rm ${WORKSPACE}/*.json"
+        sh "rm -f ${WORKSPACE}/*.json"
         sh "curl -O https://raw.githubusercontent.com/michaelhuettermann/sandbox/master/all/src/main/resources/jenkins/oracle-cloud/new-service.json"
         sh "curl -O https://raw.githubusercontent.com/michaelhuettermann/sandbox/master/all/src/main/resources/jenkins/oracle-cloud/create-deployment.json"
         sh "sed -i '' 's/VERSION/${version}/g' ${WORKSPACE}/new-service.json"
