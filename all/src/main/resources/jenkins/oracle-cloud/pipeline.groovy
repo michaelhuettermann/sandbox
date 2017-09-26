@@ -20,8 +20,8 @@ sh '''
 #!/bin/bash +x
 export PYTHONIOENCODING=utf8
 echo -ne "Stopping deployment "
-curl -sk  -X "POST"   -H "Authorization: Bearer ${BEARER}"  "https://${CLOUDIP}/api/v2/deployments/meow-deploy/stop"
-result=$(curl -sk -X 'GET' -H "Authorization: Bearer ${BEARER}" https://${CLOUDIP}/api/v2/deployments/meow-deploy) 
+curl -sk  -X "POST"   -H "Authorization: Bearer ${BEARER}"  "https://${CLOUDIP}/api/v2/deployments/meow-deploy/stop" &>/dev/null
+result=$(curl -sk -X 'GET' -H "Authorization: Bearer ${BEARER}" https://${CLOUDIP}/api/v2/deployments/meow-deploy) &>/dev/null
 if [[ "$result" == *"errors"* ]]; then
     echo "No deployment found ... !"
 else 
@@ -29,7 +29,7 @@ else
     for (( ; ; ))
     do
        result=$(curl -sk -X 'GET' -H "Authorization: Bearer ${BEARER}" https://${CLOUDIP}/api/v2/deployments/meow-deploy | \
-          python -c "import sys, json; print(json.load(sys.stdin)['deployment']['current_state'])")
+          python -c "import sys, json; print(json.load(sys.stdin)['deployment']['current_state'])") &>/dev/null
        if [ "$result" == "0" ]; then
           echo "Deployment stopped!"
           break
