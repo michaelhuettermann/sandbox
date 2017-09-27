@@ -1,0 +1,1 @@
+see https://jenkins.io/blog/2017/07/05/continuousdelivery-devops-artifactory/
