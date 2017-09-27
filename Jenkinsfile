@@ -19,7 +19,8 @@ try {
     */
     node('docker') {
         stage('A') {
-            println "0"
+            println "${BRANCH_NAME}"
+            checkout scm
         }
 
         stage('B') {
