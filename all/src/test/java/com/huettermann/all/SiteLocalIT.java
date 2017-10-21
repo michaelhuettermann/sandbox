@@ -16,7 +16,13 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.*;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class SiteLocalIT {
+
+    static final Logger logger =
+            LoggerFactory.getLogger(SiteLocalIT.class);
 
     private WebDriver driver;
 
@@ -27,7 +33,8 @@ public class SiteLocalIT {
 
     @Test
     public void testLocal() {
-        driver.get("http://localhost:8002/all");
+        driver.get("http://localhost:8001/all");
+        logger.info("Web site title: ", driver.getTitle());
         assertTrue(driver.getTitle().contains("Welcome in the Cloud!"));
     }
 
