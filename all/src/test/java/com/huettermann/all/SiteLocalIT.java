@@ -34,7 +34,7 @@ public class SiteLocalIT {
     @Test
     public void testLocal() {
         driver.get("http://localhost:8001/all");
-        logger.info("Web site title: ", driver.getTitle());
+        logger.info("Let's check the title.");
         assertTrue(driver.getTitle().contains("Welcome in the Cloud!"));
     }
 
