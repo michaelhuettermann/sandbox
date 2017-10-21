@@ -8,10 +8,10 @@ public class Message extends HttpServlet {
     
     private String userName;  //As this field is shared by all users, it's obvious that this piece of information should be managed differently
 
+    @Override
     public void doGet(HttpServletRequest request,
                       HttpServletResponse response)
         throws ServletException, IOException {
-
 
         String param = request.getParameter("param");
         ServletContext context = getServletContext( );
@@ -30,7 +30,7 @@ public class Message extends HttpServlet {
           out.flush();
           out.close();
         } catch (IOException io) {
-          io.printStackTrace();
+          context.printStackTrace();
         }
    }
 } 
