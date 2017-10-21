@@ -85,15 +85,12 @@ node {
             sh 'mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login=02abe7ff265b40ca0d6a7eb7a21e7487d565b5e0 -f all/pom.xml -Dsonar.projectKey=com.huettermann:all:master -Dsonar.language=java -Dsonar.sources=. -Dsonar.tests=. -Dsonar.test.inclusions=**/*Test*/** -Dsonar.exclusions=**/*Test*/**'
             //mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=michaelhuettermann-github -Dsonar.login=$SONAR_LOGIN
         }
-    }
-
-    stage('SonarQube qg') {
-    timeout(time: 1, unit: 'MINUTES') {
-        def qg = waitForQualityGate()
-        if (qg.status != 'OK') {
-            error "Pipeline aborted due to quality gate failure: ${qg.status}"
+        timeout(time: 1, unit: 'MINUTES') {
+            def qg = waitForQualityGate()
+            if (qg.status != 'OK') {
+                error "Pipeline aborted due to quality gate failure: ${qg.status}"
+            }
         }
-    }
     }
 
     stage('Distribute WAR') {
