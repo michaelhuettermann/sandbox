@@ -1,4 +1,6 @@
 node {
+    withCredentials([string(credentialsId: 'ORACLE_BEARER', variable: 'BEARER')]) {
+
     def WORKSPACE
 
     @Library('Util') _
@@ -96,5 +98,5 @@ curl -ski -X "POST" -H "Authorization: Bearer ${BEARER}" "https://${CLOUDIP}/api
 sleep 5 
 '''
     }
-
+    }
 }
