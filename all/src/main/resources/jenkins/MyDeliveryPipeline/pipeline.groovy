@@ -184,18 +184,8 @@ node {
     }
 
     stage('Distribute Docker image') {
-        echo "Push Docker image to Artifactory Docker Registry."
-        if (flag == "ra1") {
-            def artDocker = Artifactory.docker("$DOCKER_UN_ADMIN", "$DOCKER_PW_ADMIN")
-            def dockerInfo = artDocker.push("$ARTI1REGISTRY/michaelhuettermann/alpine-tomcat7:latest", "docker-dev-local")
-            buildInfo.append(dockerInfo)
-            server.publishBuildInfo(buildInfo)
-        } else if (flag == "ra2") {
-            def artDocker = Artifactory.docker("$DOCKER_UN_ADMIN", "$DOCKER_PW_ADMIN")
-            def dockerInfo = artDocker.push("$ARTI2REGISTRY/michaelhuettermann/alpine-tomcat7:latest", "docker-dev-local")
-            buildInfo.append(dockerInfo)
-            server.publishBuildInfo(buildInfo)
-        } else if (flag == "saas") {
+        withCredentials([usernamePassword(credentialsId: 'DOCKER', passwordVariable: 'DOCKER_PW', usernameVariable: 'DOCKER_UN')]) {
+            echo "Push Docker image to Artifactory Docker Registry."
             String version = new File("${workspace}/version.properties").text.trim()
             println "Processing version: ${version}"
             def artDocker = Artifactory.docker("$DOCKER_UN", "$DOCKER_PW")
