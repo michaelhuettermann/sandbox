@@ -80,9 +80,9 @@ node {
     }
 
     stage('SonarQube analysis') {
-        withCredentials([string(credentialsId: 'SONAR', variable: 'TOKEN')]) {
+        withCredentials([usernamePassword(credentialsId: 'SONAR', passwordVariable: 'SONAR_PW', usernameVariable: 'SONAR_UN')]) {
             withSonarQubeEnv('Sonar') {
-                sh 'mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login=$TOKEN -f all/pom.xml -Dsonar.projectKey=com.huettermann:all:master -Dsonar.language=java -Dsonar.sources=. -Dsonar.tests=. -Dsonar.test.inclusions=**/*Test*/** -Dsonar.exclusions=**/*Test*/**'
+                sh 'mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login=$SONAR_UN -Dsonar.password=$SONAR_PW -f all/pom.xml -Dsonar.projectKey=com.huettermann:all:master -Dsonar.language=java -Dsonar.sources=. -Dsonar.tests=. -Dsonar.test.inclusions=**/*Test*/** -Dsonar.exclusions=**/*Test*/**'
             }
             timeout(time: 2, unit: 'MINUTES') {
                 def qg = waitForQualityGate()
@@ -94,7 +94,6 @@ node {
     }
 
     stage('Distribute WAR') {
-        //sh "rm all/target/*.war"
         unstash 'war'
         echo "Deploy Deployment Unit to Artifactory."
         def uploadSpec = """
