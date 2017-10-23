@@ -12,6 +12,7 @@ node {
             sh "rm -f ${WORKSPACE}/*.json"
             sh "curl -O https://raw.githubusercontent.com/michaelhuettermann/sandbox/master/all/src/main/resources/jenkins/oracle-cloud/new-service.json"
             sh "curl -O https://raw.githubusercontent.com/michaelhuettermann/sandbox/master/all/src/main/resources/jenkins/oracle-cloud/create-deployment.json"
+            milestone Deploy
             sh "sed -i '' 's/VERSION/${version}/g' ${WORKSPACE}/new-service.json"
             sh "sed -i '' 's/VERSION/${version}/g' ${WORKSPACE}/create-deployment.json"
         }
