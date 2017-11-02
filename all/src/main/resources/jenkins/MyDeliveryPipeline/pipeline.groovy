@@ -53,6 +53,17 @@ node {
             echo "Removing untagged Docker images"
             docker rmi -f $(docker images | grep "<none>" | awk "{print \$3}") || true
             echo "---------------------------------------"'''
+       }, "Run Socat": {
+            sh '''#!/bin/sh
+            so=$(docker ps | grep bobrikk)
+            echo $so
+            if [ -n "$so" ]
+            then
+            echo "Bytestream container running..."
+            else
+            docker run -d -v /var/run/docker.sock:/var/run/docker.sock -p 127.0.0.1:1234:1234 bobrik/socat TCP-LISTEN:1234,fork UNIX-CONNECT:/var/run/docker.sock
+            fi
+            echo "---------------------------------------"'''
        }
     }
 
@@ -188,15 +199,10 @@ node {
             echo "Push Docker image to Artifactory Docker Registry."
             String version = new File("${workspace}/version.properties").text.trim()
             println "Processing version: ${version}"
-
             def artDocker = Artifactory.docker("$DOCKER_UN", "$DOCKER_PW", "tcp://127.0.0.1:1234")
-
-            //def artDocker= Artifactory.docker username: "$DOCKER_UN", password: "$DOCKER_PW", host: "tcp://127.0.0.1:1234"
-
+            artDocker.addProperty("eat", "pizza").addProperty("drink", "beer")
             def dockerInfo = artDocker.push("$ARTI3REGISTRY/michaelhuettermann/alpine-tomcat7:${version}", "docker-local")
             buildInfo.append(dockerInfo)
-
-            //artDocker.push("$ARTI3REGISTRY/michaelhuettermann/alpine-tomcat7:${version}", "docker-local")
             server.publishBuildInfo(buildInfo)
         }
     }
