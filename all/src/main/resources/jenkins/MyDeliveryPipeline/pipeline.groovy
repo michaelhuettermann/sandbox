@@ -207,17 +207,17 @@ node {
         }
     }
 
-    stage('Binary inspect') {
-        if (flag != "saas") {
-            def scanConfig = [
-                    'buildName'  : buildInfo.name,
-                    'buildNumber': buildInfo.number,
-                    'failBuild'  : false
-            ]
-            def scanResult = server.xrayScan scanConfig
-            echo scanResult as String
-        }
-    }
+    //stage('Binary inspect') {
+    //    if (flag != "saas") {
+    //        def scanConfig = [
+    //                'buildName'  : buildInfo.name,
+    //                'buildNumber': buildInfo.number,
+    //                'failBuild'  : false
+    //        ]
+    //        def scanResult = server.xrayScan scanConfig
+    //        echo scanResult as String
+    //    }
+    //}
 
     stage('Certify') {
         def matcher = manager.getLogMatcher(".*Hash (.*)\$")
@@ -227,11 +227,11 @@ node {
         println "Labeled!"
     }
 
-    stage('Tidy up') {
-        if (addprem == "true") {
-            sh "jfrog rt del --url=http://localhost:8071/artifactory --quiet=true --apikey=AKCp2WXX7SDvcsmny528sSDnaB3zACkNQoscD8D1WmxhMV9gk6Wp8mVWC8bh38kJQbXagUT8Z generic-local/hello.txt"
-        }
-    }
+    //stage('Tidy up') {
+    //    if (addprem == "true") {
+    //        sh "jfrog rt del --url=http://localhost:8071/artifactory --quiet=true --apikey=AKCp2WXX7SDvcsmny528sSDnaB3zACkNQoscD8D1WmxhMV9gk6Wp8mVWC8bh38kJQbXagUT8Z generic-local/hello.txt"
+    //    }
+    //}
 
 }
 
