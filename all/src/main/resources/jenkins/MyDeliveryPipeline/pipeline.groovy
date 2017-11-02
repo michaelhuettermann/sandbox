@@ -113,7 +113,7 @@ node {
                {
                    "pattern": "all/target/all-(*).war",
                    "target": "libs-release-local/com/huettermann/web/{1}/",
-                   "props":  "where=koeln;owner=huettermann" 
+                   "props":  "eat=pizza;drink=beer" 
                } ]         
            }
            """
