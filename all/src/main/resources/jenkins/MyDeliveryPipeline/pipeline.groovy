@@ -188,9 +188,10 @@ node {
             echo "Push Docker image to Artifactory Docker Registry."
             String version = new File("${workspace}/version.properties").text.trim()
             println "Processing version: ${version}"
-            //def artDocker = Artifactory.docker("$DOCKER_UN", "$DOCKER_PW")
 
-            def artDocker= Artifactory.docker username: "$DOCKER_UN", password: "$DOCKER_PW", host: "tcp://127.0.0.1:1234"
+            def artDocker = Artifactory.docker("$DOCKER_UN", "$DOCKER_PW", "tcp://127.0.0.1:1234")
+
+            //def artDocker= Artifactory.docker username: "$DOCKER_UN", password: "$DOCKER_PW", host: "tcp://127.0.0.1:1234"
 
             def dockerInfo = artDocker.push("$ARTI3REGISTRY/michaelhuettermann/alpine-tomcat7:${version}", "docker-local")
             buildInfo.append(dockerInfo)
