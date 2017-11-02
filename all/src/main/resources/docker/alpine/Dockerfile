@@ -15,6 +15,8 @@ ENV TOMCAT_VERSION_FULL  8.5.16
 # Download, install, housekeeping
 RUN apk add --update curl &&\
   apk add bash &&\
+  apk add gunzip &&\
+  apk add tar &&\
   mkdir /opt &&\
   curl -LO http://mirror.netcologne.de/apache.org/tomcat/tomcat-${TOMCAT_VERSION_MAJOR}/v${TOMCAT_VERSION_FULL}/bin/apache-tomcat-${TOMCAT_VERSION_FULL}.tar.gz &&\
   gunzip -c apache-tomcat-${TOMCAT_VERSION_FULL}.tar.gz | tar -xf - -C /opt &&\
