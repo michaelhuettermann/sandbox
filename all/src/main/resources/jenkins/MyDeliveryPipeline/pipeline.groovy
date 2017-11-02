@@ -55,7 +55,7 @@ node {
             echo "---------------------------------------"'''
        }, "Run Socat": {
             sh '''#!/bin/sh
-            so=$(docker ps | grep bobrikk)
+            so=$(docker ps | grep socat)
             echo $so
             if [ -n "$so" ]
             then
