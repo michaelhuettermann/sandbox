@@ -21,7 +21,7 @@ RUN apk add --update curl &&\
   rm -f apache-tomcat-${TOMCAT_VERSION_FULL}.tar.gz &&\
   ln -s /opt/apache-tomcat-${TOMCAT_VERSION_FULL} /opt/tomcat &&\
   rm -rf /opt/tomcat/webapps/examples /opt/tomcat/webapps/docs &&\
-  apk del curl &&\
+  # apk del curl &&\
   rm -rf /var/cache/apk/*
 
 # Download and deploy the Java EE WAR
