@@ -19,10 +19,10 @@ RUN apk add --update curl &&\
   curl -LO http://mirror.netcologne.de/apache.org/tomcat/tomcat-${TOMCAT_VERSION_MAJOR}/v${TOMCAT_VERSION_FULL}/bin/apache-tomcat-${TOMCAT_VERSION_FULL}.tar.gz &&\
   gunzip -c apache-tomcat-${TOMCAT_VERSION_FULL}.tar.gz | tar -xf - -C /opt &&\
   rm -f apache-tomcat-${TOMCAT_VERSION_FULL}.tar.gz &&\
-  ln -s /opt/apache-tomcat-${TOMCAT_VERSION_FULL} /opt/tomcat &&\
-  rm -rf /opt/tomcat/webapps/examples /opt/tomcat/webapps/docs &&\
+  ln -s /opt/apache-tomcat-${TOMCAT_VERSION_FULL} /opt/tomcat
+  # rm -rf /opt/tomcat/webapps/examples /opt/tomcat/webapps/docs &&\
   # apk del curl &&\
-  rm -rf /var/cache/apk/*
+  # rm -rf /var/cache/apk/*
 
 # Download and deploy the Java EE WAR
 #ADD https://${ARTI}/list/libs-release-local/com/huettermann/web/${VER}/all-${VER}.war /opt/tomcat/webapps/all.war
