@@ -1,4 +1,4 @@
-FROM openjdk:8-jre-alpine
+FROM openjdk:8-jdk-alpine
 LABEL maintainer "michael@huettermann.net"
 
 # Domain of your Artifactory. Any other storage and URI download link works, just change the ADD command, see below.
@@ -15,8 +15,8 @@ ENV TOMCAT_VERSION_FULL  8.5.16
 # Download, install, housekeeping
 RUN apk add --update curl &&\
   apk add bash &&\
-  apk add gunzip &&\
-  apk add tar &&\
+  apk add --update gunzip &&\
+  apk add --update tar &&\
   mkdir /opt &&\
   curl -LO http://mirror.netcologne.de/apache.org/tomcat/tomcat-${TOMCAT_VERSION_MAJOR}/v${TOMCAT_VERSION_FULL}/bin/apache-tomcat-${TOMCAT_VERSION_FULL}.tar.gz &&\
   gunzip -c apache-tomcat-${TOMCAT_VERSION_FULL}.tar.gz | tar -xf - -C /opt &&\
