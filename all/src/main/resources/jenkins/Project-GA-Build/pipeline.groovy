@@ -36,6 +36,13 @@ pipeline {
                 sh 'docker push $BINTRAYREGISTRY/michaelhuettermann/alpine-tomcat7:$version --disable-content-trust'
             }
         }
+        stage('Deploy to Production') {
+            steps {
+                script {
+                    build(job: "Project-Cloud-Deploy", parameters: [[$class: 'StringParameterValue', name: 'version', value: "$version" ]])
+                }
+            }
+        }
     }
     post {
         always {
