@@ -6,6 +6,13 @@ pipeline {
                 echo 'Preparing ...'
             }
         }
+        stage('Unnecessary things') {
+            steps {
+                if (env.BRANCH_NAME == 'branch') {
+                    echo 'I only execute on the master branch'
+                }
+            }
+        }
         stage('Certify WAR') {
             steps {
                 echo 'Certifying WAR ...'
