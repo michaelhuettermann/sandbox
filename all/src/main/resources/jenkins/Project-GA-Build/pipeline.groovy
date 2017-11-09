@@ -39,7 +39,7 @@ pipeline {
         stage('Deploy to Production') {
             steps {
                 script {
-                    build(job: "Project-Cloud-Deploy", parameters: [[$class: 'StringParameterValue', name: 'version', value: "$version" ]])
+                    build(job: "Project-Cloud-Deploy", parameters: [[$class: 'StringParameterValue', name: 'version', value: "$version" ]], wait: false)
                 }
             }
         }
