@@ -7,11 +7,13 @@ pipeline {
             }
         }
         stage('Unnecessary things') {
-            steps {
-                if (env.BRANCH_NAME == 'branch') {
-                    echo 'I only execute on the master branch'
-                }
+            when {
+                branch 'production'
             }
+            steps {
+                echo 'Deploying'
+            }
+
         }
         stage('Certify WAR') {
             steps {
