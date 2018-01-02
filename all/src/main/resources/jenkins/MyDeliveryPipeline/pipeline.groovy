@@ -203,7 +203,6 @@ node {
             server.username = "$DOCKER_UN"
             server.password = "$DOCKER_PW"
             def artDocker = Artifactory.docker server:server, host: "tcp://127.0.0.1:1234"
-
             artDocker.addProperty("eat", "pizza").addProperty("drink", "beer")
             def dockerInfo = artDocker.push("$ARTI3REGISTRY/michaelhuettermann/alpine-tomcat7:${version}", "docker-local")
             buildInfo.append(dockerInfo)
