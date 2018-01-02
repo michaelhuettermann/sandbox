@@ -142,7 +142,7 @@ node {
     stage('Build Docker image and run container') {
         sh '''
        if [ "$flag" == "saas" ]; then
-	       ARTI=$ARTI3
+           ARTI=$ARTI3
            ARTIREGISTRY=$ARTI3REGISTRY
        fi
        if [ "$flag" == "ra2" ]; then
@@ -150,7 +150,7 @@ node {
            ARTIREGISTRY=$ARTI2REGISTRY
        fi
        if [ "$flag" == "ra1" ]; then
-	       ARTI=$ARTI1
+           ARTI=$ARTI1
            ARTIREGISTRY=$ARTI1REGISTRY
        fi
        
@@ -199,7 +199,11 @@ node {
             echo "Push Docker image to Artifactory Docker Registry."
             String version = new File("${workspace}/version.properties").text.trim()
             println "Processing version: ${version}"
-            def artDocker = Artifactory.docker("$DOCKER_UN", "$DOCKER_PW", "tcp://127.0.0.1:1234")
+            //def artDocker = Artifactory.docker("$DOCKER_UN", "$DOCKER_PW", "tcp://127.0.0.1:1234")
+            server.username = "$DOCKER_UN"
+            server.password = "$DOCKER_PW"
+            def artDocker = Artifactory.docker(server, "tcp://127.0.0.1:1234")
+
             artDocker.addProperty("eat", "pizza").addProperty("drink", "beer")
             def dockerInfo = artDocker.push("$ARTI3REGISTRY/michaelhuettermann/alpine-tomcat7:${version}", "docker-local")
             buildInfo.append(dockerInfo)
