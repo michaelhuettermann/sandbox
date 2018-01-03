@@ -15,7 +15,6 @@ node {
             sh "sed -i '' 's/VERSION/${version}/g' ${WORKSPACE}/new-service.json"
             sh "sed -i '' 's/VERSION/${version}/g' ${WORKSPACE}/create-deployment.json"
         }
-
         stage('Deployment Stop') {
 sh '''
 #!/bin/bash 
@@ -60,7 +59,7 @@ set +x
 curl -sk -X  "DELETE" -H "Authorization: Bearer ${BEARER}"  "https://${CLOUDIP}/api/v2/services/meow"
 sleep 5
 '''
-}
+        }
         stage('Image Delete') {
 sh '''
 #!/bin/bash 
@@ -82,9 +81,8 @@ echo "workspace = ${WORKSPACE}"
 sh '''
 #!/bin/bash 
 set +x
-curl -ski -X "POST"  
-  -H "Authorization: Bearer ${BEARER}" "https://${CLOUDIP}/api/v2/services/" \
-  --data "@${WORKSPACE}/new-service.json"
+curl -ski -X "POST" -H "Authorization: Bearer ${BEARER}" "https://${CLOUDIP}/api/v2/services/" \
+   --data "@${WORKSPACE}/new-service.json"
 sleep 5
 '''
         }
@@ -96,7 +94,8 @@ sleep 5
 sh '''
 #!/bin/bash 
 set +x
-curl -ski -X "POST" -H "Authorization: Bearer ${BEARER}" "https://${CLOUDIP}/api/v2/deployments/" --data "@${WORKSPACE}/create-deployment.json" 
+curl -ski -X "POST" -H "Authorization: Bearer ${BEARER}" "https://${CLOUDIP}/api/v2/deployments/" \
+   --data "@${WORKSPACE}/create-deployment.json" 
 sleep 5 
 '''
         }
