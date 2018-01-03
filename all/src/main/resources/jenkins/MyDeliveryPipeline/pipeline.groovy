@@ -4,7 +4,7 @@ node {
     def rtMaven
     def buildInfo
     def workspace
-    def v
+    def ver
 
     @Library('Util') _
 
@@ -30,9 +30,9 @@ node {
     stage('Setup') {
         parallel "Release version": {
             releaseVersion 'all/pom.xml'
-            v = version()
-            if (v) {
-                echo "Version calculated=${v}"
+            ver = version()
+            if (ver) {
+                echo "Version calculated=${ver}"
             }
         }, "Prepare env, with Puppet": {
             sh "puppet apply all/src/main/resources/puppet/init.pp"
@@ -87,7 +87,7 @@ node {
     }
 
     stage('Database migration') {
-            sh "mvn clean install -Pdb flyway:clean flyway:init flyway:info flyway:migrate flyway:info -f all/pom.xml"
+        sh "mvn clean install -Pdb flyway:clean flyway:init flyway:info flyway:migrate flyway:info -f all/pom.xml"
     }
 
     stage('SonarQube analysis') {
@@ -154,9 +154,9 @@ node {
            ARTIREGISTRY=$ARTI1REGISTRY
        fi
        
-       ver=$(mvn -f all/pom.xml org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dartifact=com.huettermann:all -Dexpression=project.version|grep -Ev \'(^\\[|Download\\w+:)\')
-       echo $ver > version.properties
-       
+       //ver=$(mvn -f all/pom.xml org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dartifact=com.huettermann:all -Dexpression=project.version|grep -Ev \'(^\\[|Download\\w+:)\')
+       //echo $ver > version.properties
+        
        cd all/src/main/resources/docker/alpine
        echo "Building new Tomcat 7 container"
        docker build -f Dockerfile --build-arg ARTI=$ARTI --build-arg VER=$ver -t $ARTIREGISTRY/michaelhuettermann/alpine-tomcat7:$ver . 
