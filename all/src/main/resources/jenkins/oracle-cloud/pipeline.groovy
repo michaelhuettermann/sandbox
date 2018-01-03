@@ -82,9 +82,9 @@ echo "workspace = ${WORKSPACE}"
 sh '''
 #!/bin/bash 
 set +x
-curl -ski -X "POST" \\ 
-  -H "Authorization: Bearer ${BEARER}" \\
-  "https://${CLOUDIP}/api/v2/services/" \\
+curl -ski -X "POST" \ 
+  -H "Authorization: Bearer ${BEARER}" \
+  "https://${CLOUDIP}/api/v2/services/" \
   --data "@${WORKSPACE}/new-service.json"
 sleep 5
 '''
