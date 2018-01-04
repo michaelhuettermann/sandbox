@@ -4,7 +4,7 @@ node {
     def rtMaven
     def buildInfo
     def workspace
-    def ver
+    def v
 
     @Library('Util') _
 
@@ -30,9 +30,9 @@ node {
     stage('Setup') {
         parallel "Release version": {
             releaseVersion 'all/pom.xml'
-            ver = version()
-            if (ver) {
-                echo "Version calculated=${ver}"
+            v = version()
+            if (v) {
+                echo "Version calculated=${v}"
             }
         }, "Prepare env, with Puppet": {
             sh "puppet apply all/src/main/resources/puppet/init.pp"
