@@ -26,7 +26,6 @@ RUN apk add --update curl &&\
 
 # Download and deploy the Java EE WAR
 ADD http://${ARTI}/list/libs-release-local/com/huettermann/web/${VER}/all-${VER}.war /opt/tomcat/webapps/all.war
-#RUN curl -k https://${ARTI}/list/libs-release-local/com/huettermann/web/${VER}/all-${VER}.war -o /opt/tomcat/webapps/all.war
 
 RUN chmod 755 /opt/tomcat/webapps/*.war
 
