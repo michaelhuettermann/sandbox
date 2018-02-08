@@ -15,7 +15,8 @@ node {
             sh "sed -i '' 's/VERSION/${version}/g' ${WORKSPACE}/new-service.json"
             sh "sed -i '' 's/VERSION/${version}/g' ${WORKSPACE}/create-deployment.json"
 
-            sh 'curl -OL https://bintray.com/huettermann/meow/download_file?file_path=all-${version}-GA.war'
+            echo "certify"
+            sh 'curl -O https://huettermann.bintray.com/meow/all-${version}-GA.war'
             fingerprint 'all-${version}-GA.war'
         }
         stage('Deployment Stop') {
