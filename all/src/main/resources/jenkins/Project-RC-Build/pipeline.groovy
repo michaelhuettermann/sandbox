@@ -18,6 +18,8 @@ pipeline {
         stage('Certify WAR') {
             steps {
                 echo 'Certifying WAR ...'
+                sh 'curl -O http://$ARTI3/list/libs-release-local/com/huettermann/web/$version/all-$version.war /opt/tomcat/webapps/all.war'
+                fingerprint 'all.war'
             }
         }
         stage('Promote WAR') {
