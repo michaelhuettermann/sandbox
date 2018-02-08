@@ -223,6 +223,7 @@ node {
     //}
 
     stage('Certify') {
+        archiveArtifacts artifacts: 'all/target/all-(*).war', fingerprint: true
         def matcher = manager.getLogMatcher(".*Hash (.*)\$")
         if (matcher?.matches()) {
             manager.addShortText(matcher.group(1).substring(0, 8))
