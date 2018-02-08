@@ -4,6 +4,7 @@ pipeline {
         stage('Prepare') {
             steps {
                 echo 'Preparing ...'
+                sh 'curl -O http://$ARTI3/list/libs-release-local/com/huettermann/web/$version/all-$version.war'
             }
         }
         stage('Unnecessary things') {
@@ -18,7 +19,6 @@ pipeline {
         stage('Certify WAR') {
             steps {
                 echo 'Certifying WAR ...'
-                sh 'curl -O http://$ARTI3/list/libs-release-local/com/huettermann/web/$version/all-$version.war'
                 fingerprint 'all-$version.war'
             }
         }
