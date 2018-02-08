@@ -14,6 +14,9 @@ node {
             sh "curl -O https://raw.githubusercontent.com/michaelhuettermann/sandbox/master/all/src/main/resources/jenkins/oracle-cloud/create-deployment.json"
             sh "sed -i '' 's/VERSION/${version}/g' ${WORKSPACE}/new-service.json"
             sh "sed -i '' 's/VERSION/${version}/g' ${WORKSPACE}/create-deployment.json"
+
+            sh 'curl -OL https://bintray.com/huettermann/meow/download_file?file_path=all-${version}-GA.war'
+            fingerprint 'all-${version}-GA.war'
         }
         stage('Deployment Stop') {
 sh '''
