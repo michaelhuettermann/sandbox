@@ -6,7 +6,7 @@ pipeline {
                 echo 'Preparing ...'
                 sh 'curl -O http://$ARTI3/list/libs-release-local/com/huettermann/web/$version/all-$version.war'
                 step([$class: 'CopyArtifact', projectName: '/devoptics/application-comp', filter: 'README.md'])
-                archiveArtifacts artifacts: 'Jenkinsfile', fingerprint: true
+                archiveArtifacts artifacts: 'README.md', fingerprint: true
             }
         }
         stage('Unnecessary things') {
