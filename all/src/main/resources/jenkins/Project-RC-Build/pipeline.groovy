@@ -5,9 +5,8 @@ pipeline {
             steps {
                 echo 'Preparing ...'
                 sh 'curl -O http://$ARTI3/list/libs-release-local/com/huettermann/web/$version/all-$version.war'
-
                 step([$class: 'CopyArtifact', projectName: 'application-comp'])
-                archiveArtifacts artifacts: '*.txt', fingerprint: true
+                archiveArtifacts artifacts: 'Jenkinsfile', fingerprint: true
 
             }
         }
