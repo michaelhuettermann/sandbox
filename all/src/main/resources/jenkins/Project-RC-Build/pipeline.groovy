@@ -5,8 +5,7 @@ pipeline {
             steps {
                 echo 'Preparing ...'
                 sh 'curl -O http://$ARTI3/list/libs-release-local/com/huettermann/web/$version/all-$version.war'
-                step([$class: 'CopyArtifact', projectName: '/devoptics/application-comp', filter: 'README.md'])
-                archiveArtifacts artifacts: 'README.md', fingerprint: true
+                sh 'curl -O https://github.com/michaelhuettermann/DevOptics-application/blob/master/README.md'
             }
         }
         stage('Unnecessary things') {
@@ -22,6 +21,7 @@ pipeline {
             steps {
                 echo 'Certifying WAR ...'
                 fingerprint 'all-$version.war'
+                fingerprint 'README.md'
             }
         }
         stage('Promote WAR') {
