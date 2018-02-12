@@ -22,6 +22,7 @@ pipeline {
             steps {
                 echo 'Certifying WAR ...'
                 fingerprint 'all-$version.war'
+                fingerprint 'README.md'
             }
         }
         stage('Promote WAR') {
