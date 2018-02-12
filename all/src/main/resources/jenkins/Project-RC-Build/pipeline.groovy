@@ -5,7 +5,8 @@ pipeline {
             steps {
                 echo 'Preparing ...'
                 sh 'curl -O http://$ARTI3/list/libs-release-local/com/huettermann/web/$version/all-$version.war'
-                sh 'curl -O https://github.com/michaelhuettermann/DevOptics-application/blob/master/README.md'
+
+                devOpticsConsumes masterUrl: 'http://localhost:8080', jobName: 'devoptics/application-comp'
             }
         }
         stage('Unnecessary things') {
@@ -21,7 +22,6 @@ pipeline {
             steps {
                 echo 'Certifying WAR ...'
                 fingerprint 'all-$version.war'
-                fingerprint 'README.md'
             }
         }
         stage('Promote WAR') {
