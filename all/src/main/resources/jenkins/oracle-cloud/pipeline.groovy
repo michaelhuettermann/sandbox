@@ -18,6 +18,7 @@ node {
             echo "certify"
             sh 'curl -O https://huettermann.bintray.com/meow/all-${version}-GA.war'
             fingerprint 'all-${version}-GA.war'
+            devOpticsConsumes masterUrl: 'http://localhost:8080/', jobName: 'Project-GA-Build'
         }
         stage('Deployment Stop') {
 sh '''

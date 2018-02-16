@@ -4,6 +4,7 @@ pipeline {
         stage('Prepare') {
             steps {
                 sh 'curl -O http://$ARTI3/simple/libs-releases-staging-local/com/huettermann/web/$version/all-$version.war'
+                devOpticsConsumes masterUrl: 'http://localhost:8080/', jobName: 'Project-RC-Build'
             }
         }
         stage('Certify WAR') {
