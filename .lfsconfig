@@ -1,2 +1,2 @@
 [lfs]
-	url = http://ec2-54-93-217-250.eu-central-1.compute.amazonaws.com/artifactory/api/lfs/gitlfs
+	url = https://huttermann.jfrog.io/huttermann/api/lfs/gitlfs
