@@ -1,0 +1,2 @@
+--index-url https://huttermann.jfrog.io/huttermann/api/pypi/pypi/simple
+argparse==1.2.1
