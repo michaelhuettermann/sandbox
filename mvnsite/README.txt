@@ -2,7 +2,7 @@ mvn archetype:generate | grep site
 => org.apache.maven.archetypes:maven-archetype-site
 mvn archetype:generate
 102
-groupId: com.conti
+groupId: com.huettermann
 packageId: site
 cd site
 mvn site
