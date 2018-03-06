@@ -6,10 +6,10 @@ setup(
     version='0.4',
     packages=find_packages(exclude=['tests*']),
     license='MIT',
-    description='An example python package',
+    description=‘a python package',
     long_description=open('README.txt').read(),
     install_requires=['numpy'],
-    url='https://github.com/BillMills/python-package-example',
-    author='Bill Mills',
-    author_email='myemail@example.com'
+    url='https://github.com/michaelhuettermann/sandbox',
+    author=‘Michael Huettermann’,
+    author_email=‘michael@huettermann.net’
 )
