@@ -1,11 +1,32 @@
-python-package-example
+run:
+/Users/michaelh/work/data/sandbox/python-package-example
+python
+import myPackage
+print myPackage.somePython.fahrToKelv(32)
 
-This is a minimal python package, for use alongside the lesson: https://github.com/BillMills/pythonPackageLesson
+upload:
+setup.py => change version number
+python setup.py sdist
+ls -la dist
+python setup.py sdist upload -r local
 
-Contributing:
+install:
+pip install hello-from-secret-unicorns
 
-Please do! Guidelines:
+list:
+pip list
 
- - This lesson is for beginners. Yes there are plenty of super fancy things we don't cover here; someday, we'll make a different, super fancy lesson to teach those things.
- - Max 100 lines or 500 words per PR please.
- - Open an issue or empty PR first to talk about controversial changes.
+uninstall:
+pip uninstall hello-from-secret-unicorns
+
+search:
+pip search "solima-hello" --verbose -i https://huttermann.jfrog.io/huttermann/api/pypi/pypi/ | grep -i solima-hello
+pip install solima-hello
+pip list | grep solima
+
+config:
+/Users/michaelh/.pip/pip.conf
+
+resources:
+https://www.jfrog.com/confluence/display/RTF/PyPI+Repositories 
+
