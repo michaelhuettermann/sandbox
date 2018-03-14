@@ -199,7 +199,6 @@ node {
             echo "Push Docker image to Artifactory Docker Registry."
             String version = new File("${workspace}/version.properties").text.trim()
             println "Processing version: ${version}"
-            //def artDocker = Artifactory.docker("$DOCKER_UN", "$DOCKER_PW", "tcp://127.0.0.1:1234")
             server.username = "$DOCKER_UN"
             server.password = "$DOCKER_PW"
             def artDocker = Artifactory.docker server:server, host: "tcp://127.0.0.1:1234"
