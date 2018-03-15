@@ -9,14 +9,14 @@ ARG VER
 EXPOSE 8080
 
 # Tomcat Version
-ENV TOMCAT_VERSION_MAJOR 8
-ENV TOMCAT_VERSION_FULL  8.5.29
+ENV TOMCAT_VERSION_MAJOR 9
+ENV TOMCAT_VERSION_FULL  9.0.6
 
 # Download, install, housekeeping
 RUN apk add --update curl &&\
   apk add bash &&\
   mkdir /opt &&\
-  curl -LO http://mirror.netcologne.de/apache.org/tomcat/tomcat-${TOMCAT_VERSION_MAJOR}/v${TOMCAT_VERSION_FULL}/bin/apache-tomcat-${TOMCAT_VERSION_FULL}.tar.gz &&\
+  curl -LO ${ARTI}/list/generic-local/apache/org/tomcat/tomcat-${TOMCAT_VERSION_MAJOR}/v${TOMCAT_VERSION_FULL}/bin/apache-tomcat-${TOMCAT_VERSION_FULL}.tar.gz &&\
   gunzip -c apache-tomcat-${TOMCAT_VERSION_FULL}.tar.gz | tar -xf - -C /opt &&\
   rm -f apache-tomcat-${TOMCAT_VERSION_FULL}.tar.gz &&\
   ln -s /opt/apache-tomcat-${TOMCAT_VERSION_FULL} /opt/tomcat &&\
