@@ -1,7 +1,6 @@
 package com.huettermann.all;
 
 import org.junit.Test;
-import com.huettermann.all;
 
 import static org.junit.Assert.assertEquals;
 
