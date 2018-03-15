@@ -1,6 +1,7 @@
 package com.huettermann.all;
 
 import org.junit.Test;
+import com.huettermann.all;
 
 import static org.junit.Assert.assertEquals;
 
@@ -12,6 +13,13 @@ public class TestMe {
         String b = "a";
         assertEquals(a, b);
     }
-    
+
+    @Test
+    public void aTest() {
+        Main main = new Main();
+
+    }
+
+
 }
 
