@@ -33,7 +33,7 @@ public class Main {
     }
 
     public int getValue() {
-        return 42:
+        return 42;
     }
 
 } 
