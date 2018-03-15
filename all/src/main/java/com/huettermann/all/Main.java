@@ -5,8 +5,6 @@ package com.huettermann.all;
  */
 public class Main {
 
-    private Main main;
-
     public Main() {
         System.out.println("hallo");
         System.out.println("hallo");
@@ -27,16 +25,8 @@ public class Main {
         }
     }
 
-    public static void main ( String[] args ) {
-        main = new Main();
-    }
-
     public int getValue() {
         return 42;
-    }
-
-    public Main getMain() {
-        return main;
     }
 
 } 

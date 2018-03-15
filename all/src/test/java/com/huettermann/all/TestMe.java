@@ -16,7 +16,7 @@ public class TestMe {
     @Test
     public void aTest() {
         Main main = new Main();
-        System.out.println ( main.getMain().getValue() );
+        System.out.println ( main.getValue() );
     }
 
 
