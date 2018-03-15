@@ -19,6 +19,7 @@ public class Main {
 
         int c = 0;
         int d = 0;
+        int e = 1;
 
         for (int i = 0; i < 10; i++) {
             // ...
