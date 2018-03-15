@@ -26,14 +26,17 @@ public class Main {
             // ...
         }
     }
-    
-    //here the start
+
     public static void main ( String[] args ) {
-        Main main = new Main();
+        main = new Main();
     }
 
     public int getValue() {
         return 42;
+    }
+
+    public Main getMain() {
+        return main;
     }
 
 } 
