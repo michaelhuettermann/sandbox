@@ -16,7 +16,7 @@ public class TestMe {
     @Test
     public void aTest() {
         Main main = new Main();
-        System.out.println ( main.getValue() );
+        assertEquals( 42, main.getValue() );
     }
 
 
