@@ -93,7 +93,7 @@ node {
     stage('SonarQube analysis') {
         withCredentials([usernamePassword(credentialsId: 'SONAR', passwordVariable: 'SONAR_PW', usernameVariable: 'SONAR_UN')]) {
             withSonarQubeEnv('Sonar') {
-                sh 'mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login=$SONAR_UN -Dsonar.password=$SONAR_PW -f all/pom.xml -Dsonar.projectKey=com.huettermann:all:master -Dsonar.language=java -Dsonar.test.inclusions=**/*Test*/** '
+                sh 'mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login=$SONAR_UN -Dsonar.password=$SONAR_PW -f all/pom.xml -Dsonar.projectKey=com.huettermann:all:master -Dsonar.language=java'
                 //sh 'mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login=$SONAR_UN -Dsonar.password=$SONAR_PW -f all/pom.xml -Dsonar.projectKey=com.huettermann:all:master -Dsonar.language=java -Dsonar.sources=. -Dsonar.tests=. -Dsonar.test.inclusions=**/*Test*/** -Dsonar.exclusions=**/*Test*/**'
             }
             timeout(time: 2, unit: 'MINUTES') {
