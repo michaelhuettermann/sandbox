@@ -71,7 +71,7 @@
               <artifactId>jacoco-maven-plugin</artifactId>
               <version>0.8.0</version>
               <configuration>
-                  <skip>${maven.test.skip}</skip>
+                  <skip>${coverageSkip}</skip>
                   <output>file</output>
                   <append>true</append>
               </configuration>
