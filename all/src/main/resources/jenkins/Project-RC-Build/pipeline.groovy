@@ -4,12 +4,12 @@ pipeline {
 
         stage('Prepare') {
             steps {
-                sh 'curl -o ${WORKSPACE}/search.aql https://raw.githubusercontent.com/michaelhuettermann/sandbox/master/all/src/main/resources/jenkins/Project-RC-Build/search.aql'
-                sh 'curl -H "X-JFrog-Art-Api:$ARTIFACTORY" -X POST https://$ARTI3/api/search/aql -T ${WORKSPACE}/search.aql > ${WORKSPACE}/out.json'
+                sh 'curl -o /Users/michaelh/playground/search.aql https://raw.githubusercontent.com/michaelhuettermann/sandbox/master/all/src/main/resources/jenkins/Project-RC-Build/search.aql'
+                sh 'curl -H "X-JFrog-Art-Api:$ARTIFACTORY" -X POST https://$ARTI3/api/search/aql -T /Users/michaelh/playground/search.aql > /Users/michaelh/playground/out.json'
                 script {
-                    new File(${WORKSPACE}+'/versions.txt').delete()
-                    f = new File(${WORKSPACE}+'/versions.txt')
-                    String json = new File(${WORKSPACE}+'/out.json').text
+                    new File('/Users/michaelh/playground/versions.txt').delete()
+                    f = new File('/Users/michaelh/playground/versions.txt')
+                    String json = new File('/Users/michaelh/playground/out.json').text
                     def map = parseJsonToMap(json)
                     map.results.each{ k, v -> f.append("${k.name}\n") }
                 }
@@ -18,7 +18,7 @@ pipeline {
         stage('Input') {
             steps {
                 script {
-                    f = new File(${WORKSPACE}+'/versions.txt')
+                    f = new File('/Users/michaelh/playground/versions.txt')
                     env.ver = input message: 'User input required', ok: 'Release!',
                             parameters: [choice(name: 'ver', choices: "$f.text", description: 'Which version should be promoted??')]
                     env.version = env.ver.split("-")[1].replaceAll(".war","")
