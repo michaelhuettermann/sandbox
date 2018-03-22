@@ -4,7 +4,8 @@ pipeline {
 
         stage('Prepare') {
             steps {
-                sh ' curl -H "X-JFrog-Art-Api:$ARTIFACTORY"  -X POST https://$ARTI3/api/search/aql -T search.aql > out.json'
+                sh 'curl -O https://raw.githubusercontent.com/michaelhuettermann/sandbox/master/all/src/main/resources/jenkins/Project-RC-Build/search.aql'
+                sh 'curl -H "X-JFrog-Art-Api:$ARTIFACTORY" -X POST https://$ARTI3/api/search/aql -T search.aql > out.json'
                 script {
                     def dir = pwd()
                     new File(dir+'/versions.txt').delete()
