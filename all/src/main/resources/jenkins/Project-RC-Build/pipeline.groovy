@@ -6,10 +6,9 @@ pipeline {
             steps {
                 sh 'curl -H "X-JFrog-Art-Api:$ARTIFACTORY" -X POST https://$ARTI3/api/search/aql -T all/src/main/resources/jenkins/Project-RC-Build/search.aql > out.json'
                 script {
-                    def dir = pwd()
-                    new File(dir+'/versions.txt').delete()
-                    f = new File(dir+'/versions.txt')
-                    String json = new File(dir+'/out.json').text
+                    new File('all/src/main/resources/jenkins/Project-RC-Build/versions.txt').delete()
+                    f = new File('all/src/main/resources/jenkins/Project-RC-Build/versions.txt')
+                    String json = new File('all/src/main/resources/jenkins/Project-RC-Build/out.json').text
                     def map = parseJsonToMap(json)
                     map.results.each{ k, v -> f.append("${k.name}\n") }
                 }
@@ -18,7 +17,7 @@ pipeline {
         stage('Input') {
             steps {
                 script {
-                    f = new File(pwd()+'/versions.txt')
+                    f = new File('all/src/main/resources/jenkins/Project-RC-Build/versions.txt')
                     env.ver = input message: 'User input required', ok: 'Release!',
                             parameters: [choice(name: 'ver', choices: "$f.text", description: 'Which version should be promoted??')]
                     env.version = env.ver.split("-")[1].replaceAll(".war","")
