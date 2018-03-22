@@ -1,3 +1,10 @@
+import groovy.json.JsonSlurperClassic
+
+@NonCPS
+def parseJsonToMap(String json) {
+    final slurper = new JsonSlurperClassic()
+    return new HashMap<>(slurper.parseText(json))
+}
 pipeline {
     agent any
     stages {
