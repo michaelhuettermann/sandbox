@@ -1,0 +1,10 @@
+items.find(
+        {
+                "type":"file",
+                "created_by":"deploy",
+                "@drink":"beer",
+                "repo":"libs-release-local"
+        }
+)
+.include("name","repo","path")
+.sort({"$desc":["name"]})

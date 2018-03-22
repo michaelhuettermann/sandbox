@@ -1,13 +1,38 @@
 pipeline {
     agent any
     stages {
+
         stage('Prepare') {
             steps {
-                echo 'Preparing ...'
-                sh 'curl -O http://$ARTI3/list/libs-release-local/com/huettermann/web/$version/all-$version.war'
-                devOpticsConsumes masterUrl: 'http://localhost:8080/', jobName: 'devoptics/application-comp'
+                sh ' curl -H "X-JFrog-Art-Api:$ARTIFACTORY"  -X POST https://$ARTI3/api/search/aql -T search.aql > out.json'
+                script {
+                    def dir = pwd()
+                    new File(dir+'/versions.txt').delete()
+                    f = new File(dir+'/versions.txt')
+                    String json = new File(dir+'/out.json').text
+                    def map = parseJsonToMap(json)
+                    map.results.each{ k, v -> f.append("${k.name}\n") }
+                }
             }
         }
+        stage('Input') {
+            steps {
+                script {
+                    f = new File(pwd()+'/versions.txt')
+                    env.ver = input message: 'User input required', ok: 'Release!',
+                            parameters: [choice(name: 'ver', choices: "$f.text", description: 'Which version should be promoted??')]
+                    env.version = env.ver.split("-")[1].replaceAll(".war","")
+                    println env.version
+                }
+            }
+        }
+        //stage('Prepare') {
+        //    steps {
+        //        echo 'Preparing ...'
+        //        sh 'curl -O http://$ARTI3/list/libs-release-local/com/huettermann/web/$version/all-$version.war'
+        //        devOpticsConsumes masterUrl: 'http://localhost:8080/', jobName: 'devoptics/application-comp'
+        //    }
+        //}
         stage('Unnecessary things') {
             when {
                 branch 'production'
