@@ -15,9 +15,6 @@ pipeline {
                 withCredentials([string(credentialsId: 'ARTIFACTORY_TOKEN', variable: 'ARTIFACTORY')]) {
                     sh 'curl -H "X-JFrog-Art-Api:$ARTIFACTORY" -X POST https://$ARTI3/api/search/aql -T /Users/michaelh/playground/search.aql > /Users/michaelh/playground/out.json'
                 }
-
-                //sh 'curl -H "X-JFrog-Art-Api:$ARTIFACTORY" -X POST https://$ARTI3/api/search/aql -T /Users/michaelh/playground/search.aql > /Users/michaelh/playground/out.json'
-
                 script {
                     new File('/Users/michaelh/playground/versions.txt').delete()
                     f = new File('/Users/michaelh/playground/versions.txt')
