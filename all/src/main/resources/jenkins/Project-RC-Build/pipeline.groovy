@@ -32,7 +32,7 @@ pipeline {
         stage('Input') {
             steps {
                 script {
-                    f = new File('/Users/michaelh/.jenkins/jobs/Project-RC-Build/workspace/all/src/main/resources/jenkins/Project-RC-Build/versions.txt')
+                    f = new File(workspace+'/all/src/main/resources/jenkins/Project-RC-Build/versions.txt')
                     env.version = input message: 'User input required', ok: 'Release!',
                             parameters: [choice(name: 'version', choices: "$f.text", description: 'Which version should be promoted??')]
                     println env.version
