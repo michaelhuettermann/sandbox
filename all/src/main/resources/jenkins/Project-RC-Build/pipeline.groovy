@@ -16,17 +16,13 @@ pipeline {
                 script {
                     new File('all/src/main/resources/jenkins/Project-RC-Build/versions.txt').delete()
                     f = new File('all/src/main/resources/jenkins/Project-RC-Build/versions.txt')
-                    sleep(10)
-                    String json = new File('/Users/michaelh/.jenkins/jobs/Project-RC-Build/workspace/all/src/main/resources/jenkins/Project-RC-Build/out.json').text
-                    sleep(10)
+                    String json = new File('all/src/main/resources/jenkins/Project-RC-Build/out.json').text
                     def map = parseJsonToMap(json)
-                    sleep(10)
                     map.results.each{ k, v ->
                         myVersion = "${k.name}".split("-")[1].replaceAll(".war","")
                         println myVersion
                         f.append(myVersion+"\n")
                     }
-                    sleep(10)
                 }
             }
         }
