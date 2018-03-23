@@ -16,8 +16,9 @@ pipeline {
                 }
                 script {
                     workspace2 = pwd()
-                    echo workspace2
-                    echo $WORKSPACE
+                    println workspace2
+                    sleep(2000)
+
 
                     new File('/Users/michaelh/.jenkins/jobs/Project-RC-Build/workspace/all/src/main/resources/jenkins/Project-RC-Build/versions.txt').delete()
                     f = new File('/Users/michaelh/.jenkins/jobs/Project-RC-Build/workspace/all/src/main/resources/jenkins/Project-RC-Build/versions.txt')
