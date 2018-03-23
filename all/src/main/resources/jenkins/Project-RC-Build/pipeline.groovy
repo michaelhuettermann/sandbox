@@ -10,6 +10,9 @@ pipeline {
     stages {
         stage('Prepare') {
             steps {
+                workspace2 = pwd()
+                echo workspace2
+                echo $WORKSPACE
                 withCredentials([string(credentialsId: 'ARTIFACTORY_TOKEN', variable: 'ARTIFACTORY')]) {
                     sh 'curl -H "X-JFrog-Art-Api:$ARTIFACTORY" -X POST https://$ARTI3/api/search/aql -T /Users/michaelh/.jenkins/jobs/Project-RC-Build/workspace/all/src/main/resources/jenkins/Project-RC-Build/search.aql > all/src/main/resources/jenkins/Project-RC-Build/out.json'
                 }
@@ -32,7 +35,6 @@ pipeline {
                     f = new File('/Users/michaelh/.jenkins/jobs/Project-RC-Build/workspace/all/src/main/resources/jenkins/Project-RC-Build/versions.txt')
                     env.version = input message: 'User input required', ok: 'Release!',
                             parameters: [choice(name: 'version', choices: "$f.text", description: 'Which version should be promoted??')]
-                    //env.version = env.ver.split("-")[1].replaceAll(".war","")
                     println env.version
                 }
             }
