@@ -10,7 +10,6 @@ pipeline {
     stages {
         stage('Prepare') {
             steps {
-                deleteDir()
                 //sh 'curl -o /Users/michaelh/playground/search.aql https://raw.githubusercontent.com/michaelhuettermann/sandbox/master/all/src/main/resources/jenkins/Project-RC-Build/search.aql'
                 //sh 'curl -O https://raw.githubusercontent.com/michaelhuettermann/sandbox/master/all/src/main/resources/jenkins/Project-RC-Build/search.aql'
                 withCredentials([string(credentialsId: 'ARTIFACTORY_TOKEN', variable: 'ARTIFACTORY')]) {
