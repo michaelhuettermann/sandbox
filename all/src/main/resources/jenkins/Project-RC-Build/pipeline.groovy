@@ -10,13 +10,15 @@ pipeline {
     stages {
         stage('Prepare') {
             steps {
-                workspace2 = pwd()
-                echo workspace2
-                echo $WORKSPACE
+
                 withCredentials([string(credentialsId: 'ARTIFACTORY_TOKEN', variable: 'ARTIFACTORY')]) {
                     sh 'curl -H "X-JFrog-Art-Api:$ARTIFACTORY" -X POST https://$ARTI3/api/search/aql -T /Users/michaelh/.jenkins/jobs/Project-RC-Build/workspace/all/src/main/resources/jenkins/Project-RC-Build/search.aql > all/src/main/resources/jenkins/Project-RC-Build/out.json'
                 }
                 script {
+                    workspace2 = pwd()
+                    echo workspace2
+                    echo $WORKSPACE
+
                     new File('/Users/michaelh/.jenkins/jobs/Project-RC-Build/workspace/all/src/main/resources/jenkins/Project-RC-Build/versions.txt').delete()
                     f = new File('/Users/michaelh/.jenkins/jobs/Project-RC-Build/workspace/all/src/main/resources/jenkins/Project-RC-Build/versions.txt')
                     String json = new File('/Users/michaelh/.jenkins/jobs/Project-RC-Build/workspace/all/src/main/resources/jenkins/Project-RC-Build/out.json').text
