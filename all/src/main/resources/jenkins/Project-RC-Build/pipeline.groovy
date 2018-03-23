@@ -17,7 +17,7 @@ pipeline {
                     new File('all/src/main/resources/jenkins/Project-RC-Build/versions.txt').delete()
                     f = new File('all/src/main/resources/jenkins/Project-RC-Build/versions.txt')
                     sleep(10)
-                    String json = new File('all/src/main/resources/jenkins/Project-RC-Build/out.json').text
+                    String json = new File('/Users/michaelh/.jenkins/jobs/Project-RC-Build/workspace/all/src/main/resources/jenkins/Project-RC-Build/out.json').text
                     sleep(10)
                     def map = parseJsonToMap(json)
                     sleep(10)
