@@ -29,7 +29,7 @@ pipeline {
         stage('Input') {
             steps {
                 script {
-                    f = new File('all/src/main/resources/jenkins/Project-RC-Build/versions.txt')
+                    f = new File('${env.WORKSPACE}/all/src/main/resources/jenkins/Project-RC-Build/versions.txt')
                     env.ver = input message: 'User input required', ok: 'Release!',
                             parameters: [choice(name: 'ver', choices: "$f.text", description: 'Which version should be promoted??')]
                     env.version = env.ver.split("-")[1].replaceAll(".war","")
