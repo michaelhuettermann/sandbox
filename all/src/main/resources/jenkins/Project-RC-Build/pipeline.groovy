@@ -10,10 +10,10 @@ pipeline {
     stages {
         stage('Prepare') {
             steps {
-                sh 'curl -o /Users/michaelh/playground/search.aql https://raw.githubusercontent.com/michaelhuettermann/sandbox/master/all/src/main/resources/jenkins/Project-RC-Build/search.aql'
-                sh 'curl -O https://raw.githubusercontent.com/michaelhuettermann/sandbox/master/all/src/main/resources/jenkins/Project-RC-Build/search.aql'
+                //sh 'curl -o /Users/michaelh/playground/search.aql https://raw.githubusercontent.com/michaelhuettermann/sandbox/master/all/src/main/resources/jenkins/Project-RC-Build/search.aql'
+                //sh 'curl -O https://raw.githubusercontent.com/michaelhuettermann/sandbox/master/all/src/main/resources/jenkins/Project-RC-Build/search.aql'
                 withCredentials([string(credentialsId: 'ARTIFACTORY_TOKEN', variable: 'ARTIFACTORY')]) {
-                    sh 'curl -H "X-JFrog-Art-Api:$ARTIFACTORY" -X POST https://$ARTI3/api/search/aql -T /Users/michaelh/playground/search.aql > /Users/michaelh/playground/out.json'
+                    sh 'curl -H "X-JFrog-Art-Api:$ARTIFACTORY" -X POST https://$ARTI3/api/search/aql -T all/src/main/resources/jenkins/Project-RC-Build/search.aql > out.json'
                 }
                 script {
                     new File('/Users/michaelh/playground/versions.txt').delete()
