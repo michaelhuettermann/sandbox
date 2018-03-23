@@ -20,7 +20,12 @@ pipeline {
                     f = new File('all/src/main/resources/jenkins/Project-RC-Build/versions.txt')
                     String json = new File('all/src/main/resources/jenkins/Project-RC-Build/out.json').text
                     def map = parseJsonToMap(json)
-                    map.results.each{ k, v -> f.append("${k.name}\n") }
+                    //map.results.each{ k, v -> f.append("${k.name}\n") }
+                    map.results.each{ k, v ->
+                        myVersion = "${k.name}".split("-")[1].replaceAll(".war","")
+                        println myVersion
+                        f.append(myVersion+"\n")
+                    }
                 }
             }
         }
