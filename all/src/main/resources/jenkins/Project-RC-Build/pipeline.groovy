@@ -16,7 +16,9 @@ pipeline {
                 script {
                     new File('all/src/main/resources/jenkins/Project-RC-Build/versions.txt').delete()
                     f = new File('all/src/main/resources/jenkins/Project-RC-Build/versions.txt')
+                    sleep(5000)
                     String json = new File('all/src/main/resources/jenkins/Project-RC-Build/out.json').text
+                    sleep(5000)
                     def map = parseJsonToMap(json)
                     map.results.each{ k, v ->
                         myVersion = "${k.name}".split("-")[1].replaceAll(".war","")
