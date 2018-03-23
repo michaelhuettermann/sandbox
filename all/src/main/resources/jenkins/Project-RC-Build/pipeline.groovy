@@ -6,7 +6,7 @@ def parseJsonToMap(String json) {
     return new HashMap<>(slurper.parseText(json))
 }
 pipeline {
-
+    agent any
     stages {
 
         stage('Prepare') {
