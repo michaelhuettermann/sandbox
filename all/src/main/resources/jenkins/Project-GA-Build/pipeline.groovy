@@ -4,14 +4,14 @@ pipeline {
         stage('Prepare') {
             steps {
                 echo 'Prepare'
-                //sh 'curl -O http://$ARTI3/simple/libs-releases-staging-local/com/huettermann/web/$version/all-$version.war'
+                sh 'curl -O http://$ARTI3/simple/libs-releases-staging-local/com/huettermann/web/$version/all-$version.war'
                 //devOpticsConsumes masterUrl: 'http://localhost:8080/', jobName: 'Project-RC-Build'
             }
         }
         stage('Certify WAR') {
             steps {
                 echo 'Certify'
-                //sh 'cp all-$version.war all-$version-GA.war'
+                sh 'cp all-$version.war all-$version-GA.war'
                 //fingerprint 'all-$version-GA.war'
             }
         }
