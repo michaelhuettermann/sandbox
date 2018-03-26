@@ -14,11 +14,10 @@ node {
             sh "curl -O https://raw.githubusercontent.com/michaelhuettermann/sandbox/master/all/src/main/resources/jenkins/oracle-cloud/create-deployment.json"
             sh "sed -i '' 's/VERSION/${version}/g' ${WORKSPACE}/new-service.json"
             sh "sed -i '' 's/VERSION/${version}/g' ${WORKSPACE}/create-deployment.json"
-
-            echo "certify"
-            sh 'curl -O https://huettermann.bintray.com/meow/all-${version}-GA.war'
-            fingerprint 'all-${version}-GA.war'
-            devOpticsConsumes masterUrl: 'http://localhost:8080/', jobName: 'Project-GA-Build'
+            //echo "certify"
+            //sh 'curl -O https://huettermann.bintray.com/meow/all-${version}-GA.war'
+            //fingerprint 'all-${version}-GA.war'
+            //devOpticsConsumes masterUrl: 'http://localhost:8080/', jobName: 'Project-GA-Build'
         }
         stage('Deployment Stop') {
 sh '''

@@ -10,13 +10,11 @@ pipeline {
     stages {
         stage('Prepare') {
             steps {
+                 withCredentials([string(credentialsId: 'ARTIFACTORY_TOKEN', variable: 'ARTIFACTORY')]) {
+                    sh 'curl -H "X-JFrog-Art-Api:$ARTIFACTORY" -X POST https://$ARTI3/api/search/aql -T ${WORKSPACE}/all/src/main/resources/jenkins/Project-RC-Build/search.aql > ${WORKSPACE}/all/src/main/resources/jenkins/Project-RC-Build/out.json'
+                }
                 script {
                     workspace = pwd()
-                }
-                withCredentials([string(credentialsId: 'ARTIFACTORY_TOKEN', variable: 'ARTIFACTORY')]) {
-                    sh 'curl -H "X-JFrog-Art-Api:$ARTIFACTORY" -X POST https://$ARTI3/api/search/aql -T ${WORKSPACE}/all/src/main/resources/jenkins/Project-RC-Build/search.aql > all/src/main/resources/jenkins/Project-RC-Build/out.json'
-                }
-                script {
                     new File(workspace+'/all/src/main/resources/jenkins/Project-RC-Build/versions.txt').delete()
                     f = new File(workspace+'/all/src/main/resources/jenkins/Project-RC-Build/versions.txt')
                     String json = new File(workspace+'/all/src/main/resources/jenkins/Project-RC-Build/out.json').text
@@ -57,7 +55,7 @@ pipeline {
         stage('Certify WAR') {
             steps {
                 echo 'Certifying WAR ...'
-                fingerprint 'all-$version.war'
+                //fingerprint 'all-$version.war'
                 //fingerprint 'README.md'
             }
         }
@@ -87,7 +85,6 @@ pipeline {
     post {
         always {
             echo 'Finished!'
-            //deleteDir()
         }
         success {
             echo 'Succeeeded.'
