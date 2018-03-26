@@ -9,6 +9,7 @@ pipeline {
         }
         stage('Certify WAR') {
             steps {
+                echo 'Certify'
                 //sh 'cp all-$version.war all-$version-GA.war'
                 //fingerprint 'all-$version-GA.war'
             }
