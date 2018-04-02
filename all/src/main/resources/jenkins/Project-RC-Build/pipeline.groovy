@@ -38,15 +38,20 @@ pipeline {
             }
         }
         stage('k8s down') {
-            steps {
                 try {
-                    sh 'kubectl delete ReplicationController meow'
-                    sh 'kubectl delete service meow'
+                    steps {
+                        sh 'kubectl delete ReplicationController meow'
+                        sh 'kubectl delete service meow'
+                    }
                 } catch (e) {
-                    echo 'aua'
+                    steps {
+                        echo 'aua'
+                    }
                     throw e
                 } finally {
-                    sh 'kubectl get services'
+                    steps {
+                        sh 'kubectl get services'
+                    }
                 }
             }
         }
