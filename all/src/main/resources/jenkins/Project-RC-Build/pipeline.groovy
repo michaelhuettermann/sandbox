@@ -93,7 +93,6 @@ pipeline {
                 sh 'kubectl apply -f ${WORKSPACE}/all/src/main/resources/jenkins/Project-RC-Build/meow.yaml'
                 sh 'kubectl get services'
                 sh 'curl $(minikube service meow  --url)/all/message?param=world'
-                sh '------'
                 sh 'curl $(minikube service meow  --url)/all/'
             }
         }
