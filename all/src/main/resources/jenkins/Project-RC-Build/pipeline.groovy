@@ -37,6 +37,13 @@ pipeline {
                 }
             }
         }
+        stage('k8s down') {
+            steps {
+                sh 'kubectl delete ReplicationController meow'
+                sh 'kubectl delete service meow'
+                sh 'kubectl get services'
+            }
+        }
         //stage('Prepare') {
         //    steps {
         //        echo 'Preparing ...'
@@ -79,6 +86,13 @@ pipeline {
                        '''-d \'{"targetRepo" : "docker-prod-local", "dockerRepository" : "michaelhuettermann/alpine-tomcat7", "tag": "\'$version\'", "copy": true }\'
                        '''
                 }
+            }
+        }
+        stage('k8s up') {
+            steps {
+                sh 'kubectl apply -f ${WORKSPACE}/all/src/main/resources/jenkins/Project-RC-Build/meow.yaml'
+                sh 'kubectl get services'
+                sh 'curl $(minikube service meow  --url)/all/'
             }
         }
     }
