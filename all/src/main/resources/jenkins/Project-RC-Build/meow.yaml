@@ -27,6 +27,6 @@ spec:
     spec:
       containers:
       - name: meow
-        image: huttermann-docker-local.jfrog.io/michaelhuettermann/alpine-tomcat7:1.0.0
+        image: huttermann-docker-local.jfrog.io/michaelhuettermann/alpine-tomcat7:VERSION
         ports:
         - containerPort: 8080

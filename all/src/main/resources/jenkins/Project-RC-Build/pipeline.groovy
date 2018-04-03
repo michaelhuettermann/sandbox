@@ -90,6 +90,7 @@ pipeline {
         }
         stage('k8s up') {
             steps {
+                sh "sed -i '' 's/VERSION/$version/g' ${WORKSPACE}/all/src/main/resources/jenkins/Project-RC-Build/meow.json"
                 sh 'kubectl apply -f ${WORKSPACE}/all/src/main/resources/jenkins/Project-RC-Build/meow.yaml'
                 sh 'kubectl get services'
                 sh 'curl $(minikube service meow  --url)/all/message?param=world'
