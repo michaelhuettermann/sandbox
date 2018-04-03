@@ -101,6 +101,7 @@ pipeline {
     post {
         always {
             echo 'Finished!'
+            deleteDir()
         }
         success {
             echo 'Succeeeded.'
