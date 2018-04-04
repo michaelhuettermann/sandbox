@@ -27,6 +27,6 @@ spec:
     spec:
       containers:
       - name: meow
-        image: ARTI/michaelhuettermann/alpine-tomcat7:VERSION
+        image: REGISTRY/michaelhuettermann/alpine-tomcat7:VERSION
         ports:
         - containerPort: 8080
