@@ -44,7 +44,7 @@ else
           continue
        fi
     done
-    sleep 5
+    sleep 10
 fi
 '''
         }
