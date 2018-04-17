@@ -3,8 +3,6 @@ node {
 
         def WORKSPACE
 
-        @Library('Util') _
-
         stage('Prepare') {
             WORKSPACE = pwd()
             echo "where am I ... ${WORKSPACE}"
