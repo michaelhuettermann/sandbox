@@ -10,7 +10,8 @@ pipeline {
     stages {
         stage('Prepare') {
             steps {
-                 withCredentials([string(credentialsId: 'ARTIFACTORY_TOKEN', variable: 'ARTIFACTORY')]) {
+                checkout scm
+                withCredentials([string(credentialsId: 'ARTIFACTORY_TOKEN', variable: 'ARTIFACTORY')]) {
                     sh 'curl -H "X-JFrog-Art-Api:$ARTIFACTORY" -X POST https://$ARTI3/api/search/aql -T ${WORKSPACE}/all/src/main/resources/jenkins/Project-RC-Build/search.aql > ${WORKSPACE}/all/src/main/resources/jenkins/Project-RC-Build/out.json'
                 }
                 script {
