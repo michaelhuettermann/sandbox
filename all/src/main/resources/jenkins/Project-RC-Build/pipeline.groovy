@@ -42,7 +42,7 @@ pipeline {
             steps {
                 sh 'kubectl delete ReplicationController meow || true'
                 sh 'kubectl delete service meow  || true'
-                sh 'kubectl get services'
+                sh 'kubectl get services   || true'
             }
         }
         //stage('Prepare') {
