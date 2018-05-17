@@ -43,6 +43,7 @@ else
           continue
        fi
     done
+    sleep 10
 fi
 '''
         }
