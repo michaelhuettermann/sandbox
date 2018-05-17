@@ -34,7 +34,7 @@ else
        result=$(curl -sk -X 'GET' -H "Authorization: Bearer ${BEARER}" https://${CLOUDIP}/api/v2/deployments/meow-deploy | \
           python -c "import sys, json; print(json.load(sys.stdin)['deployment']['current_state'])")  
        if [ "$result" == "0" ]; then
-          sleep 5
+          sleep 10
           echo "Deployment stopped!"
           break
        else
@@ -43,7 +43,6 @@ else
           continue
        fi
     done
-    sleep 10
 fi
 '''
         }
