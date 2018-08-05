@@ -39,6 +39,9 @@ pipeline {
             }
         }
         stage('k8s down') {
+            when {
+                branch 'production'
+            }
             steps {
                 sh 'kubectl delete ReplicationController meow || true'
                 sh 'kubectl delete service meow  || true'
@@ -52,14 +55,6 @@ pipeline {
         //        devOpticsConsumes masterUrl: 'http://localhost:8080/', jobName: 'devoptics/application-comp'
         //    }
         //}
-        stage('Unnecessary things') {
-            when {
-                branch 'production'
-            }
-            steps {
-                echo 'Deploying'
-            }
-        }
         stage('Certify WAR') {
             steps {
                 echo 'Certifying WAR ...'
@@ -90,6 +85,9 @@ pipeline {
             }
         }
         stage('k8s up') {
+            when {
+                branch 'production'
+            }
             steps {
                 sh "sed -i '' 's/VERSION/$version/g' ${WORKSPACE}/all/src/main/resources/jenkins/Project-RC-Build/meow.yaml"
                 sh "sed -i '' 's#REGISTRY#$ARTI3REGISTRY#g' ${WORKSPACE}/all/src/main/resources/jenkins/Project-RC-Build/meow.yaml"
