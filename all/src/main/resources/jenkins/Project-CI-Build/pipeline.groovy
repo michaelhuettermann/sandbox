@@ -169,7 +169,7 @@ node {
        echo "---------------------------------------"
        echo "All active containers"
        docker ps
-       sleep 12'''
+       sleep 10'''
     }
 
     stage('Sanity check Webapp') {
