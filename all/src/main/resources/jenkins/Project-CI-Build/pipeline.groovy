@@ -79,7 +79,7 @@ node {
 
     stage('Integration test') {
         rtMaven.deployer.deployArtifacts = false
-        rtMaven.run pom: 'all/pom.xml', goals: 'clean integration-test -Pnolibs,web -DcoverageSkip=true'
+        rtMaven.run pom: 'all/pom.xml', goals: 'clean integration-test -Pnolibs,web -DcoverageSkip=false'
     }
 
     stage('Reserve binary') {
