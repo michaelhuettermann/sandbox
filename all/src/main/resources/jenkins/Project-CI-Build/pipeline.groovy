@@ -26,8 +26,8 @@ node {
         workspace = pwd()
         echo "workspace=${workspace}"
 
-        echo whoami
-        which mvn
+        sh "echo whoami"
+        sh "which mvn"
     }
 
     stage('Setup') {
