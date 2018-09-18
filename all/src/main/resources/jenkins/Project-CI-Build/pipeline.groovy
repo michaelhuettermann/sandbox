@@ -43,15 +43,15 @@ node {
         }, "Reset Docker": {
             sh '''#!/bin/sh
             echo "All images"
-            docker images | grep tomcat7 || true
+            sudo docker images | grep tomcat7 || true
             echo "---------------------------------------"
             echo "All active containers"
             docker ps
             echo "Stopping and removing containers"
-            docker stop $(docker ps -a | grep 8002 | cut -d " " -f1) || true
-            docker rm $(docker ps -a | grep Exit | cut -d " " -f1) || true
+            docker stop $(sudo docker ps -a | grep 8002 | cut -d " " -f1) || true
+            docker rm $(sudo docker ps -a | grep Exit | cut -d " " -f1) || true
             echo "Removing untagged Docker images"
-            docker rmi -f $(docker images | grep "<none>" | awk "{print \$3}") || true
+            docker rmi -f $(sudo docker images | grep "<none>" | awk "{print \$3}") || true
             echo "---------------------------------------"'''
        //}, "Run Socat": {
        //     sh '''#!/bin/sh
@@ -159,16 +159,16 @@ node {
         
        cd all/src/main/resources/docker/alpine
        echo "Building new Tomcat 7 container"
-       docker build -f Dockerfile --build-arg ARTI=$ARTI --build-arg VER=$ver -t $ARTIREGISTRY/michaelhuettermann/alpine-tomcat7:$ver . 
+       sudo docker build -f Dockerfile --build-arg ARTI=$ARTI --build-arg VER=$ver -t $ARTIREGISTRY/michaelhuettermann/alpine-tomcat7:$ver . 
        echo "---------------------------------------"
        echo "Running Tomcat container"
-       docker run -d -p 8002:8080 $ARTIREGISTRY/michaelhuettermann/alpine-tomcat7:$ver
+       sudo docker run -d -p 8002:8080 $ARTIREGISTRY/michaelhuettermann/alpine-tomcat7:$ver
        echo "---------------------------------------"
        echo "All images"
-       docker images | grep tomcat7
+       sudo docker images | grep tomcat7
        echo "---------------------------------------"
        echo "All active containers"
-       docker ps
+       sudo docker ps
        sleep 10'''
     }
 
