@@ -93,7 +93,7 @@ node {
     stage('SonarQube analysis') {
         withCredentials([string(credentialsId: 'SQ_TOKEN', variable: 'SQ')]) {
             withSonarQubeEnv('Sonar') {
-                sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.4.0.905:sonar -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SQ -X -f all/pom.xml -Dsonar.projectKey=com.huettermann:all:master -Dsonar.junit.reportPaths=target/surefire-reports -Dsonar.jacoco.reportPaths=target/jacoco.exec -Dsonar.userHome=/mnt/fsdata/sonarqube -Dsonar.working.directory=/mnt/fsdata/sonarqube'
+                sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.4.0.905:sonar -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SQ -f all/pom.xml -Dsonar.projectKey=com.huettermann:all:master -Dsonar.junit.reportPaths=target/surefire-reports -Dsonar.jacoco.reportPaths=target/jacoco.exec -Dsonar.userHome=/mnt/fsdata/sonarqube -Dsonar.working.directory=/mnt/fsdata/sonarqube'
             }
             timeout(time: 2, unit: 'MINUTES') {
                 def qg = waitForQualityGate()
