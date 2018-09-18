@@ -36,10 +36,10 @@ node {
             }
         //}, "Prepare env, with Puppet": {
         //   sh "puppet apply all/src/main/resources/puppet/init.pp"
-        }, "Prepare env, with Chef": {
-            if (addprem == "true") {
-                sh "knife artifactory download poise-python 1.6.0"
-            }
+        //}, "Prepare env, with Chef": {
+        //    if (addprem == "true") {
+        //        sh "knife artifactory download poise-python 1.6.0"
+        //    }
         }, "Reset Docker": {
             sh '''#!/bin/sh
             echo "All images"
