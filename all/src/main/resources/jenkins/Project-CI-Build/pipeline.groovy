@@ -87,7 +87,7 @@ node {
     }
 
     stage('Database migration') {
-        sh "mvn clean install -Pdb flyway:clean flyway:init flyway:info flyway:migrate flyway:info -f all/pom.xml"
+        //sh "mvn clean install -Pdb flyway:clean flyway:init flyway:info flyway:migrate flyway:info -f all/pom.xml"
     }
 
     stage('SonarQube analysis') {
