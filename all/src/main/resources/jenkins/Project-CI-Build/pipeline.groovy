@@ -14,7 +14,7 @@ node {
         println addprem
         server = Artifactory.server flag
         rtMaven = Artifactory.newMavenBuild()
-        rtMaven.tool = 'M3.5.2'
+        rtMaven.tool = 'M3.5.4'
         rtMaven.resolver server: server, releaseRepo: 'repo1', snapshotRepo: 'repo1'
         rtMaven.deployer server: server, releaseRepo: 'libs-release-local', snapshotRepo: 'libs-snapshot-local'
     }
