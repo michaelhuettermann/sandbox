@@ -25,9 +25,6 @@ node {
         echo "Hash ${gitCommit}"
         workspace = pwd()
         echo "workspace=${workspace}"
-
-        sh "echo whoami"
-        sh "which mvn"
     }
 
     stage('Setup') {
