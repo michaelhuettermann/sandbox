@@ -25,6 +25,9 @@ node {
         echo "Hash ${gitCommit}"
         workspace = pwd()
         echo "workspace=${workspace}"
+
+        echo whoami
+        which mvn
     }
 
     stage('Setup') {
@@ -34,7 +37,6 @@ node {
             if (v) {
                 echo "Version calculated=${v}"
             }
-            echo whoami
         //}, "Prepare env, with Puppet": {
         //   sh "puppet apply all/src/main/resources/puppet/init.pp"
         //}, "Prepare env, with Chef": {
