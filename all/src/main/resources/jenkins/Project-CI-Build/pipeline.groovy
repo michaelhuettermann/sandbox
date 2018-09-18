@@ -91,9 +91,9 @@ node {
     }
 
     stage('SonarQube analysis') {
-        withCredentials([usernamePassword(credentialsId: 'SONAR', passwordVariable: 'SONAR_PW', usernameVariable: 'SONAR_UN')]) {
+        withCredentials([string(credentialsId: 'SQ_TOKEN', variable: 'SQ')]) {
             withSonarQubeEnv('Sonar') {
-                sh 'mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login=$SONAR_UN -Dsonar.password=$SONAR_PW -f all/pom.xml -Dsonar.projectKey=com.huettermann:all:master -Dsonar.language=java -Dsonar.junit.reportPaths=target/surefire-reports -Dsonar.jacoco.reportPaths=target/jacoco.exec'
+                sh 'mvn sonar:sonar -Dsonar.host.url=https://sonarcloud.io/organizations/michaelhuettermann-github -Dsonar.login=$SQ -f all/pom.xml -Dsonar.projectKey=com.huettermann:all:master -Dsonar.language=java -Dsonar.junit.reportPaths=target/surefire-reports -Dsonar.jacoco.reportPaths=target/jacoco.exec'
             }
             timeout(time: 2, unit: 'MINUTES') {
                 def qg = waitForQualityGate()
