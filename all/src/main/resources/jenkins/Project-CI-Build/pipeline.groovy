@@ -159,11 +159,7 @@ node {
            ARTI=$ARTI1
            ARTIREGISTRY=$ARTI1REGISTRY
        fi
-            
-            
-       //ver=$(mvn -f all/pom.xml org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dartifact=com.huettermann:all -Dexpression=project.version|grep -Ev \'(^\\[|Download\\w+:)\')
-       //echo $ver > version.properties
-        
+       
        cd all/src/main/resources/docker/alpine
        echo "Building new Tomcat 7 container"
        docker build -f Dockerfile --build-arg ARTI=$ARTI --build-arg VER=$ver -t $ARTIREGISTRY/michaelhuettermann/alpine-tomcat7:${ver} . 
