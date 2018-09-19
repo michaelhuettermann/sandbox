@@ -94,7 +94,7 @@ node {
         withCredentials([string(credentialsId: 'SQ_TOKEN', variable: 'SQ_TOKEN')]) {
             withSonarQubeEnv('Sonar') {
                 //sh 'mvn sonar:sonar -Dsonar.projectKey=com.huettermann:all -Dsonar.verbose=true -Dsonar.analysis.mode= -Dsonar.organization=michaelhuettermann-github -Dsonar.login=$SQ_TOKEN -Dsonar.host.url=https://sonarcloud.io -f all/pom.xml -Dsonar.java.binaries=target -Dsonar.junit.reportPaths=target/surefire-reports -Dsonar.jacoco.reportPaths=target/jacoco.exec -Dsonar.userHome=$WORKSPACE -Dsonar.working.directory=$WORKSPACE'
-                sh 'mvn sonar:sonar -Dsonar.projectKey=com.huettermann:all -Dsonar.verbose=true -Dsonar.analysis.mode= -Dsonar.organization=michaelhuettermann-github -Dsonar.login=$SQ_TOKEN -Dsonar.host.url=https://sonarcloud.io -f all/pom.xml -Dsonar.java.binaries=target -Dsonar.junit.reportPaths=target/surefire-reports -Dsonar.jacoco.reportPaths=target/jacoco.exec -Dsonar.userHome=/mnt/fsdata/sonarqube -Dsonar.working.directory=/mnt/fsdata/sonarqube'
+                sh 'mvn sonar:sonar -Dsonar.projectKey=com.huettermann:all -Dsonar.organization=michaelhuettermann-github -Dsonar.login=$SQ_TOKEN -Dsonar.host.url=https://sonarcloud.io -f all/pom.xml -Dsonar.java.binaries=target -Dsonar.junit.reportPaths=target/surefire-reports -Dsonar.jacoco.reportPaths=target/jacoco.exec -Dsonar.userHome=/mnt/fsdata/sonarqube -Dsonar.working.directory=/mnt/fsdata/sonarqube'
 
 
             }
@@ -165,16 +165,16 @@ node {
         
        cd all/src/main/resources/docker/alpine
        echo "Building new Tomcat 7 container"
-       sudo docker build -f Dockerfile --build-arg ARTI=$ARTI --build-arg VER=$ver -t $ARTIREGISTRY/michaelhuettermann/alpine-tomcat7:$ver . 
+       docker build -f Dockerfile --build-arg ARTI=$ARTI --build-arg VER=$ver -t $ARTIREGISTRY/michaelhuettermann/alpine-tomcat7:$ver . 
        echo "---------------------------------------"
        echo "Running Tomcat container"
-       sudo docker run -d -p 8002:8080 $ARTIREGISTRY/michaelhuettermann/alpine-tomcat7:$ver
+       docker run -d -p 8002:8080 $ARTIREGISTRY/michaelhuettermann/alpine-tomcat7:$ver
        echo "---------------------------------------"
        echo "All images"
-       sudo docker images | grep tomcat7
+       docker images | grep tomcat7
        echo "---------------------------------------"
        echo "All active containers"
-       sudo docker ps
+       docker ps
        sleep 10'''
     }
 
