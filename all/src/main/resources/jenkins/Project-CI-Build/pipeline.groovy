@@ -34,12 +34,16 @@ node {
             if (ver) {
                 echo "Version calculated=${ver}"
             }
-        //}, "Prepare env, with Puppet": {
-        //   sh "puppet apply all/src/main/resources/puppet/init.pp"
-        //}, "Prepare env, with Chef": {
-        //    if (addprem == "true") {
-        //        sh "knife artifactory download poise-python 1.6.0"
-        //    }
+        }, "Prepare env, with Puppet": {
+            if (env.BRANCH_NAME == 'master') {
+                echo 'skipping ...'
+            } else {
+                sh "puppet apply all/src/main/resources/puppet/init.pp"
+            }
+        }, "Prepare env, with Chef": {
+            if (addprem == "true") {
+                sh "knife artifactory download poise-python 1.6.0"
+            }
         }, "Reset Docker": {
             sh '''#!/bin/sh
             echo "All images"
@@ -87,7 +91,11 @@ node {
     }
 
     stage('Database migration') {
-        //sh "mvn clean install -Pdb flyway:clean flyway:init flyway:info flyway:migrate flyway:info -f all/pom.xml"
+        if (env.BRANCH_NAME == 'master') {
+            echo 'skipping ...'
+        } else {
+            sh "mvn clean install -Pdb flyway:clean flyway:init flyway:info flyway:migrate flyway:info -f all/pom.xml"
+        }
     }
 
     stage('SonarQube analysis') {
@@ -95,8 +103,6 @@ node {
             withSonarQubeEnv('Sonar') {
                 //sh 'mvn sonar:sonar -Dsonar.projectKey=com.huettermann:all -Dsonar.verbose=true -Dsonar.analysis.mode= -Dsonar.organization=michaelhuettermann-github -Dsonar.login=$SQ_TOKEN -Dsonar.host.url=https://sonarcloud.io -f all/pom.xml -Dsonar.java.binaries=target -Dsonar.junit.reportPaths=target/surefire-reports -Dsonar.jacoco.reportPaths=target/jacoco.exec -Dsonar.userHome=$WORKSPACE -Dsonar.working.directory=$WORKSPACE'
                 sh 'mvn sonar:sonar -Dsonar.projectKey=com.huettermann:all -Dsonar.organization=michaelhuettermann-github -Dsonar.login=$SQ_TOKEN -Dsonar.host.url=https://sonarcloud.io -f all/pom.xml -Dsonar.java.binaries=target -Dsonar.junit.reportPaths=target/surefire-reports -Dsonar.jacoco.reportPaths=target/jacoco.exec -Dsonar.userHome=/mnt/fsdata/sonarqube -Dsonar.working.directory=/mnt/fsdata/sonarqube'
-
-
             }
                 //timeout(time: 2, unit: 'MINUTES') {
                 //   def qg = waitForQualityGate()
