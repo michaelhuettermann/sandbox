@@ -162,10 +162,10 @@ node {
        
        cd all/src/main/resources/docker/alpine
        echo "Building new Tomcat 7 container"
-       docker build -f Dockerfile --build-arg ARTI=$ARTI --build-arg VER=$ver -t $ARTIREGISTRY/michaelhuettermann/alpine-tomcat7:${ver} . 
+       docker build -f Dockerfile --build-arg ARTI=$ARTI --build-arg VER=${ver} -t $ARTIREGISTRY/michaelhuettermann/alpine-tomcat7:${ver} . 
        echo "---------------------------------------"
        echo "Running Tomcat container"
-       docker run -d -p 8002:8080 $ARTIREGISTRY/michaelhuettermann/alpine-tomcat7:$ver
+       docker run -d -p 8002:8080 $ARTIREGISTRY/michaelhuettermann/alpine-tomcat7:${ver}
        echo "---------------------------------------"
        echo "All images"
        docker images | grep tomcat7
