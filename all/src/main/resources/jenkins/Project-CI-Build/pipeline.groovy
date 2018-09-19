@@ -40,19 +40,19 @@ node {
         //    if (addprem == "true") {
         //        sh "knife artifactory download poise-python 1.6.0"
         //    }
-        //}, "Reset Docker": {
-        //    sh '''#!/bin/sh
-        //    echo "All images"
-        //    sudo docker images | grep tomcat7 || true
-        //    echo "---------------------------------------"
-        //    echo "All active containers"
-        //    docker ps
-        //    echo "Stopping and removing containers"
-        //    docker stop $(sudo docker ps -a | grep 8002 | cut -d " " -f1) || true
-        //    docker rm $(sudo docker ps -a | grep Exit | cut -d " " -f1) || true
-        //    echo "Removing untagged Docker images"
-        //    docker rmi -f $(sudo docker images | grep "<none>" | awk "{print \$3}") || true
-        //    echo "---------------------------------------"'''
+        }, "Reset Docker": {
+            sh '''#!/bin/sh
+            echo "All images"
+            sudo docker images | grep tomcat7 || true
+            echo "---------------------------------------"
+            echo "All active containers"
+            docker ps
+            echo "Stopping and removing containers"
+            docker stop $(sudo docker ps -a | grep 8002 | cut -d " " -f1) || true
+            docker rm $(sudo docker ps -a | grep Exit | cut -d " " -f1) || true
+            echo "Removing untagged Docker images"
+            docker rmi -f $(sudo docker images | grep "<none>" | awk "{print \$3}") || true
+            echo "---------------------------------------"'''
        //}, "Run Socat": {
        //     sh '''#!/bin/sh
        //     so=$(docker ps | grep socat)
