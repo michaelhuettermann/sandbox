@@ -43,7 +43,7 @@ node {
         }, "Reset Docker": {
             sh '''#!/bin/sh
             echo "All images"
-            sudo docker images | grep tomcat7 || true
+            docker images | grep tomcat7 || true
             echo "---------------------------------------"
             echo "All active containers"
             docker ps
