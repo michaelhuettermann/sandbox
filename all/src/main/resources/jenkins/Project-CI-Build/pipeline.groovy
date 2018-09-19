@@ -48,10 +48,10 @@ node {
             echo "All active containers"
             docker ps
             echo "Stopping and removing containers"
-            docker stop $(sudo docker ps -a | grep 8002 | cut -d " " -f1) || true
-            docker rm $(sudo docker ps -a | grep Exit | cut -d " " -f1) || true
+            docker stop $(docker ps -a | grep 8002 | cut -d " " -f1) || true
+            docker rm $(docker ps -a | grep Exit | cut -d " " -f1) || true
             echo "Removing untagged Docker images"
-            docker rmi -f $(sudo docker images | grep "<none>" | awk "{print \$3}") || true
+            docker rmi -f $(docker images | grep "<none>" | awk "{print \$3}") || true
             echo "---------------------------------------"'''
        //}, "Run Socat": {
        //     sh '''#!/bin/sh
