@@ -4,7 +4,7 @@ node {
     def rtMaven
     def buildInfo
     def workspace
-    def v
+    def ver
 
     @Library('Util') _
 
@@ -30,9 +30,9 @@ node {
     stage('Setup') {
         parallel "Release version": {
             releaseVersion 'all/pom.xml'
-            v = version()
-            if (v) {
-                echo "Version calculated=${v}"
+            ver = version()
+            if (ver) {
+                echo "Version calculated=${ver}"
             }
         //}, "Prepare env, with Puppet": {
         //   sh "puppet apply all/src/main/resources/puppet/init.pp"
@@ -146,7 +146,7 @@ node {
     //}
 
     stage('Build Docker image and run container') {
-        sh '''
+         sh '''
        if [ "$flag" == "saas" ]; then
            ARTI=$ARTI3
            ARTIREGISTRY=$ARTI3REGISTRY
@@ -159,14 +159,14 @@ node {
            ARTI=$ARTI1
            ARTIREGISTRY=$ARTI1REGISTRY
        fi
-       
-       mvn -f all/pom.xml org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dartifact=com.huettermann:all -Dexpression=project.version
-       ver=$(mvn -f all/pom.xml org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dartifact=com.huettermann:all -Dexpression=project.version|grep -Ev \'(^\\[|Download\\w+:)\')
-       echo $ver > version.properties
+            
+            
+       //ver=$(mvn -f all/pom.xml org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dartifact=com.huettermann:all -Dexpression=project.version|grep -Ev \'(^\\[|Download\\w+:)\')
+       //echo $ver > version.properties
         
        cd all/src/main/resources/docker/alpine
        echo "Building new Tomcat 7 container"
-       docker build -f Dockerfile --build-arg ARTI=$ARTI --build-arg VER=$ver -t $ARTIREGISTRY/michaelhuettermann/alpine-tomcat7:$ver . 
+       docker build -f Dockerfile --build-arg ARTI=$ARTI --build-arg VER=$ver -t $ARTIREGISTRY/michaelhuettermann/alpine-tomcat7:${ver} . 
        echo "---------------------------------------"
        echo "Running Tomcat container"
        docker run -d -p 8002:8080 $ARTIREGISTRY/michaelhuettermann/alpine-tomcat7:$ver
@@ -204,14 +204,14 @@ node {
     stage('Distribute Docker image') {
         withCredentials([usernamePassword(credentialsId: 'DOCKER', passwordVariable: 'DOCKER_PW', usernameVariable: 'DOCKER_UN')]) {
             echo "Push Docker image to Artifactory Docker Registry."
-            String version = new File("${workspace}/version.properties").text.trim()
-            println "Processing version: ${version}"
+            //String version = new File("${workspace}/version.properties").text.trim()
+            //println "Processing version: ${version}"
             server.username = "$DOCKER_UN"
             server.password = "$DOCKER_PW"
             def artDocker = Artifactory.docker server:server, host: "tcp://127.0.0.1:1234"
 
             artDocker.addProperty("eat", "pizza").addProperty("drink", "beer")
-            def dockerInfo = artDocker.push("$ARTI3REGISTRY/michaelhuettermann/alpine-tomcat7:${version}", "docker-local")
+            def dockerInfo = artDocker.push("$ARTI3REGISTRY/michaelhuettermann/alpine-tomcat7:$ver", "docker-local")
             buildInfo.append(dockerInfo)
             server.publishBuildInfo(buildInfo)
         }
@@ -247,7 +247,7 @@ node {
 }
 
 def version() {
-    def matcher = readFile('pom.xml') =~ '<version>(.+)</version>'
+    def matcher = readFile('all/pom.xml') =~ '<version>(.+)</version>'
     matcher ? matcher[0][1] : null
 }
     
