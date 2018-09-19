@@ -159,13 +159,17 @@ node {
            ARTI=$ARTI1
            ARTIREGISTRY=$ARTI1REGISTRY
        fi
-       
+            
+            
+       ver=$(mvn -f all/pom.xml org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dartifact=com.huettermann:all -Dexpression=project.version|grep -Ev \'(^\\[|Download\\w+:)\')
+       echo $ver > version.properties
+        
        cd all/src/main/resources/docker/alpine
        echo "Building new Tomcat 7 container"
-       docker build -f Dockerfile --build-arg ARTI=$ARTI --build-arg VER=${ver} -t $ARTIREGISTRY/michaelhuettermann/alpine-tomcat7:${ver} . 
+       docker build -f Dockerfile --build-arg ARTI=$ARTI --build-arg VER=$ver -t $ARTIREGISTRY/michaelhuettermann/alpine-tomcat7:$ver . 
        echo "---------------------------------------"
        echo "Running Tomcat container"
-       docker run -d -p 8002:8080 $ARTIREGISTRY/michaelhuettermann/alpine-tomcat7:${ver}
+       docker run -d -p 8002:8080 $ARTIREGISTRY/michaelhuettermann/alpine-tomcat7:$ver
        echo "---------------------------------------"
        echo "All images"
        docker images | grep tomcat7
@@ -200,14 +204,14 @@ node {
     stage('Distribute Docker image') {
         withCredentials([usernamePassword(credentialsId: 'DOCKER', passwordVariable: 'DOCKER_PW', usernameVariable: 'DOCKER_UN')]) {
             echo "Push Docker image to Artifactory Docker Registry."
-            //String version = new File("${workspace}/version.properties").text.trim()
-            //println "Processing version: ${version}"
+            String version = new File("${workspace}/version.properties").text.trim()
+            println "Processing version: ${version}"
             server.username = "$DOCKER_UN"
             server.password = "$DOCKER_PW"
             def artDocker = Artifactory.docker server:server, host: "tcp://127.0.0.1:1234"
 
             artDocker.addProperty("eat", "pizza").addProperty("drink", "beer")
-            def dockerInfo = artDocker.push("$ARTI3REGISTRY/michaelhuettermann/alpine-tomcat7:$ver", "docker-local")
+            def dockerInfo = artDocker.push("$ARTI3REGISTRY/michaelhuettermann/alpine-tomcat7:$version", "docker-local")
             buildInfo.append(dockerInfo)
             server.publishBuildInfo(buildInfo)
         }
