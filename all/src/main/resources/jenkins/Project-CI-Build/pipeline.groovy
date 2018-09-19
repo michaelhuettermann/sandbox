@@ -98,15 +98,12 @@ node {
 
 
             }
-
                 //timeout(time: 2, unit: 'MINUTES') {
                 //   def qg = waitForQualityGate()
                 //   if (qg.status != 'OK') {
                 //      error "Pipeline aborted due to quality gate failure: ${qg.status}"
                 //   }
                 //}
-
-
         }
     }
 
@@ -128,23 +125,6 @@ node {
         buildInfo = server.upload(uploadSpec)
     }
 
-    //stage('Check Property/Plugin') {
-    //    if (addprem == "true") {
-    //        sh '''#!/bin/sh
-    //       echo "Now the usage of Groovy plugin ..."
-    //       echo hello > hello.txt
-    //       cat hello.txt
-    //       curl -u admin:AKCp2WXX7SDvcsmny528sSDnaB3zACkNQoscD8D1WmxhMV9gk6Wp8mVWC8bh38kJQbXagUT8Z -X PUT "http://localhost:8071/artifactory/simple/generic-local/hello.txt;qa=false" -T hello.txt
-    //       rm hello.txt
-    //       jfrog rt dl --url=http://localhost:8071/artifactory --apikey=AKCp2WXX7SDvcsmny528sSDnaB3zACkNQoscD8D1WmxhMV9gk6Wp8mVWC8bh38kJQbXagUT8Z generic-local/hello.txt
-    //       echo "---------------------------------------"
-    //       cat hello.txt
-    //       echo "---------------------------------------"
-    //       cat all/src/main/resources/artifactory/preventDownload.groovy
-    //       echo "---------------------------------------"'''
-    //    }
-    //}
-
     stage('Build Docker image and run container') {
          sh '''
        if [ "$flag" == "saas" ]; then
@@ -159,7 +139,6 @@ node {
            ARTI=$ARTI1
            ARTIREGISTRY=$ARTI1REGISTRY
        fi
-            
             
        ver=$(mvn -f all/pom.xml org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dartifact=com.huettermann:all -Dexpression=project.version|grep -Ev \'(^\\[|Download\\w+:)\')
        echo $ver > version.properties
@@ -208,26 +187,13 @@ node {
             println "Processing version: ${version}"
             server.username = "$DOCKER_UN"
             server.password = "$DOCKER_PW"
-            def artDocker = Artifactory.docker server:server, host: "tcp://127.0.0.1:1234"
-
+            def artDocker = Artifactory.docker server:server
             artDocker.addProperty("eat", "pizza").addProperty("drink", "beer")
             def dockerInfo = artDocker.push("$ARTI3REGISTRY/michaelhuettermann/alpine-tomcat7:$version", "docker-local")
             buildInfo.append(dockerInfo)
             server.publishBuildInfo(buildInfo)
         }
     }
-
-    //stage('Binary inspect') {
-    //    if (flag != "saas") {
-    //        def scanConfig = [
-    //                'buildName'  : buildInfo.name,
-    //                'buildNumber': buildInfo.number,
-    //                'failBuild'  : false
-    //        ]
-    //        def scanResult = server.xrayScan scanConfig
-    //        echo scanResult as String
-    //    }
-    //}
 
     stage('Certify') {
         //archiveArtifacts artifacts: 'all/target/*.war', fingerprint: true
@@ -237,12 +203,6 @@ node {
         }
         println "Labeled!"
     }
-
-    //stage('Tidy up') {
-    //    if (addprem == "true") {
-    //        sh "jfrog rt del --url=http://localhost:8071/artifactory --quiet=true --apikey=AKCp2WXX7SDvcsmny528sSDnaB3zACkNQoscD8D1WmxhMV9gk6Wp8mVWC8bh38kJQbXagUT8Z generic-local/hello.txt"
-    //    }
-    //}
 
 }
 
