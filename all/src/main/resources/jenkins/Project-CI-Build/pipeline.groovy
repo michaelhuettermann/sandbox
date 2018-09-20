@@ -131,7 +131,7 @@ node {
            ARTIREGISTRY=$ARTI1REGISTRY
        fi
             
-       ver=$(mvn -f all/pom.xml org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dartifact=com.huettermann:all -Dexpression=project.version|grep -Ev \'(^\\[|Download\\w+:)\')
+       ver=$(mvn -o -f all/pom.xml org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dartifact=com.huettermann:all -Dexpression=project.version|grep -Ev \'(^\\[|Download\\w+:)\')
        echo $ver > version.properties
         
        cd all/src/main/resources/docker/alpine
