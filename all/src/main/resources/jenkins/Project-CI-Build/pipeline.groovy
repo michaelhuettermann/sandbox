@@ -49,7 +49,9 @@ node {
             echo "---------------------------------------"
             echo "All active containers"
             docker ps
-            echo "Stopping and removing containers"
+            echo "Now a bit more catchy"
+            docker ps --format "table {{.ID}}\\t{{.Status}}\\t{{.Image}}"
+            echo "Stopping and removing working containers"
             docker stop $(docker ps -a | grep 8002 | cut -d " " -f1) || true
             docker rm $(docker ps -a | grep Exit | cut -d " " -f1) || true
             echo "Removing untagged Docker images"
@@ -87,7 +89,8 @@ node {
         withCredentials([string(credentialsId: 'SQ_TOKEN', variable: 'SQ_TOKEN')]) {
             withSonarQubeEnv('Sonar') {
                 //sh 'mvn sonar:sonar -Dsonar.projectKey=com.huettermann:all -Dsonar.verbose=true -Dsonar.analysis.mode= -Dsonar.organization=michaelhuettermann-github -Dsonar.login=$SQ_TOKEN -Dsonar.host.url=https://sonarcloud.io -f all/pom.xml -Dsonar.java.binaries=target -Dsonar.junit.reportPaths=target/surefire-reports -Dsonar.jacoco.reportPaths=target/jacoco.exec -Dsonar.userHome=$WORKSPACE -Dsonar.working.directory=$WORKSPACE'
-                sh 'mvn sonar:sonar -Dsonar.projectKey=com.huettermann:all -Dsonar.organization=michaelhuettermann-github -Dsonar.login=$SQ_TOKEN -Dsonar.host.url=https://sonarcloud.io -f all/pom.xml -Dsonar.java.binaries=target -Dsonar.junit.reportPaths=target/surefire-reports -Dsonar.jacoco.reportPaths=target/jacoco.exec -Dsonar.userHome=/mnt/fsdata/sonarqube -Dsonar.working.directory=/mnt/fsdata/sonarqube'
+                //sh 'mvn sonar:sonar -Dsonar.projectKey=com.huettermann:all -Dsonar.organization=michaelhuettermann-github -Dsonar.login=$SQ_TOKEN -Dsonar.host.url=https://sonarcloud.io -f all/pom.xml -Dsonar.java.binaries=target -Dsonar.junit.reportPaths=target/surefire-reports -Dsonar.jacoco.reportPaths=target/jacoco.exec -Dsonar.userHome=/mnt/fsdata/sonarqube -Dsonar.working.directory=/mnt/fsdata/sonarqube'
+                sh 'mvn sonar:sonar -Dsonar.projectKey=com.huettermann:all -Dsonar.organization=michaelhuettermann-github -Dsonar.login=$SQ_TOKEN -Dsonar.host.url=https://sonarcloud.io -f all/pom.xml'
             }
                 //timeout(time: 2, unit: 'MINUTES') {
                 //   def qg = waitForQualityGate()
