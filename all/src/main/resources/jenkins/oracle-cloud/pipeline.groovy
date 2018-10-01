@@ -50,6 +50,7 @@ fi
 sh '''
 #!/bin/bash 
 set +x
+echo "Delete deployment ..."
 curl -sk  -X "DELETE" -H "Authorization: Bearer ${BEARER}"  "https://${CLOUDIP}/api/v2/deployments/meow-deploy"
 sleep 5
 '''
@@ -58,6 +59,7 @@ sleep 5
 sh '''
 #!/bin/bash 
 set +x
+echo  "Delete service ..."
 curl -sk -X  "DELETE" -H "Authorization: Bearer ${BEARER}"  "https://${CLOUDIP}/api/v2/services/meow"
 sleep 5
 '''
@@ -66,6 +68,7 @@ sleep 5
 sh '''
 #!/bin/bash 
 set +x
+echo "Delete image ..."
 curl -sk  -X "DELETE" -H "Authorization: Bearer ${BEARER}"  "https://${CLOUDIP}/api/v2/images/${BINTRAYREGISTRY}/michaelhuettermann/alpine-tomcat7:${version}/hosts/2970cd1b-5571-6fda-3f21-1c6b19cd9ab1"
 sleep 5
 '''
@@ -74,6 +77,7 @@ sleep 5
 sh '''
 #!/bin/bash 
 set +x
+echo "Pull image ..."
 curl -sk  -X "POST"   -H "Authorization: Bearer ${BEARER}"  "https://${CLOUDIP}/api/v2/images/${BINTRAYREGISTRY}/michaelhuettermann/alpine-tomcat7:${version}/hosts/2970cd1b-5571-6fda-3f21-1c6b19cd9ab1/pull"
 sleep 5
 '''
@@ -83,6 +87,7 @@ echo "workspace = ${WORKSPACE}"
 sh '''
 #!/bin/bash 
 set +x
+echo "Create service ..."
 curl -ski -X "POST" -H "Authorization: Bearer ${BEARER}" "https://${CLOUDIP}/api/v2/services/" \
    --data "@${WORKSPACE}/new-service.json"
 sleep 5
@@ -96,6 +101,7 @@ sleep 5
 sh '''
 #!/bin/bash 
 set +x
+echo "Create deployment ..."
 curl -ski -X "POST" -H "Authorization: Bearer ${BEARER}" "https://${CLOUDIP}/api/v2/deployments/" \
    --data "@${WORKSPACE}/create-deployment.json" 
 sleep 5 
