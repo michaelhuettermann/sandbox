@@ -181,7 +181,7 @@ node {
          dockerAddress: 'unix:///var/run/docker.sock', \
          ignoreImageBuildTime: false, key: '', logLevel: 'true', \
          policy: 'warn', repository: 'huttermann-docker-local.jfrog.io/michaelhuettermann/alpine-tomcat7', \
-         requirePackageUpdate: false, tag: '$version', timeout: 10
+         requirePackageUpdate: false, tag: "$version", timeout: 10
     }
 
     stage('Publish') {
@@ -189,7 +189,7 @@ node {
         println "Publishing scan results for version: ${version}"
         twistlockPublish ca: '', cert: '', \
          dockerAddress: 'unix:///var/run/docker.sock', key: '', \
-         logLevel: 'true', repository: 'huttermann-docker-local.jfrog.io/michaelhuettermann/alpine-tomcat7', tag: '$version', \
+         logLevel: 'true', repository: 'huttermann-docker-local.jfrog.io/michaelhuettermann/alpine-tomcat7', tag: "$version", \
          timeout: 10
     }
 
