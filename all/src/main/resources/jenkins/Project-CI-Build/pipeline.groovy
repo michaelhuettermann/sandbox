@@ -175,17 +175,21 @@ node {
     }
 
     stage('Scan') {
+        String version = new File("${workspace}/version.properties").text.trim()
+        println "Scanning for version: ${version}"
         twistlockScan ca: '', cert: '', compliancePolicy: 'warn', \
          dockerAddress: 'unix:///var/run/docker.sock', \
          ignoreImageBuildTime: false, key: '', logLevel: 'true', \
          policy: 'warn', repository: 'huttermann-docker-local.jfrog.io/michaelhuettermann/alpine-tomcat7', \
-         requirePackageUpdate: false, tag: '1.0.0', timeout: 10
+         requirePackageUpdate: false, tag: '$version', timeout: 10
     }
 
     stage('Publish') {
+        String version = new File("${workspace}/version.properties").text.trim()
+        println "Publishing scan results for version: ${version}"
         twistlockPublish ca: '', cert: '', \
          dockerAddress: 'unix:///var/run/docker.sock', key: '', \
-         logLevel: 'true', repository: 'huttermann-docker-local.jfrog.io/michaelhuettermann/alpine-tomcat7', tag: '1.0.0', \
+         logLevel: 'true', repository: 'huttermann-docker-local.jfrog.io/michaelhuettermann/alpine-tomcat7', tag: '$version', \
          timeout: 10
     }
 
