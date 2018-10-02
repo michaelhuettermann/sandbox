@@ -174,6 +174,21 @@ node {
       echo "---------------------------------------"'''
     }
 
+    stage('Scan') {
+        twistlockScan ca: '', cert: '', compliancePolicy: 'warn', \
+         dockerAddress: 'unix:///var/run/docker.sock', \
+         ignoreImageBuildTime: false, key: '', logLevel: 'true', \
+         policy: 'warn', repository: 'huttermann-docker-local.jfrog.io/michaelhuettermann/alpine-tomcat7', \
+         requirePackageUpdate: false, tag: '1.0.0', timeout: 10
+    }
+
+    stage('Publish') {
+        twistlockPublish ca: '', cert: '', \
+         dockerAddress: 'unix:///var/run/docker.sock', key: '', \
+         logLevel: 'true', repository: 'huttermann-docker-local.jfrog.io/michaelhuettermann/alpine-tomcat7', tag: '1.0.0', \
+         timeout: 10
+    }
+
     stage('Distribute Docker image') {
         withCredentials([usernamePassword(credentialsId: 'DOCKER', passwordVariable: 'DOCKER_PW', usernameVariable: 'DOCKER_UN')]) {
             echo "Push Docker image to Artifactory Docker Registry."
