@@ -175,7 +175,7 @@ node {
       echo "---------------------------------------"'''
     }
 
-    stage('Scan') {
+    stage('Scan Docker image') {
         String version = new File("${workspace}/version.properties").text.trim()
         println "Scanning for version: ${version}"
         twistlockScan ca: '', cert: '', compliancePolicy: 'critical', \
@@ -185,7 +185,7 @@ node {
          requirePackageUpdate: false, tag: "$version", timeout: 10
     }
 
-    stage('Publish') {
+    stage('Publish scan result') {
         String version = new File("${workspace}/version.properties").text.trim()
         println "Publishing scan results for version: ${version}"
         twistlockPublish ca: '', cert: '', \
