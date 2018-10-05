@@ -99,11 +99,22 @@
             <artifactId>selenium-java</artifactId>
            <!-- <version>2.42.2</version> -->
             <version>3.14.0</version>
+           <exclusions>
+               <exclusion>
+                   <groupId>org.eclipse.jetty</groupId>
+                   <artifactId>jetty-io</artifactId>
+               </exclusion>
+           </exclusions>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>htmlunit-driver</artifactId>
             <version>2.29.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-io</artifactId>
+            <version>9.4.12.v20180830</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
