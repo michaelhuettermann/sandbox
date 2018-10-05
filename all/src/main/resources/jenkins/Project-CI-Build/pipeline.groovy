@@ -91,7 +91,8 @@ node {
             withSonarQubeEnv('Sonar') {
                 //sh 'mvn sonar:sonar -Dsonar.projectKey=com.huettermann:all -Dsonar.verbose=true -Dsonar.analysis.mode= -Dsonar.organization=michaelhuettermann-github -Dsonar.login=$SQ_TOKEN -Dsonar.host.url=https://sonarcloud.io -f all/pom.xml -Dsonar.java.binaries=target -Dsonar.junit.reportPaths=target/surefire-reports -Dsonar.jacoco.reportPaths=target/jacoco.exec -Dsonar.userHome=$WORKSPACE -Dsonar.working.directory=$WORKSPACE'
                 //sh 'mvn sonar:sonar -Dsonar.projectKey=com.huettermann:all -Dsonar.organization=michaelhuettermann-github -Dsonar.login=$SQ_TOKEN -Dsonar.host.url=https://sonarcloud.io -f all/pom.xml -Dsonar.java.binaries=target -Dsonar.junit.reportPaths=target/surefire-reports -Dsonar.jacoco.reportPaths=target/jacoco.exec -Dsonar.userHome=/mnt/fsdata/sonarqube -Dsonar.working.directory=/mnt/fsdata/sonarqube'
-                sh 'mvn sonar:sonar -Dsonar.projectKey=com.huettermann:all -Dsonar.organization=michaelhuettermann-github -Dsonar.login=$SQ_TOKEN -Dsonar.host.url=https://sonarcloud.io -f all/pom.xml -Dsonar.java.binaries=target -Dsonar.junit.reportPaths=all/target/surefire-reports -Dsonar.jacoco.reportPaths=all/target/jacoco.exec'
+                //sh 'mvn sonar:sonar -Dsonar.projectKey=com.huettermann:all -Dsonar.organization=michaelhuettermann-github -Dsonar.login=$SQ_TOKEN -Dsonar.host.url=https://sonarcloud.io -f all/pom.xml -Dsonar.java.binaries=target -Dsonar.junit.reportPaths=all/target/surefire-reports -Dsonar.jacoco.reportPaths=all/target/jacoco.exec'
+                sh 'mvn sonar:sonar -Dsonar.projectKey=com.huettermann:all -Dsonar.organization=michaelhuettermann-github -Dsonar.login=$SQ_TOKEN -Dsonar.host.url=https://sonarcloud.io -f all/pom.xml'
             }
             timeout(time: 5, unit: 'MINUTES') {
             def qg = waitForQualityGate()
