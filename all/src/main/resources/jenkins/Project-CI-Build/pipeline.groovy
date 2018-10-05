@@ -73,6 +73,7 @@ node {
     stage('Integration test') {
         rtMaven.deployer.deployArtifacts = false
         rtMaven.run pom: 'all/pom.xml', goals: 'clean integration-test -Pnolibs,web -DcoverageSkip=false'
+        //rtMaven.run pom: 'all/pom.xml', goals: 'clean integration-test -Pweb -DcoverageSkip=false'
     }
 
     stage('Reserve binary') {
@@ -90,7 +91,7 @@ node {
             withSonarQubeEnv('Sonar') {
                 //sh 'mvn sonar:sonar -Dsonar.projectKey=com.huettermann:all -Dsonar.verbose=true -Dsonar.analysis.mode= -Dsonar.organization=michaelhuettermann-github -Dsonar.login=$SQ_TOKEN -Dsonar.host.url=https://sonarcloud.io -f all/pom.xml -Dsonar.java.binaries=target -Dsonar.junit.reportPaths=target/surefire-reports -Dsonar.jacoco.reportPaths=target/jacoco.exec -Dsonar.userHome=$WORKSPACE -Dsonar.working.directory=$WORKSPACE'
                 //sh 'mvn sonar:sonar -Dsonar.projectKey=com.huettermann:all -Dsonar.organization=michaelhuettermann-github -Dsonar.login=$SQ_TOKEN -Dsonar.host.url=https://sonarcloud.io -f all/pom.xml -Dsonar.java.binaries=target -Dsonar.junit.reportPaths=target/surefire-reports -Dsonar.jacoco.reportPaths=target/jacoco.exec -Dsonar.userHome=/mnt/fsdata/sonarqube -Dsonar.working.directory=/mnt/fsdata/sonarqube'
-                sh 'mvn sonar:sonar -Dsonar.projectKey=com.huettermann:all -Dsonar.organization=michaelhuettermann-github -Dsonar.login=$SQ_TOKEN -Dsonar.host.url=https://sonarcloud.io -f all/pom.xml -Dsonar.java.binaries=target -Dsonar.junit.reportPaths=target/surefire-reports -Dsonar.jacoco.reportPaths=target/jacoco.exec'
+                sh 'mvn sonar:sonar -Dsonar.projectKey=com.huettermann:all -Dsonar.organization=michaelhuettermann-github -Dsonar.login=$SQ_TOKEN -Dsonar.host.url=https://sonarcloud.io -f all/pom.xml -Dsonar.java.binaries=target -Dsonar.junit.reportPaths=all/target/surefire-reports -Dsonar.jacoco.reportPaths=all/target/jacoco.exec'
             }
             timeout(time: 2, unit: 'MINUTES') {
             def qg = waitForQualityGate()
