@@ -178,10 +178,10 @@ node {
     stage('Scan') {
         String version = new File("${workspace}/version.properties").text.trim()
         println "Scanning for version: ${version}"
-        twistlockScan ca: '', cert: '', compliancePolicy: 'warn', \
+        twistlockScan ca: '', cert: '', compliancePolicy: 'critical', \
          dockerAddress: 'unix:///var/run/docker.sock', \
          ignoreImageBuildTime: false, key: '', logLevel: 'true', \
-         policy: 'warn', repository: 'huttermann-docker-local.jfrog.io/michaelhuettermann/alpine-tomcat7', \
+         policy: 'critical', repository: 'huttermann-docker-local.jfrog.io/michaelhuettermann/alpine-tomcat7', \
          requirePackageUpdate: false, tag: "$version", timeout: 10
     }
 
