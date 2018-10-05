@@ -62,7 +62,7 @@ node {
 
     stage('Unit test') {
         try {
-            sh "mvn clean test -f all/pom.xml -DcoverageSkip=true"
+            sh "mvn clean test -f all/pom.xml -DcoverageSkip=false"
         } catch(err) {
             throw err
         } finally {
@@ -72,7 +72,7 @@ node {
 
     stage('Integration test') {
         rtMaven.deployer.deployArtifacts = false
-        rtMaven.run pom: 'all/pom.xml', goals: 'clean integration-test -Pweb -DcoverageSkip=false'
+        rtMaven.run pom: 'all/pom.xml', goals: 'integration-test -Pweb -DcoverageSkip=true'
         //rtMaven.run pom: 'all/pom.xml', goals: 'clean integration-test -Pnolibs,web -DcoverageSkip=false'
     }
 
