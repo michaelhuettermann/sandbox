@@ -88,7 +88,7 @@ node {
         }
     }
 
-    stage('SonarQube analysis') {
+    stage('SonarQube: Analysis source code') {
         withCredentials([string(credentialsId: 'SQ_TOKEN', variable: 'SQ_TOKEN')]) {
             withSonarQubeEnv('Sonar') {
                 sh "mvn sonar:sonar -Dsonar.projectKey=com.huettermann:all -Dsonar.organization=michaelhuettermann-github -Dsonar.login=$SQ_TOKEN -Dsonar.host.url=https://sonarcloud.io -f all/pom.xml -Dsonar.jacoco.reportPaths=${workspace}/all/target/jacoco.exec"
@@ -175,7 +175,7 @@ node {
       echo "---------------------------------------"'''
     }
 
-    stage('Scan Docker image') {
+    stage('Twistlock: Scan Docker image') {
         String version = new File("${workspace}/version.properties").text.trim()
         println "Scanning for version: ${version}"
         twistlockScan ca: '', cert: '', compliancePolicy: 'critical', \
@@ -185,7 +185,7 @@ node {
          requirePackageUpdate: false, tag: "$version", timeout: 10
     }
 
-    stage('Publish scan result') {
+    stage('Twistlock: Publish scan result') {
         String version = new File("${workspace}/version.properties").text.trim()
         println "Publishing scan results for version: ${version}"
         twistlockPublish ca: '', cert: '', \
