@@ -98,12 +98,6 @@
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>3.14.0</version>
-          <!-- <exclusions>
-               <exclusion>
-                   <groupId>org.eclipse.jetty</groupId>
-                   <artifactId>jetty-io</artifactId>
-               </exclusion>
-           </exclusions>-->
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
@@ -111,11 +105,6 @@
             <!--<version>2.32.1</version>-->
            <version>2.29.0</version>
         </dependency>
-       <!-- <dependency>
-            <groupId>org.eclipse.jetty</groupId>
-            <artifactId>jetty-io</artifactId>
-            <version>9.4.12.v20180830</version>
-        </dependency> -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
