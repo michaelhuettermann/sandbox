@@ -15,7 +15,7 @@ ENV TOMCAT_VERSION_FULL  9.0.6
 # Download, install, housekeeping
 RUN apk add --update curl &&\
   apk add bash &&\
-  # apk add -u libx11 &&\
+  apk add -u libx11 &&\
   mkdir /opt &&\
   curl -LO ${ARTI}/list/generic-local/apache/org/tomcat/tomcat-${TOMCAT_VERSION_MAJOR}/v${TOMCAT_VERSION_FULL}/bin/apache-tomcat-${TOMCAT_VERSION_FULL}.tar.gz &&\
   gunzip -c apache-tomcat-${TOMCAT_VERSION_FULL}.tar.gz | tar -xf - -C /opt &&\
