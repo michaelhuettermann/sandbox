@@ -1,3 +1,5 @@
+These folders contain different artifacts which add another content to the overall release. Part of that is also the jenkins directory consisting of pipeline scripts used to promote changes to production.
+
 also see:
    https://youtu.be/jBGFjFc6Jf8?t=1424
    https://www.youtube.com/watch?v=rS_pchiwGdM
