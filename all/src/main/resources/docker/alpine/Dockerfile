@@ -14,7 +14,8 @@ ENV TOMCAT_VERSION_MAJOR 9
 ENV TOMCAT_VERSION_FULL  9.0.6
 
 # Download, install, housekeeping
-RUN apk add --update curl &&\
+RUN apk update &&\
+  apk add --update curl &&\
   apk add bash &&\
   #apk add -u libx11 &&\
   apk add -u libpng &&\
