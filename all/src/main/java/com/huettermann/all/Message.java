@@ -12,21 +12,22 @@ public class Message extends HttpServlet {
                       HttpServletResponse response)
         throws ServletException, IOException {
 
-
         String param = request.getParameter("param");
         ServletContext context = getServletContext( );
 
         if (param == null || param.equals("")) {
-	    context.log("No message received:",
+	        context.log("No message received:",
             new IllegalStateException("Missing parameter"));
         } else {
             context.log("Here the paramater: " + param);
+            Cookie cookie = new Cookie("cook", parm);
+            response.addCookie(cookie);
         }
 
         PrintWriter out = null;    
         try {         
           out = response.getWriter();
-          out.println("<html>Hello: " + param + "</html>");
+          out.println("Hello: " + param);
           out.flush();
           out.close();
         } catch (IOException io) {
