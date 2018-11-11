@@ -21,20 +21,18 @@ public class Message extends HttpServlet {
             new IllegalStateException("Missing parameter"));
         } else {
             context.log("Here the paramater: " + param);
-            Cookie cookie = new Cookie("cook", param);
-            response.addCookie(cookie);
         }
 
-        NullCipher nc = new NullCipher();
-
-        PrintWriter out = null;    
-        try {         
-          out = response.getWriter();
-          out.println("Hello: " + param);
-          out.flush();
-          out.close();
-        } catch (IOException io) {
-          io.printStackTrace();
+        if(request.getRequestedSessionId() ) {
+            PrintWriter out = null;
+            try {
+                out = response.getWriter();
+                out.println("Hello: " + param);
+                out.flush();
+                out.close();
+            } catch (IOException io) {
+                io.printStackTrace();
+            }
         }
    }
 } 
