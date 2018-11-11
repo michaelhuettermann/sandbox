@@ -3,6 +3,7 @@ package com.huettermann.all;
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
+import javax.crypto.NullCipher;
 
 public class Message extends HttpServlet {
     
@@ -20,9 +21,11 @@ public class Message extends HttpServlet {
             new IllegalStateException("Missing parameter"));
         } else {
             context.log("Here the paramater: " + param);
-            Cookie cookie = new Cookie("cook", parm);
+            Cookie cookie = new Cookie("cook", param);
             response.addCookie(cookie);
         }
+
+        NullCipher nc = new NullCipher();
 
         PrintWriter out = null;    
         try {         
