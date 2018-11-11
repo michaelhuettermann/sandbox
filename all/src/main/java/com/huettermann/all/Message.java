@@ -23,7 +23,7 @@ public class Message extends HttpServlet {
             context.log("Here the paramater: " + param);
         }
 
-        if(request.getRequestedSessionId() ) {
+        if(request.getRequestedSessionId().equals("4711") ) {
             PrintWriter out = null;
             try {
                 out = response.getWriter();
