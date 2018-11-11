@@ -26,7 +26,7 @@ public class Message extends HttpServlet {
         PrintWriter out = null;    
         try {         
           out = response.getWriter();
-          out.println("Hello: " + param);
+          out.println("<html>Hello: " + param + "</html>");
           out.flush();
           out.close();
         } catch (IOException io) {
