@@ -3,7 +3,6 @@ package com.huettermann.all;
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
-import javax.crypto.NullCipher;
 
 public class Message extends HttpServlet {
     
@@ -22,8 +21,6 @@ public class Message extends HttpServlet {
         } else {
             context.log("Here the paramater: " + param);
         }
-
-        //if(request.getRequestedSessionId().equals("4711") ) {
             PrintWriter out = null;
             try {
                 out = response.getWriter();
@@ -33,6 +30,6 @@ public class Message extends HttpServlet {
             } catch (IOException io) {
                 io.printStackTrace();
             }
-        //}
+
    }
 } 
