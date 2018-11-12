@@ -7,4 +7,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="groovy-2.4.9" level="application" />
   </component>
+  <component name="SonarLintModuleSettings">
+    <option name="idePathPrefix" value="all" />
+  </component>
 </module>
