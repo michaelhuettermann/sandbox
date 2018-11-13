@@ -176,7 +176,8 @@ node {
     }
 
     stage('Twistlock: Analysis') {
-        String version = new File("${workspace}/version.properties").text.trim()
+        //String version = new File("${workspace}/version.properties").text.trim()
+        String version = readFile("version.properties")
         println "Scanning for version: ${version}"
         twistlockScan ca: '', cert: '', compliancePolicy: 'critical', \
          dockerAddress: 'unix:///var/run/docker.sock', \
@@ -186,7 +187,8 @@ node {
     }
 
     stage('Twistlock: Publish') {
-        String version = new File("${workspace}/version.properties").text.trim()
+        //String version = new File("${workspace}/version.properties").text.trim()
+        String version = readFile("version.properties")
         println "Publishing scan results for version: ${version}"
         twistlockPublish ca: '', cert: '', \
          dockerAddress: 'unix:///var/run/docker.sock', key: '', \
