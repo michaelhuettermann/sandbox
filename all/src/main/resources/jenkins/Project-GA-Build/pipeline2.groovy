@@ -20,6 +20,13 @@ pipeline {
                 sh 'docker push iad.ocir.io/mh/michaelhuettermann/alpine-tomcat7:$version'
             }
         }
+        stage('Deploy to Production') {
+            steps {
+                script {
+                    build(job: "Project-Cloud-Deploy", parameters: [[$class: 'StringParameterValue', name: 'version', value: "$version" ]], wait: false)
+                }
+            }
+        }
     }
     post {
         always {
