@@ -3,8 +3,8 @@
     <title>Welcome in the Cloud!</title>
 </head>
 <body>
-
-<h2>Hello World! Greetings from Cologne!!!</h2>
-
+<h1>Meow app</h1>
+<h4>Hello World! Greetings from Cologne!!!</h4>
+<img src="cat.jpg"/>
 </body>
 </html>
