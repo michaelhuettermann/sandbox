@@ -5,6 +5,6 @@
 <body>
 <h1>Meow app</h1>
 <h4>Hello World! Greetings from Cologne!!!</h4>
-<img src="images/cat.jpg" alt="meow"/>
+<img src="images/cat.jpg" alt="meow" width="300" height="200"/>
 </body>
 </html>
