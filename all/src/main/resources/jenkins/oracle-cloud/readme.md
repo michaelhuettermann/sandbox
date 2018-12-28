@@ -1,5 +1,5 @@
 
-##### Deployment with/to Oracle Cloud Infrastructure
+##### Deployment with/to Oracle Cloud 
 
 This example promotes and runs a previously built Docker image, hosted on *Oracle Cloud Infrastructure Registry*, to the runtime environment that is 
 *Oracle Container Service Classic*. *Twistlock* is utilized to inspect the images (with its layers, transitively) in the registry for known vulnerabilities. 
