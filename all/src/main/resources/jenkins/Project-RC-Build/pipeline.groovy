@@ -29,12 +29,12 @@ pipeline {
                 script {
                     workspace = pwd()
                     String json = readFile("${workspace}/all/src/main/resources/jenkins/Project-RC-Build/out.json").trim()
-                    String content = ""
+                    String content = ''
                     def map = parseJsonToMap(json)
                     map.results.each{ k, v ->
                         myVersion = "${k.name}".split("-")[1].replaceAll(".war","")
                         println myVersion
-                        content.append(myVersion+"\n")
+                        content <<= myVersion+"\n"
                     }
                     println content.toString()
                     writeFile file: "${workspace}/all/src/main/resources/jenkins/Project-RC-Build/versions.txt", text: content.toString()
