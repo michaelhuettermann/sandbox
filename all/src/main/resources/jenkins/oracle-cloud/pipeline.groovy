@@ -1,8 +1,6 @@
 node {
     withCredentials([string(credentialsId: 'ORACLE_BEARER', variable: 'BEARER')]) {
-
         def WORKSPACE
-
         stage('Prepare') {
             WORKSPACE = pwd()
             echo "where am I ... ${WORKSPACE}"

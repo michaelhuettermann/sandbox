@@ -1,12 +1,13 @@
 
 ##### Deployment with/to Oracle Cloud Infrastructure
 
-This example promotes a previously built Docker image, hosted on *Oracle Cloud Infrastructure Registry*, to the runtime environment that is 
-*Oracle Container Service Classic*. *Twistlock* is utilized to inspect the images for known vulnerabilities. The Docker image serves as an example of 
-a primitive (can be aggregated to more complex setups), and does bundle OpenJDK 8, on Alpine Linux, with Tomcat 9, and ships a Java EE WAR deployment unit, see 
-[here](https://github.com/michaelhuettermann/sandbox/blob/master/all/src/main/resources/docker/alpine/Dockerfile). The resulting web application is running
- [here](http://129.150.204.182:8002/all/). In this case the glue is achieved by Jenkins pipeline, but of course you can take any available automation engine 
- to integrate with the Oracle Cloud REST API.
+This example promotes and runs a previously built Docker image, hosted on *Oracle Cloud Infrastructure Registry*, to the runtime environment that is 
+*Oracle Container Service Classic*. *Twistlock* is utilized to inspect the images (with its layers, transitively) in the registry for known vulnerabilities. 
+The Docker image serves as an example of a primitive that can be aggregated more complex setups, and does bundle OpenJDK 8, 
+on Alpine Linux, with Tomcat 9, and ships a Java EE WAR deployment unit, see 
+[here](https://github.com/michaelhuettermann/sandbox/blob/master/all/src/main/resources/docker/alpine/Dockerfile). 
+The resulting web application is running [here](http://129.150.204.182:8002/all/). In this case the glue is achieved by 
+Jenkins pipeline, but of course you can take any available automation engine to integrate with the Oracle Cloud REST API.
 
 ###### Overview: the included components.
 ![DevOps cycle](pics/cycle.png) 
