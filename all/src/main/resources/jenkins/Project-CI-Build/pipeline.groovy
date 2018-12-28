@@ -197,7 +197,7 @@ node {
     stage('Distribute Docker image') {
         withCredentials([usernamePassword(credentialsId: 'DOCKER', passwordVariable: 'DOCKER_PW', usernameVariable: 'DOCKER_UN')]) {
             echo "Push Docker image to Artifactory Docker Registry."
-            String version = new File("${workspace}/version.properties").text.trim()
+            String version = readFile("version.properties").trim()
             println "Processing version: ${version}"
             server.username = "$DOCKER_UN"
             server.password = "$DOCKER_PW"
