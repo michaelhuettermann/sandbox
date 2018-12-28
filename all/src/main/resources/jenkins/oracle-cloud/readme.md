@@ -8,16 +8,16 @@ a primitive (can be aggregated to more complex setups), and does bundle OpenJDK 
  [here](http://129.150.204.182:8002/all/). In this case the glue is achieved by Jenkins pipeline, but of course you can take any available automation engine 
  to integrate with the Oracle Cloud REST API.
 
-Overview: the included components.
+###### Overview: the included components.
 ![DevOps cycle](pics/cycle.png) 
 
-Oracle Cloud Infrastructure Registry: the Docker images are hosted.
+###### Oracle Cloud Infrastructure Registry: the Docker images are hosted.
 ![Image registry](pics/registry.png)
 
-Twistlock: content of Docker registry is inspected.
+###### Twistlock: content of Docker registry is inspected.
 ![Container inspection](pics/inspect.png) 
 
-Oracle Cloud Infrastructure Container Service Classic: Docker container runtime (service console).
+###### Oracle Cloud Infrastructure Container Service Classic: Docker container runtime (service console).
 ![Container runtime](pics/container.png)  
 
 ##### Files
