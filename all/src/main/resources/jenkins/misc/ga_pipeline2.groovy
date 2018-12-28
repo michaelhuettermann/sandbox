@@ -1,23 +1,43 @@
-pipeline {
+ga_pipeline2 {
     agent any
     stages {
         stage('Prepare') {
             steps {
                 echo 'Prepare'
+                sh 'curl -O http://$ARTI3/simple/libs-releases-staging-local/com/huettermann/web/$version/all-$version.war'
+                //devOpticsConsumes masterUrl: 'http://localhost:8080/', jobName: 'Project-RC-Build'
+            }
+        }
+        stage('Certify WAR') {
+            steps {
+                echo 'Certify'
+                sh 'cp all-$version.war all-$version-GA.war'
+                //fingerprint 'all-$version-GA.war'
+            }
+        }
+        stage('Promote WAR to Bintray') {
+            steps {
+                withCredentials([string(credentialsId: 'BINTRAY_KEY', variable: 'BINTRAY')]) {
+                    sh '''
+       curl -u michaelhuettermann:${BINTRAY} -X DELETE https://api.bintray.com/packages/huettermann/meow/cat/versions/$version
+       curl -u michaelhuettermann:${BINTRAY} -H "Content-Type: application/json" -X POST https://api.bintray.com/packages/huettermann/meow/cat/$version --data """{ "name": "$version", "desc": "desc" }"""
+       curl -T "$WORKSPACE/all-$version-GA.war" -u michaelhuettermann:${BINTRAY} -H "X-Bintray-Package:cat" -H "X-Bintray-Version:$version" https://api.bintray.com/content/huettermann/meow/
+       curl -u michaelhuettermann:${BINTRAY} -H "Content-Type: application/json" -X POST https://api.bintray.com/content/huettermann/meow/cat/$version/publish --data '{ "discard": "false" }'
+       '''
+                }
             }
         }
         stage('Certify Docker Image') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'OCIR', passwordVariable: 'OCIR_PW', usernameVariable: 'OCIR_UN')]) {
-                    sh 'docker login -u $OCIR_UN -p $OCIR_PW iad.ocir.io  '
-                    sh 'docker tag $ARTI3REGISTRY/michaelhuettermann/alpine-tomcat7:$version iad.ocir.io/mh/michaelhuettermann/alpine-tomcat7:$version'
-                    sh 'docker images'
+                withCredentials([string(credentialsId: 'BINTRAY_KEY', variable: 'BINTRAY')]) {
+                    sh 'docker login -u michaelhuettermann -p ${BINTRAY} huettermann-docker-registry.bintray.io'
+                    sh 'docker tag $ARTI3REGISTRY/michaelhuettermann/alpine-tomcat7:$version $BINTRAYREGISTRY/michaelhuettermann/alpine-tomcat7:$version'
                 }
             }
         }
-        stage('Promote Docker Image to Registry') {
+        stage('Promote Docker Image to Bintray') {
             steps {
-                sh 'docker push iad.ocir.io/mh/michaelhuettermann/alpine-tomcat7:$version'
+                sh 'docker push $BINTRAYREGISTRY/michaelhuettermann/alpine-tomcat7:$version --disable-content-trust'
             }
         }
         stage('Deploy to Production') {
@@ -31,7 +51,6 @@ pipeline {
     post {
         always {
             echo 'Finished!'
-            sh 'docker logout iad.ocir.io'
             deleteDir()
         }
         success {

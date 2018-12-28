@@ -65,7 +65,7 @@ sh '''
 #!/bin/bash 
 set +x
 echo "Delete image ..."
-curl -sk  -X "DELETE" -H "Authorization: Bearer ${BEARER}"  "https://${CLOUDIP}/api/v2/images/${BINTRAYREGISTRY}/michaelhuettermann/alpine-tomcat7:${version}/hosts/ebff015f-70c2-6652-7e17-cb9d92ff949c"
+curl -sk  -X "DELETE" -H "Authorization: Bearer ${BEARER}"  "https://${CLOUDIP}/api/v2/images/iad.ocir.io/mh/michaelhuettermann/alpine-tomcat7:${version}/hosts/ebff015f-70c2-6652-7e17-cb9d92ff949c"
 sleep 5
 '''
         }
@@ -74,7 +74,7 @@ sh '''
 #!/bin/bash 
 set +x
 echo "Pull image ..."
-curl -sk  -X "POST"   -H "Authorization: Bearer ${BEARER}"  "https://${CLOUDIP}/api/v2/images/${BINTRAYREGISTRY}/michaelhuettermann/alpine-tomcat7:${version}/hosts/ebff015f-70c2-6652-7e17-cb9d92ff949c/pull"
+curl -sk  -X "POST"   -H "Authorization: Bearer ${BEARER}"  "https://${CLOUDIP}/api/v2/images/iad.ocir.io/mh/michaelhuettermann/alpine-tomcat7:${version}/hosts/ebff015f-70c2-6652-7e17-cb9d92ff949c/pull"
 sleep 5
 '''
         }

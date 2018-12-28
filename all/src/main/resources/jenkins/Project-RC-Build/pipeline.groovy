@@ -24,15 +24,14 @@ pipeline {
                         println myVersion
                         content <<= myVersion+"\n"
                     }
-                    println content.toString()
-                    writeFile file: "${workspace}/all/src/main/resources/jenkins/Project-RC-Build/versions.txt", text: content.toString()
+                    writeFile file: "${workspace}/all/src/main/resources/jenkins/Project-RC-Build/versions.txt", text: content.toString().trim()
                 }
             }
         }
         stage('Input') {
             steps {
                 script {
-                    String f = readFile("${workspace}/all/src/main/resources/jenkins/Project-RC-Build/versions.txt").trim()
+                    String f = readFile("${workspace}/all/src/main/resources/jenkins/Project-RC-Build/versions.txt")
                     env.version = input message: 'User input required', ok: 'Release!',
                             parameters: [choice(name: 'version', choices: "$f", description: 'Which version should be promoted??')]
                     println env.version
