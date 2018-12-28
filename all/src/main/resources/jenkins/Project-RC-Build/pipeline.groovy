@@ -14,20 +14,9 @@ pipeline {
                 withCredentials([string(credentialsId: 'ARTIFACTORY_TOKEN', variable: 'ARTIFACTORY')]) {
                     sh 'curl -H "X-JFrog-Art-Api:$ARTIFACTORY" -X POST https://$ARTI3/api/search/aql -T "${WORKSPACE}/all/src/main/resources/jenkins/Project-RC-Build/search.aql" > "${WORKSPACE}/all/src/main/resources/jenkins/Project-RC-Build/out.json"'
                 }
-        /*        script {
-                    workspace = pwd()
-                    new File(workspace+'/all/src/main/resources/jenkins/Project-RC-Build/versions.txt').delete()
-                    f = new File(workspace+'/all/src/main/resources/jenkins/Project-RC-Build/versions.txt')
-                    String json = new File(workspace+'/all/src/main/resources/jenkins/Project-RC-Build/out.json').text
-                    def map = parseJsonToMap(json)
-                    map.results.each{ k, v ->
-                        myVersion = "${k.name}".split("-")[1].replaceAll(".war","")
-                        println myVersion
-                        f.append(myVersion+"\n")
-                    }
-                } */
                 script {
                     workspace = pwd()
+                    archiveArtifacts artifacts: '${WORKSPACE}/all/src/main/resources/jenkins/Project-RC-Build/out.json'
                     String json = readFile("${workspace}/all/src/main/resources/jenkins/Project-RC-Build/out.json").trim()
                     String content = ''
                     def map = parseJsonToMap(json)
@@ -38,13 +27,14 @@ pipeline {
                     }
                     println content.toString()
                     writeFile file: "${workspace}/all/src/main/resources/jenkins/Project-RC-Build/versions.txt", text: content.toString()
+                    archiveArtifacts artifacts: '${WORKSPACE}/all/src/main/resources/jenkins/Project-RC-Build/versions.txt'
                 }
             }
         }
         stage('Input') {
             steps {
                 script {
-                    f = new File(workspace+'/all/src/main/resources/jenkins/Project-RC-Build/versions.txt')
+                    f = readFile("${workspace}/all/src/main/resources/jenkins/Project-RC-Build/versions.txt").trim()
                     env.version = input message: 'User input required', ok: 'Release!',
                             parameters: [choice(name: 'version', choices: "$f.text", description: 'Which version should be promoted??')]
                     println env.version
@@ -61,18 +51,9 @@ pipeline {
                 sh 'kubectl get services   || true'
             }
         }
-        //stage('Prepare') {
-        //    steps {
-        //        echo 'Preparing ...'
-        //        sh 'curl -O http://$ARTI3/list/libs-release-local/com/huettermann/web/$version/all-$version.war'
-        //        devOpticsConsumes masterUrl: 'http://localhost:8080/', jobName: 'devoptics/application-comp'
-        //    }
-        //}
         stage('Certify WAR') {
             steps {
                 echo 'Certifying WAR ...'
-                //fingerprint 'all-$version.war'
-                //fingerprint 'README.md'
             }
         }
         stage('Promote WAR') {
