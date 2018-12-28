@@ -5,9 +5,7 @@ This example includes the Groovy based Jenkins build pipeline that takes a param
 previously built Docker image, hosted at *Oracle Cloud Infrastructure Registry*, and provisions a container from it on 
 *Oracle Container Service Classic*. *Twistlock* is utilized to inspect the images for known vulnerabilities. The Docker images
 does bundle OpenJDK 8, on Alpine Linux, with Tomcat 9, and ships a Java EE WAR deployment unit, see 
-[here](https://github.com/michaelhuettermann/sandbox/blob/master/all/src/main/resources/docker/alpine/Dockerfile)
-
-. The resulting web application is running [here](http://129.150.204.182:8002/all/)
+[here](https://github.com/michaelhuettermann/sandbox/blob/master/all/src/main/resources/docker/alpine/Dockerfile). The resulting web application is running [here](http://129.150.204.182:8002/all/)
 
 Overview: the included components.
 ![DevOps cycle](pics/cycle.png) 
