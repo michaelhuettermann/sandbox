@@ -16,7 +16,6 @@ pipeline {
                 }
                 script {
                     workspace = pwd()
-                    archiveArtifacts artifacts: '${WORKSPACE}/all/src/main/resources/jenkins/Project-RC-Build/out.json'
                     String json = readFile("${workspace}/all/src/main/resources/jenkins/Project-RC-Build/out.json").trim()
                     String content = ''
                     def map = parseJsonToMap(json)
@@ -27,7 +26,6 @@ pipeline {
                     }
                     println content.toString()
                     writeFile file: "${workspace}/all/src/main/resources/jenkins/Project-RC-Build/versions.txt", text: content.toString()
-                    archiveArtifacts artifacts: '${WORKSPACE}/all/src/main/resources/jenkins/Project-RC-Build/versions.txt'
                 }
             }
         }
