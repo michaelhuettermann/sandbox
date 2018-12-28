@@ -11,7 +11,6 @@ Oracle Cloud Infrastructure Registry: the Docker images are hosted
 ![Image registry](pics/registry.png)
 
 Twistlock: content of Docker registry is inspected. Please note, this is just one use cases. 
- 
 ![Container inspection](pics/inspect.png) 
 
 Oracle Cloud Infrastructure Container Service Classic: Docker container runtime (service console)
