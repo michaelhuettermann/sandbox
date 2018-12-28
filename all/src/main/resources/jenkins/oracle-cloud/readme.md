@@ -1,11 +1,12 @@
 
 ##### Deployment with/to Oracle Cloud Infrastructure
 
-This example includes the Groovy based Jenkins build pipeline that takes a parameterized version number from the user, to identify a 
-previously built Docker image, hosted at *Oracle Cloud Infrastructure Registry*, and provisions a container from it on 
-*Oracle Container Service Classic*. *Twistlock* is utilized to inspect the images for known vulnerabilities. The Docker images
-does bundle OpenJDK 8, on Alpine Linux, with Tomcat 9, and ships a Java EE WAR deployment unit, see 
-[here](https://github.com/michaelhuettermann/sandbox/blob/master/all/src/main/resources/docker/alpine/Dockerfile). The resulting web application is running [here](http://129.150.204.182:8002/all/)
+This example promotes a previously built Docker image, hosted on *Oracle Cloud Infrastructure Registry*, to the runtime environment that is 
+*Oracle Container Service Classic*. *Twistlock* is utilized to inspect the images for known vulnerabilities. The Docker image serves as an example of 
+a primitive (can be aggregated to more complex setups), and does bundle OpenJDK 8, on Alpine Linux, with Tomcat 9, and ships a Java EE WAR deployment unit, see 
+[here](https://github.com/michaelhuettermann/sandbox/blob/master/all/src/main/resources/docker/alpine/Dockerfile). The resulting web application is running
+ [here](http://129.150.204.182:8002/all/). In this case the glue is achieved by Jenkins pipeline, but of course you can take any available automation engine 
+ to integrate with the Oracle Cloud REST API.
 
 Overview: the included components.
 ![DevOps cycle](pics/cycle.png) 
@@ -25,7 +26,7 @@ Oracle Cloud Infrastructure Container Service Classic: Docker container runtime 
 * **pipeline.groovy**, the Jenkins pipeline groovy script, [Project Cloud Deploy here](http://129.213.104.3:8080/jenkins/blue/organizations/jenkins/pipelines/)
 
 ##### Parameters of pipeline script
-`version`, the version to deploy.
+`version`, the version of the Docker image to deploy.
 
 ##### Further information
 * https://cloud.oracle.com/compute/
