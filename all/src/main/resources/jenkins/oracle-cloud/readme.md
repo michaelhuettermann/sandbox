@@ -29,5 +29,6 @@ Oracle Cloud Infrastructure Container Service Classic: Docker container runtime 
 * https://cloud.oracle.com/compute/
 * https://docs.oracle.com/en/cloud/iaas/container-cloud/
 * https://cloud.oracle.com/containers/registry/
-* https://jenkins.io/blog/2018/11/12/inspecting-binaries-with-jenkins/
 * https://www.twistlock.com/
+* https://jenkins.io/blog/2018/11/12/inspecting-binaries-with-jenkins/
+* https://youtu.be/meC-u84o0xU
