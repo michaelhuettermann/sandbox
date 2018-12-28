@@ -35,7 +35,7 @@ pipeline {
                     String f = readFile("${workspace}/all/src/main/resources/jenkins/Project-RC-Build/versions.txt").trim()
                     println f
                     env.version = input message: 'User input required', ok: 'Release!',
-                            parameters: [choice(name: 'version', choices: "$f.text", description: 'Which version should be promoted??')]
+                            parameters: [choice(name: 'version', choices: "$f", description: 'Which version should be promoted??')]
                     println env.version
                 }
             }
