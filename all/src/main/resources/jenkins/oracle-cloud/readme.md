@@ -20,8 +20,7 @@ Oracle Cloud Infrastructure Container Service Classic: Docker container runtime 
 ##### Files
 * create-deployment.json, define the deployment  
 * new-service.json, define the service
-* pipeline.groovy, the Jenkins pipeline groovy script, see 
-[the running Blue Ocean here](http://129.213.104.3:8080/jenkins/blue/organizations/jenkins/Continuous_Delivery%2FProject-Cloud-Deploy/activity)
+* pipeline.groovy, the Jenkins pipeline groovy script, [Project Cloud Deploy here](http://129.213.104.3:8080/jenkins/blue/organizations/jenkins/pipelines/)
 
 ##### Parameters
 `version`, the version to deploy.
