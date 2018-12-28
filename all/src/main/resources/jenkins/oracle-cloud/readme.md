@@ -1,8 +1,9 @@
 
 ##### Deployment with/to Oracle Cloud Infrastructure
 
-This example includes the Groovy based Jenkins build pipeline that takes a parameterized version of a Docker container, from *Oracle Cloud Infrastructure Registry*, and runs the container in *Oracle Container Service Classic*. 
-*Twistlock* is utilized to inspect the images for known vulnerabilities.
+This example includes the Groovy based Jenkins build pipeline that takes a parameterized version number from the user, to identify a 
+previously built Docker image, hosted at *Oracle Cloud Infrastructure Registry*, and provisions a container from it on 
+*Oracle Container Service Classic*. *Twistlock* is utilized to inspect the images for known vulnerabilities.
 
 Overview: the included components.
 ![DevOps cycle](pics/cycle.png) 
@@ -10,7 +11,7 @@ Overview: the included components.
 Oracle Cloud Infrastructure Registry: the Docker images are hosted.
 ![Image registry](pics/registry.png)
 
-Twistlock: content of Docker registry is inspected.  
+Twistlock: content of Docker registry is inspected.
 ![Container inspection](pics/inspect.png) 
 
 Oracle Cloud Infrastructure Container Service Classic: Docker container runtime (service console).
@@ -21,7 +22,7 @@ Oracle Cloud Infrastructure Container Service Classic: Docker container runtime 
 * **new-service.json**, define the service, according to Oracle Cloud API
 * **pipeline.groovy**, the Jenkins pipeline groovy script, [Project Cloud Deploy here](http://129.213.104.3:8080/jenkins/blue/organizations/jenkins/pipelines/)
 
-##### Parameters
+##### Parameters of pipeline script
 `version`, the version to deploy.
 
 ##### Further information
