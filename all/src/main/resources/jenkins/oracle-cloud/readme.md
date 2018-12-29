@@ -6,7 +6,7 @@ The dockerized Java EE web application runs on Linux Alpine and Tomcat, with Ope
 [here](http://129.150.204.182:8002/all/). This is part of a holistic workflow spanning several pipelines including build and test (multiple test 
 categories) of the web application, package it with 
 Docker, run different checks on source code and binaries, derive frozen versions by dynamically nailing down Maven snapshot versions, and 
-allow to cherry-pick RC and GA versions. In this use case, GA versions of the application are hosted on and run on Oracle Cloud, and are handled by
+allow to cherry-pick RC and GA versions. In this use case, GA versions of the application are pushed to Oracle Cloud, and are then handled by
 the pipeline and toolchain you find in this directory.
 
 ###### Overview: the included components.
