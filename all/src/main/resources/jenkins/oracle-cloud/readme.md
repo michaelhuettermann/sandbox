@@ -1,10 +1,11 @@
 
 ##### Deployment with/to Oracle Cloud 
 
-This example promotes and runs a previously built Docker image, as part of a holistic workflow, toward production. 
-The resulting web application, a dockerized Java EE web application, on Tomcat 9 and Linux Alpine, running OpenJDK 8, is running 
-[here](http://129.150.204.182:8002/all/). This is part of a holistic workflow to build and test the web application, package it with 
-Docker, run different checks, and derive RC and GA versions. In this use case, GA versions of the application are hosted on Oracle Cloud.
+This example promotes a previously built Docker image toward production. 
+The dockerized Java EE web application runs on Linux Alpine and Tomcat, with OpenJDK, and it is running 
+[here](http://129.150.204.182:8002/all/). This is part of a holistic workflow including build and test of the web application, package it with 
+Docker, run different checks on source code and binaries, derive frozen versions by dynamically nailing down Maven snapshot versions, and 
+allow to cherry-pick RC and GA versions. In this use case, GA versions of the application are hosted on Oracle Cloud.
 
 ###### Overview: the included components.
 ![DevOps cycle](pics/cycle.png) 
