@@ -53,10 +53,10 @@ Please note, the scripts are dynamically applying the current version. In this p
 * https://cloud.oracle.com/compute/ Oracle Cloud Infrastructure Compute 
 * https://docs.oracle.com/en/cloud/iaas/container-cloud/ Oracle Container Service Classic
 * https://cloud.oracle.com/containers/registry/ Oracle Cloud Infrastructure Registry
-* https://www.twistlock.com/ Twistlock.
-* https://jenkins.io/blog/2018/11/12/inspecting-binaries-with-jenkins/ Inspecting sources and binaries.
-* https://youtu.be/meC-u84o0xU Inspecting sources and binaries.
-* https://jenkins.io/blog/2017/04/18/continuousdelivery-devops-sonarqube/ Delivery pipelines, with SonarQube and Artifactory.
-* https://jenkins.io/blog/2017/07/05/continuousdelivery-devops-artifactory/ Delivery pipelines: how to promote Java EE and Docker binaries towward production.
-* https://github.com/michaelhuettermann/sandbox/tree/master/all/src/main/resources/jenkins The Jenkins pipelines.
-* https://github.com/michaelhuettermann/sandbox/tree/master/all The self-contained web app.
+* https://www.twistlock.com/ Twistlock
+* https://jenkins.io/blog/2018/11/12/inspecting-binaries-with-jenkins/ Inspecting sources and binaries
+* https://youtu.be/meC-u84o0xU Inspecting sources and binaries
+* https://jenkins.io/blog/2017/04/18/continuousdelivery-devops-sonarqube/ Delivery pipelines, with SonarQube and Artifactory
+* https://jenkins.io/blog/2017/07/05/continuousdelivery-devops-artifactory/ Delivery pipelines: how to promote Java EE and Docker binaries toward production
+* https://github.com/michaelhuettermann/sandbox/tree/master/all/src/main/resources/jenkins The Jenkins pipelines
+* https://github.com/michaelhuettermann/sandbox/tree/master/all The self-contained web app
