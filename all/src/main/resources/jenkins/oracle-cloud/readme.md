@@ -1,12 +1,12 @@
 
-##### Deployment with/to Oracle Cloud 
+##### Deployment of a dockerized Java EE web application, with/to Oracle Cloud 
 
 This example promotes a previously built Docker image toward production. 
 The dockerized Java EE web application runs on Linux Alpine and Tomcat, with OpenJDK, and it is running 
 [here](http://129.150.204.182:8002/all/). This is part of a holistic workflow spanning several pipelines including build and test (multiple test 
 categories) of the web application, package it with 
 Docker, run different checks on source code and binaries, derive frozen versions by dynamically nailing down Maven snapshot versions, and 
-allow to cherry-pick RC and GA versions. In this use case, GA versions of the application are pushed to Oracle Cloud, and are then handled by
+allow to cherry-pick RC and GA versions. GA versions of the application are pushed to Oracle Cloud, and are then handled by
 the pipeline and toolchain you find in this directory.
 
 ###### Overview: the included components.
@@ -16,27 +16,32 @@ The Docker images are hosted on *Oracle Cloud Infrastructure Registry* and from 
 *Oracle Container Service Classic*. *Twistlock* is utilized to inspect the images (with its layers, transitively) in the registry for known 
 vulnerabilities. In order to demo the open architecture and feature-rich Oracle Cloud API, the parts are glued together by the Oracle Cloud REST API, 
 however, you can of course also use any other integration depending on your basic conditions and individual requirements. 
+
+###### Jenkins automation engine
+![Jenkins pipeline](pics/pipeline.png) 
+
+A Jenkins build job is used to provision the Docker image and run it on Oracle Cloud. 
+The Jenkins pipeline maps to the sources located in this directory. It can be viewed in action 
+[as the Project Cloud Deploy here](http://129.213.104.3:8080/jenkins/blue/organizations/jenkins/pipelines/).
  
 ###### Oracle Cloud Infrastructure Registry: the Docker images are hosted.
 ![Image registry](pics/registry.png)
 
-The Docker images are hosted on configured Docker registries, on Oracle Cloud. The Docker image which is managed with this pipeline is an example of a primitive that can be aggregated to more complex setups. The Dockerfile can be found 
+The Docker images are hosted on Docker registries, on Oracle Cloud. The Docker image which is managed with this pipeline is an example of a primitive that can be aggregated to more complex setups.
+The Dockerfile can be found 
 [here](https://github.com/michaelhuettermann/sandbox/blob/master/all/src/main/resources/docker/alpine/Dockerfile).  
  
-
 ###### Twistlock: content of Docker registry is inspected.
 ![Container inspection](pics/inspect.png) 
 
-Twistlock integrates with Oracle Cloud and inspects the Docker images managed in the configured Docker registries. This is a valuable complementary check, in addition
+Twistlock integrates with Oracle Cloud and inspects the Docker images managed in the Docker registries. This is a valuable complementary security check, in addition
 to build-time analyzes, also part of the overall workflow.
 
 ###### Oracle Cloud Infrastructure (OCI) Container Service Classic: Docker container runtime (service console).
 ![Container runtime](pics/container.png)  
 
-To provision the Docker image and run it on Oracle Cloud, a Groovy based Jenkins build job is used. 
-The Jenkins pipeline, that maps to the sources located in this directory, can be viewed 
-[as the Project Cloud Deploy here](http://129.213.104.3:8080/jenkins/blue/organizations/jenkins/pipelines/). OCI Container Classic uses units such as 
-*stacks*, *services*, *deployments*, to aggregate and manage items. The script does stop an existing deployment, if available, creates a new service and deployment, and 
+OCI Container Classic uses units such as 
+*stacks*, *services* and *deployments*, to aggregate and manage deployment units. The sample script does stop an existing deployment, if available, creates a new service and deployment, and 
 finally runs the Docker image. 
 
 ##### Files
