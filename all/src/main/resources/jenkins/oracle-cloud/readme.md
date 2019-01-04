@@ -49,10 +49,14 @@ finally runs the Docker image.
 * **new-service.json**, define the service, according to Oracle Cloud API
 * **pipeline.groovy**, the Jenkins pipeline groovy script
 
-Please note, the scripts are dynamically applying the current version. In this pipeline, the target version is injected by the user while triggering the pipeline. 
+Please note, to underpin the underlying concept, the scripts are dynamically applying the current version. 
+In this pipeline, the target version is injected by the user while triggering the pipeline. 
+On the other side, to keep it simple, some items are hard-wired, e.g. the name of the Docker image.
 
 ##### Parameters of pipeline script
 `version`, the version of the Docker image to deploy.
+`CLOUDIP`, the IP of the Container Console, as Jenkins environment variable, see [here](https://docs.oracle.com/en/cloud/iaas/container-cloud/contu/accessing-container-console-oracle-container-cloud-service.html)
+`ORACLE_BEARER`, the bearer, as Jenkins credential, see [here](https://docs.oracle.com/en/cloud/iaas/container-cloud/conta/op-token-post.html)
 
 ##### Further information
 * https://cloud.oracle.com/compute/ Oracle Cloud Infrastructure Compute 
