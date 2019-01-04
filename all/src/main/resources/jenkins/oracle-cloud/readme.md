@@ -54,7 +54,7 @@ In this pipeline, the target version is injected by the user while triggering th
 On the other side, to keep it simple, some items are hard-wired, e.g. the name of the Docker image.
 
 ##### Parameters of pipeline script
-* `version`, the version of the Docker image to deploy.
+* `version`, the version of the Docker image to deploy, injected by upstream pipeline, and there injected by user
 * `CLOUDIP`, the IP of the Container Console, as Jenkins environment variable, see [here](https://docs.oracle.com/en/cloud/iaas/container-cloud/contu/accessing-container-console-oracle-container-cloud-service.html)
 * `ORACLE_BEARER`, the bearer, as Jenkins credential, see [here](https://docs.oracle.com/en/cloud/iaas/container-cloud/conta/op-token-post.html)
 
