@@ -1,12 +1,13 @@
 
 ##### Deployment of a dockerized Java EE web application, with/to Oracle Cloud 
 
-This example covers a promotion of a previously built Docker image toward production. 
+This example covers a prototyped promotion of a previously built Docker image toward higher environments, e.g. production. 
 The dockerized Java EE web application runs on Linux Alpine and Tomcat, with OpenJDK, and it is running 
-[here](http://129.150.204.182:8002/all/). This is part of a [holistic workflow](https://github.com/michaelhuettermann/sandbox/tree/master/all/src/main/resources/jenkins) spanning several pipelines including build and test (multiple test 
-categories) of the web application, package it with 
-Docker, run different checks on source code and binaries, derive frozen versions by dynamically nailing down Maven snapshot versions, and 
-allow to cherry-pick RC and GA versions. GA versions of the application are pushed to Oracle Cloud, and are then handled by
+[here](http://129.150.204.182:8002/all/). 
+This is part of a [holistic workflow](https://github.com/michaelhuettermann/sandbox/tree/master/all/src/main/resources/jenkins) spanning 
+several pipelines including build and test (multiple test 
+categories) of the web application, run checks on the source code, derive frozen versions by dynamically nailing down Maven snapshot versions, package the app with 
+Docker, run security checks on binaries, and allow to cherry-pick RC and GA versions. GA versions of the application are pushed to Oracle Cloud, and are then handled by
 the pipeline (and thus toolchain) you find in this directory.
 
 ###### Overview: the included components.
@@ -66,6 +67,6 @@ On the other side, to keep it simple, some items are hard-wired, e.g. the name o
 * https://jenkins.io/blog/2018/11/12/inspecting-binaries-with-jenkins/ Inspecting sources and binaries
 * https://youtu.be/meC-u84o0xU Inspecting sources and binaries
 * https://jenkins.io/blog/2017/04/18/continuousdelivery-devops-sonarqube/ Delivery pipelines, with SonarQube and Artifactory
-* https://jenkins.io/blog/2017/07/05/continuousdelivery-devops-artifactory/ Delivery pipelines: how to promote Java EE and Docker binaries toward production
+* https://jenkins.io/blog/2017/07/05/continuousdelivery-devops-artifactory/ Delivery pipelines: how to promote Java EE and Docker binaries 
 * https://github.com/michaelhuettermann/sandbox/tree/master/all/src/main/resources/jenkins The Jenkins pipelines
 * https://github.com/michaelhuettermann/sandbox/tree/master/all The self-contained web app
