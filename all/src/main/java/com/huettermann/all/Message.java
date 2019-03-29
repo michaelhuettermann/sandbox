@@ -21,15 +21,13 @@ public class Message extends HttpServlet {
         }
 
         PrintWriter out = null;
-        if (request.getRequestedSessionId().equals("4711")) {
-            try {
-                out = response.getWriter();
-                out.println("Hello: " + param);
-                out.flush();
-                out.close();
-            } catch (IOException io) {
-                io.printStackTrace();
-            }
+        try {
+            out = response.getWriter();
+            out.println("Hello: " + param);
+            out.flush();
+            out.close();
+        } catch (IOException io) {
+            io.printStackTrace();
         }
     }
 }
