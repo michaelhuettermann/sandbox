@@ -16,6 +16,7 @@ ENV TOMCAT_VERSION_FULL  9.0.17
 
 # Download, install, housekeeping
 RUN apk add --update curl &&\
+  apk add --update openssl && \
   apk add bash &&\
   #apk add -u libx11 &&\
   mkdir -p /opt &&\
