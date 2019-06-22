@@ -27,7 +27,7 @@ public class Message extends HttpServlet {
             try {
                 out = response.getWriter();
                 String encodedName = org.owasp.encoder.Encode.forHtml(param);
-                out.println("Hello: " + param);
+                out.println("Hello: " + encodedName);
                 out.flush();
                 out.close();
             } catch (IOException io) {
