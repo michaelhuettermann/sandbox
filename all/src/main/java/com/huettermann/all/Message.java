@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 
 public class Message extends HttpServlet {
 
-    Logger logger = LoggerFactory.getLogger(Message.class);
+    private static Logger logger = LoggerFactory.getLogger(Message.class);
 
     @Override
     public void doGet(HttpServletRequest request,
