@@ -3,7 +3,6 @@ package com.huettermann.all;
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
-import org.owasp.encoder.Encode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,7 +34,7 @@ public class Message extends HttpServlet {
                 out.flush();
                 out.close();
             } catch (IOException io) {
-                logger.error(io.printStackTrace());
+                logger.info(io.getStackTrace());
             }
         }
     }
