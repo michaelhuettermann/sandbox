@@ -34,7 +34,7 @@ public class Message extends HttpServlet {
                 out.flush();
                 out.close();
             } catch (IOException io) {
-                logger.info(io.getStackTrace());
+                logger.info(io.getMessage());
             }
         }
     }
