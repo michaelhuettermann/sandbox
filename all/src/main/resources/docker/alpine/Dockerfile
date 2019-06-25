@@ -1,6 +1,6 @@
 ##FROM openjdk:8-jre-alpine
-#FROM openjdk:8u181-jre-alpine
-FROM openjdk:13-jdk-alpine
+FROM openjdk:8u181-jre-alpine
+#FROM openjdk:13-jdk-alpine
 LABEL maintainer "michael@huettermann.net"
 
 # Domain of your Artifactory. Any other storage and URI download link works, just change the ADD command, see below.
@@ -16,7 +16,6 @@ ENV TOMCAT_VERSION_FULL  9.0.17
 
 # Download, install, housekeeping
 RUN apk add --update curl &&\
-  apk add --update openssl && \
   apk add bash &&\
   #apk add -u libx11 &&\
   mkdir -p /opt &&\

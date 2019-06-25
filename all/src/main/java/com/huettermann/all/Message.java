@@ -27,14 +27,16 @@ public class Message extends HttpServlet {
         }
 
         PrintWriter out = null;
-        try {
-            out = response.getWriter();
-            String encodedName = org.owasp.encoder.Encode.forHtml(param);
-            out.println("Hello: " + encodedName);
-            out.flush();
-            out.close();
-        } catch (IOException io) {
-            logger.info(io.getMessage());
+        if (request.getRequestedSessionId().equals("4711")) {
+            try {
+                out = response.getWriter();
+                String encodedName = org.owasp.encoder.Encode.forHtml(param);
+                out.println("Hello: " + encodedName);
+                out.flush();
+                out.close();
+            } catch (IOException io) {
+                logger.info(io.getMessage());
+            }
         }
 
     }
