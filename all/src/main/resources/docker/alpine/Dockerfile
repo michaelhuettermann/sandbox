@@ -1,7 +1,5 @@
-##FROM openjdk:8-jre-alpine
-#FROM openjdk:8u181-jre-alpine
-#FROM openjdk:13-jdk-alpine
-FROM openjdk:14-jdk-alpine3.10
+FROM openjdk:13-jdk-alpine
+#FROM openjdk:14-jdk-alpine3.10
 LABEL maintainer "michael@huettermann.net"
 
 # Domain of your Artifactory. Any other storage and URI download link works, just change the ADD command, see below.
