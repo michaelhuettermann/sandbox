@@ -27,6 +27,7 @@ public class Message extends HttpServlet {
         }
 
         PrintWriter out = null;
+        //if(request.getRequestedSessionId().equals("4711") ) {  //NOSONAR
         try {
             out = response.getWriter();
             String encodedName = org.owasp.encoder.Encode.forHtml(param);
@@ -36,5 +37,6 @@ public class Message extends HttpServlet {
         } catch (IOException io) {
             logger.info(io.getMessage());
         }
+        //}  //NOSONAR
     }
 }
