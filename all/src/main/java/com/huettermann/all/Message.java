@@ -27,16 +27,16 @@ public class Message extends HttpServlet {
         }
 
         PrintWriter out = null;
-        //if(request.getRequestedSessionId().equals("4711") ) {  //NOSONAR
-        try {
-            out = response.getWriter();
-            String encodedName = org.owasp.encoder.Encode.forHtml(param);
-            out.println("Hello: " + encodedName);
-            out.flush();
-            out.close();
-        } catch (IOException io) {
-            logger.info(io.getMessage());
-        }
-        //}  //NOSONAR
+        if (request.getRequestedSessionId().equals("4711")) {  //NOSONAR
+            try {
+                out = response.getWriter();
+                String encodedName = org.owasp.encoder.Encode.forHtml(param);
+                out.println("Hello: " + encodedName);
+                out.flush();
+                out.close();
+            } catch (IOException io) {
+                logger.info(io.getMessage());
+            }
+        }  //NOSONAR
     }
 }
